@@ -1,10 +1,7 @@
 import pandas as pd
-from langchain_core.documents.base import Document
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import PromptTemplate
-from langchain_core.runnables.passthrough import RunnablePassthrough
+from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
 def load_csv(csv_file_path = 'CoplasData.csv'):
@@ -37,44 +34,16 @@ def create_readable_text_from_row(row):
 
 df = load_csv()
 
-# Convert all rows to readable text documents
-text_documents = []
+# Convert entire CSV into structured text
+full_context = ""
 
-for index, row in df.iterrows():
-    # Convert each row to readable text
+for _, row in df.iterrows():
     readable_description = create_readable_text_from_row(row)
-    # Create a Document object (LangChain's format)
-    doc = Document(page_content=readable_description)
-    text_documents.append(doc)
-  
-print(f"Created {len(text_documents)} document objects")
+    full_context += readable_description + "\n"
 
-# A few examples of what we created
-print("\nExamples of converted documents:")
-for i in range(min(3, len(text_documents))):
-    print(f"Document {i+1}: {text_documents[i].page_content}")
+print("Full CSV converted to context text")
 
-# Embeddings
-embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
-print("Embedding system initialized")
-print("This will convert our text into numerical vectors that capture meaning")
-
-# Create our vector store from the documents
-print("Creating vector store from documents...")
-vector_search_store = FAISS.from_documents(text_documents, embedding_model)
-print(f"Vector store created with {len(text_documents)} documents")
-print("Each document is now represented as a vector for fast similarity search")
-
-# Test our search system
-# test_query = "aves"
-# similar_documents = vector_search_store.similarity_search(test_query, k=3)
-# print(f"Testing search for: '{test_query}'")
-# print(f"Found {len(similar_documents)} similar documents:")
-
-# for i, doc in enumerate(similar_documents):
-#     print(f"\nResult {i+1}: {doc.page_content}")
+print("Full context length: " + str(len(full_context)))
 
 # Initialize our AI language model
 ai_assistant = ChatOllama(
@@ -84,14 +53,6 @@ ai_assistant = ChatOllama(
 
 print("AI assistant initialized")
 print("Temperature set to 0 for consistent, factual responses")
-
-# Create a retriever from our vector store
-document_retriever = vector_search_store.as_retriever(
-    search_kwargs={"k": 3}  # Retrieve top 3 most similar documents
-)
-
-print("Document retriever created")
-print("It will find the 3 most relevant pieces of information for each question")
 
 # Create a prompt template for our AI assistant
 answer_prompt = PromptTemplate.from_template("""
@@ -124,7 +85,7 @@ print("Prompt template created")
 # Build the complete RAG chain using LCEL
 rag_pipeline = (
     {
-        "context": document_retriever,  # Find relevant documents
+        "context": lambda x: full_context,  # Inject full CSV
         "question": RunnablePassthrough()  # Pass the question through
     }
     | answer_prompt  # Format everything into our prompt

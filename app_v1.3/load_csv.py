@@ -41,10 +41,15 @@ df = load_csv()
 text_documents = []
 
 for index, row in df.iterrows():
-    # Convert each row to readable text
-    readable_description = create_readable_text_from_row(row)
-    # Create a Document object (LangChain's format)
-    doc = Document(page_content=readable_description)
+    # # Convert each row to readable text
+    # readable_description = create_readable_text_from_row(row)
+    # # Create a Document object (LangChain's format)
+    # doc = Document(page_content=readable_description)
+    # text_documents.append(doc)
+    doc = Document(
+        page_content=row["Letra"],
+        metadata={"nombre": row["Nombre"]}
+    )
     text_documents.append(doc)
   
 print(f"Created {len(text_documents)} document objects")
@@ -56,7 +61,8 @@ for i in range(min(3, len(text_documents))):
 
 # Embeddings
 embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+    #model_name="sentence-transformers/all-MiniLM-L6-v2"
+    model_name="sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
 )
 print("Embedding system initialized")
 print("This will convert our text into numerical vectors that capture meaning")
@@ -87,7 +93,7 @@ print("Temperature set to 0 for consistent, factual responses")
 
 # Create a retriever from our vector store
 document_retriever = vector_search_store.as_retriever(
-    search_kwargs={"k": 3}  # Retrieve top 3 most similar documents
+    search_kwargs={"k": 15}  # Retrieve top 3 most similar documents
 )
 
 print("Document retriever created")

@@ -1,0 +1,12 @@
+[project]
+name = "xmlparsesnippet"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "lxml>=6.0.2",
+    "matplotlib>=3.10.8",
+    "qdrant-client>=1.17.1",
+    "sentence-transformers[onnx-gpu,train]>=5.3.0",
+]

@@ -3,6 +3,7 @@
 - [Flask](https://flask.palletsprojects.com/en/stable/): crea la aplicación web
 ## Secciones
 - Methods and data (en qué máquina se corre el modelo, qué modelo se utiliza...)
+- Limitaciones: scope, modelos utilizados, muestra al experimentar
 
 ## Referencias
 - [Ollama API](https://docs.ollama.com/)

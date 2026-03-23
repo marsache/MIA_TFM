@@ -97,7 +97,7 @@ document_retriever = vector_search_store.as_retriever(
 )
 
 print("Document retriever created")
-print("It will find the 3 most relevant pieces of information for each question")
+print("It will find the k most relevant pieces of information for each question")
 
 # Create a prompt template for our AI assistant
 answer_prompt = PromptTemplate.from_template("""

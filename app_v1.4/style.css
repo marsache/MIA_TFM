@@ -72,6 +72,24 @@ body {
   margin: 6px 0;
 }
 
+.loading {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.dots::after {
+  content: "";
+  font-size: 24px;
+  animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0% { content: ""; }
+  33% { content: "."; }
+  66% { content: ".."; }
+  100% { content: "..."; }
+}
+
 /* Input */
 .input-area {
   display: flex;

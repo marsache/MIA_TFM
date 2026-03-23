@@ -15,15 +15,28 @@ form.addEventListener("submit", async (e) => {
   addMessage(userText, "user");
   input.value = "";
 
-  // Envía la petición POST al backend de Flask
-  const response = await fetch("/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: userText })
-  });
+  // Mostrar burbuja de carga
+  //const loadingMsg = addMessage("...", "bot loading");
+  const loadingMsg = addMessage('<span class="dots"></span>', "bot");
 
-  const data = await response.json(); // Convierte la respuesta a formato JSON
-  addMessage(data.reply, "bot"); // Añade la respuesta al chat como un mensaje nuevo
+  try {
+    // Envía la petición POST al backend de Flask
+    const response = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userText })
+    });
+
+    const data = await response.json(); // Convierte la respuesta a formato JSON
+    loadingMsg.remove();
+
+    addMessage(data.reply, "bot"); // Añade la respuesta al chat como un mensaje nuevo
+
+  } catch (error) {
+    loadingMsg.remove();
+    addMessage("Error al obtener respuesta", "bot");
+  }
+
 });
 
 /**
@@ -35,11 +48,13 @@ form.addEventListener("submit", async (e) => {
 function addMessage(text, role) {
   const msg = document.createElement("div"); // Nuevo elemento div (HTMLDivElement)
   msg.className = `message ${role}`; // "message user", "message bot"
-  // msg.textContent = text;
   if (role === "bot") {
       msg.innerHTML = text;
     } else {
       msg.textContent = text;
-    }  messages.appendChild(msg);
+    }  
+  messages.appendChild(msg);
   messages.scrollTop = messages.scrollHeight; // El chat automáticamente hace scroll hasta el mensaje actual
+
+  return msg;
 }

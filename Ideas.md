@@ -4,6 +4,7 @@
 ## Secciones
 - Methods and data (en qué máquina se corre el modelo, qué modelo se utiliza...)
 - Limitaciones: scope, modelos utilizados, muestra al experimentar
+- MCP (Wikidata, fuzzy search...)
 
 ## Referencias
 - [Ollama API](https://docs.ollama.com/)
@@ -18,4 +19,9 @@
 - app_v1.1: embeddings and FAISS
     - Hipótesis de mal funcionamiento: k = 3 es un valor demasiado pequeño. Si una canción relevante no está en el top 3 por similitud vectorial, desaparece.
 - app_v1.2: entire CSV in RAG
-- app_v1.3: 
+- app_v1.6: RAG pipeline:
+    root_dir = "data/"
+    → recursively scan
+    → detect file type
+    → load appropriately
+    → convert ALL into Document objects

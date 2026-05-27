@@ -1,0 +1,12 @@
+[project]
+name = "ollama-mcp-local-dataset"
+version = "0.1.0"
+description = "RAG agent over a local Spanish folk-song dataset using Ollama + FastMCP"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.0",
+    "fastmcp>=3.2.4",
+    "ollama>=0.6.1",
+    "uvicorn[standard]>=0.34.0",
+]

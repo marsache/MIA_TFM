@@ -6,16 +6,20 @@
 \contentsline {subsection}{\numberline {1.1.1}El giro computacional en el análisis de textos artísticos y creativos}{2}{subsection.11}%
 \contentsline {subsection}{\numberline {1.1.2}(TODO: ETIQUETAR SUBSECCIÓN)}{2}{subsection.12}%
 \contentsline {section}{\numberline {1.2}Objetivos}{3}{section.13}%
-\contentsline {section}{\numberline {1.3}Plan de trabajo}{3}{section.14}%
-\contentsline {section}{\numberline {1.4}Explicaciones adicionales sobre el uso de esta plantilla}{3}{section.15}%
-\contentsline {chapter}{\numberline {2}Estado de la Cuestión}{5}{chapter.17}%
-\contentsline {chapter}{\numberline {3}Descripción del Trabajo}{7}{chapter.18}%
-\contentsline {chapter}{\numberline {4}Capítulo 4: (TODO: título del capítulo)}{9}{chapter.21}%
-\contentsline {chapter}{\numberline {5}Conclusiones y Trabajo Futuro}{11}{chapter.22}%
-\contentsline {chapter}{\numberline {6}Introduction}{13}{chapter.23}%
+\contentsline {subsection}{\numberline {1.2.1}Objetivos generales}{3}{subsection.14}%
+\contentsline {subsection}{\numberline {1.2.2}Objetivos específicos}{3}{subsection.15}%
+\contentsline {section}{\numberline {1.3}Plan de trabajo}{3}{section.16}%
+\contentsline {section}{\numberline {1.4}Metodología y tecnología}{3}{section.17}%
+\contentsline {section}{\numberline {1.5}Estructura del resto del documento}{4}{section.18}%
+\contentsline {section}{\numberline {1.6}Explicaciones adicionales sobre el uso de esta plantilla}{4}{section.19}%
+\contentsline {chapter}{\numberline {2}Estado de la Cuestión}{5}{chapter.21}%
+\contentsline {chapter}{\numberline {3}Descripción del Trabajo}{7}{chapter.22}%
+\contentsline {chapter}{\numberline {4}Capítulo 4: (TODO: título del capítulo)}{9}{chapter.25}%
+\contentsline {chapter}{\numberline {5}Conclusiones y Trabajo Futuro}{11}{chapter.26}%
+\contentsline {chapter}{\numberline {6}Introduction}{13}{chapter.27}%
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {7}Conclusions and Future Work}{15}{chapter.24}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{17}{chapter*.25}%
+\contentsline {chapter}{\numberline {7}Conclusions and Future Work}{15}{chapter.28}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{17}{chapter*.29}%
 \babel@toc {spanish}{}\relax 
-\contentsline {chapter}{\numberline {A}Título del Apéndice A}{19}{appendix.26}%
-\contentsline {chapter}{\numberline {B}Título del Apéndice B}{21}{appendix.27}%
+\contentsline {chapter}{\numberline {A}Título del Apéndice A}{19}{appendix.30}%
+\contentsline {chapter}{\numberline {B}Título del Apéndice B}{21}{appendix.31}%

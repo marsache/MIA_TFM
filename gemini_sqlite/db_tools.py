@@ -304,9 +304,55 @@ def _has_ternary_grouping(offsets: set[float]) -> bool:
 #         and not _contains_offset(offsets, 1.5)
 #     )
 
+def _infer_mode_custom(score: m21.stream.Score) -> tuple[str | None, str | None]:
+    """
+    Infiere la tónica (finalis) y el modo eclesiástico (jónico, dórico, frigio...)
+    basándose en la última nota de la obra y en la duración acumulada de sus alturas.
+    """
+    all_notes = list(score.recurse().getElementsByClass(m21.note.Note))
+    if not all_notes:
+        return None, None
+
+    # Encontrar la tónica (la última nota es la reina del reposo en folklore)
+    last_note = all_notes[-1]
+    tonic_pc = last_note.pitch.pitchClass
+    
+    # Normalizamos el nombre al estilo de tu código actual
+    tonic_name = last_note.pitch.name.replace('-', '-flat').replace('#', '-sharp')
+
+    # Inicializar el contenedor de duraciones por cada intervalo (0 a 11 semitonos)
+    interval_durations = {i: 0.0 for i in range(12)}
+    
+    for n in all_notes:
+        dur = _to_float(n.quarterLength)
+        if dur > 0:
+            # Calculamos el intervalo en semitonos relativo a la tónica (módulo 12)
+            interval = (n.pitch.pitchClass - tonic_pc) % 12
+            interval_durations[interval] += dur
+
+    # Definición de perfiles de los 7 modos naturales (grados que los componen)
+    modos_perfiles = {
+        "jónico (mayor)": {0, 2, 4, 5, 7, 9, 11},
+        "dórico":         {0, 2, 3, 5, 7, 9, 10},
+        "frigio":         {0, 1, 3, 5, 7, 8, 10},
+        "lidio":          {0, 2, 4, 6, 7, 9, 11},
+        "mixolidio":      {0, 2, 4, 5, 7, 9, 10},
+        "eólico (menor)": {0, 2, 3, 5, 7, 8, 10},
+        "locrio":         {0, 1, 3, 5, 6, 8, 10}
+    }
+
+    # Puntuar cada modo sumando la duración de las notas que encajan en él
+    puntuaciones = {}
+    for nombre_modo, grados in modos_perfiles.items():
+        puntuaciones[nombre_modo] = sum(interval_durations[g] for g in grados)
+
+    # El modo que sume más tiempo de ejecución es el ganador
+    modo_ganador = max(puntuaciones, key=puntuaciones.get)
+    
+    return tonic_name, modo_ganador
+
 
 def detectar_hemiolas_verticales(file_path: str | Path) -> list[int]:
-
     score = _safe_parse_score(file_path)
 
     if score is None:
@@ -315,7 +361,6 @@ def detectar_hemiolas_verticales(file_path: str | Path) -> list[int]:
     compases_con_hemiolia: set[int] = set()
 
     for part in score.parts:
-
         for measure in part.getElementsByClass(m21.stream.Measure):
 
             num_compas = measure.measureNumber
@@ -336,15 +381,12 @@ def detectar_hemiolas_verticales(file_path: str | Path) -> list[int]:
             offsets_por_voz: list[set[float]] = []
 
             for voz in voces:
-
                 offsets: set[float] = set()
 
                 flat_voice = voz.flatten()
 
                 for n in flat_voice.notesAndRests:
-
                     if isinstance(n, (m21.note.Note, m21.chord.Chord)):
-
                         offsets.add(round(_to_float(n.offset), 3))
 
                 offsets_por_voz.append(offsets)
@@ -645,6 +687,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     if not tonalidad or tonalidad.strip() == "":
         tonalidad = _infer_tonality_custom(score, mei_meta.get("key_sig"))
 
+    tonica_modo, modo_musical = _infer_mode_custom(score)
+    modo_completo = f"{tonica_modo} {modo_musical}" if tonica_modo and modo_musical else None
+
     bpm = _extract_bpm(score)
 
     hemiolias_verticales = detectar_hemiolas_verticales(file_path)
@@ -663,6 +708,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "autor": autor,
         "compas": compas,
         "tonalidad": tonalidad,
+        "modo": modo_musical,
+        "modo_completo": modo_completo,
         "bpm": bpm,
         "tiene_hemiolia_vertical": 1 if hemiolias_verticales else 0,
         "compases_hemiolia_vertical": ", ".join(map(str, hemiolias_verticales)),

@@ -3,6 +3,19 @@
 
 \chapterquote{Frase célebre dicha por alguien inteligente}{Autor}
 
+(TODO: completar)
+
+En este contexto se desarrolla el proyecto \textit{"\textnormal{\textit{EA}}-DIGIFOLK-An European and Ibero-American approach 
+for the digital collection, analysis and dissemination of folk music (101086338)”}, financiado por 
+la Unión Europea, en el que participa la UCM\footnote{\url{https://cordis.europa.eu/project/id/101086338}}, cuyo principal objetivo es preservar y compartir
+la cultura folclórica popular europea e iberoamericana, sobre todo del ámbito musical. EA-DIGIFOLK
+busca crear una plataforma que facilite la difusión de esta cultura a entornos educativos y públicos.
+Por otra parte, y más en relación con este proyecto, otro de los principales objetivos es el análisis
+musical y etnomusicológico del material audiovisual y escrito recopilado. Este trabajo se ha llevado
+a cabo como parte de este proyecto de investigación.
+
+(TODO: completar)
+
 
 El estudiante elaborará una memoria descriptiva del trabajo realizado, con una \textbf{extensión mínima recomendada de 50 páginas} incluyendo al menos una introducción, objetivos y plan de trabajo, resultados con una discusión crítica y razonada de los mismos, conclusiones y bibliografía empleada en la elaboración de la memoria.
 
@@ -19,17 +32,6 @@ Además del cuerpo principal describiendo el trabajo realizado, la memoria conte
 \item una bibliografía.
 \end{itemize}
 
-La portada de la memoria deberá contener la siguiente información:
-
-\begin{itemize}
-\item "Máster en Inteligencia Artificial, Facultad de Informática, Universidad Complutense de Madrid"
-\item Título
-\item María Sachez Carrasco
-\item Carlos León Aznar
-\item Colaborador externo de dirección, si lo hay
-\item Curso académico
-\item Solo en la versión final: convocatoria y calificación obtenida
-\end{itemize}
 
 Para facilitar la escritura de la memoria siguiendo esta estructura, el estudiante podrá usar las plantillas en LaTeX o Word preparadas al efecto y publicadas en la página web del máster correspondiente.
 
@@ -37,10 +39,25 @@ Todo el material no original, ya sea texto o figuras, deberá ser convenientemen
 
 
 \section{Motivación}
-Introducción al tema del TFM.
+(TODO: completar y quitar) Introducción al tema del TFM.
 
 \subsection{El giro computacional en el análisis de textos artísticos y creativos}
 El procesamiento de lenguaje natural (PLN) ha evolucionado rápidamente en el transcurso de los últimos años. Aunque inicialmente [...], este desarrollo ha alcanzado la mejora en el ámbito de la generación de contenido creativo e incluso poético. 
+
+\subsection{(TODO: ETIQUETAR SUBSECCIÓN)}
+El análisis musicológico de grandes volúmenes de música tradicional y/o folclórica se ha enfrentado históricamente a una limitación metodológica: la dependencia del análisis manual de partituras, lo que supone un proceso riguroso pero difícilmente escalable, ya que la automatización digital de este procedimiento resulta prácticamente imposible.
+La digitalización de archivos musicales en formatos simbólicos estructurados (como MusicXML o MEI) ha abierto las puertas a la musicología computacional, pero siguen persistiendo problemas fundamentales que dificultan cualquier metodología de automatización al digitalizar este tipo de contenido.
+Estos son algunos obstáculos y dificultades encontradas en el ámbito del análisis musical que han motivado el desarrollo de este proyecto:
+\begin{itemize}
+\item \textbf{Heterogeneidad en los corpus.} (TODO: completar)
+\item \textbf{Inconsistencia en los estándares simbólicos.} Muchas herramientas estándar utilizadas en el ámbito técnico del análisis musicológico, como \textit{music21} (TODO: insertar referencia) pueden experimentar fallos críticos o perder metadatos relevantes a la hora de de interpretar determinadas fuentes de información. Esto ocurre, por ejemplo, con ciertas etiquetas presentes en archivos MEI (como el atributo \textit{wordpos}, que indica la posición de una sílaba dentro de una palabra; sin embargo, no todos los valores que puede tomar no son interpretables por muchos programas como \textit{music21}), cuya implementación no está plenamente normalizada entre los distintos programas de edición de partituras.
+\item \textbf{Complejidad algorítmica en la detección de fenómenos rítmicos complejos.} En el mundo de la música existe una infinidad de estructuras expresivas y ambiguas, como las síncopas y las hemiolias (tanto horizontales como verticales), que requieren un modelado matemático con un estricto estudio previo basado en características muy concretas de las obras, como los tiempos de ataque y jerarquías métricas. Esto supone trabajar de cero en funciones que no están implementadas de forma nativa en las librerías analíticas convencionales.
+\item \textbf{División entre el análisis musical y el semántico.} Muchos sistemas de análisis musical automatizado aislan el contenido estructural y rítmico del contenido textual de la lírica. Esta es una separación muy problemática, ya que la separación de estas dos estructuras tan relacionadas entre sí implica una grave pérdida de información. Por ello es necesario diseñar un sistema capaz de extraer características musicales analíticas y, al mismo tiempo, clasificar el contenido temático y poético de las canciones.
+\end{itemize}
+
+El proyecto nace a partir de estas carencias, con el objetivo de resolverlas mediante el estudio y desarrollo de un sistema capaz de suplir las necesidades de las musicólogas y usuarias que necesiten herramientas más sofisticadas para enfrentarse a análisis de corpus de datos muy extensos y complejos. 
+
+El propósito principal de esta investigación se centra en el desarrollo de una arquitectura automatizada, robusta y escalable, que tenga la habilidad de analizar rasgos musicales latentes en un corpus.
 
 \section{Objetivos}
 Descripción de los objetivos del trabajo.
@@ -59,8 +76,3 @@ Si no te gusta que no haya \textbf{espacios entre párrafos} y quieres dejar un 
 TFMTeXiS se ha elaborado a partir de la plantilla de TeXiS\footnote{\url{http://gaia.fdi.ucm.es/research/texis/}}, creada por Marco Antonio y Pedro Pablo Gómez Martín para escribir su tesis doctoral. Para explicaciones más extensas y detalladas sobre cómo usar esta plantilla, recomendamos la lectura del documento \texttt{TeXiS-Manual-1.0.pdf} que acompaña a esta plantilla.
 
 El siguiente texto se genera con el comando \verb|\lipsum[2-20]| que viene a continuación en el fichero .tex. El único propósito es mostrar el aspecto de las páginas usando esta plantilla. Quita este comando y, si quieres, comenta o elimina el paquete \textit{lipsum} al final de \verb|TeXiS\TeXiS_pream.tex|
-
-\subsection{Texto de prueba}
-
-
-\lipsum[2-20]

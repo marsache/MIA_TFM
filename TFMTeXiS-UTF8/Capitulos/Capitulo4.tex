@@ -1,0 +1,11 @@
+\chapter{Capítulo 4: (TODO: título del capítulo)}
+\label{cap:capitulo4}
+
+Durante el proyecto se ha desarrollado un sistema de análisis musical bajo una arquitectura secuencial dividida en cinco fases diferenciadas:
+\begin{itemize}
+\item \textbf{Fase de descubrimiento de archivos.} Inspección recursiva del directorio raíz del corpus para identificar y catalogar archivos con extensiones compatibles (.xml, .musicxml, .mxl, .mei, etc.).
+\item \textbf{Fase de preprocesamiento y normalización de archivos. } Limpieza de cadenas de texto para corregir la aparición de, por ejemplo, caracteres no aptos o espacios en los nombres de archivo de las obras, e incompatibilidades de sintaxis entre herramientas como \textit{music21} y los formatos utilizados antes de la llamada al intérprete musical.
+\item \textbf{Fase de análisis simbólico y extracción de metadatos. } Carga de la información sobre cada obra en memoria para extraer de ella datos como la tonalidad, el compás, el tempo, la inferencia híbrida de la tonalidad y la detección de patrones rítmicos.
+\item \textbf{Fase de análisis semántico de la lírica mediante LLMs locales. } Extracción del texto lírico estructurado de cada obra y su posterior envío a un LLM local para su etiquetado. El modelo determina qué temas trata la letra, asignándole, como máximo, cuatro temáticas a cada canción (Nana, Religión, Naturaleza, Picaresca, Amor, etc.).
+\item \textbf{Fase de consolidación, estructuración y almacenamiento en la base de datos SQLite. } Compilación de los diccionarios que contienen las características mencionadas con anterioridad y su exportación a una base de datos SQLite.
+\end{itemize}

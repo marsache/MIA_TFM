@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -12,9 +13,10 @@ import json
 import requests
 
 
-SUPPORTED_SONG_EXTENSIONS = {".xml", ".musicxml", ".mxl", ".mei"}
+SUPPORTED_SONG_EXTENSIONS = {".xml", ".musicxml", ".mxl", ".mei", ".mscz"}
 _EPSILON = 1e-3
 
+m21.environment.set('musescoreDirectPNGPath', 'C:/Program Files/MuseScore 4/bin/MuseScore4.exe') # Windows
 
 @dataclass
 class RhythmPatternResult:
@@ -41,13 +43,42 @@ def _contains_offset(offsets: set[float], target: float) -> bool:
 def _safe_parse_score(file_path: str | Path) -> m21.stream.Score | None:
     try:
         path_obj = Path(file_path)
+        orig_suffix = path_obj.suffix.lower()
+
+        # Tratamiento especial para .mscz (No soportado nativamente por music21)
+        if orig_suffix == ".mscz":
+            musescore_exe = 'C:/Program Files/MuseScore 4/bin/MuseScore4.exe'
+            
+            # Creamos un archivo temporal con extensión .mxl (MusicXML Comprimido)
+            with tempfile.NamedTemporaryFile(suffix=".mxl", delete=False) as tmp:
+                tmp_path = tmp.name
+            
+            try:
+                # Invocamos a MuseScore CLI para convertir el .mscz a .mxl
+                # Comando equivalente: MuseScore4.exe -o destino.mxl origen.mscz
+                cmd = [musescore_exe, "-o", tmp_path, str(path_obj)]
+                subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                
+                # Ahora que es un .mxl estándar, music21 lo leerá sin problemas
+                score = m21.converter.parse(tmp_path)
+                return score
+            finally:
+                # Nos aseguramos de borrar el archivo temporal .mxl del disco duro
+                try:
+                    Path(tmp_path).unlink()
+                except Exception:
+                    pass
+
+        # Los archivos .mxl sí son contenedores estándar que music21 lee de forma nativa
+        if orig_suffix == ".mxl":
+            return m21.converter.parse(str(path_obj))
+
+        # Para archivos basados en texto plano estructurado (MEI y XML estándar)
         text = path_obj.read_text(encoding="utf-8")
 
-        # music21 no soporta wordpos="s"
-        text = text.replace('wordpos="s"', 'wordpos="i"')
-
-        # Extraemos dinámicamente la extensión original (.xml, .musicxml, .mei...)
-        orig_suffix = path_obj.suffix.lower()
+        if orig_suffix == ".mei":
+            # music21 no soporta wordpos="s"
+            text = text.replace('wordpos="s"', 'wordpos="i"')
 
         with tempfile.NamedTemporaryFile(
             suffix=orig_suffix,
@@ -58,13 +89,18 @@ def _safe_parse_score(file_path: str | Path) -> m21.stream.Score | None:
             tmp.write(text)
             tmp_path = tmp.name
 
-        return m21.converter.parse(tmp_path)
+        try:
+            return m21.converter.parse(tmp_path)
+        finally:
+            try:
+                Path(tmp_path).unlink()
+            except Exception:
+                pass
 
     except Exception as e:
         print(f"ERROR PARSEANDO {file_path}")
         print(type(e).__name__, e)
         raise
-
 
 def _extract_mei_metadata_direct(file_path: str | Path) -> dict[str, Any]:
     """
@@ -273,13 +309,6 @@ def _offsets_from_measure(measure: m21.stream.Measure) -> set[float]:
     return offsets
 
 
-# def _has_6_8_feel(offsets: set[float]) -> bool:
-#     return (
-#         _contains_offset(offsets, 1.5)
-#         and not _contains_offset(offsets, 1.0)
-#         and not _contains_offset(offsets, 2.0)
-#     )
-
 def _has_binary_grouping(offsets: set[float]) -> bool:
     """
     Detecta agrupación binaria dentro de 3/4:
@@ -303,12 +332,6 @@ def _has_ternary_grouping(offsets: set[float]) -> bool:
         and _contains_offset(offsets, 2.0)
     )
 
-
-# def _has_3_4_feel(offsets: set[float]) -> bool:
-#     return (
-#         (_contains_offset(offsets, 1.0) or _contains_offset(offsets, 2.0))
-#         and not _contains_offset(offsets, 1.5)
-#     )
 
 def _infer_mode_custom(score: m21.stream.Score) -> tuple[str | None, str | None]:
     """
@@ -405,7 +428,7 @@ def detectar_hemiolas_verticales(file_path: str | Path) -> list[int]:
                     o1 = offsets_por_voz[i]
                     o2 = offsets_por_voz[j]
 
-                    print(num_compas, o1, o2)
+                    # print(num_compas, o1, o2)
 
                     if (
                         _has_binary_grouping(o1)
@@ -485,63 +508,6 @@ def detectar_hemiolas_horizontales(file_path: str | Path) -> list[int]:
 
     return sorted(list(compases_con_hemiolia))
 
-
-# def detectar_sincopas(file_path: str | Path) -> tuple[int, str, int]:
-#     score = _safe_parse_score(file_path)
-#     if score is None:
-#         return 0, "", 0
-
-#     tiene_sincopas = 0
-#     compases_sincopas: list[str] = []
-#     conteo_sincopas = 0
-
-#     for part in score.parts:
-#         for measure in part.getElementsByClass(m21.stream.Measure):
-#             num_compas = measure.measureNumber
-#             if num_compas in (None, 0):
-#                 continue
-
-#             ts = _get_measure_time_signature(measure)
-#             if not ts:
-#                 continue
-
-#             beat_ql = _to_float(ts.beatDuration.quarterLength)
-#             bar_ql = _to_float(ts.barDuration.quarterLength)
-#             if beat_ql <= 0 or bar_ql <= 0:
-#                 continue
-
-#             strong_beats: list[float] = []
-#             beat_cursor = 0.0
-#             while beat_cursor < bar_ql - _EPSILON:
-#                 strong_beats.append(round(beat_cursor, 6))
-#                 beat_cursor += beat_ql
-
-#             # Aplanamos el compás para extraer notas de los <layer> / Voices
-#             # y garantizar que sus offsets comiencen desde el inicio del compás.
-#             flat_measure = measure.flatten()
-            
-#             syncopated_here = False
-#             for note in flat_measure.notes:
-#                 start = _to_float(note.offset)
-#                 end = start + _to_float(note.duration.quarterLength)
-
-#                 starts_on_strong = any(_is_close(start, sb) for sb in strong_beats)
-#                 crosses_strong = any((start + _EPSILON) < sb < (end - _EPSILON) for sb in strong_beats)
-
-#                 if (not starts_on_strong) and crosses_strong:
-#                     compases_sincopas.append(str(num_compas))
-#                     conteo_sincopas += 1
-#                     syncopated_here = True
-#                     break
-
-#             if syncopated_here:
-#                 tiene_sincopas = 1
-
-#     # Eliminamos duplicados manteniendo el orden
-#     compases_unicos = sorted(list(set(compases_sincopas)), key=int)
-#     compases_texto = ", ".join(compases_unicos)
-
-#     return tiene_sincopas, compases_texto, conteo_sincopas
 
 def detectar_sincopas(file_path: str | Path) -> tuple[int, str, int]:
     """
@@ -703,88 +669,6 @@ def _analizar_temas_con_ollama(titulo: str, letra: str, model_name: str = "llama
         
     return []
 
-# def _extraer_region_de_ruta(file_path: str | Path) -> str | None:
-#     """
-#     Analiza la estructura de directorios buscando el nombre de la región.
-#     Prioriza la carpeta madre directa o la subcarpeta posterior al último pivote organizacional.
-#     """
-#     parts = Path(file_path).parts
-#     if len(parts) < 2:
-#         return None
-        
-#     # Lista de términos genéricos del sistema que NO identifican regiones geográficas
-#     carpetas_sistema = {
-#         "mei", "xml", "musicxml", "mxl", "corpus", "dataset", "miscellanous", "líricas",
-#         "datasets", "scores", "partituras", "songs", "updated", "vocal", "instrumental"
-#     }
-    
-#     # Estrategia 1: Comprobación directa de la carpeta madre inmediata (parts[-2])
-#     parent_name = parts[-2]
-#     # Validamos que no sea genérica ni un nombre de extracción de un zip (ej: MEI-20260315...)
-#     if parent_name.lower() not in carpetas_sistema and not parent_name.upper().startswith("MEI-"):
-#         return parent_name
-        
-#     # Estrategia 2: Escaneo en reversa (de derecha a izquierda) buscando el pivote organizativo más cercano
-#     for i in range(len(parts) - 2, -1, -1):
-#         if parts[i].lower() in carpetas_sistema:
-#             if i + 1 < len(parts) - 1:
-#                 posible_region = parts[i + 1]
-#                 if posible_region.lower() not in carpetas_sistema and not posible_region.upper().startswith("MEI-"):
-#                     return posible_region
-                    
-#     return None
-
-# def _inferir_region_con_ollama(titulo: str, letra: str, model_name: str = "llama3") -> dict[str, str]:
-#     """
-#     Conecta con Ollama para inferir la región geográfica o Comunidad Autónoma 
-#     de procedencia basándose en el título, topónimos y el contexto lingüístico de la letra.
-#     """
-#     resultado_defecto = {"region": "Desconocida", "justificacion": "Datos insuficientes"}
-#     if not titulo and not letra:
-#         return resultado_defecto
-
-#     prompt = f"""
-#     Analiza rigurosamente el título y la letra de esta canción tradicional para deducir su región o Comunidad Autónoma española de origen.
-    
-#     Título: {titulo}
-#     Letra: {letra}
-#     """
-
-#     system_prompt = (
-#         "Eres un experto en musicología, dialectología y folklore español. Tu tarea es identificar la región de origen de las obras. "
-#         "REGLAS ESTRICTAS DE SEGURIDAD:\n"
-#         "1. Básate EXCLUSIVAMENTE en la letra proporcionada. NO inventes que la letra contiene palabras como 'jota', 'flamenco' o vocabulario regional si estas no aparecen textualmente.\n"
-#         "2. Si el título contiene un topónimo (ej. 'Cabra') pero la letra no aporta ninguna pista lingüística, cultural o dialectal clara que lo secunde, NO des por segura la región; en su lugar, devuelve obligatoriamente 'Desconocida' en la región.\n"
-#         "3. Debes responder EXCLUSIVAMENTE con un objeto JSON con las claves 'region' (la Comunidad Autónoma, región histórica o 'Desconocida') "
-#         "y 'justificacion' (un motivo muy breve, veraz y de un solo renglón). No añadas nada de texto fuera del JSON.\n"
-#         "Ejemplo si no estás seguro: {\"region\": \"Desconocida\", \"justificacion\": \"El título menciona un topónimo pero la letra es genérica y no contiene vocabulario regional que permita verificar el origen.\"}"
-#     )
-
-#     payload = {
-#         "model": model_name,
-#         "prompt": prompt,
-#         "system": system_prompt,
-#         "stream": False,
-#         "format": "json",
-#         "options": {
-#             "temperature": 0.0  # Forzamos la máxima predictibilidad y reducimos la creatividad/alucinación
-#         }
-#     }
-
-#     try:
-#         response = requests.post("http://localhost:11434/api/generate", json=payload, timeout=45)
-#         if response.status_code == 200:
-#             res_data = response.json()
-#             response_text = res_data.get("response", "{}")
-#             region_json = json.loads(response_text)
-#             return {
-#                 "region": region_json.get("region", "Desconocida"),
-#                 "justificacion": region_json.get("justificacion", "Sin justificación")
-#             }
-#     except Exception as e:
-#         print(f"Aviso: No se pudo inferir la región con Ollama para '{titulo}': {e}")
-        
-#     return resultado_defecto
 
 def _detectar_cambio_resolucion_ppq(file_path: str | Path) -> tuple[int, str]:
     """

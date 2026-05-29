@@ -106,6 +106,12 @@ def _extract_mei_metadata_direct(file_path: str | Path) -> dict[str, Any]:
         key_el = root.find('.//mei:keySig', ns)
         if key_el is not None:
             meta["key_sig"] = key_el.get('sig')
+
+        geog_el = root.find('.//mei:geogName', ns)
+        if geog_el is None:
+            geog_el = root.find('.//mei:region', ns)
+        if geog_el is not None and geog_el.text:
+            meta["region"] = geog_el.text.strip()
             
     except Exception as e:
         print(f"Aviso: No se pudo realizar el escaneo XML directo en {file_path}: {e}")
@@ -415,12 +421,24 @@ def detectar_hemiolas_verticales(file_path: str | Path) -> list[int]:
 
 
 def detectar_hemiolas_horizontales(file_path: str | Path) -> list[int]:
+    """
+    Detecta hemiolias horizontales (sucesivas) reales en la obra.
+    Una hemiolia horizontal se da cuando, manteniendo el mismo compás escrito,
+    el patrón de acentuación rítmica cambia drásticamente entre el pulso binario/ternario
+    respecto al compás anterior o posterior (Ej: un compás de 6/8 articulado como 3/4).
+    """
     score = _safe_parse_score(file_path)
     if score is None:
         return []
 
     compases_con_hemiolia: set[int] = set()
+    
     for part in score.parts:
+        # Guardaremos el "sentimiento métrico percibido" del compás anterior
+        # Valores posibles: "BINARIO_TERNARIO" (6/8), "TERNARIO_BINARIO" (3/4), o None
+        sentimiento_anterior = None
+        compas_escrito_anterior = None
+        
         for measure in part.getElementsByClass(m21.stream.Measure):
             num_compas = measure.measureNumber
             if num_compas in (None, 0):
@@ -428,18 +446,44 @@ def detectar_hemiolas_horizontales(file_path: str | Path) -> list[int]:
 
             ts = _get_measure_time_signature(measure)
             if not ts or ts.ratioString not in {"6/8", "3/4"}:
+                # Si cambia a 9/8 u otro compás, rompemos la cadena de regularidad métrica
+                sentimiento_anterior = None
+                compas_escrito_anterior = None
                 continue
 
             offsets = _offsets_from_measure(measure)
             if not offsets:
                 continue
 
-            if ts.ratioString == "6/8" and _has_ternary_grouping(offsets):
-                compases_con_hemiolia.add(num_compas)
-            elif ts.ratioString == "3/4" and _has_binary_grouping(offsets):
-                compases_con_hemiolia.add(num_compas)
+            # Determinar el "sentimiento rítmico real" del compás por sus ataques dominantes
+            sentimiento_actual = None
+            
+            # Un 3/4 real (Ternario puro) ataca los tiempos principales: 0.0, 1.0, 2.0
+            es_percepcion_3_4 = _contains_offset(offsets, 0.0) and _contains_offset(offsets, 1.0) and _contains_offset(offsets, 2.0)
+            # Un 6/8 real (Binario con subdivisión ternaria) prioriza los apoyos en 0.0 y 1.5
+            es_percepcion_6_8 = _contains_offset(offsets, 0.0) and _contains_offset(offsets, 1.5)
 
-    return sorted(compases_con_hemiolia)
+            if es_percepcion_3_4 and not es_percepcion_6_8:
+                sentimiento_actual = "3/4_FEEL"
+            elif es_percepcion_6_8 and not es_percepcion_3_4:
+                sentimiento_actual = "6/8_FEEL"
+            elif es_percepcion_3_4 and es_percepcion_6_8:
+                # Si tiene ambos ataques, nos guiamos estrictamente por el compás escrito (no hay cambio)
+                sentimiento_actual = "6/8_FEEL" if ts.ratioString == "6/8" else "3/4_FEEL"
+
+            # Comparar con el compás anterior para descubrir la alternancia (Hemiolia Horizontal)
+            if sentimiento_anterior and compas_escrito_anterior == ts.ratioString:
+                # Si el compás escrito NO ha cambiado, pero el sentimiento rítmico interno mutó:
+                if ts.ratioString == "6/8" and sentimiento_actual == "3/4_FEEL" and sentimiento_anterior == "6/8_FEEL":
+                    compases_con_hemiolia.add(num_compas)
+                elif ts.ratioString == "3/4" and sentimiento_actual == "6/8_FEEL" and sentimiento_anterior == "3/4_FEEL":
+                    compases_con_hemiolia.add(num_compas)
+
+            # Actualizamos los rastreadores para el siguiente ciclo del bucle
+            sentimiento_anterior = sentimiento_actual
+            compas_escrito_anterior = ts.ratioString
+
+    return sorted(list(compases_con_hemiolia))
 
 
 # def detectar_sincopas(file_path: str | Path) -> tuple[int, str, int]:
@@ -659,6 +703,89 @@ def _analizar_temas_con_ollama(titulo: str, letra: str, model_name: str = "llama
         
     return []
 
+def _extraer_region_de_ruta(file_path: str | Path) -> str | None:
+    """
+    Analiza la estructura de directorios buscando el nombre de la región.
+    Prioriza la carpeta madre directa o la subcarpeta posterior al último pivote organizacional.
+    """
+    parts = Path(file_path).parts
+    if len(parts) < 2:
+        return None
+        
+    # Lista de términos genéricos del sistema que NO identifican regiones geográficas
+    carpetas_sistema = {
+        "mei", "xml", "musicxml", "mxl", "corpus", "dataset", "miscellanous", "líricas",
+        "datasets", "scores", "partituras", "songs", "updated", "vocal", "instrumental"
+    }
+    
+    # Estrategia 1: Comprobación directa de la carpeta madre inmediata (parts[-2])
+    parent_name = parts[-2]
+    # Validamos que no sea genérica ni un nombre de extracción de un zip (ej: MEI-20260315...)
+    if parent_name.lower() not in carpetas_sistema and not parent_name.upper().startswith("MEI-"):
+        return parent_name
+        
+    # Estrategia 2: Escaneo en reversa (de derecha a izquierda) buscando el pivote organizativo más cercano
+    for i in range(len(parts) - 2, -1, -1):
+        if parts[i].lower() in carpetas_sistema:
+            if i + 1 < len(parts) - 1:
+                posible_region = parts[i + 1]
+                if posible_region.lower() not in carpetas_sistema and not posible_region.upper().startswith("MEI-"):
+                    return posible_region
+                    
+    return None
+
+def _inferir_region_con_ollama(titulo: str, letra: str, model_name: str = "llama3") -> dict[str, str]:
+    """
+    Conecta con Ollama para inferir la región geográfica o Comunidad Autónoma 
+    de procedencia basándose en el título, topónimos y el contexto lingüístico de la letra.
+    """
+    resultado_defecto = {"region": "Desconocida", "justificacion": "Datos insuficientes"}
+    if not titulo and not letra:
+        return resultado_defecto
+
+    prompt = f"""
+    Analiza rigurosamente el título y la letra de esta canción tradicional para deducir su región o Comunidad Autónoma española de origen.
+    
+    Título: {titulo}
+    Letra: {letra}
+    """
+
+    system_prompt = (
+        "Eres un experto en musicología, dialectología y folklore español. Tu tarea es identificar la región de origen de las obras. "
+        "REGLAS ESTRICTAS DE SEGURIDAD:\n"
+        "1. Básate EXCLUSIVAMENTE en la letra proporcionada. NO inventes que la letra contiene palabras como 'jota', 'flamenco' o vocabulario regional si estas no aparecen textualmente.\n"
+        "2. Si el título contiene un topónimo (ej. 'Cabra') pero la letra no aporta ninguna pista lingüística, cultural o dialectal clara que lo secunde, NO des por segura la región; en su lugar, devuelve obligatoriamente 'Desconocida' en la región.\n"
+        "3. Debes responder EXCLUSIVAMENTE con un objeto JSON con las claves 'region' (la Comunidad Autónoma, región histórica o 'Desconocida') "
+        "y 'justificacion' (un motivo muy breve, veraz y de un solo renglón). No añadas nada de texto fuera del JSON.\n"
+        "Ejemplo si no estás seguro: {\"region\": \"Desconocida\", \"justificacion\": \"El título menciona un topónimo pero la letra es genérica y no contiene vocabulario regional que permita verificar el origen.\"}"
+    )
+
+    payload = {
+        "model": model_name,
+        "prompt": prompt,
+        "system": system_prompt,
+        "stream": False,
+        "format": "json",
+        "options": {
+            "temperature": 0.0  # Forzamos la máxima predictibilidad y reducimos la creatividad/alucinación
+        }
+    }
+
+    try:
+        response = requests.post("http://localhost:11434/api/generate", json=payload, timeout=45)
+        if response.status_code == 200:
+            res_data = response.json()
+            response_text = res_data.get("response", "{}")
+            region_json = json.loads(response_text)
+            return {
+                "region": region_json.get("region", "Desconocida"),
+                "justificacion": region_json.get("justificacion", "Sin justificación")
+            }
+    except Exception as e:
+        print(f"Aviso: No se pudo inferir la región con Ollama para '{titulo}': {e}")
+        
+    return resultado_defecto
+
 
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
@@ -702,6 +829,38 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     lista_temas = _analizar_temas_con_ollama(titulo_analisis, letra_cancion, model_name="llama3")
     temas_texto = ", ".join(lista_temas)
 
+    # region_explicit = mei_meta.get("region")
+    # if region_explicit:
+    #     region_final = region_explicit
+    #     justificacion_region = "Metadatos explícitos del archivo"
+    # else:
+    #     # Si no es explícito, delegamos la inferencia heurística a Ollama
+    #     res_region = _inferir_region_con_ollama(titulo_analisis, letra_cancion, model_name="llama3")
+    #     region_final = res_region["region"]
+    #     justificacion_region = res_region["justificacion"]
+
+    region_final = None
+    justificacion_region = ""
+
+    # Prioridad 1: Estructura de carpetas en la ruta (La fuente de verdad más fiable)
+    region_desde_ruta = _extraer_region_de_ruta(file_path)
+    if region_desde_ruta:
+        region_final = region_desde_ruta
+        justificacion_region = f"Deducido de la estructura de carpetas del corpus (Directorio: '{region_desde_ruta}')"
+
+    # Prioridad 2: Metadatos internos explícitos del archivo MEI/XML
+    if not region_final:
+        region_explicit = mei_meta.get("region")
+        if region_explicit:
+            region_final = region_explicit
+            justificacion_region = "Extraído de metadatos internos explícitos del archivo"
+
+    # Prioridad 3: Inferencia heurística/LLM (Último recurso si el archivo está huérfano)
+    if not region_final:
+        res_region = _inferir_region_con_ollama(titulo_analisis, letra_cancion, model_name="llama3")
+        region_final = res_region["region"]
+        justificacion_region = res_region["justificacion"]
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -720,7 +879,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "tiene_sincopas": tiene_sinc,
         "compases_sincopas": compases_sinc,
         "conteo_sincopas": conteo_sinc,
-        "temas": temas_texto
+        "temas": temas_texto,
+        "region": region_final,
+        "region_justificacion": justificacion_region
     }
     
     return resultado

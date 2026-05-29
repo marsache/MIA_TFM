@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+   <meiHead xml:id="m_head_ppq">
+      <fileDesc xml:id="f_desc_ppq">
+         <titleStmt xml:id="t_stmt_ppq">
+            <title type="main">Archivo de Prueba - Control de dur.ppq</title>
+         </titleStmt>
+         <pubStmt xml:id="p_stmt_ppq">
+            <publisher>Generador de Pruebas Automáticas</publisher>
+         </pubStmt>
+      </fileDesc>
+   </meiHead>
+   <music>
+      <body>
+         <mdiv xml:id="mdiv_ppq">
+            <score xml:id="score_ppq">
+               <!-- Se define ppq="4" (4 pulsos por nota negra) -->
+               <scoreDef xml:id="s_def_ppq" ppq="4">
+                  <staffGrp xml:id="s_grp_ppq">
+                     <staffDef xml:id="s_def_ch_ppq" n="1" lines="5" clef.shape="G" clef.line="2" meter.count="4" meter.unit="4" key.sig="0"/>
+                  </staffGrp>
+               </scoreDef>
+               <section xml:id="section_ppq">
+                  <!-- Compás 1: Combinación básica de figuras -->
+                  <measure xml:id="m_ppq_01" n="1">
+                     <staff xml:id="st_ppq_01" n="1">
+                        <layer xml:id="l_ppq_01" n="1">
+                           <!-- Negra: dur="4" -> dur.ppq="4" -->
+                           <note xml:id="n_ppq_01" dur="4" dur.ppq="4" oct="4" pname="c" stem.dir="up" />
+                           
+                           <!-- Corchea: dur="8" -> dur.ppq="2" -->
+                           <note xml:id="n_ppq_02" dur="8" dur.ppq="2" oct="4" pname="d" stem.dir="up" />
+                           
+                           <!-- Corchea: dur="8" -> dur.ppq="2" -->
+                           <note xml:id="n_ppq_03" dur="8" dur.ppq="2" oct="4" pname="e" stem.dir="up" />
+                           
+                           <!-- Blanca: dur="2" -> dur.ppq="8" -->
+                           <note xml:id="n_ppq_04" dur="2" dur.ppq="8" oct="4" pname="f" stem.dir="up" />
+                        </layer>
+                     </staff>
+                  </measure>
+                  
+                  <!-- Compás 2: Figuras más complejas (Puntillo y Semicorcheinas) -->
+                  <measure xml:id="m_ppq_02" n="2" right="end">
+                     <staff xml:id="st_ppq_02" n="1">
+                        <layer xml:id="l_ppq_02" n="1">
+                           <!-- Negra con puntillo: dur="4" + puntillo -> dur.ppq="6" (4 + 2) -->
+                           <note xml:id="n_ppq_05" dur="4" dur.ppq="6" oct="4" pname="g" stem.dir="up" dots="1" />
+                           
+                           <!-- Semicorchea: dur="16" -> dur.ppq="1" -->
+                           <note xml:id="n_ppq_06" dur="16" dur.ppq="1" oct="4" pname="f" stem.dir="up" />
+                           
+                           <!-- Semicorchea: dur="16" -> dur.ppq="1" -->
+                           <note xml:id="n_ppq_07" dur="16" dur.ppq="1" oct="4" pname="e" stem.dir="up" />
+                           
+                           <!-- Blanca: dur="2" -> dur.ppq="8" -->
+                           <note xml:id="n_ppq_08" dur="2" dur.ppq="8" oct="4" pname="d" stem.dir="up" />
+                        </layer>
+                     </staff>
+                  </measure>
+               </section>
+            </score>
+         </mdiv>
+      </body>
+   </music>
+</mei>

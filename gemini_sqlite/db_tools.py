@@ -703,88 +703,166 @@ def _analizar_temas_con_ollama(titulo: str, letra: str, model_name: str = "llama
         
     return []
 
-def _extraer_region_de_ruta(file_path: str | Path) -> str | None:
-    """
-    Analiza la estructura de directorios buscando el nombre de la región.
-    Prioriza la carpeta madre directa o la subcarpeta posterior al último pivote organizacional.
-    """
-    parts = Path(file_path).parts
-    if len(parts) < 2:
-        return None
+# def _extraer_region_de_ruta(file_path: str | Path) -> str | None:
+#     """
+#     Analiza la estructura de directorios buscando el nombre de la región.
+#     Prioriza la carpeta madre directa o la subcarpeta posterior al último pivote organizacional.
+#     """
+#     parts = Path(file_path).parts
+#     if len(parts) < 2:
+#         return None
         
-    # Lista de términos genéricos del sistema que NO identifican regiones geográficas
-    carpetas_sistema = {
-        "mei", "xml", "musicxml", "mxl", "corpus", "dataset", "miscellanous", "líricas",
-        "datasets", "scores", "partituras", "songs", "updated", "vocal", "instrumental"
-    }
+#     # Lista de términos genéricos del sistema que NO identifican regiones geográficas
+#     carpetas_sistema = {
+#         "mei", "xml", "musicxml", "mxl", "corpus", "dataset", "miscellanous", "líricas",
+#         "datasets", "scores", "partituras", "songs", "updated", "vocal", "instrumental"
+#     }
     
-    # Estrategia 1: Comprobación directa de la carpeta madre inmediata (parts[-2])
-    parent_name = parts[-2]
-    # Validamos que no sea genérica ni un nombre de extracción de un zip (ej: MEI-20260315...)
-    if parent_name.lower() not in carpetas_sistema and not parent_name.upper().startswith("MEI-"):
-        return parent_name
+#     # Estrategia 1: Comprobación directa de la carpeta madre inmediata (parts[-2])
+#     parent_name = parts[-2]
+#     # Validamos que no sea genérica ni un nombre de extracción de un zip (ej: MEI-20260315...)
+#     if parent_name.lower() not in carpetas_sistema and not parent_name.upper().startswith("MEI-"):
+#         return parent_name
         
-    # Estrategia 2: Escaneo en reversa (de derecha a izquierda) buscando el pivote organizativo más cercano
-    for i in range(len(parts) - 2, -1, -1):
-        if parts[i].lower() in carpetas_sistema:
-            if i + 1 < len(parts) - 1:
-                posible_region = parts[i + 1]
-                if posible_region.lower() not in carpetas_sistema and not posible_region.upper().startswith("MEI-"):
-                    return posible_region
+#     # Estrategia 2: Escaneo en reversa (de derecha a izquierda) buscando el pivote organizativo más cercano
+#     for i in range(len(parts) - 2, -1, -1):
+#         if parts[i].lower() in carpetas_sistema:
+#             if i + 1 < len(parts) - 1:
+#                 posible_region = parts[i + 1]
+#                 if posible_region.lower() not in carpetas_sistema and not posible_region.upper().startswith("MEI-"):
+#                     return posible_region
                     
-    return None
+#     return None
 
-def _inferir_region_con_ollama(titulo: str, letra: str, model_name: str = "llama3") -> dict[str, str]:
-    """
-    Conecta con Ollama para inferir la región geográfica o Comunidad Autónoma 
-    de procedencia basándose en el título, topónimos y el contexto lingüístico de la letra.
-    """
-    resultado_defecto = {"region": "Desconocida", "justificacion": "Datos insuficientes"}
-    if not titulo and not letra:
-        return resultado_defecto
+# def _inferir_region_con_ollama(titulo: str, letra: str, model_name: str = "llama3") -> dict[str, str]:
+#     """
+#     Conecta con Ollama para inferir la región geográfica o Comunidad Autónoma 
+#     de procedencia basándose en el título, topónimos y el contexto lingüístico de la letra.
+#     """
+#     resultado_defecto = {"region": "Desconocida", "justificacion": "Datos insuficientes"}
+#     if not titulo and not letra:
+#         return resultado_defecto
 
-    prompt = f"""
-    Analiza rigurosamente el título y la letra de esta canción tradicional para deducir su región o Comunidad Autónoma española de origen.
+#     prompt = f"""
+#     Analiza rigurosamente el título y la letra de esta canción tradicional para deducir su región o Comunidad Autónoma española de origen.
     
-    Título: {titulo}
-    Letra: {letra}
+#     Título: {titulo}
+#     Letra: {letra}
+#     """
+
+#     system_prompt = (
+#         "Eres un experto en musicología, dialectología y folklore español. Tu tarea es identificar la región de origen de las obras. "
+#         "REGLAS ESTRICTAS DE SEGURIDAD:\n"
+#         "1. Básate EXCLUSIVAMENTE en la letra proporcionada. NO inventes que la letra contiene palabras como 'jota', 'flamenco' o vocabulario regional si estas no aparecen textualmente.\n"
+#         "2. Si el título contiene un topónimo (ej. 'Cabra') pero la letra no aporta ninguna pista lingüística, cultural o dialectal clara que lo secunde, NO des por segura la región; en su lugar, devuelve obligatoriamente 'Desconocida' en la región.\n"
+#         "3. Debes responder EXCLUSIVAMENTE con un objeto JSON con las claves 'region' (la Comunidad Autónoma, región histórica o 'Desconocida') "
+#         "y 'justificacion' (un motivo muy breve, veraz y de un solo renglón). No añadas nada de texto fuera del JSON.\n"
+#         "Ejemplo si no estás seguro: {\"region\": \"Desconocida\", \"justificacion\": \"El título menciona un topónimo pero la letra es genérica y no contiene vocabulario regional que permita verificar el origen.\"}"
+#     )
+
+#     payload = {
+#         "model": model_name,
+#         "prompt": prompt,
+#         "system": system_prompt,
+#         "stream": False,
+#         "format": "json",
+#         "options": {
+#             "temperature": 0.0  # Forzamos la máxima predictibilidad y reducimos la creatividad/alucinación
+#         }
+#     }
+
+#     try:
+#         response = requests.post("http://localhost:11434/api/generate", json=payload, timeout=45)
+#         if response.status_code == 200:
+#             res_data = response.json()
+#             response_text = res_data.get("response", "{}")
+#             region_json = json.loads(response_text)
+#             return {
+#                 "region": region_json.get("region", "Desconocida"),
+#                 "justificacion": region_json.get("justificacion", "Sin justificación")
+#             }
+#     except Exception as e:
+#         print(f"Aviso: No se pudo inferir la región con Ollama para '{titulo}': {e}")
+        
+#     return resultado_defecto
+
+def _detectar_cambio_resolucion_ppq(file_path: str | Path) -> tuple[int, str]:
     """
+    Analiza directamente el XML de un archivo MEI para encontrar si el valor 
+    de resolución rítmica (ppq base o dur.ppq por figura) cambia a mitad de una sección.
 
-    system_prompt = (
-        "Eres un experto en musicología, dialectología y folklore español. Tu tarea es identificar la región de origen de las obras. "
-        "REGLAS ESTRICTAS DE SEGURIDAD:\n"
-        "1. Básate EXCLUSIVAMENTE en la letra proporcionada. NO inventes que la letra contiene palabras como 'jota', 'flamenco' o vocabulario regional si estas no aparecen textualmente.\n"
-        "2. Si el título contiene un topónimo (ej. 'Cabra') pero la letra no aporta ninguna pista lingüística, cultural o dialectal clara que lo secunde, NO des por segura la región; en su lugar, devuelve obligatoriamente 'Desconocida' en la región.\n"
-        "3. Debes responder EXCLUSIVAMENTE con un objeto JSON con las claves 'region' (la Comunidad Autónoma, región histórica o 'Desconocida') "
-        "y 'justificacion' (un motivo muy breve, veraz y de un solo renglón). No añadas nada de texto fuera del JSON.\n"
-        "Ejemplo si no estás seguro: {\"region\": \"Desconocida\", \"justificacion\": \"El título menciona un topónimo pero la letra es genérica y no contiene vocabulario regional que permita verificar el origen.\"}"
-    )
-
-    payload = {
-        "model": model_name,
-        "prompt": prompt,
-        "system": system_prompt,
-        "stream": False,
-        "format": "json",
-        "options": {
-            "temperature": 0.0  # Forzamos la máxima predictibilidad y reducimos la creatividad/alucinación
-        }
-    }
+    Retorna:
+        (tiene_cambio: int, compases_texto: str)
+    """
+    # Esta métrica es exclusiva del formato MEI
+    if Path(file_path).suffix.lower() != ".mei":
+        return 0, ""
 
     try:
-        response = requests.post("http://localhost:11434/api/generate", json=payload, timeout=45)
-        if response.status_code == 200:
-            res_data = response.json()
-            response_text = res_data.get("response", "{}")
-            region_json = json.loads(response_text)
-            return {
-                "region": region_json.get("region", "Desconocida"),
-                "justificacion": region_json.get("justificacion", "Sin justificación")
-            }
-    except Exception as e:
-        print(f"Aviso: No se pudo inferir la región con Ollama para '{titulo}': {e}")
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+        ns = {'mei': 'http://www.music-encoding.org/ns/mei'}
         
-    return resultado_defecto
+        compases_con_cambio: set[int] = set()
+        
+        # Iteramos sobre cada sección de la pieza de manera independiente
+        for section in root.findall('.//mei:section', ns):
+            # Diccionario para mapear: figura_nominal (int) -> ticks_ppq (int)
+            # Se reinicia por sección porque el cambio debe ocurrir "a mitad de la sección"
+            mapa_figura_a_pulso: dict[int, int] = {}
+            ppq_def_activo: int | None = None
+            
+            # Procesamos secuencialmente los compases de esta sección
+            for measure in section.findall('.//mei:measure', ns):
+                num_compas = measure.get('n')
+                try:
+                    num_compas_int = int(num_compas) if num_compas else 0
+                except ValueError:
+                    num_compas_int = 0
+                
+                # Estrategia 1: Verificar si hay una redefinición explícita de cabecera en el compás
+                cabeceras_locales = (
+                    measure.findall('.//mei:scoreDef[@ppq]', ns) + 
+                    measure.findall('.//mei:staffDef[@ppq]', ns)
+                )
+                for cabecera in cabeceras_locales:
+                    val_ppq = int(cabecera.get('ppq'))
+                    if ppq_def_activo is not None and val_ppq != ppq_def_activo:
+                        if num_compas_int > 0:
+                            compases_con_cambio.add(num_compas_int)
+                    ppq_def_activo = val_ppq
+                
+                # Estrategia 2: Analizar los atributos individuales de las notas/silencios
+                for elemento in measure.findall('.//*[@dur][@dur.ppq]'):
+                    dur_nominal = elemento.get('dur')
+                    dur_ppq_real = elemento.get('dur.ppq')
+                    
+                    if dur_nominal and dur_ppq_real:
+                        try:
+                            figura = int(dur_nominal)
+                            pulsos = int(dur_ppq_real)
+                            
+                            if figura <= 0:
+                                continue
+                                
+                            # Si ya habíamos registrado esta figura en esta sección,
+                            # pero ahora sus pulsos asignados son diferentes -> ¡Cambio de resolución!
+                            if figura in mapa_figura_a_pulso:
+                                if mapa_figura_a_pulso[figura] != pulsos:
+                                    if num_compas_int > 0:
+                                        compases_con_cambio.add(num_compas_int)
+                            
+                            # Actualizamos el mapa con el valor activo
+                            mapa_figura_a_pulso[figura] = pulsos
+                        except ValueError:
+                            continue
+                            
+        compases_ordenados = sorted(list(compases_con_cambio))
+        return (1 if compases_ordenados else 0, ", ".join(map(str, compases_ordenados)))
+
+    except Exception as e:
+        print(f"Aviso: Error en el escaneo de resolución PPQ para {file_path}: {e}")
+        return 0, ""
 
 
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
@@ -843,10 +921,10 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     justificacion_region = ""
 
     # Prioridad 1: Estructura de carpetas en la ruta (La fuente de verdad más fiable)
-    region_desde_ruta = _extraer_region_de_ruta(file_path)
-    if region_desde_ruta:
-        region_final = region_desde_ruta
-        justificacion_region = f"Deducido de la estructura de carpetas del corpus (Directorio: '{region_desde_ruta}')"
+    # region_desde_ruta = _extraer_region_de_ruta(file_path)
+    # if region_desde_ruta:
+    #     region_final = region_desde_ruta
+    #     justificacion_region = f"Deducido de la estructura de carpetas del corpus (Directorio: '{region_desde_ruta}')"
 
     # Prioridad 2: Metadatos internos explícitos del archivo MEI/XML
     if not region_final:
@@ -856,10 +934,12 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
             justificacion_region = "Extraído de metadatos internos explícitos del archivo"
 
     # Prioridad 3: Inferencia heurística/LLM (Último recurso si el archivo está huérfano)
-    if not region_final:
-        res_region = _inferir_region_con_ollama(titulo_analisis, letra_cancion, model_name="llama3")
-        region_final = res_region["region"]
-        justificacion_region = res_region["justificacion"]
+    # if not region_final:
+    #     res_region = _inferir_region_con_ollama(titulo_analisis, letra_cancion, model_name="llama3")
+    #     region_final = res_region["region"]
+    #     justificacion_region = res_region["justificacion"]
+
+    tiene_cambio_ppq, compases_cambio_ppq = _detectar_cambio_resolucion_ppq(file_path)
 
     resultado = {
         "file_path": str(file_path),
@@ -881,7 +961,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "conteo_sincopas": conteo_sinc,
         "temas": temas_texto,
         "region": region_final,
-        "region_justificacion": justificacion_region
+        "region_justificacion": justificacion_region,
+        "cambio_resolucion_ppq": tiene_cambio_ppq,
+        "compases_cambio_resolucion": compases_cambio_ppq
     }
     
     return resultado

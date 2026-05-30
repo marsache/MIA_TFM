@@ -1,10 +1,28 @@
 \chapter{Capítulo 4: (TODO: título del capítulo)}
 \label{cap:capitulo4}
 
+\section{(TODO: poner nombre)}
+
+Derivar archivos de formato MEI y XML directamente como texto a un LLM general como Gemini dificulta mucho la extracción de información; el modelo tiende a perderse entre la jerarquía de etiquetas de estos ficheros. Procesar los documentos de formato MSCZ supone un desafío mayor para estos modelos, ya que no representan directamente las partituras, sino que son archivos binarios comprimidos que contienen la partitura correspondiente, así como otros metadatos relacionados con la obra y archivos de configuración.
+
+Si, en lugar de intentar analizar una sola partitura, se realizan búsquedas complejas sobre términos musicológicos y técnicos, que exijan cálculos métricos y musicales avanzados, sobre todas las obras del dataset, entonces, los modelos de lenguaje generales resultan incapaces de enfrentarse a estos desafíos.
+
+Para solucionar estas limitaciones, se ha diseñado e implementado un sistema de análisis musical automatizado basado en una arquitectura con herramientas robustas y orientadas a la teoría y análisis de música folclórica y popular. Ya que estas herramientas se encargan de analizar simbólicamente las obras musicales, los modelos no tienen que encargarse de realizar las tediosas búsquedas entre las miles de obras que componen el corpus, sino que su labor se facilita, pudiendo realizar consultas simples en una base de datos compuesta por la información extraída previamente de las canciones. Para obtener la información que describe las obras se ha optado por utilizar la librería \textit{music21}.
+
+Una vez realizado el preprocesamiento del corpus, el usuario ya puede realizar consultas a la herramienta. Para responder, el modelo accede a la base de datos con la información sobre las obras a través de una arquitectura MCP (\textit{Model Context Protocol}) que proporciona los recursos necesarios para extraer la información relevante con \textit{queries}.
+
 Durante el proyecto se ha desarrollado un sistema de análisis musical bajo una arquitectura secuencial dividida en cinco fases diferenciadas:
 \begin{itemize}
 \item \textbf{Fase de descubrimiento de archivos.} Inspección recursiva del directorio raíz del corpus para identificar y catalogar archivos con extensiones compatibles (.xml, .musicxml, .mxl, .mei, etc.).
 \item \textbf{Fase de preprocesamiento y normalización de archivos.} Limpieza de cadenas de texto para corregir la aparición de, por ejemplo, caracteres no aptos o espacios en los nombres de archivo de las obras, e incompatibilidades de sintaxis entre herramientas como \textit{music21} y los formatos utilizados antes de la llamada al intérprete musical.
+\begin{itemize}
+\item \textbf{Procesamiento específico de documentos MSCZ.} Los ficheros MSCZ son archivos binarios comprimidos por MuseScore que contienen una partitura en formato MSCX, metadatos sobre la obra, como archivos de configuración, audio, renderizado, y otros recursos. Al ofrecer este tipo de documentos a los modelos, estos no interpretan la partitura comprimida, sino que analizan el fichero binario que envuelve el resto de información. 
+
+Respuesta de Gemini 2.5 Flash al intentar procesar un documento MSCZ:
+\textit{I cannot provide information about "the song" without more specific details. The search results contain technical file information such as `score\_style.mss`, `568.mscx`, `audiosettings.json`, and `viewsettings.json`, which appear to be related to a music score file and its settings, but do not identify a particular song by title, artist, or content.}
+
+Para procesar y extraer la información musicológica de la obra, se descomprime primero el documento para separar la partitura y posteriormente se analiza de manera genérica, siguiento el procedimiento utilizado para otros tipos de archivos, como MEI o XML.
+\end{itemize}
 \item \textbf{Fase de análisis simbólico y extracción de metadatos.} Carga de la información sobre cada obra en memoria para extraer de ella datos como la tonalidad, el compás, el tempo, la inferencia híbrida de la tonalidad y la detección de patrones rítmicos.
 \item \textbf{Fase de análisis semántico de la lírica mediante LLMs locales.} Extracción del texto lírico estructurado de cada obra y su posterior envío a un LLM local para su etiquetado. El modelo determina qué temas trata la letra, asignándole, como máximo, cuatro temáticas a cada canción (Nana, Religión, Naturaleza, Picaresca, Amor, etc.).
 \item \textbf{Fase de consolidación, estructuración y almacenamiento en la base de datos SQLite.} Compilación de los diccionarios que contienen las características mencionadas con anterioridad y su exportación a una base de datos SQLite.
@@ -34,4 +52,17 @@ Para mejorar el rendimiento de la búsqueda de características concretas en el 
     \end{itemize}
 \item \textbf{Extracción lírica e integración con LLM local.} Para realizar el análisis poético de temas sobre las obras se ha implementado una función que recorre linealmente la partitura, extrayendo las cadenas de texto asociadas a las sílabas de los versos y consolidándolas en un texto continuo, facilitando así la tarea de análisis del LLM. Posteriormente, el título extraído de la pieza y la letra consolidada se introducen en un $prompt$ estructurado enviado al modelo. El modelo de lenguaje se configura mediante un rol de sistema (experto en musicología y folklore) que lo obliga a devolver exclusivamente un esquema en formato JSON con los temas que describen la obra. Esto permite la automatización del proceso, obteniendo el análisis temático de un LLM dentro de variables limpias y organizadas, sin necesidad de realizar un etiquetado manual.
 \item \textbf{Almacenamiento en la base de datos SQLite.} Tras seguir todo el procedimiento de extracción de información, todos los datos se vuelcan en la base de datos pertinente.
+\end{itemize}
+
+\subsection{(TODO: estructurar bien, so sé si poner esta sección aquí) Problemas encontrados al implementar ciertas herramientas}
+En el proceso de identificación e inferencia de ciertos datos de las obras para aportar más información a las consultas, se ha encontrado una serie de problemas tras implementar ciertas funcionalidades.
+\begin{itemize}
+    \item \textbf{Identificación e inferencia mixta de región geográfica de procedencia.} Para determinar el origen geográfico de una obra, se ha implementado una herramienta que sigue un proceso en el que se incluyen fases tanto deterministas como de inferencia por parte de LLMs.
+\end{itemize}
+
+\section{Ventajas que ofrece la metodología escogida para la herramienta desarrollada}
+\begin{itemize}
+\item \textbf{Escalabilidad del corpus.} Ya que la complejidad computacional sólo se aprecia en la fase de preprocesamiento, al analizar de manera lineal todas las obras, a la hora de formular las preguntas, el sistema se limita a hacer consultas concretas a la base de datos SQLite, ahorrando así tiempo y recursos.
+\item \textbf{Precisión en las respuestas.} Al recibir directamente las respuestas desde una base de datos llena de información fiable introducida por las funciones desarrolladas basándose en estándares de teoría musical, es menos probable que el modelo invente datos sobre las obras, ya que todo lo que debe responder está incorporado en la salida de la consulta.
+\item \textbf{Rapidez y ligereza en el almacenamiento.} El contexto proporcionado al modelo pasa de estar compuesto por miles de archivos que requieren demasiado espacio de almacenamiento a ocupar unos pocos bytes de JSON estructurado. Además de ser un beneficio para el almacenamiento, también lo es para la velocidad de respuesta.
 \end{itemize}

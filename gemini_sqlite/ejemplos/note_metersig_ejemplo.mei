@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+   <meiHead>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">Pieza de Prueba: Validación de métrica</title>
+         </titleStmt>
+         <pubStmt>
+            <p>Archivo generado para control de calidad rítmica</p>
+         </pubStmt>
+      </fileDesc>
+   </meiHead>
+   <music>
+      <body>
+         <mdiv xml:id="mdiv_01">
+            <score xml:id="score_01">
+               <scoreDef xml:id="sdef_01">
+                  <staffGrp xml:id="sgrp_01">
+                     <staffDef xml:id="sdef_target" n="1" lines="5" meter.count="3" meter.unit="4" clef.shape="G" clef.line="2" />
+                  </staffGrp>
+               </scoreDef>
+               <section xml:id="section_01">
+                  
+                  <measure xml:id="m_01" n="1">
+                     <staff xml:id="s_01" n="1">
+                        <layer xml:id="l_01" n="1">
+                           <note xml:id="n_01" dur="4" oct="4" pname="c" />
+                           <note xml:id="n_02" dur="4" oct="4" pname="d" />
+                           <note xml:id="n_03" dur="4" oct="4" pname="e" />
+                        </layer>
+                     </staff>
+                  </measure>
+                  
+                  <measure xml:id="m_02" n="2">
+                     <staff xml:id="s_02" n="1">
+                        <layer xml:id="l_02" n="1">
+                           <note xml:id="n_04" dur="4" oct="4" pname="f" />
+                           <note xml:id="n_05" dur="4" oct="4" pname="g" />
+                           <note xml:id="n_06" dur="4" oct="4" pname="a" />
+                           <note xml:id="n_07" dur="4" oct="4" pname="b" />
+                        </layer>
+                     </staff>
+                  </measure>
+                  
+                  <measure xml:id="m_03" n="3">
+                     <staff xml:id="s_03" n="1">
+                        <layer xml:id="l_03" n="1">
+                           <note xml:id="n_08" dur="4" oct="5" pname="c" />
+                           <note xml:id="n_09" dur="4" oct="4" pname="b" />
+                        </layer>
+                     </staff>
+                  </measure>
+
+               </section>
+            </score>
+         </mdiv>
+      </body>
+   </music>
+</mei>

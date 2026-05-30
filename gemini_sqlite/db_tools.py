@@ -748,6 +748,135 @@ def _detectar_cambio_resolucion_ppq(file_path: str | Path) -> tuple[int, str]:
         print(f"Aviso: Error en el escaneo de resolución PPQ para {file_path}: {e}")
         return 0, ""
 
+def _mei_dur_to_quarter_length(element: ET.Element) -> float:
+    """
+    Convierte los atributos 'dur' y 'dots' de un elemento MEI (<note>, <chord>, <rest>)
+    a valores de duración basados en negras (Quarter Length).
+    """
+    dur_attr = element.get('dur')
+    if not dur_attr:
+        return 0.0
+    
+    try:
+        dur_val = int(dur_attr)
+        if dur_val <= 0:
+            return 0.0
+        # dur=1 (redonda) -> 4 negras, dur=2 (blanca) -> 2 negras, dur=4 (negra) -> 1 negra, etc.
+        quarter_length = 4.0 / dur_val
+    except ValueError:
+        return 0.0
+    
+    # Aplicar puntos de prolongación (dots) si existen
+    dots_attr = element.get('dots')
+    if dots_attr:
+        try:
+            dots = int(dots_attr)
+            factor = 1.0
+            for i in range(1, dots + 1):
+                factor += 1.0 / (2 ** i)
+            quarter_length *= factor
+        except ValueError:
+            pass
+            
+    return quarter_length
+
+
+def detectar_desajustes_meter_sig(file_path: str | Path) -> tuple[int, str]:
+    """
+    Localiza compases en archivos MEI donde la suma de las duraciones de las notas/acordes
+    internos de una voz (layer) no coincide con la capacidad del meterSig activo en el staffDef.
+    
+    Retorna:
+        (tiene_desajuste: int, compases_texto: str)
+    """
+    if Path(file_path).suffix.lower() != ".mei":
+        return 0, ""
+
+    try:
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+        ns = {'mei': 'http://www.music-encoding.org/ns/mei'}
+        
+        compases_con_desajuste: set[int] = set()
+        
+        # Estado del indicador de compás (Meter) activo
+        current_count = None
+        current_unit = None
+        
+        # Buscar definición global inicial en scoreDef/staffDef de la cabecera
+        initial_score_def = root.find('.//mei:scoreDef', ns)
+        if initial_score_def is not None:
+            if initial_score_def.get('meter.count'): current_count = int(initial_score_def.get('meter.count'))
+            if initial_score_def.get('meter.unit'): current_unit = int(initial_score_def.get('meter.unit'))
+            
+        initial_staff_def = root.find('.//mei:staffDef', ns)
+        if initial_staff_def is not None:
+            if initial_staff_def.get('meter.count'): current_count = int(initial_staff_def.get('meter.count'))
+            if initial_staff_def.get('meter.unit'): current_unit = int(initial_staff_def.get('meter.unit'))
+            # También verificamos si está declarado como elemento hijo <meterSig>
+            meter_sig_el = initial_staff_def.find('mei:meterSig', ns)
+            if meter_sig_el is not None:
+                if meter_sig_el.get('count'): current_count = int(meter_sig_el.get('count'))
+                if meter_sig_el.get('unit'): current_unit = int(meter_sig_el.get('unit'))
+
+        # Procesar secuencialmente cada compás de la obra
+        for measure in root.findall('.//mei:measure', ns):
+            num_compas = measure.get('n')
+            try:
+                num_compas_int = int(num_compas) if num_compas else 0
+            except ValueError:
+                num_compas_int = 0
+            
+            # Verificar si hay cambios de compás locales (locales al measure)
+            local_staff_def = measure.find('.//mei:staffDef', ns)
+            if local_staff_def is not None:
+                if local_staff_def.get('meter.count'): current_count = int(local_staff_def.get('meter.count'))
+                if local_staff_def.get('meter.unit'): current_unit = int(local_staff_def.get('meter.unit'))
+                meter_sig_el = local_staff_def.find('mei:meterSig', ns)
+                if meter_sig_el is not None:
+                    if meter_sig_el.get('count'): current_count = int(meter_sig_el.get('count'))
+                    if meter_sig_el.get('unit'): current_unit = int(meter_sig_el.get('unit'))
+            
+            # Si no hay meterSig definido aún en la obra, saltamos la validación en este compás
+            if current_count is None or current_unit is None:
+                continue
+                
+            # Duración teórica esperada del compás expresada en unidades de negra
+            # Ej: 6/8 -> 6 * (4/8) = 3.0 negras.  3/4 -> 3 * (4/4) = 3.0 negras.
+            expected_measure_duration = current_count * (4.0 / current_unit)
+            
+            # Analizar cada voz (<layer>) de manera independiente dentro del compás
+            for layer in measure.findall('.//mei:layer', ns):
+                layer_duration = 0.0
+                
+                # Iteramos secuencialmente sobre los hijos directos del layer para evitar
+                # sobre-contar notas internas en los acordes (<chord>)
+                for child in layer:
+                    tag = child.tag.split('}')[-1] if '}' in child.tag else child.tag
+                    
+                    if tag == 'note':
+                        layer_duration += _mei_dur_to_quarter_length(child)
+                    elif tag == 'chord':
+                        # En MEI, la duración del acorde se define en la etiqueta contenedora <chord>
+                        layer_duration += _mei_dur_to_quarter_length(child)
+                    elif tag == 'rest':
+                        # NOTA METODOLÓGICA: Se incluyen los silencios para evaluar la ocupación total.
+                        # Si tu regla requiere evaluar ESTRICTAMENTE notas omitiendo silencios, comenta esta línea.
+                        layer_duration += _mei_dur_to_quarter_length(child)
+                
+                # Comparamos la duración total acumulada con la teórica utilizando tu función de tolerancia _is_close
+                if not _is_close(layer_duration, expected_measure_duration):
+                    if num_compas_int > 0:
+                        compases_con_desajuste.add(num_compas_int)
+                        break  # Si una voz falla, el compás entero ya está marcado como erróneo
+
+        compases_ordenados = sorted(list(compases_con_desajuste))
+        return (1 if compases_ordenados else 0, ", ".join(map(str, compases_ordenados)))
+
+    except Exception as e:
+        print(f"Aviso: Error en el escaneo de coherencia de meterSig para {file_path}: {e}")
+        return 0, ""
+
 
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
@@ -825,6 +954,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     tiene_cambio_ppq, compases_cambio_ppq = _detectar_cambio_resolucion_ppq(file_path)
 
+    tiene_desajuste_meter, compases_desajuste_meter = detectar_desajustes_meter_sig(file_path)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -847,7 +978,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "region": region_final,
         "region_justificacion": justificacion_region,
         "cambio_resolucion_ppq": tiene_cambio_ppq,
-        "compases_cambio_resolucion": compases_cambio_ppq
+        "compases_cambio_resolucion": compases_cambio_ppq,
+        "desajuste_duracion_meter": tiene_desajuste_meter,
+        "compases_desajuste_duracion_meter": compases_desajuste_meter
     }
     
     return resultado

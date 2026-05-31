@@ -877,6 +877,87 @@ def detectar_desajustes_meter_sig(file_path: str | Path) -> tuple[int, str]:
         print(f"Aviso: Error en el escaneo de coherencia de meterSig para {file_path}: {e}")
         return 0, ""
 
+from fractions import Fraction
+
+def detectar_valores_irregulares_ocultos(file_path: str | Path) -> tuple[int, str, int]:
+    """
+    Detecta valores irregulares (como tresillos) en archivos MusicXML que no
+    han sido declarados explícitamente mediante la etiqueta <time-modification>.
+    
+    Retorna:
+        (tiene_ocultos: int, compases_texto: str, conteo: int)
+    """
+    path_obj = Path(file_path)
+    # Restringir el análisis exclusivamente a formatos MusicXML como pide el enunciado
+    if path_obj.suffix.lower() not in {".xml", ".musicxml", ".mxl"}:
+        return 0, "", 0
+
+    score = _safe_parse_score(file_path)
+    if score is None:
+        return 0, "", 0
+
+    compases_con_ocultos: set[int] = set()
+
+    for part in score.parts:
+        for measure in part.getElementsByClass(m21.stream.Measure):
+            num_compas = measure.measureNumber
+            if num_compas in (None, 0):
+                continue
+
+            for element in measure.notesAndRests:
+                if not isinstance(element, (m21.note.Note, m21.chord.Chord)):
+                    continue
+                
+                q_len = element.quarterLength
+                if _to_float(q_len) <= 0:
+                    continue
+                
+                # Convertimos a fracción limitando el denominador para corregir leves imprecisiones de floats
+                frac = Fraction(str(q_len)).limit_denominator(1000)
+                denom = frac.denominator
+                
+                # Comprobación matemática: ¿Es el denominador una potencia de 2?
+                # (Las notas regulares y con puntillos siempre tienen denominadores potencia de 2: 1, 2, 4, 8...)
+                es_potencia_de_2 = (denom > 0) and (denom & (denom - 1)) == 0
+                
+                if not es_potencia_de_2:
+                    # El valor es matemáticamente irregular (p. ej. terceras partes de negra = tresillos)
+                    # Si no contiene objetos Tuplet, significa que el MusicXML NO incluyó <time-modification>
+                    if not element.duration.tuplets:
+                        compases_con_ocultos.add(num_compas)
+                        break  # Con uno detectado es suficiente para marcar el compás
+
+    compases_ordenados = sorted(list(compases_con_ocultos))
+    
+    return (
+        1 if compases_ordenados else 0,
+        ", ".join(map(str, compases_ordenados)),
+        len(compases_ordenados)
+    )
+
+def _calcular_densidad_eventos(score: m21.stream.Score) -> tuple[int, int, float]:
+    """
+    Analiza el objeto Score para contar el total de eventos musicales (notas y acordes),
+    los compases reales únicos y calcular la densidad promedio de la pieza.
+    """
+    # Extraer y contar todas las notas y acordes (los silencios se ignoran)
+    eventos = list(score.recurse().getElementsByClass((m21.note.Note, m21.chord.Chord)))
+    total_eventos = len(eventos)
+    
+    # Obtener compases únicos (usamos un set con el número de compás para no 
+    # duplicar cuentas si la obra tiene múltiples layers o tracks/instrumentos)
+    compases_unicos = set()
+    for measure in score.recurse().getElementsByClass(m21.stream.Measure):
+        if measure.measureNumber is not None and measure.measureNumber > 0:
+            compases_unicos.add(measure.measureNumber)
+            
+    total_compases = len(compases_unicos)
+    
+    # Calcular ratio de densidad con seguridad ante divisiones por cero
+    densidad = round(total_eventos / total_compases, 2) if total_compases > 0 else 0.0
+    
+    return total_eventos, total_compases, densidad
+
 
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
@@ -956,6 +1037,10 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     tiene_desajuste_meter, compases_desajuste_meter = detectar_desajustes_meter_sig(file_path)
 
+    tiene_irr_ocultos, compases_irr_ocultos, conteo_irr_ocultos = detectar_valores_irregulares_ocultos(file_path)
+
+    total_eventos, total_compases, densidad_notas = _calcular_densidad_eventos(score)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -980,7 +1065,13 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "cambio_resolucion_ppq": tiene_cambio_ppq,
         "compases_cambio_resolucion": compases_cambio_ppq,
         "desajuste_duracion_meter": tiene_desajuste_meter,
-        "compases_desajuste_duracion_meter": compases_desajuste_meter
+        "compases_desajuste_duracion_meter": compases_desajuste_meter,
+        "valores_irregulares_ocultos": tiene_irr_ocultos,
+        "compases_valores_irregulares_ocultos": compases_irr_ocultos,
+        "conteo_valores_irregulares_ocultos": conteo_irr_ocultos,
+        "total_eventos_musicales": total_eventos,
+        "total_compases": total_compases,
+        "densidad_notas_por_compas": densidad_notas,
     }
     
     return resultado
@@ -1010,3 +1101,27 @@ def preprocesar_corpus_para_sqlite(corpus_dir: str | Path) -> tuple[list[dict[st
             errores.append({"file_path": file_path, "error": str(exc)})
 
     return registros, errores
+
+
+def comparar_densidad_por_metro(registros: list[dict[str, Any]]) -> dict[str, Any]:
+    """
+    Recibe la lista de canciones procesadas y calcula el promedio ponderado 
+    de eventos musicales por compás agrupando por tipos de compás (4/4 vs 2/4).
+    """
+    # Filtrar las densidades registradas para cada tipo de compás
+    densidades_44 = [r["densidad_notas_por_compas"] for r in registros if r["compas"] == "4/4"]
+    densidades_24 = [r["densidad_notas_por_compas"] for r in registros if r["compas"] == "2/4"]
+    
+    promedio_44 = sum(densidades_44) / len(densidades_44) if densidades_44 else 0.0
+    promedio_24 = sum(densidades_24) / len(densidades_24) if densidades_24 else 0.0
+    
+    ganador = "4/4" if promedio_44 > promedio_24 else ("2/4" if promedio_24 > promedio_44 else "Empate")
+    
+    return {
+        "promedio_densidad_44": round(promedio_44, 2),
+        "total_piezas_44": len(densidades_44),
+        "promedio_densidad_24": round(promedio_24, 2),
+        "total_piezas_24": len(densidades_24),
+        "compas_mayor_densidad": ganador,
+        "conclusion": f"El compás {ganador} tiene una mayor cantidad promedio de eventos musicales por compás en el dataset."
+    }

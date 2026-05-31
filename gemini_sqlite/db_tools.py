@@ -1054,6 +1054,36 @@ def detectar_polirritmias(file_path: str | Path) -> list[int]:
     return sorted(list(compases_con_polirritmia))
 
 
+def _calcular_tesitura(score: m21.stream.Score) -> tuple[str, str]:
+    """
+    Analiza las alturas de la obra para determinar la nota más grave y la más aguda.
+    
+    Retorna:
+        tuple[str, str]: (nota_mas_grave, nota_mas_aguda) en formato científico (ej: 'C4', 'F#5').
+                         Retorna ("N/A", "N/A") si no se encuentran notas con altura.
+    """
+    todos_los_pitches = []
+    
+    # Recorrer de forma recursiva todas las notas y acordes de la pieza
+    for el in score.recurse().notes:
+        if isinstance(el, m21.note.Note):
+            todos_los_pitches.append(el.pitch)
+        elif isinstance(el, m21.chord.Chord):
+            # Un acorde contiene múltiples alturas simultáneas, las agregamos todas
+            todos_los_pitches.extend(el.pitches)
+            
+    if not todos_los_pitches:
+        return "N/A", "N/A"
+        
+    # Encontrar los extremos utilizando el valor numérico Pitch Space (.ps)
+    pitch_mas_grave = min(todos_los_pitches, key=lambda p: p.ps)
+    pitch_mas_aguda = max(todos_los_pitches, key=lambda p: p.ps)
+    
+    # Convertimos los objetos Pitch a strings legibles (ej: 'A4', 'E-5', 'C#3')
+    # Nota: music21 usa el signo '-' para los bemoles en nameWithOctave (ej: 'E-4' es Mi bemol 4)
+    return pitch_mas_grave.nameWithOctave, pitch_mas_aguda.nameWithOctave
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1137,6 +1167,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     total_eventos, total_compases, densidad_notas = _calcular_densidad_eventos(score)
 
+    nota_mas_grave, nota_mas_aguda = _calcular_tesitura(score)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1146,6 +1178,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "modo": modo_musical,
         "modo_completo": modo_completo,
         "bpm": bpm,
+        "nota_mas_grave": nota_mas_grave,
+        "nota_mas_aguda": nota_mas_aguda,
         "tiene_hemiolia_vertical": 1 if hemiolias_verticales else 0,
         "compases_hemiolia_vertical": ", ".join(map(str, hemiolias_verticales)),
         "conteo_hemiolia_vertical": len(hemiolias_verticales),

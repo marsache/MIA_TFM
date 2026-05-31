@@ -1324,6 +1324,34 @@ def _analizar_perspectiva_lirica(texto_letras: str) -> str:
     return "desconocido"
 
 
+def _extract_notes_and_rests(score: m21.stream.Score) -> str:
+    """
+    Recorre cronológicamente la partitura y extrae una cadena formateada
+    con todas las notas (en notación científica) y silencios.
+    Ejemplo: "F4 - G4 - Silencio - A4 - [C4+E4]"
+    """
+    secuencia = []
+    
+    # .notesAndRests obtiene Note, Chord y Rest ignorando claves, armaduras, etc.
+    for el in score.flatten().notesAndRests:
+        if isinstance(el, m21.note.Note):
+            # nameWithOctave devuelve valores como 'C4', 'F#4', 'A-3' (el '-' indica bemol)
+            # Reemplazamos el '-' por 'b' para que sea más legible/estándar (ej: 'Ab3')
+            nombre_nota = el.pitch.nameWithOctave.replace('-', 'b')
+            secuencia.append(nombre_nota)
+            
+        elif isinstance(el, m21.note.Rest):
+            secuencia.append("Silencio")
+            
+        elif isinstance(el, m21.chord.Chord):
+            # Si el archivo tiene polifonía (acordes), extraemos todas sus notas internas
+            notas_acorde = [p.nameWithOctave.replace('-', 'b') for p in el.pitches]
+            # Las envolvemos entre corchetes para indicar simultaneidad
+            secuencia.append(f"[{'+'.join(notas_acorde)}]")
+            
+    return " - ".join(secuencia) if secuencia else "Vacío"
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1412,6 +1440,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     autor_genero = _clasificar_genero_autor(autor)
     lirica_voz = _analizar_perspectiva_lirica(letra_cancion)
 
+    notas_y_silencios_texto = _extract_notes_and_rests(score)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1451,6 +1481,7 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "autor_genero": autor_genero,
         "lirica_voz": lirica_voz,
         "texto_letras_extraido": letra_cancion[:500], # Guardamos una muestra del texto para auditoría
+        "secuencia_notas_silencios": notas_y_silencios_texto
     }
     
     return resultado

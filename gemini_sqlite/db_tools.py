@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import subprocess
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -11,6 +12,10 @@ import music21 as m21
 
 import json
 import requests
+
+from fractions import Fraction
+from collections import defaultdict
+import zipfile
 
 
 SUPPORTED_SONG_EXTENSIONS = {".xml", ".musicxml", ".mxl", ".mei", ".mscz"}
@@ -600,24 +605,187 @@ def detectar_sincopas(file_path: str | Path) -> tuple[int, str, int]:
     )
 
 
-def _extract_lyrics(score: m21.stream.Score) -> str:
-    """Extrae y limpia todo el texto de la letra (versos) de la partitura."""
-    palabras: list[str] = []
+def _extract_lyrics_mei(file_path):
+    tree = ET.parse(file_path)
+    root = tree.getroot()
+
+    ns = {'mei': 'http://www.music-encoding.org/ns/mei'}
+
+    palabras = []
+    palabra_actual = ""
+
+    for syl in root.findall('.//mei:syl', ns):
+        texto = (syl.text or '').strip().replace('\xa0', ' ')
+        wordpos = syl.get('wordpos')
+
+        if wordpos == 's':
+            if palabra_actual:
+                palabras.append(palabra_actual)
+                palabra_actual = ""
+            palabras.append(texto)
+
+        elif wordpos == 'i':
+            if palabra_actual:
+                palabras.append(palabra_actual)
+            palabra_actual = texto
+
+        elif wordpos == 'm':
+            palabra_actual += texto
+
+        elif wordpos == 't':
+            palabra_actual += texto
+            palabras.append(palabra_actual)
+            palabra_actual = ""
+
+    if palabra_actual:
+        palabras.append(palabra_actual)
+
+    resultado = " ".join(palabras)
+    return " ".join(resultado.split())
+
+
+def _extract_lyrics_musicxml(path):
+    tree = ET.parse(path)
+    root = tree.getroot()
+
+    versos = defaultdict(list)
+
+    for lyric in root.findall(".//lyric"):
+        text_el = lyric.find("text")
+        syll_el = lyric.find("syllabic")
+
+        if text_el is None:
+            continue
+
+        # AÑADIDO: .replace("/", " ") para limpiar las sinalefas
+        texto = (text_el.text or "").replace("/", " ")
+        syllabic = syll_el.text if syll_el is not None else "single"
+        numero = lyric.get("number", "1")
+        versos[numero].append((texto, syllabic))
+
+    letras = []
+
+    for numero in sorted(versos):
+        palabra = ""
+        for texto, syllabic in versos[numero]:
+            if syllabic == "single":
+                if palabra:
+                    letras.append(palabra)
+                    palabra = ""
+
+                letras.append(texto)
+
+            elif syllabic == "begin":
+                palabra = texto
+
+            elif syllabic == "middle":
+                palabra += texto
+
+            elif syllabic == "end":
+                palabra += texto
+                letras.append(palabra)
+                palabra = ""
+
+        if palabra:
+            letras.append(palabra)
+
+    return " ".join(letras)
+
+
+def _extract_lyrics_mscx(path: str | Path) -> str:
+    """
+    Extrae la letra de un archivo .mscx agrupando correctamente por número 
+    de verso/estrofa para evitar la mezcla de sílabas.
+    """
+    try:
+        tree = ET.parse(path)
+        root = tree.getroot()
+        
+        # Diccionario para agrupar las sílabas por número de verso
+        versos = defaultdict(list)
+        
+        # Iterar sobre todos los elementos <Lyrics> en el XML
+        for lyrics_node in root.iter('Lyrics'):
+            # MuseScore usa <no> para el número de estrofa (0 por defecto)
+            no_node = lyrics_node.find('no')
+            verse_index = int(no_node.text) if no_node is not None else 0
+            
+            text_node = lyrics_node.find('text')
+            syllabic_node = lyrics_node.find('syllabic')
+            
+            if text_node is not None and text_node.text:
+                texto_silaba = text_node.text.strip()
+                estado_silabico = syllabic_node.text if syllabic_node is not None else 'single'
+                
+                # Juntar sílabas según su posición en la palabra
+                if estado_silabico in ['begin', 'middle']:
+                    versos[verse_index].append(texto_silaba)
+                else:
+                    # Final de palabra o palabra suelta, añadimos espacio
+                    versos[verse_index].append(texto_silaba + " ")
+
+        # Construir el texto final ordenando por número de verso
+        textos_finales = []
+        for v_idx in sorted(versos.keys()):
+            verso_completo = "".join(versos[v_idx]).strip()
+            # Limpiar dobles espacios si los hubiera
+            verso_completo = " ".join(verso_completo.split()) 
+            if verso_completo:
+                textos_finales.append(verso_completo)
+        
+        # Unimos las distintas estrofas con un espacio 
+        # (puedes cambiar " " por " | " o "\n" si prefieres marcadores visuales en el CSV/JSON)
+        letra_completa = " ".join(textos_finales)
+        
+        return letra_completa
+        
+    except Exception as e:
+        print(f"Error extrayendo la letra de {path}: {e}")
+        return ""
+        
     
-    # Recorremos todas las notas y acordes de la pieza
-    for el in score.recurse().notes:
-        # Caso 1: Tiene una sola letra directa (.lyric)
-        if el.lyric:
-            palabras.append(el.lyric)
-        # Caso 2: Tiene múltiples estrofas (.lyrics es una lista de objetos Lyric)
-        elif hasattr(el, 'lyrics') and el.lyrics:
-            for lyr in el.lyrics:
-                if lyr.text:
-                    palabras.append(lyr.text)
-                    
-    # Unimos las sílabas/palabras. Como vienen separadas por notas, 
-    # un simple espacio bastará para que el LLM entienda el contexto global.
-    return " ".join(palabras).strip()
+def _extract_lyrics_mscz(file_path):
+    """
+    Extrae el MSCX contenido dentro de un MSCZ y reutiliza
+    el parser de letras de MuseScore XML.
+    """
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        with zipfile.ZipFile(file_path, "r") as z:
+            mscx_files = [
+                name
+                for name in z.namelist()
+                if name.lower().endswith(".mscx")
+            ]
+
+            if not mscx_files:
+                return "Sin letra"
+
+            mscx_name = mscx_files[0]
+            extracted_path = Path(tmpdir) / Path(mscx_name).name
+
+            with z.open(mscx_name) as src:
+                extracted_path.write_bytes(src.read())
+
+        return _extract_lyrics_mscx(extracted_path)
+
+
+def _extract_lyrics(file_path):
+    ext = Path(file_path).suffix.lower()
+
+    if ext == ".mei":
+        return _extract_lyrics_mei(file_path)
+
+    elif ext in {".xml", ".musicxml", ".mxl"}:
+        return _extract_lyrics_musicxml(file_path)
+
+    elif ext == ".mscx":
+        return _extract_lyrics_mscx(file_path)
+    
+    elif ext == ".mscz":
+        return _extract_lyrics_mscz(file_path)
+
+    return "Sin letra"
 
 
 def _analizar_temas_con_ollama(titulo: str, letra: str, model_name: str = "llama3") -> list[str]:
@@ -877,7 +1045,6 @@ def detectar_desajustes_meter_sig(file_path: str | Path) -> tuple[int, str]:
         print(f"Aviso: Error en el escaneo de coherencia de meterSig para {file_path}: {e}")
         return 0, ""
 
-from fractions import Fraction
 
 def detectar_valores_irregulares_ocultos(file_path: str | Path) -> tuple[int, str, int]:
     """
@@ -958,8 +1125,6 @@ def _calcular_densidad_eventos(score: m21.stream.Score) -> tuple[int, int, float
     
     return total_eventos, total_compases, densidad
 
-from fractions import Fraction
-from collections import defaultdict
 
 def detectar_polirritmias(file_path: str | Path) -> list[int]:
     """
@@ -1084,6 +1249,81 @@ def _calcular_tesitura(score: m21.stream.Score) -> tuple[str, str]:
     return pitch_mas_grave.nameWithOctave, pitch_mas_aguda.nameWithOctave
 
 
+def _clasificar_genero_autor(nombre_autor: str) -> str:
+    """
+    Clasifica heurísticamente o mediante NLP el género del autor.
+    Categorías: 'femenino', 'masculino', 'desconocido'
+    """
+    if not nombre_autor or nombre_autor.lower() in ["anonymous", "anónimo", "traditional", "tradicional"]:
+        return "desconocido"
+        
+    # Heurística rápida para nombres comunes en español (opcional como fallback rápido)
+    nombre_limpio = nombre_autor.split()[0].lower()
+    if nombre_limpio.endswith(('a', 'ines', 'isabel', 'menxu', 'carmen', 'luz')):
+        # Excepciones rápidas de la heurística
+        if nombre_limpio not in ["andrea", "borja"]:
+            return "femenino"
+    if nombre_limpio.endswith(('o', 'r', 'l', 's', 'e')):
+        return "masculino"
+
+    # Para generalización total, se puede extender con un diccionario o usar la misma API de Ollama
+    return "desconocido"
+
+def _analizar_perspectiva_lirica(texto_letras: str) -> str:
+    """
+    Analiza semánticamente el texto de la letra para identificar la voz del narrador.
+    Busca marcas de género gramatical (ej: 'estoy cansado' vs 'estoy cansada').
+    
+    Categorías: 'femenino', 'masculino', 'neutro', 'desconocido'
+    """
+    if not texto_letras or len(texto_letras) < 10:
+        return "desconocido"
+
+    # Usamos Ollama (asumiendo que está corriendo localmente en el puerto 11434)
+    # Si falla, el código tiene un bloque de seguridad (try/except) que devuelve 'desconocido'
+    url = "http://localhost:11434/api/generate"
+    prompt = f"""
+    Analiza la siguiente letra de una canción en español y determina si el narrador o la voz lírica que canta es un hombre (masculino), una mujer (femenino), o si no tiene marcas de género claras (neutro).
+    Fíjate en adjetivos (solo/sola, casado/casada) y el contexto lírico.
+
+    Letra: "{texto_letras}"
+
+    Responde ESTRICTAMENTE con un objeto JSON con la clave "voz_lirica" cuyo valor sea únicamente una de estas opciones: "masculino", "femenino", "neutro", "desconocido".
+    Ejemplo de salida: {{"voz_lirica": "masculino"}}
+    """
+    
+    payload = {
+        "model": "llama3", # o el modelo que tengas configurado localmente
+        "prompt": prompt,
+        "stream": False,
+        "format": "json"
+    }
+    
+    try:
+        response = requests.post(url, json=payload, timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            res_json = json.loads(data.get("response", "{}"))
+            voz = res_json.get("voz_lirica", "desconocido").lower().strip()
+            if voz in ["masculino", "femenino", "neutro", "desconocido"]:
+                return voz
+    except Exception:
+        # Fallback analítico si el LLM local está apagado
+        # Búsqueda de palabras clave morfológicas elementales en español
+        texto_min = texto_letras.lower()
+        v_masc = [" solo ", " cansado ", " loco ", " dueño ", " muerto ", " niño ", " hombre "]
+        v_fem = [" sola ", " cansada ", " loca ", " dueña ", " muerta ", " niña ", " mujer "]
+        
+        c_masc = sum(texto_min.count(w) for w in v_masc)
+        c_fem = sum(texto_min.count(w) for w in v_fem)
+        
+        if c_masc > c_fem: return "masculino"
+        if c_fem > c_masc: return "femenino"
+        return "neutro"
+
+    return "desconocido"
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1101,7 +1341,7 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     if titulo == Path(file_path).stem and mei_meta.get("title"):
         titulo = mei_meta.get("title")
 
-    letra_cancion = _extract_lyrics(score)
+    letra_cancion = _extract_lyrics(file_path)
 
     compas = _extract_compas(score)
     if not compas:
@@ -1169,6 +1409,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     nota_mas_grave, nota_mas_aguda = _calcular_tesitura(score)
 
+    autor_genero = _clasificar_genero_autor(autor)
+    lirica_voz = _analizar_perspectiva_lirica(letra_cancion)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1204,7 +1447,10 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "densidad_notas_por_compas": densidad_notas,
         "tiene_polirritmia": 1 if polirritmias else 0,
         "compases_polirritmia": ", ".join(map(str, polirritmias)),
-        "conteo_polirritmia": len(polirritmias)
+        "conteo_polirritmia": len(polirritmias),
+        "autor_genero": autor_genero,
+        "lirica_voz": lirica_voz,
+        "texto_letras_extraido": letra_cancion[:500], # Guardamos una muestra del texto para auditoría
     }
     
     return resultado

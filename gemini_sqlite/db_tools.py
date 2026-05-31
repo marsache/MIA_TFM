@@ -958,6 +958,101 @@ def _calcular_densidad_eventos(score: m21.stream.Score) -> tuple[int, int, float
     
     return total_eventos, total_compases, densidad
 
+from fractions import Fraction
+from collections import defaultdict
+
+def detectar_polirritmias(file_path: str | Path) -> list[int]:
+    """
+    Detecta el uso de polirritmias verticales en la partitura.
+    Se considera polirritmia cuando en un mismo compás coexisten de forma simultánea
+    subdivisiones rítmicas conflictivas (por ejemplo, tresillos frente a corcheas binarias,
+    o combinaciones como 3 contra 4, 5 contra 4, etc.) entre diferentes partes o voces.
+    
+    Retorna:
+        list[int]: Lista ordenada de números de compás donde se detectó polirritmia.
+    """
+    score = _safe_parse_score(file_path)
+    if score is None:
+        return []
+
+    compases_con_polirritmia = set()
+    
+    # Agrupar las medidas de todas las partes del score por su número de compás
+    medidas_por_numero = defaultdict(list)
+    for part in score.parts:
+        for measure in part.getElementsByClass(m21.stream.Measure):
+            if measure.measureNumber is not None and measure.measureNumber > 0:
+                medidas_por_numero[measure.measureNumber].append(measure)
+
+    # Analizar cada compás de manera global e independiente
+    for num_compas, lista_medidas in medidas_por_numero.items():
+        subdivisiones_compas = set()
+        tiene_subdivision_regular = False
+        
+        for measure in lista_medidas:
+            # Aplanamos la medida para incluir todas las notas de las voces internas
+            flat_measure = measure.flatten()
+            for element in flat_measure.notesAndRests:
+                if not isinstance(element, (m21.note.Note, m21.chord.Chord)):
+                    continue
+                
+                q_len = _to_float(element.quarterLength)
+                if q_len <= 0:
+                    continue
+                
+                # Estrategia A: Identificación por tuplet explícito en metadatos
+                if element.duration.tuplets:
+                    for tuplet in element.duration.tuplets:
+                        actual = tuplet.numberNotesActual
+                        normal = tuplet.numberNotesNormal
+                        if actual and normal and actual != normal:
+                            subdivisiones_compas.add(actual)
+                else:
+                    # Estrategia B: Análisis matemático de la fracción por si es un valor irregular oculto
+                    frac = Fraction(str(q_len)).limit_denominator(1000)
+                    denom = frac.denominator
+                    
+                    # Descomponer el denominador eliminando los factores de base 2
+                    temp_denom = denom
+                    while temp_denom % 2 == 0 and temp_denom > 0:
+                        temp_denom //= 2
+                    
+                    if temp_denom > 1:
+                        # Conserva factores primos (3 para tresillo, 5 para quintillo, etc.)
+                        subdivisiones_compas.add(temp_denom)
+                    else:
+                        # Ritmo puramente regular (potencias de 2)
+                        tiene_subdivision_regular = True
+
+        # Validar contexto según el indicador de compás (Time Signature)
+        es_compas_compuesto = False
+        if lista_medidas:
+            ts = _get_measure_time_signature(lista_medidas[0])
+            if ts and ts.ratioString in {"6/8", "9/8", "12/8"}:
+                es_compas_compuesto = True
+
+        # Limpiar las subdivisiones que representan conflicto real
+        subdivisiones_conflictivas = set()
+        for sub in subdivisiones_compas:
+            if es_compas_compuesto and sub == 3:
+                # En compases compuestos el 3 es el estándar de subdivisión regular
+                continue
+            subdivisiones_conflictivas.add(sub)
+
+        # Evaluación del criterio de polirritmia vertical
+        polirritmia_detectada = False
+        if len(subdivisiones_conflictivas) >= 2:
+            # Coexisten dos o más subdivisiones irregulares distintas (ej: 3 contra 5)
+            polirritmia_detectada = True
+        elif len(subdivisiones_conflictivas) == 1 and tiene_subdivision_regular:
+            # Coexiste una subdivisión irregular contra ritmos binarios normales (ej: 3 contra 2)
+            polirritmia_detectada = True
+
+        if polirritmia_detectada:
+            compases_con_polirritmia.add(num_compas)
+
+    return sorted(list(compases_con_polirritmia))
+
 
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
@@ -993,6 +1088,7 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     hemiolias_verticales = detectar_hemiolas_verticales(file_path)
     hemiolias_horizontales = detectar_hemiolas_horizontales(file_path)
+    polirritmias = detectar_polirritmias(file_path)
     
     tiene_sinc, compases_sinc, conteo_sinc = detectar_sincopas(file_path)
 
@@ -1072,6 +1168,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "total_eventos_musicales": total_eventos,
         "total_compases": total_compases,
         "densidad_notas_por_compas": densidad_notas,
+        "tiene_polirritmia": 1 if polirritmias else 0,
+        "compases_polirritmia": ", ".join(map(str, polirritmias)),
+        "conteo_polirritmia": len(polirritmias)
     }
     
     return resultado

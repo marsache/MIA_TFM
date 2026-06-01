@@ -608,43 +608,81 @@ def detectar_sincopas(file_path: str | Path) -> tuple[int, str, int]:
 
 
 def _extract_lyrics_mei(file_path):
-    tree = ET.parse(file_path)
-    root = tree.getroot()
+    try:
+        tree = ET.parse(file_path)
+        root = tree.getroot()
 
-    ns = {'mei': 'http://www.music-encoding.org/ns/mei'}
+        ns = {'mei': 'http://www.music-encoding.org/ns/mei'}
 
-    palabras = []
-    palabra_actual = ""
+        # Diccionario para agrupar las sílabas por número de estrofa
+        # { '1': [(texto, wordpos), ...], '2': [...] }
+        versos = defaultdict(list)
 
-    for syl in root.findall('.//mei:syl', ns):
-        texto = (syl.text or '').strip().replace('\xa0', ' ')
-        wordpos = syl.get('wordpos')
+        # Iteramos sobre cada elemento <verse> respetando el orden de la partitura
+        for verse in root.findall('.//mei:verse', ns):
+            # El atributo 'n' indica el número de estrofa/verso (por defecto '1')
+            n_verse = verse.get('n', '1')
+            
+            # Buscamos la sílaba interna de este verso
+            syl = verse.find('mei:syl', ns)
+            if syl is not None:
+                # Limpiamos el texto y quitamos los espacios duros (\xa0)
+                texto = (syl.text or '').strip().replace('\xa0', ' ')
+                wordpos = syl.get('wordpos', 's')
+                
+                versos[n_verse].append((texto, wordpos))
 
-        if wordpos == 's':
-            if palabra_actual:
-                palabras.append(palabra_actual)
-                palabra_actual = ""
-            palabras.append(texto)
+        # Reconstruimos el texto de cada estrofa por separado
+        textos_finales = []
+        
+        # Función auxiliar para ordenar numéricamente las estrofas ('1', '2', '3'...)
+        def ordenar_por_numero(v):
+            try:
+                return int(v)
+            except ValueError:
+                return 999
 
-        elif wordpos == 'i':
-            if palabra_actual:
-                palabras.append(palabra_actual)
-            palabra_actual = texto
-
-        elif wordpos == 'm':
-            palabra_actual += texto
-
-        elif wordpos == 't':
-            palabra_actual += texto
-            palabras.append(palabra_actual)
+        for n_verse in sorted(versos.keys(), key=ordenar_por_numero):
+            palabras = []
             palabra_actual = ""
 
-    if palabra_actual:
-        palabras.append(palabra_actual)
+            for texto, wordpos in versos[n_verse]:
+                if wordpos == 's':  # Palabra de una sola sílaba
+                    if palabra_actual:
+                        palabras.append(palabra_actual)
+                        palabra_actual = ""
+                    palabras.append(texto)
 
-    resultado = " ".join(palabras)
-    return " ".join(resultado.split())
+                elif wordpos == 'i':  # Inicio de palabra
+                    if palabra_actual:
+                        palabras.append(palabra_actual)
+                    palabra_actual = texto
 
+                elif wordpos == 'm':  # Medio de palabra
+                    palabra_actual += texto
+
+                elif wordpos == 't':  # Final de palabra
+                    palabra_actual += texto
+                    palabras.append(palabra_actual)
+                    palabra_actual = ""
+
+            if palabra_actual:
+                palabras.append(palabra_actual)
+
+            # Unimos las palabras del verso actual y limpiamos dobles espacios
+            verso_completo = " ".join(palabras)
+            verso_completo = " ".join(verso_completo.split())
+            
+            if verso_completo:
+                textos_finales.append(verso_completo)
+
+        # Unimos todas las estrofas independientes con un espacio
+        return " ".join(textos_finales)
+
+    except Exception as e:
+        print(f"Error extrayendo la letra MEI de {file_path}: {e}")
+        return ""
+    
 
 def _extract_lyrics_musicxml(path):
     tree = ET.parse(path)
@@ -1357,7 +1395,7 @@ def _extract_notes_and_rests(score: m21.stream.Score) -> str:
 
 def _extract_melody_pitches(score: m21.stream.Score) -> List[m21.pitch.Pitch]:
     """
-    Tool 1: Extrae cronológicamente las alturas (pitches) de la melodía.
+    Extrae cronológicamente las alturas (pitches) de la melodía.
     Si detecta polifonía (acordes), selecciona la nota más aguda (línea del soprano).
     """
     pitches = []
@@ -1375,7 +1413,7 @@ def _extract_melody_pitches(score: m21.stream.Score) -> List[m21.pitch.Pitch]:
 
 def _analyze_interval_directions(pitches: List[m21.pitch.Pitch]) -> Dict[str, int]:
     """
-    Tool 2: Compara cada nota con su sucesora inmediata utilizando su Pitch Space (.ps).
+    Compara cada nota con su sucesora inmediata utilizando su Pitch Space (.ps).
     Cuenta la cantidad de intervalos según su dirección.
     """
     conteo = {"ascendentes": 0, "descendentes": 0, "repetidos": 0}
@@ -1400,7 +1438,7 @@ def _analyze_interval_directions(pitches: List[m21.pitch.Pitch]) -> Dict[str, in
 
 def _determine_predominant_trend(conteo: Dict[str, int]) -> Dict[str, Any]:
     """
-    Tool 3: Calcula los porcentajes reales de movimiento activo y 
+    Calcula los porcentajes reales de movimiento activo y 
     determina la tendencia predominante bajo un umbral de tolerancia.
     """
     movimientos_totales = conteo["ascendentes"] + conteo["descendentes"]
@@ -1481,6 +1519,87 @@ def _extract_syllable_duration_mapping(score: m21.stream.Score) -> str:
     # CLAVE: ensure_ascii=False le dice a Python que guarde la 'ñ' o 'á' tal cual, 
     # en lugar de convertirlas a \\u00f1 o \\u00e1
     return json.dumps(mapeo_serializable, ensure_ascii=False)
+
+
+def _extract_accidental_events(score: m21.stream.Score) -> List[Dict[str, Any]]:
+    """
+    Tool 1: Recorre la partitura de forma estructurada (por compases) y extrae las 
+    notas con alteraciones accidentales explícitas (sostenidos o bemoles), 
+    filtrando y descartando de manera estricta aquellas que pertenecen a la armadura.
+    """
+    eventos = []
+    
+    # Recorremos la partitura por compases de manera jerárquica
+    for measure in score.recurse().getElementsByClass('Measure'):
+        num_compas = measure.number if measure.number is not None else 0
+        
+        # Localizamos la armadura de clave (KeySignature) activa para este compás específico
+        key_sig = measure.getContextByClass(m21.key.KeySignature)
+        
+        # Analizamos las notas y acordes que contiene este compás
+        for el in measure.notes:
+            # Desglosamos tanto notas simples como acordes polifónicos
+            pitches_a_revisar = el.pitches if isinstance(el, m21.chord.Chord) else [el.pitch] if hasattr(el, 'pitch') else []
+            
+            for p in pitches_a_revisar:
+                if p.accidental is not None:
+                    nombre_alteracion = p.accidental.name  # 'sharp', 'flat', etc.
+                    
+                    # Filtramos únicamente por sostenidos y bemoles (ignorando naturales según diseño)
+                    if 'sharp' in nombre_alteracion or 'flat' in nombre_alteracion:
+                        
+                        # FILTRO CRUCIAL: Comprobar si la alteración viene dada por la armadura de clave
+                        es_de_la_armadura = False
+                        if key_sig is not None:
+                            # Le preguntamos a la armadura qué alteración le corresponde a esta nota base (ej: 'F')
+                            acc_armadura = key_sig.accidentalByStep(p.step)
+                            
+                            # Si la armadura ya contempla esta misma alteración, es parte de la armadura
+                            if acc_armadura is not None and acc_armadura.name == nombre_alteracion:
+                                es_de_la_armadura = True
+                        
+                        # Si NO pertenece a la armadura, es un accidental real de la pieza
+                        if not es_de_la_armadura:
+                            nombre_nota = p.nameWithOctave.replace('-', 'b')
+                            eventos.append({
+                                "nota": nombre_nota,
+                                "compas": num_compas
+                            })
+    return eventos
+
+
+def _format_accidentals_report(eventos: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Procesa y agrupa la lista de eventos brutos.
+    Devuelve un JSON indexado para queries y un texto legible para visualización inmediata.
+    """
+    mapeo_compases = defaultdict(set)
+    
+    for ev in eventos:
+        mapeo_compases[ev["nota"]].add(ev["compas"])
+        
+    # Convertimos los conjuntos (sets) a listas ordenadas para poder serializar en JSON sin errores
+    mapeo_serializable = {
+        nota: sorted(list(compases))
+        for nota, compases in sorted(mapeo_compases.items())
+    }
+    
+    # Creamos un string amigable para humanos. Ej: "F#4 (cc. 5, 12), Bb4 (c. 8)"
+    partes_texto = []
+    for nota, compases in mapeo_serializable.items():
+        if len(compases) == 1:
+            compases_str = f"c. {compases[0]}"
+        else:
+            compases_str = f"cc. {', '.join(map(str, compases))}"
+        partes_texto.append(f"{nota} ({compases_str})")
+        
+    texto_resumen = ", ".join(partes_texto) if partes_texto else "Ninguna"
+    
+    return {
+        "lista_accidentales_json": json.dumps(mapeo_serializable, ensure_ascii=False),
+        "resumen_accidentales": texto_resumen,
+        "total_accidentales": len(eventos)
+    }
 
 
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
@@ -1579,6 +1698,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     mapeo_silabas_json = _extract_syllable_duration_mapping(score)
 
+    eventos_accidentales = _extract_accidental_events(score)
+    reporte_accidentales = _format_accidentals_report(eventos_accidentales)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1622,7 +1744,10 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "tendencia_melodica": analisis_melodico["tendencia_melodica"],
         "porcentaje_intervalos_ascendentes": analisis_melodico["pct_ascendente"],
         "porcentaje_intervalos_descendentes": analisis_melodico["pct_descendente"],
-        "mapeo_silabas_duraciones": mapeo_silabas_json
+        "mapeo_silabas_duraciones": mapeo_silabas_json,
+        "accidentales_compases_json": reporte_accidentales["lista_accidentales_json"],
+        "accidentales_resumen_texto": reporte_accidentales["resumen_accidentales"],
+        "conteo_accidentales_totales": reporte_accidentales["total_accidentales"]
     }
     
     return resultado

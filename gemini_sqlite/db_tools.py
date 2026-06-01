@@ -2026,6 +2026,99 @@ def _calculate_most_frequent_boundary_interval(intervalos: List[int]) -> Dict[st
     }
 
 
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+def _analizar_frases_sb_mei(file_path: Path) -> dict[str, Any]:
+    """
+    Identifica el uso de la etiqueta <sb /> (system break) en archivos MEI
+    y determina si coincide siempre con el final de una frase musical lógica
+    basándose en la puntuación lírica del compás inmediatamente anterior.
+    """
+    # Condición de formato obligatorio
+    if file_path.suffix.lower() != '.mei':
+        return {
+            "tiene_sb": False,
+            "coincide_siempre_con_frase": "No aplicable (No es MEI)",
+            "total_sb": 0,
+            "sb_coincidentes": 0
+        }
+
+    # Namespace oficial de MEI necesario para parsear el XML correctamente
+    ns = {'mei': 'http://www.music-encoding.org/ns/mei'}
+    
+    try:
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+    except Exception as e:
+        return {
+            "tiene_sb": False,
+            "coincide_siempre_con_frase": f"Error de lectura XML: {str(e)}",
+            "total_sb": 0,
+            "sb_coincidentes": 0
+        }
+
+    # Signos que delimitan lingüística y musicalmente una frase lógica
+    signos_fin_frase = {'.', ',', ';', '!', '?', '…'}
+    
+    total_sb = 0
+    sb_coincidentes = 0
+
+    # Buscamos las secciones musicales donde residen secuencialmente los compases y saltos
+    secciones = root.findall('.//mei:section', ns)
+    
+    for seccion in secciones:
+        # Obtenemos todos los elementos hijos en orden de aparición secuencial
+        elementos = list(seccion)
+        
+        for idx, elem in enumerate(elementos):
+            # Comprobamos si el elemento actual es un salto de sistema (<sb />)
+            if elem.tag.endswith('sb'):
+                total_sb += 1
+                
+                # Buscamos hacia atrás el compás (<measure>) inmediatamente anterior al salto
+                compas_anterior = None
+                for j in range(idx - 1, -1, -1):
+                    if elementos[j].tag.endswith('measure'):
+                        compas_anterior = elementos[j]
+                        break
+                
+                if compas_anterior is not None:
+                    # Extraemos todas las sílabas de texto (<syl>) dentro de ese compás previo
+                    silabas = compas_anterior.findall('.//mei:syl', ns)
+                    
+                    if silabas:
+                        # Analizamos la última sílaba del compás (final de la palabra/frase musical)
+                        ultima_silaba = silabas[-1].text
+                        if ultima_silaba:
+                            ultima_silaba = ultima_silaba.strip()
+                            # Si termina en signo de puntuación, hay coincidencia de frase lógica
+                            if any(ultima_silaba.endswith(s) for s in signos_fin_frase):
+                                sb_coincidentes += 1
+                                continue
+                    
+                    # Criterio secundario opcional: Si el compás termina con un silencio largo
+                    # o <rest> explícito, también se podría considerar fin de frase lógica.
+
+    if total_sb == 0:
+        return {
+            "tiene_sb": False,
+            "coincide_siempre_con_frase": "No contiene etiquetas <sb />",
+            "total_sb": 0,
+            "sb_coincidentes": 0
+        }
+
+    # Determinamos si el 100% de los saltos coinciden con finales de frase
+    coincide_siempre = (total_sb == sb_coincidentes)
+
+    return {
+        "tiene_sb": True,
+        "coincide_siempre_con_frase": "Sí" if coincide_siempre else "No",
+        "total_sb": total_sb,
+        "sb_coincidentes": sb_coincidentes
+    }
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -2143,6 +2236,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     lista_intervalos_frontera = _extract_measure_boundary_intervals(score)
     metricas_frontera = _calculate_most_frequent_boundary_interval(lista_intervalos_frontera)
 
+    analisis_mei_sb = _analizar_frases_sb_mei(file_path)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -2208,6 +2303,12 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "lirica_nombres_propios": analisis_lexico["nombres_propios"],
         "intervalo_frontera_mas_frecuente": metricas_frontera["intervalo_frontera_mas_frecuente"],
         "frecuencia_intervalo_frontera": metricas_frontera["frecuencia_intervalo_frontera"],
+        "tiene_etiqueta_sb": analisis_mei_sb["tiene_sb"],
+        "sb_coincide_con_frase_logica": analisis_mei_sb["coincide_siempre_con_frase"],
+        "detalles_sb": {
+            "total_system_breaks": analisis_mei_sb["total_sb"],
+            "saltos_en_fin_de_frase": analisis_mei_sb["sb_coincidentes"]
+        }
     }
     
     return resultado

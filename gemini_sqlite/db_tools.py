@@ -16,6 +16,8 @@ import requests
 from fractions import Fraction
 from collections import defaultdict
 import zipfile
+from typing import List, Dict, Any
+import unicodedata
 
 
 SUPPORTED_SONG_EXTENSIONS = {".xml", ".musicxml", ".mxl", ".mei", ".mscz"}
@@ -1352,6 +1354,135 @@ def _extract_notes_and_rests(score: m21.stream.Score) -> str:
     return " - ".join(secuencia) if secuencia else "Vacío"
 
 
+
+def _extract_melody_pitches(score: m21.stream.Score) -> List[m21.pitch.Pitch]:
+    """
+    Tool 1: Extrae cronológicamente las alturas (pitches) de la melodía.
+    Si detecta polifonía (acordes), selecciona la nota más aguda (línea del soprano).
+    """
+    pitches = []
+    # Usamos flatten() para garantizar un orden cronológico absoluto sin importar las voces
+    for el in score.flatten().notes:
+        if isinstance(el, m21.note.Note):
+            pitches.append(el.pitch)
+        elif isinstance(el, m21.chord.Chord):
+            # Ordenamos las notas del acorde por su altura MIDI (.ps) de menor a mayor
+            notas_ordenadas = sorted(el.pitches, key=lambda p: p.ps)
+            # Extraemos la última (la más aguda) que suele llevar la melodía principal
+            pitches.append(notas_ordenadas[-1])
+    return pitches
+
+
+def _analyze_interval_directions(pitches: List[m21.pitch.Pitch]) -> Dict[str, int]:
+    """
+    Tool 2: Compara cada nota con su sucesora inmediata utilizando su Pitch Space (.ps).
+    Cuenta la cantidad de intervalos según su dirección.
+    """
+    conteo = {"ascendentes": 0, "descendentes": 0, "repetidos": 0}
+    
+    if len(pitches) < 2:
+        return conteo  # Si la pieza tiene 1 o 0 notas, no hay intervalos que medir
+        
+    for i in range(len(pitches) - 1):
+        nota_actual = pitches[i]
+        nota_siguiente = pitches[i + 1]
+        
+        # .ps devuelve un número flotante/entero (ej: 60 para C4), ideal para comparar sin errores de texto
+        if nota_siguiente.ps > nota_actual.ps:
+            conteo["ascendentes"] += 1
+        elif nota_siguiente.ps < nota_actual.ps:
+            conteo["descendentes"] += 1
+        else:
+            conteo["repetidos"] += 1
+            
+    return conteo
+
+
+def _determine_predominant_trend(conteo: Dict[str, int]) -> Dict[str, Any]:
+    """
+    Tool 3: Calcula los porcentajes reales de movimiento activo y 
+    determina la tendencia predominante bajo un umbral de tolerancia.
+    """
+    movimientos_totales = conteo["ascendentes"] + conteo["descendentes"]
+    
+    if movimientos_totales == 0:
+        return {
+            "tendencia_melodica": "Estática (solo notas repetidas o pieza vacía)",
+            "pct_ascendente": 0.0,
+            "pct_descendente": 0.0
+        }
+        
+    # Calculamos el porcentaje relativo al movimiento real de la melodía
+    pct_asc = (conteo["ascendentes"] / movimientos_totales) * 100
+    pct_desc = (conteo["descendentes"] / movimientos_totales) * 100
+    
+    # Ponemos un margen del 6% (por ejemplo, 53% vs 47% se considera una obra balanceada/equilibrada)
+    if abs(pct_asc - pct_desc) <= 6.0:
+        veredicto = "Equilibrada"
+    elif pct_asc > pct_desc:
+        veredicto = "Predominantemente ascendente"
+    else:
+        veredicto = "Predominantemente descendente"
+        
+    return {
+        "tendencia_melodica": veredicto,
+        "pct_ascendente": round(pct_asc, 2),
+        "pct_descendente": round(pct_desc, 2)
+    }
+
+
+def _clean_syllable_text(text: str) -> str:
+    """
+    Limpia, normaliza y estandariza el texto de una sílaba para asegurar 
+    que caracteres como la 'ñ' o las tildes se almacenen de forma nativa y limpia.
+    """
+    if not text:
+        return ""
+    
+    # 1. Normalización Unicode NFC: Junta caracteres divididos (ej: transforma 'n' + '~/tilde' en 'ñ')
+    texto = unicodedata.normalize('NFC', text)
+    
+    # 2. Limpieza de caracteres ocultos PUA (Private Use Area) comunes en MusicXML/MEI
+    patron_pua = re.compile(r'[\ue000-\uf8ff]')
+    texto = patron_pua.sub('', texto)
+    
+    # 3. Eliminar guiones de separación silábica residuales y pasar a minúsculas
+    texto = re.sub(r'[-_]+', '', texto)
+    
+    return texto.strip().lower()
+
+
+def _extract_syllable_duration_mapping(score: m21.stream.Score) -> str:
+    """
+    Mapea cada sílaba con sus duraciones musicales en la pieza.
+    Devuelve un string JSON en UTF-8 nativo (legible sin códigos \\u00f1).
+    """
+    mapeo = defaultdict(set)
+    
+    for el in score.flatten().notes:
+        if not hasattr(el, 'lyrics') or not el.lyrics:
+            continue
+            
+        duracion = float(el.duration.quarterLength)
+        
+        for lyr in el.lyrics:
+            if not lyr.text:
+                continue
+                
+            silaba_limpia = _clean_syllable_text(lyr.text)
+            if silaba_limpia:
+                mapeo[silaba_limpia].add(duracion)
+                
+    mapeo_serializable = {
+        silaba: sorted(list(duraciones)) 
+        for silaba, duraciones in mapeo.items()
+    }
+    
+    # CLAVE: ensure_ascii=False le dice a Python que guarde la 'ñ' o 'á' tal cual, 
+    # en lugar de convertirlas a \\u00f1 o \\u00e1
+    return json.dumps(mapeo_serializable, ensure_ascii=False)
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1442,6 +1573,12 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     notas_y_silencios_texto = _extract_notes_and_rests(score)
 
+    lista_alturas = _extract_melody_pitches(score)
+    conteo_direcciones = _analyze_interval_directions(lista_alturas)
+    analisis_melodico = _determine_predominant_trend(conteo_direcciones)
+
+    mapeo_silabas_json = _extract_syllable_duration_mapping(score)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1481,7 +1618,11 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "autor_genero": autor_genero,
         "lirica_voz": lirica_voz,
         "texto_letras_extraido": letra_cancion[:500], # Guardamos una muestra del texto para auditoría
-        "secuencia_notas_silencios": notas_y_silencios_texto
+        "secuencia_notas_silencios": notas_y_silencios_texto,
+        "tendencia_melodica": analisis_melodico["tendencia_melodica"],
+        "porcentaje_intervalos_ascendentes": analisis_melodico["pct_ascendente"],
+        "porcentaje_intervalos_descendentes": analisis_melodico["pct_descendente"],
+        "mapeo_silabas_duraciones": mapeo_silabas_json
     }
     
     return resultado

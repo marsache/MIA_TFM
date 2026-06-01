@@ -1959,6 +1959,73 @@ def _extraer_sustantivos_y_propios(texto: str) -> dict[str, str]:
     return resultado
 
 
+def _extract_measure_boundary_intervals(score: m21.stream.Score) -> List[int]:
+    """
+    Extrae los intervalos melódicos (en semitonos) que cruzan las líneas 
+    divisorias de los compases, ignorando las ligaduras de prolongación.
+    Soporta partituras con notas anidadas en Voces/Layers (como MEI).
+    """
+    intervalos_frontera = []
+    
+    # Trabajamos sobre la primera parte/voz principal para evitar cruces polifónicos
+    parts = score.parts if score.parts else [score]
+    
+    for part in parts:
+        # Usar .recurse() asegura que encontremos los compases
+        # incluso si music21 los anidó dentro de objetos Staff u otros contenedores.
+        medidas = list(part.recurse().getElementsByClass('Measure'))
+        
+        for i in range(len(medidas) - 1):
+            medida_actual = medidas[i]
+            medida_siguiente = medidas[i + 1]
+            
+            # Usar .flatten().notes extrae las notas forzosamente, 
+            # ignorando si están escondidas en un objeto Voice (típico de MEI).
+            notas_actual = list(medida_actual.flatten().notes)
+            notas_siguiente = list(medida_siguiente.flatten().notes)
+            
+            if notas_actual and notas_siguiente:
+                ultima_nota = notas_actual[-1]
+                primera_nota = notas_siguiente[0]
+                
+                # Si la primera nota del siguiente compás es 
+                # la continuación de una ligadura, NO es un ataque melódico nuevo.
+                if primera_nota.tie and primera_nota.tie.type in ['stop', 'continue']:
+                    continue
+                
+                # Extraemos el pitch más agudo si es un acorde, o el pitch directo si es nota
+                pitch_ultimo = max(ultima_nota.pitches).ps if ultima_nota.isChord else ultima_nota.pitch.ps
+                pitch_primero = max(primera_nota.pitches).ps if primera_nota.isChord else primera_nota.pitch.ps
+                
+                # Calculamos la diferencia en semitonos (Ej: +2, -5, 0)
+                distancia = int(pitch_primero - pitch_ultimo)
+                intervalos_frontera.append(distancia)
+                
+    return intervalos_frontera
+
+
+def _calculate_most_frequent_boundary_interval(intervalos: List[int]) -> Dict[str, Any]:
+    """
+    Determina el intervalo de frontera de compás más frecuente.
+    """
+    if not intervalos:
+        return {
+            "intervalo_frontera_mas_frecuente": "Ninguno",
+            "frecuencia_intervalo_frontera": 0
+        }
+        
+    # Formateamos los intervalos con su signo para mayor legibilidad musical (ej: "+4", "-2", "0")
+    intervalos_str = [f"+{i}" if i > 0 else str(i) for i in intervalos]
+    
+    conteo = Counter(intervalos_str)
+    mas_comun, frecuencia = conteo.most_common(1)[0]
+    
+    return {
+        "intervalo_frontera_mas_frecuente": mas_comun,
+        "frecuencia_intervalo_frontera": frecuencia
+    }
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -2073,6 +2140,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     analisis_lexico = _extraer_sustantivos_y_propios(letra_cancion)
 
+    lista_intervalos_frontera = _extract_measure_boundary_intervals(score)
+    metricas_frontera = _calculate_most_frequent_boundary_interval(lista_intervalos_frontera)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -2136,6 +2206,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "compases_plicas_anomalas": resultado_plicas["compases_plicas_anomalas"],
         "lirica_sustantivos": analisis_lexico["sustantivos_comunes"],
         "lirica_nombres_propios": analisis_lexico["nombres_propios"],
+        "intervalo_frontera_mas_frecuente": metricas_frontera["intervalo_frontera_mas_frecuente"],
+        "frecuencia_intervalo_frontera": metricas_frontera["frecuencia_intervalo_frontera"],
     }
     
     return resultado

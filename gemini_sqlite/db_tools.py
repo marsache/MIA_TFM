@@ -1824,12 +1824,12 @@ def _detect_stem_direction_anomalies(score: m21.stream.Score) -> dict[str, Any]:
         measure_num = note_obj.getContextByClass('Measure')
         measure_idx = measure_num.number if measure_num else 0
         
-        # Condición 1: Plica "down" pero la nota está abajo de la 3ª línea
+        # Plica "down" pero la nota está abajo de la 3ª línea
         if stem_dir == 'down' and note_midi < middle_line_midi:
             anomalies_count += 1
             compases_anomalos.add(measure_idx)
             
-        # Condición 2: Plica "up" pero la nota está arriba de la 3ª línea
+        # Plica "up" pero la nota está arriba de la 3ª línea
         elif stem_dir == 'up' and note_midi > middle_line_midi:
             anomalies_count += 1
             compases_anomalos.add(measure_idx)
@@ -1843,18 +1843,34 @@ def _detect_stem_direction_anomalies(score: m21.stream.Score) -> dict[str, Any]:
 
 def _extract_midi_volume(file_path: Path) -> int | None:
     """
-    Tool A: Parsea directamente el archivo estructurado XML (MEI / MusicXML) 
-    buscando el volumen MIDI y extrae de forma segura su valor numérico entero.
+    Parsea directamente el archivo estructurado XML (MEI / MusicXML) 
+    o el archivo comprimido MSCZ buscando el volumen MIDI y extrae 
+    de forma segura su valor numérico entero.
     Soporta:
       - MEI: Atributo 'midi.volume' dentro de <instrDef>
       - MusicXML: Texto del elemento <volume> dentro de <midi-instrument>
+      - MSCZ: Atributo 'volumeDb' del objeto 'master' en audiosettings.json
     """
-    # Restringir a formatos basados en texto XML para evitar fallos en binarios comprimidos como .mscz
-    if file_path.suffix.lower() not in ['.mei', '.xml', '.musicxml']:
+    # Permitir la extensión .mscz además de los formatos XML
+    if file_path.suffix.lower() not in ['.mei', '.xml', '.musicxml', '.mscz']:
         return None
         
     try:
-        # Parsear el archivo en un árbol de elementos
+        # Tratamiento especial para los archivos comprimidos de MuseScore (.mscz)
+        if file_path.suffix.lower() == '.mscz':
+            with zipfile.ZipFile(file_path, 'r') as z:
+                # Comprobar si el archivo de configuración de audio existe dentro del ZIP
+                if 'audiosettings.json' in z.namelist():
+                    with z.open('audiosettings.json') as f:
+                        audio_settings = json.load(f)
+                        
+                        # Extraer el volumen del master
+                        master_settings = audio_settings.get('master', {})
+                        if 'volumeDb' in master_settings:
+                            return int(round(float(master_settings['volumeDb'])))
+            return None # Si no hay archivo de audio o volumen, devuelve None
+            
+        # Comportamiento normal para archivos basados en XML (.xml, .musicxml, .mei)
         tree = ET.parse(file_path)
         root = tree.getroot()
         
@@ -1881,12 +1897,12 @@ def _extract_midi_volume(file_path: Path) -> int | None:
                         except ValueError:
                             continue
                             
-    except Exception:
-        # En caso de un XML mal formado o problemas de lectura, devolvemos None de forma segura
+    except Exception as e:
+        # En caso de un XML mal formado, un ZIP corrupto o problemas de lectura
+        # Puedes añadir un print(e) aquí si necesitas depurar posibles fallos
         return None
         
     return None
-
 
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)

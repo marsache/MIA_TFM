@@ -18,6 +18,7 @@ from collections import defaultdict
 import zipfile
 from typing import List, Dict, Any
 import unicodedata
+from collections import Counter
 
 
 SUPPORTED_SONG_EXTENSIONS = {".xml", ".musicxml", ".mxl", ".mei", ".mscz"}
@@ -1717,6 +1718,62 @@ def _extract_quality_control_metadata(score: m21.stream.Score) -> Dict[str, Any]
     return qc
 
 
+def _extract_melodic_intervals(score: m21.stream.Score) -> List[int]:
+    """
+    Recorre la partitura de forma lineal y extrae las distancias en 
+    semitonos entre notas consecutivas, abstrayendo la melodía de su altura absoluta.
+    """
+    # flatten().notes obtiene Notas y Acordes omitiendo silencios
+    elementos = score.flatten().notes
+    alturas_midi = []
+    
+    for el in elementos:
+        if el.isNote:
+            alturas_midi.append(int(el.pitch.ps))
+        elif el.isChord:
+            # En acordes, extraemos la nota más aguda (típica de la melodía)
+            alturas_midi.append(int(max(p.ps for p in el.pitches)))
+            
+    # Calcular los intervalos melódicos en semitonos (Nota B - Nota A)
+    intervalos = [alturas_midi[i+1] - alturas_midi[i] for i in range(len(alturas_midi) - 1)]
+    return intervalos
+
+
+def _detect_leitmotivs_ngrams(score: m21.stream.Score, min_notas: int = 4, max_notas: int = 5, n_apariciones: int = 3) -> str:
+    """
+    Aplica ventanas deslizantes sobre los intervalos para descubrir 
+    motivos redundantes (leitmotivs). Devuelve un JSON string con los patrones y sus frecuencias.
+    """
+    intervalos = _extract_melodic_intervals(score)
+    motivos_finales = {}
+    
+    # El tamaño del n-gram en intervalos es (número de notas - 1)
+    for tamano_notas in range(min_notas, max_notas + 1):
+        n = tamano_notas - 1
+        if len(intervalos) < n:
+            continue
+            
+        # Generar todos los n-grams de intervalos posibles en la obra
+        ngrams = [tuple(intervalos[i:i+n]) for i in range(len(intervalos) - n + 1)]
+        conteo = Counter(ngrams)
+        
+        for patron, frecuencia in conteo.items():
+            # Criterio: Debe repetirse al menos n_apariciones veces para considerarse leitmotiv
+            if frecuencia >= n_apariciones:
+                # Filtrar motivos triviales (ej: mantener la misma nota todo el tiempo [0, 0, 0])
+                if all(intervalo == 0 for intervalo in patron):
+                    continue
+                
+                # Convertir el patrón a un formato de texto legible (ej: "+4 -> -2 -> +1")
+                patron_texto = " -> ".join(f"{'+' if i > 0 else ''}{i}" for i in patron)
+                
+                # Guardar el motivo y cuántas veces suena
+                motivos_finales[patron_texto] = frecuencia
+
+    # Devolvemos un JSON estandarizado para almacenar directamente en SQLite
+    return json.dumps(motivos_finales, ensure_ascii=False)
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1822,6 +1879,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         
     control_calidad = _extract_quality_control_metadata(score)
 
+    leitmotivs_json = _detect_leitmotivs_ngrams(score, min_notas=4, max_notas=5, n_apariciones=2)
+    contiene_leitmotivs = 1 if leitmotivs_json != "{}" else 0
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1877,6 +1937,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "qc_notas_duracion_cero": control_calidad["qc_notas_duracion_cero"],
         "qc_advertencias_criticas": control_calidad["qc_advertencias_criticas"],
         "qc_puntuacion_integridad": control_calidad["qc_puntuacion_integridad"],
+        "tiene_leitmotivs": contiene_leitmotivs,
+        "patrones_leitmotivs_json": leitmotivs_json,
     }
     
     return resultado

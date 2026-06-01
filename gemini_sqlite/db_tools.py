@@ -1606,6 +1606,117 @@ def _format_accidentals_report(eventos: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
+def _extract_transcription_metadata(file_path: str | Path) -> Dict[str, Any]:
+    """
+    Examina el archivo de texto crudo (XML/MEI) para rastrear el historial
+    de codificación, el software de conversión (como Verovio) y el origen del archivo.
+    """
+    path_obj = Path(file_path)
+    ext = path_obj.suffix.lower()
+    
+    meta = {
+        "software_codificacion": "Desconocido",
+        "convertido_via_verovio": 0,
+        "fecha_codificacion": "No disponible",
+        "formato_origen": ext.replace('.', '').upper()
+    }
+    
+    try:
+        # Leemos el archivo como texto para parsear su XML crudo de forma rápida
+        content = path_obj.read_text(encoding="utf-8", errors="ignore")
+        
+        # Eliminar namespaces temporales para facilitar búsquedas genéricas con ElementTree
+        content_clean = re.sub(r'\sxmlns="[^"]+"', '', content, count=1)
+        root = ET.fromstring(content_clean)
+        
+        # Rastrear en archivos MEI (<encodingDesc> -> <application>)
+        if ext == '.mei':
+            application = root.find('.//application')
+            if application is not None:
+                meta["software_codificacion"] = application.text if application.text else application.attrib.get('name', 'Desconocido')
+            else:
+                # Búsqueda por texto en comentarios o cabeceras si no está la etiqueta
+                if "verovio" in content.lower():
+                    meta["software_codificacion"] = "Verovio"
+
+            # Buscar fecha de codificación MEI
+            date_el = root.find('.//date')
+            if date_el is not None and date_el.text:
+                meta["fecha_codificacion"] = date_el.text
+                
+        # Rastrear en archivos MusicXML (<encoding> -> <software>)
+        elif ext in ['.xml', '.musicxml']:
+            software = root.find('.//software')
+            if software is not None and software.text:
+                meta["software_codificacion"] = software.text
+                
+            encoding_date = root.find('.//encoding-date')
+            if encoding_date is not None and encoding_date.text:
+                meta["fecha_codificacion"] = encoding_date.text
+
+        # Comprobación específica de la condición del usuario (Verovio)
+        if "verovio" in meta["software_codificacion"].lower() or "verovio" in content.lower():
+            meta["convertido_via_verovio"] = 1
+            if meta["software_codificacion"] == "Desconocido":
+                meta["software_codificacion"] = "Verovio (Conversor)"
+
+    except Exception:
+        # Si el parseo manual falla, mantenemos los valores por defecto seguros
+        pass
+        
+    return meta
+
+
+def _extract_quality_control_metadata(score: m21.stream.Score) -> Dict[str, Any]:
+    """
+    Realiza una auditoría automatizada de Control de Calidad (QC) de la 
+    estructura musical para identificar posibles errores de copia o digitalización.
+    """
+    qc = {
+        "qc_compases_vacios": 0,
+        "qc_notas_duracion_cero": 0,
+        "qc_advertencias_criticas": "Ninguna",
+        "qc_puntuacion_integridad": 100
+    }
+    
+    compases_vacios = 0
+    notas_cero = 0
+    
+    # Recorremos la estructura por compases
+    for measure in score.recurse().getElementsByClass('Measure'):
+        # print(
+        #     measure.measureNumber,
+        #     len(list(measure.notesAndRests)),
+        #     measure.activeSite
+        # )
+        
+        eventos = list(measure.recurse().notesAndRests)
+
+        if len(eventos) > 0 and all(e.isRest for e in eventos):
+            compases_vacios += 1
+
+        for nota in measure.recurse().notes:
+            if nota.duration.quarterLength <= 0:
+                notas_cero += 1
+
+    # Penalizaciones a la puntuación de integridad del control de calidad
+    if compases_vacios > 0:
+        qc["qc_compases_vacios"] = compases_vacios
+        qc["qc_puntuacion_integridad"] -= min(compases_vacios * 15, 45) # Max 45 puntos de penalización
+        
+    if notas_cero > 0:
+        qc["qc_notas_duracion_cero"] = notas_cero
+        qc["qc_puntuacion_integridad"] -= min(notas_cero * 10, 35)
+        
+    # Clasificación final de estado del QC
+    if qc["qc_puntuacion_integridad"] < 60:
+        qc["qc_advertencias_criticas"] = "Revisión Manual Urgente: Estructura corrupta o incompleta"
+    elif qc["qc_puntuacion_integridad"] < 90:
+        qc["qc_advertencias_criticas"] = "Advertencia: Pequeños desajustes o silencios faltantes detectados"
+        
+    return qc
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1705,6 +1816,12 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     eventos_accidentales = _extract_accidental_events(score)
     reporte_accidentales = _format_accidentals_report(eventos_accidentales)
 
+    metadatos_archivo = _extract_transcription_metadata(file_path)
+    if score is None:
+        raise ValueError(f"No se pudo parsear la partitura en {file_path}")
+        
+    control_calidad = _extract_quality_control_metadata(score)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1751,7 +1868,15 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "mapeo_silabas_duraciones": mapeo_silabas_json,
         "accidentales_compases_json": reporte_accidentales["lista_accidentales_json"],
         "accidentales_resumen_texto": reporte_accidentales["resumen_accidentales"],
-        "conteo_accidentales_totales": reporte_accidentales["total_accidentales"]
+        "conteo_accidentales_totales": reporte_accidentales["total_accidentales"],
+        "software_codificacion": metadatos_archivo["software_codificacion"],
+        "convertido_via_verovio": metadatos_archivo["convertido_via_verovio"],
+        "fecha_codificacion": metadatos_archivo["fecha_codificacion"],
+        "formato_origen": metadatos_archivo["formato_origen"],
+        "qc_compases_vacios": control_calidad["qc_compases_vacios"],
+        "qc_notas_duracion_cero": control_calidad["qc_notas_duracion_cero"],
+        "qc_advertencias_criticas": control_calidad["qc_advertencias_criticas"],
+        "qc_puntuacion_integridad": control_calidad["qc_puntuacion_integridad"],
     }
     
     return resultado

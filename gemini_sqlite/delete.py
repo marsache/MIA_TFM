@@ -7,7 +7,7 @@ DATASET_DIR = _BASE_DIR.parent / "datasets"
 print(analizar_pieza(DATASET_DIR / "corpus/MEI-20260315T140319Z-1-001/MEI/Colombia/CO-1935-00-LL-03561_updated.mei"))
 #print(analizar_pieza(DATASET_DIR / "Muiñeiras/Muiñeiras/Cancionero de Torner/568.mscz"))
 #print(analizar_pieza(DATASET_DIR / "para nlp\\cancionero básico de Castilla y León\\RONDAS Y CANCIONES\\LÍRICAS\\35. Adios, rosina, adiós, clavel.xml"))
-#print(analizar_pieza("ejemplos/compases_vacios_ejemplo.xml"))
+print(analizar_pieza("ejemplos/plicas_anomalas_ejemplo.musicxml"))
 
 # archivos_encontrados = [
 #     p for p in DATASET_DIR.rglob("*") 

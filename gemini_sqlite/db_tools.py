@@ -1774,6 +1774,73 @@ def _detect_leitmotivs_ngrams(score: m21.stream.Score, min_notas: int = 4, max_n
     return json.dumps(motivos_finales, ensure_ascii=False)
 
 
+def _get_middle_line_midi(clef_obj: m21.clef.Clef | None) -> float:
+    """
+    Devuelve el valor MIDI de la tercera línea (línea media del pentagrama)
+    según la clave musical activa para realizar una comparación exacta de alturas.
+    """
+    if clef_obj is None:
+        return 71.0  # Por defecto: B4 (Tercera línea en Clave de Sol)
+    
+    name = clef_obj.__class__.__name__
+    
+    if "Treble" in name or "GClef" in name:
+        return 71.0  # Si4 / B4 (Clave de Sol en 2ª)
+    elif "Bass" in name or "FClef" in name:
+        return 50.0  # Re3 / D3 (Clave de Fa en 4ª)
+    elif "Alto" in name:
+        return 60.0  # Do4 / C4 (Clave de Do en 3ª)
+    elif "Tenor" in name:
+        return 57.0  # La3 / A3 (Clave de Do en 4ª)
+        
+    return 71.0  # Fallback seguro por si es una clave exótica
+    
+
+def _detect_stem_direction_anomalies(score: m21.stream.Score) -> dict[str, Any]:
+    """
+    Recorre todas las notas buscando excepciones de dirección de plica (stem):
+    - Plica hacia ABAJO (down) estando estrictamente por DEBAJO de la tercera línea.
+    - Plica hacia ARRIBA (up) estando estrictamente por ENCIMA de la tercera línea.
+    """
+    anomalies_count = 0
+    compases_anomalos = set()
+    
+    # Recorremos todas las notas de la obra de forma estructurada
+    for note_obj in score.recurse().getElementsByClass('Note'):
+        # Extraemos la dirección de la plica guardada en el archivo original
+        stem_dir = note_obj.stemDirection  # Puede ser 'up', 'down', 'none', o None
+        
+        # Si la plica es automática o no viene definida, nos la saltamos
+        if stem_dir not in ['up', 'down']:
+            continue
+            
+        # Obtenemos la clave activa en la sección exacta donde se encuentra esta nota
+        active_clef = note_obj.getContextByClass(m21.clef.Clef)
+        middle_line_midi = _get_middle_line_midi(active_clef)
+        
+        note_midi = note_obj.pitch.ps  # Altura de la nota en formato Pitch Space (MIDI)
+        
+        # Obtener el número de compás para indexar el error
+        measure_num = note_obj.getContextByClass('Measure')
+        measure_idx = measure_num.number if measure_num else 0
+        
+        # Condición 1: Plica "down" pero la nota está abajo de la 3ª línea
+        if stem_dir == 'down' and note_midi < middle_line_midi:
+            anomalies_count += 1
+            compases_anomalos.add(measure_idx)
+            
+        # Condición 2: Plica "up" pero la nota está arriba de la 3ª línea
+        elif stem_dir == 'up' and note_midi > middle_line_midi:
+            anomalies_count += 1
+            compases_anomalos.add(measure_idx)
+            
+    return {
+        "tiene_plicas_anomalas": 1 if anomalies_count > 0 else 0,
+        "conteo_plicas_anomalas": anomalies_count,
+        "compases_plicas_anomalas": ", ".join(map(str, sorted(list(compases_anomalos)))) if compases_anomalos else ""
+    }
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1882,6 +1949,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     leitmotivs_json = _detect_leitmotivs_ngrams(score, min_notas=4, max_notas=5, n_apariciones=2)
     contiene_leitmotivs = 1 if leitmotivs_json != "{}" else 0
 
+    resultado_plicas = _detect_stem_direction_anomalies(score)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1939,6 +2008,9 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "qc_puntuacion_integridad": control_calidad["qc_puntuacion_integridad"],
         "tiene_leitmotivs": contiene_leitmotivs,
         "patrones_leitmotivs_json": leitmotivs_json,
+        "tiene_plicas_anomalas": resultado_plicas["tiene_plicas_anomalas"],
+        "conteo_plicas_anomalas": resultado_plicas["conteo_plicas_anomalas"],
+        "compases_plicas_anomalas": resultado_plicas["compases_plicas_anomalas"],
     }
     
     return resultado

@@ -1841,6 +1841,53 @@ def _detect_stem_direction_anomalies(score: m21.stream.Score) -> dict[str, Any]:
     }
 
 
+def _extract_midi_volume(file_path: Path) -> int | None:
+    """
+    Tool A: Parsea directamente el archivo estructurado XML (MEI / MusicXML) 
+    buscando el volumen MIDI y extrae de forma segura su valor numérico entero.
+    Soporta:
+      - MEI: Atributo 'midi.volume' dentro de <instrDef>
+      - MusicXML: Texto del elemento <volume> dentro de <midi-instrument>
+    """
+    # Restringir a formatos basados en texto XML para evitar fallos en binarios comprimidos como .mscz
+    if file_path.suffix.lower() not in ['.mei', '.xml', '.musicxml']:
+        return None
+        
+    try:
+        # Parsear el archivo en un árbol de elementos
+        tree = ET.parse(file_path)
+        root = tree.getroot()
+        
+        # Iterar por todos los elementos del documento
+        for elem in root.iter():
+            
+            # Formato MEI (<instrDef midi.volume="78.00%"/>)
+            if elem.tag.endswith('instrDef'):
+                vol_attr = elem.get('midi.volume')
+                if vol_attr is not None:
+                    try:
+                        vol_clean = vol_attr.strip().replace('%', '')
+                        return int(round(float(vol_clean)))
+                    except ValueError:
+                        continue
+                        
+            # Formato MusicXML (<midi-instrument><volume>78.7402</volume></midi-instrument>)
+            elif elem.tag.endswith('midi-instrument'):
+                for child in elem:
+                    if child.tag.endswith('volume') and child.text is not None:
+                        try:
+                            vol_clean = child.text.strip().replace('%', '')
+                            return int(round(float(vol_clean)))
+                        except ValueError:
+                            continue
+                            
+    except Exception:
+        # En caso de un XML mal formado o problemas de lectura, devolvemos None de forma segura
+        return None
+        
+    return None
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1951,6 +1998,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     resultado_plicas = _detect_stem_direction_anomalies(score)
 
+    midi_volume = _extract_midi_volume(file_path)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -1960,6 +2009,7 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "modo": modo_musical,
         "modo_completo": modo_completo,
         "bpm": bpm,
+        "midi_volume": midi_volume,  # Almacenará un entero (ej: 90) o None si no existe
         "nota_mas_grave": nota_mas_grave,
         "nota_mas_aguda": nota_mas_aguda,
         "tiene_hemiolia_vertical": 1 if hemiolias_verticales else 0,

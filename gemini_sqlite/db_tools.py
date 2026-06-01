@@ -1904,6 +1904,61 @@ def _extract_midi_volume(file_path: Path) -> int | None:
         
     return None
 
+
+def _extraer_sustantivos_y_propios(texto: str) -> dict[str, str]:
+    """
+    Analiza la letra de la canción utilizando IA (spaCy) para separar 
+    los sustantivos comunes lematizados de los nombres propios/entidades.
+    """
+    resultado = {
+        "sustantivos_comunes": "",
+        "nombres_propios": ""
+    }
+    
+    if not texto or texto.strip() == "":
+        return resultado
+
+    try:
+        import spacy
+        # Carga perezosa (Lazy loading) del modelo en español
+        if not hasattr(_extraer_sustantivos_y_propios, "_nlp"):
+            _extraer_sustantivos_y_propios._nlp = spacy.load("es_core_news_sm")
+            
+        # Procesar el texto respetando mayúsculas (crucial para nombres propios)
+        doc = _extraer_sustantivos_y_propios._nlp(texto)
+        
+        sustantivos = set()
+        propios = set()
+        
+        # Extracción por Etiquetado Gramatical (POS Tagging)
+        for token in doc:
+            if token.pos_ == "NOUN":
+                # Lematizamos a minúsculas (ej: "niños" -> "niño")
+                sustantivos.add(token.lemma_.lower())
+            elif token.pos_ == "PROPN":
+                propios.add(token.text)
+                
+        # Refuerzo con Entidades Nombradas completas (ej: "Castilla y León" en lugar de "Castilla", "León")
+        for ent in doc.ents:
+            if ent.label_ in ["PER", "LOC", "ORG"]:
+                propios.add(ent.text.strip())
+                
+        resultado["sustantivos_comunes"] = ", ".join(sorted(sustantivos))
+        resultado["nombres_propios"] = ", ".join(sorted(propios))
+
+    except (ImportError, OSError):
+        # FALLBACK: Si spaCy no está instalado, aplicamos heurística básica por mayúsculas
+        STOP_WORDS = {"El", "La", "Los", "Las", "Un", "Una", "Y", "A", "En", "De", "Que", "Por", "Ay"}
+        candidatos = re.findall(r'\b[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+\b', texto)
+        propios_fb = {p for p in candidatos if p not in STOP_WORDS}
+        
+        resultado["nombres_propios"] = ", ".join(sorted(propios_fb))
+        # Sin IA es imposible deducir los sustantivos comunes de forma fiable
+        resultado["sustantivos_comunes"] = "Requiere módulo 'spacy'"
+        
+    return resultado
+
+
 def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     score = _safe_parse_score(file_path)
     if score is None:
@@ -2016,6 +2071,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
 
     midi_volume = _extract_midi_volume(file_path)
 
+    analisis_lexico = _extraer_sustantivos_y_propios(letra_cancion)
+
     resultado = {
         "file_path": str(file_path),
         "titulo": titulo,
@@ -2077,6 +2134,8 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
         "tiene_plicas_anomalas": resultado_plicas["tiene_plicas_anomalas"],
         "conteo_plicas_anomalas": resultado_plicas["conteo_plicas_anomalas"],
         "compases_plicas_anomalas": resultado_plicas["compases_plicas_anomalas"],
+        "lirica_sustantivos": analisis_lexico["sustantivos_comunes"],
+        "lirica_nombres_propios": analisis_lexico["nombres_propios"],
     }
     
     return resultado

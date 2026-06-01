@@ -1477,15 +1477,19 @@ def _clean_syllable_text(text: str) -> str:
     if not text:
         return ""
     
-    # 1. Normalización Unicode NFC: Junta caracteres divididos (ej: transforma 'n' + '~/tilde' en 'ñ')
+    # Normalización Unicode NFC: Junta caracteres divididos (ej: transforma 'n' + '~/tilde' en 'ñ')
     texto = unicodedata.normalize('NFC', text)
     
-    # 2. Limpieza de caracteres ocultos PUA (Private Use Area) comunes en MusicXML/MEI
+    # Limpieza de caracteres ocultos PUA (Private Use Area) comunes en MusicXML/MEI
     patron_pua = re.compile(r'[\ue000-\uf8ff]')
     texto = patron_pua.sub('', texto)
     
-    # 3. Eliminar guiones de separación silábica residuales y pasar a minúsculas
+    # Eliminar guiones de separación silábica residuales
     texto = re.sub(r'[-_]+', '', texto)
+    
+    # Reemplazar espacios de no separación (\xa0), tabulaciones 
+    # o múltiples espacios consecutivos por un único espacio estándar ' '
+    texto = re.sub(r'\s+', ' ', texto)
     
     return texto.strip().lower()
 

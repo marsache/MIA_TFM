@@ -47,14 +47,30 @@ async def iniciar_chat_mcp():
             historial_mensajes = [{
                 "role": "system",
                 "content": (
-                    "Eres un asistente experto en musicología computacional con acceso a 'corpus_musical.db'. "
-                    "SIEMPRE que el usuario te pida conceptos musicales (como anacrusas, síncopas, o géneros como Nanas), "
-                    "ejecuta PRIMERO la herramienta 'obtener_esquema'. "
-                    "Lee atentamente el Diccionario de Datos que te devolverá la herramienta para mapear los términos "
-                    "del usuario a las columnas correctas (por ejemplo: anacrusa se mapea como 'desajuste_duracion_meter' "
-                    "y las Nanas se buscan en 'temas' o 'titulo' usando LIKE). Genera consultas SQL limpias de tipo SELECT."
+                    "Eres un asistente experto en musicología computacional que interactúa con 'corpus_musical.db'. "
+                    "Tu único objetivo es responder a la pregunta del usuario con datos reales de la base de datos.\n\n"
+                    "REGLAS OBLIGATORIAS DE COMPORTAMIENTO:\n"
+                    "1. NO pidas permiso al usuario para ejecutar consultas.\n"
+                    "2. NO simules los resultados ni inventes respuestas hipotéticas.\n"
+                    "3. NO te limites a escribir el código SQL en texto plano si puedes ejecutarlo.\n"
+                    "4. ACTÚA DE FORMA SECUENCIAL: Si no conoces las columnas, llama a 'obtener_esquema'. "
+                    "En cuanto recibas la respuesta, procesa mentalmente las columnas y llama INMEDIATAMENTE a 'ejecutar_consulta_sql'.\n"
+                    "5. Solo responderás al usuario en texto plano cuando tengas los resultados finales extraídos de la base de datos."
                 )
             }]
+
+            # historial_mensajes = [{
+            #     "role": "system",
+            #     "content": (
+            #         "Eres un asistente experto en musicología computacional con acceso a 'corpus_musical.db'."
+            #         "SIEMPRE que el usuario te pida conceptos musicales (como anacrusas, síncopas, o géneros como Nanas), "
+            #         "ejecuta PRIMERO la herramienta 'obtener_esquema'. "
+            #         "Lee atentamente el Diccionario de Datos que te devolverá la herramienta para mapear los términos "
+            #         "del usuario a las columnas correctas (por ejemplo: anacrusa se mapea como 'desajuste_duracion_meter' "
+            #         "y las Nanas se buscan en 'temas' o 'titulo' usando LIKE). Genera consultas SQL limpias de tipo SELECT."
+            #         "Tu único objetivo es responder a la pregunta del usuario con datos reales de la base de datos.\n\n"
+            #     )
+            # }]
             
             # Bucle interactivo de consola
             while True:
@@ -72,40 +88,83 @@ async def iniciar_chat_mcp():
                     tools=herramientas_ollama
                 )
                 
-                # Bucle de Tool Calling: Mientras Ollama decida que necesita ejecutar SQL...
-                while respuesta.get('message', {}).get('tool_calls'):
+                # Permite la ejecución secuencial de herramientas
+                while respuesta['message'].get('tool_calls'):
+                    # Añadimos la intención del modelo de usar herramientas al historial
                     historial_mensajes.append(respuesta['message'])
                     
-                    for llamada in respuesta['message']['tool_calls']:
-                        nombre_tool = llamada['function']['name']
-                        argumentos_tool = llamada['function']['arguments']
+                    for tool_call in respuesta['message']['tool_calls']:
+                        nombre_tool = tool_call['function']['name']
+                        argumentos_tool = tool_call['function']['arguments']
                         
                         print(f"   [Herramienta detectada] El modelo ejecuta '{nombre_tool}' con: {argumentos_tool}")
                         
-                        # Ejecutamos la herramienta de manera real en el Servidor MCP
+                        # Ejecutar la herramienta en el servidor MCP
                         resultado_mcp = await session.call_tool(nombre_tool, arguments=argumentos_tool)
                         
-                        # Extraemos el texto plano devuelto por el servidor
+                        # Extraer la respuesta de texto
                         texto_respuesta_tool = ""
                         for bloque in resultado_mcp.content:
                             if hasattr(bloque, 'text'):
                                 texto_respuesta_tool += bloque.text
                         
-                        # Añadimos el resultado de la base de datos al historial de la conversación
+                        # Guardar el resultado de la herramienta en el historial
                         historial_mensajes.append({
                             "role": "tool",
                             "content": texto_respuesta_tool,
                             "name": nombre_tool
                         })
                     
-                    # Devolvemos el control a Ollama enviándole los datos que obtuvo de la DB
+                    # Volvemos a consultar a Ollama enviándole el resultado de la herramienta anterior.
+                    # Si el modelo necesita otra herramienta (ej. ejecutar_consulta_sql), el bucle continuará.
                     respuesta = ollama.chat(
                         model=MODELO_LLM,
                         messages=historial_mensajes,
                         tools=herramientas_ollama
                     )
                 
-                # Mostrar la respuesta final sintetizada por el modelo
+                # Fuera del bucle: cuando el modelo ya no requiera herramientas, muestra la respuesta final
+                print("\nRespuesta del Asistente:")
+
+                # --- SISTEMA DE AUTO-CORRECCIÓN DE AGENTE ---
+                # Si el modelo esquivó las herramientas pero escribió código SQL en el texto,
+                # lo interceptamos, le añadimos un mensaje de error y lo obligamos a ejecutarlo.
+                for _ in range(2): # Máximo 2 intentos de corrección
+                    contenido_asistente = respuesta['message'].get('content', '')
+                    if ("```sql" in contenido_asistente or "SELECT" in contenido_asistente.upper()) and not respuesta['message'].get('tool_calls'):
+                        print("   [Corrección de Cliente] ¡Detectado! El modelo redactó el SQL en vez de ejecutarlo. Forzando re-intento...")
+                        
+                        historial_mensajes.append(respuesta['message'])
+                        historial_mensajes.append({
+                            "role": "user",
+                            "content": "ERROR: No has invocado la función. Ejecuta la consulta SQL que acabas de proponer utilizando OBLIGATORIAMENTE la herramienta 'ejecutar_consulta_sql'. No me des explicaciones de texto, ejecuta el código."
+                        })
+                        
+                        respuesta = ollama.chat(
+                            model=MODELO_LLM,
+                            messages=historial_mensajes,
+                            tools=herramientas_ollama
+                        )
+                        
+                        # Si tras la corrección el modelo reacciona y genera un tool_call, lo procesamos
+                        while respuesta['message'].get('tool_calls'):
+                            historial_mensajes.append(respuesta['message'])
+                            for tool_call in respuesta['message']['tool_calls']:
+                                nombre_tool = tool_call['function']['name']
+                                argumentos_tool = tool_call['function']['arguments']
+                                print(f"   [Herramienta corregida] El modelo ejecuta '{nombre_tool}' con: {argumentos_tool}")
+                                resultado_mcp = await session.call_tool(nombre_tool, arguments=argumentos_tool)
+                                texto_respuesta_tool = "".join([b.text for b in resultado_mcp.content if hasattr(b, 'text')])
+                                historial_mensajes.append({
+                                    "role": "tool",
+                                    "content": texto_respuesta_tool,
+                                    "name": nombre_tool
+                                })
+                            respuesta = ollama.chat(model=MODELO_LLM, messages=historial_mensajes, tools=herramientas_ollama)
+                    else:
+                        break
+
+                # Fuera del bucle y de las correcciones: muestra la respuesta final real
                 print("\nRespuesta del Asistente:")
                 print(respuesta['message']['content'])
                 historial_mensajes.append(respuesta['message'])

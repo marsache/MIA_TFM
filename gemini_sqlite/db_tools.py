@@ -2314,16 +2314,30 @@ def analizar_pieza(file_path: str | Path) -> dict[str, Any]:
     return resultado
 
 
-def descubrir_archivos_partitura(corpus_dir: str | Path) -> list[str]:
+# def descubrir_archivos_partitura(corpus_dir: str | Path) -> list[str]:
+#     root = Path(corpus_dir)
+#     if not root.exists():
+#         return []
+
+#     files = [
+#         str(path)
+#         for path in root.rglob("*")
+#         if path.is_file() and path.suffix.lower() in SUPPORTED_SONG_EXTENSIONS
+#     ]
+#     return sorted(files)
+
+def descubrir_archivos_partitura(corpus_dir: str | Path) -> list[Path]:
     root = Path(corpus_dir)
+
     if not root.exists():
         return []
 
     files = [
-        str(path)
+        path
         for path in root.rglob("*")
         if path.is_file() and path.suffix.lower() in SUPPORTED_SONG_EXTENSIONS
     ]
+
     return sorted(files)
 
 

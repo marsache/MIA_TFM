@@ -1528,7 +1528,7 @@ def _extract_syllable_duration_mapping(score: m21.stream.Score) -> str:
 
 def _extract_accidental_events(score: m21.stream.Score) -> List[Dict[str, Any]]:
     """
-    Tool 1: Recorre la partitura de forma estructurada (por compases) y extrae las 
+    Recorre la partitura de forma estructurada (por compases) y extrae las 
     notas con alteraciones accidentales explícitas (sostenidos o bemoles), 
     filtrando y descartando de manera estricta aquellas que pertenecen a la armadura.
     """

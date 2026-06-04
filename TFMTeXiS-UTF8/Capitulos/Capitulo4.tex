@@ -1,5 +1,6 @@
 \chapter{Capítulo 4: (TODO: título del capítulo)}
 \label{cap:capitulo4}
+\sloppy
 
 \section{(TODO: poner nombre)}
 
@@ -30,7 +31,58 @@ Para procesar y extraer la información musicológica de la obra, se descomprime
 
 (TODO: ¿se añade el prompt?)
 
-Para mejorar el rendimiento de la búsqueda de características concretas en el corpus se han diseñado e implementado una serie de funciones que abordan de manera más específica y técnica, basándose en teoría musical, los desafíos de extracción musical y semántica que presentan los motores de búsqueda con modelos de IA generales. Funcionalidades implementadas:
+\section{Herramientas desarrolladas para la extracción de información de las obras}
+(TODO: Desarrollar las explicaiones de las herramientas (una subsección por temática/herramienta))
+
+Para mejorar el rendimiento de la búsqueda de características concretas en el corpus se han diseñado e implementado una serie de funciones que abordan de manera más específica y técnica, basándose en teoría musical, los desafíos de extracción musical y semántica que presentan los motores de búsqueda con modelos de IA generales.
+
+\subsection{}
+
+\subsection{Extracción de sustantivos y nombres propios (personas, lugares...) de la lírica de la obra}
+Con el objetivo de enriquecer el análisis temático de las obras, se ha implementado una herramienta que recorre la letra de cada canción para identificar y extraer los sustantivos y nombres propios presentes en ella. Esta información puede ser crucial para determinar los temas tratados en la obra, así como para realizar análisis comparativos entre distintas canciones, autores o regiones.
+
+El método utilizado para hacer esta identificación de etiquetas es \verb|_extraer_sustantivos_y_propios|.
+
+Esta implementación se diseñó con el objetivo de identificar y extraer automáticamente los sustantivos comunes y los nombres propios presentes en las líricas de las canciones en español del corpus. Para ello se apoya en técnicas de procesamiento del lenguaje natural implementadas mediante la biblioteca spaCy y su modelo lingüístico para español.
+
+En una primera fase, el texto es sometido a un análisis morfosintáctico que permite obtener información gramatical de cada token. Los términos clasificados como sustantivos comunes (NOUN) son normalizados mediante lematización y convertidos a minúsculas con el fin de unificar diferentes variantes flexivas bajo una misma representación léxica. Esta normalización reduce la dispersión terminológica y facilita posteriores tareas de análisis cuantitativo o comparación semántica.
+
+Paralelamente, los elementos identificados como nombres propios (PROPN) son extraídos conservando su forma original. Esta decisión metodológica permite mantener la integridad de la información nominal y preservar las mayúsculas características de entidades específicas nombradas.
+
+Con el objetivo de mejorar la cobertura de la detección de entidades, se incorpora una segunda etapa basada en reconocimiento de entidades nombradas (Named Entity Recognition). En esta fase se identifican entidades correspondientes a personas, ubicaciones y organizaciones, incluyendo expresiones compuestas formadas por múltiples palabras. Este mecanismo complementa la clasificación gramatical tradicional y permite capturar entidades complejas.
+
+Los elementos extraídos se almacenan eliminando automáticamente posibles duplicados. Posteriormente, los resultados son ordenados y agregados en dos categorías diferenciadas: sustantivos comunes y nombres propios. La salida final se presenta en forma de diccionario estructurado que facilita su integración en etapas posteriores del flujo de procesamiento.
+
+Adicionalmente, el procedimiento incorpora un mecanismo de respaldo para entornos en los que el modelo lingüístico no se encuentre disponible. En tales situaciones, la identificación de nombres propios se realiza mediante una heurística basada en patrones ortográficos (detección de palabras que comienzan por letra mayúscula). Aunque este enfoque ofrece una aproximación básica para la identificación de entidades nominales, no proporciona la precisión necesaria para la extracción fiable de sustantivos comunes, por lo que dicha funcionalidad queda supeditada a la disponibilidad del modelo de PLN.
+
+\subsection{Identificación de saltos melódicos entre barras de compás (intervalos frontera)}
+Otra característica útil a identificar recoge los intervalos entre compases, lo que puede aportar al análisis general de la obra información relativa a los fraseos y las estructuras melódicas de la obra. Esto también puede ayudar a identificar estructuras melódicas características de ciertas culturas y regiones, permitiendo así realizar un análisis comparativo entre distintas músicas tradicionales. Además, para responder a una de las preguntas de test orientadas a probar el sistema, con esta implementación también se pretende identificar cuál es intervalo frontera más frecuente.
+
+Con esta implementación no se pretende sólo identificar el salto melódico entre compases, sino también poder identificar las ligaduras que unen notas pertenecientes a distintos compases. En este caso, no existe un salto melódico ni un nuevo ataque en el compás posterior, sino una extensión rítmica. Esta herramienta filtra también esos casos.
+
+Los métodos utilizados para hacer esta identificación de intervalos son \verb|_extract_measure_boundary_intervals| y \verb|_calculate_most_frequent_boundary_interval|.
+
+\begin{itemize}
+\item \textbf{Extractor de intervalos frontera \texttt{\_extract\_measure\_boundary\_intervals}.} Recorre secuencialmente la obra y extrae los intervalos melódicos que conectan el último evento sonoro de un compás con el primer evento sonoro del compás siguiente. Para evitar ambigüedades derivadas de la escritura polifónica, el análisis se realiza sobre las partes o voces disponibles de manera independiente. En cada cambio de compás sólo se analizan las notas y acordes presentes; los silencios se excluyen. Con el fin de identificar únicamente movimientos melódicos reales, la función ignora aquellos casos en los que la primera nota del compás siguiente constituye la continuación de una ligadura de prolongación. En tales situaciones no existe un nuevo ataque sonoro y, por tanto, no puede considerarse que se produzca un nuevo intervalo melódico. Cuando la frontera es válida para el análisis, se calcula la distancia en semitonos entre la última nota del compás precedente y la primera del compás siguiente. En el caso de los acordes, se toma como referencia la nota más aguda de cada uno. Los intervalos obtenidos se almacenan como valores enteros con signo, donde los valores positivos indican movimiento ascendente, los negativos movimiento descendente y el valor cero la repetición de la misma altura.
+\item \textbf{Contador de intervalos frontera \texttt{\_calculate\_most\_frequent\_boundary\_interval}.} Recibe la colección de intervalos obtenidos y determina cuál de ellos aparece con mayor frecuencia a lo largo de la obra. Para facilitar la interpretación de los resultados, los intervalos se representan mediante una notación con signo explícito (por ejemplo, «+2», «-5» o «0»). Posteriormente se contabiliza la frecuencia de aparición de cada intervalo y se identifica el más común junto con el número de veces que ocurre.
+\end{itemize}
+
+\subsection{Identificación del uso de la etiqueta <sb /> (system break) en archivos MEI}
+Una de las preguntas orientadas a probar el sistema de búsqueda basándose en la estructura interna del archivo de la obra buscaba identificar si, en algunos casos, la aparición de etiqueta <sb /> (system break) en archivos MEI coincide con el final de una frase musical lógica. Para comprobar que esta condición se cumple, se verifica la puntuación de la última sílaba cantada antes del salto.
+
+Aunque music21 es excelente para extraer alturas e intervalos, a menudo abstrae o separa los elementos de diseño visual (como <sb /> o saltos de sistema) en capas independientes, perdiendo su posición secuencial exacta respecto a las etiquetas de compás (<measure>) del archivo original.
+Por ello, y dado que la condición específica que se busca sólo aparece en archivos con formato MEI, la solución ideal es diseñar una herramienta que parsee directamente el archivo como un árbol XML mediante \verb|xml.etree.ElementTree|.
+
+El método utilizado para hacer esta identificación de etiquetas es \verb|_analizar_frases_sb_mei|.
+
+Tras procesar inicialmente el archivo XML, se localizan todas las secciones musicales (<section>) y se analizan secuencialmente sus elementos en busca de etiquetas <sb />. Por cada salto de sistema identificado, la función localiza el compás (<measure>) inmediatamente anterior y extrae las sílabas líricas (<syl>) contenidas en él. A continuación, examina la última sílaba del compás y comprueba si finaliza con algún signo de puntuación considerado delimitador de frase (punto, coma, punto y coma, signo de exclamación, signo de interrogación o puntos suspensivos). Cuando esta condición se cumple, el salto de sistema se considera coincidente con el final de una frase lógica.
+
+El procedimiento contabiliza tanto el número total de etiquetas <sb /> presentes en el documento como el número de aquellas que cumplen el criterio anterior. Finalmente, devuelve un resumen indicando si el archivo contiene saltos de sistema, cuántos se han localizado, cuántos coinciden con finales de frase y si la totalidad de ellos cumple esta correspondencia.
+
+La función incluye además mecanismos de validación para asegurar que el archivo analizado posee extensión .mei y para gestionar posibles errores durante la lectura o el procesamiento del XML. En ausencia de etiquetas <sb />, informa explícitamente de esta circunstancia en el resultado devuelto.
+
+\subsection{(TODO: Convertir esta lista de herramientas en subsecciones)}
+
 \begin{itemize}
 \item \textbf{Robustez en el parseo y extracción híbrida de metadatos.} Dadas las limitaciones de \textit{music21} a la hora de procesar ciertos metadatos estructurados de los archivos, se ha implementado un sistema que reemplaza los atributos de posición de sílaba problemáticos (como \textit{wordpos="s"} por \textit{"i"}) y genera un archivo temporal que se parsea si generar excepciones. Además, si el archivo a procesar es de formato MEI, aparece en el proceso un scraper personalizado, encargado de extraer datos vitales omitidos habitualmente por la importación estándar, como la autora o la armadura de la obra.
 \item \textbf{Heurística de inferencia híbrida de tonalidad.} En algunos casos, el analizador de \textit{music21} falla debido a la brevedad o falta de cierta información de las piezas del corpus. Para solucionar este problema se ha implementado un algoritmo híbrido basado en teoría modal e instrumental que analiza toda la obra con el objetivo de determinar su tonalidad. La herramienta pasa por las siguientes fases:

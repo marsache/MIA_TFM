@@ -354,7 +354,7 @@ def _infer_mode_custom(score: m21.stream.Score) -> tuple[str | None, str | None]
     last_note = all_notes[-1]
     tonic_pc = last_note.pitch.pitchClass
     
-    # Normalizamos el nombre al estilo de tu código actual
+    # Normalizamos el nombre
     tonic_name = last_note.pitch.name.replace('-', '-flat').replace('#', '-sharp')
 
     # Inicializar el contenedor de duraciones por cada intervalo (0 a 11 semitonos)
@@ -775,7 +775,6 @@ def _extract_lyrics_mscx(path: str | Path) -> str:
                 textos_finales.append(verso_completo)
         
         # Unimos las distintas estrofas con un espacio 
-        # (puedes cambiar " " por " | " o "\n" si prefieres marcadores visuales en el CSV/JSON)
         letra_completa = " ".join(textos_finales)
         
         return letra_completa
@@ -1070,10 +1069,10 @@ def detectar_desajustes_meter_sig(file_path: str | Path) -> tuple[int, str]:
                         layer_duration += _mei_dur_to_quarter_length(child)
                     elif tag == 'rest':
                         # NOTA METODOLÓGICA: Se incluyen los silencios para evaluar la ocupación total.
-                        # Si tu regla requiere evaluar ESTRICTAMENTE notas omitiendo silencios, comenta esta línea.
+                        # Para evaluar ESTRICTAMENTE notas omitiendo silencios, comentar esta línea.
                         layer_duration += _mei_dur_to_quarter_length(child)
                 
-                # Comparamos la duración total acumulada con la teórica utilizando tu función de tolerancia _is_close
+                # Comparamos la duración total acumulada con la teórica
                 if not _is_close(layer_duration, expected_measure_duration):
                     if num_compas_int > 0:
                         compases_con_desajuste.add(num_compas_int)
@@ -1898,8 +1897,6 @@ def _extract_midi_volume(file_path: Path) -> int | None:
                             continue
                             
     except Exception as e:
-        # En caso de un XML mal formado, un ZIP corrupto o problemas de lectura
-        # Puedes añadir un print(e) aquí si necesitas depurar posibles fallos
         return None
         
     return None
@@ -2025,9 +2022,6 @@ def _calculate_most_frequent_boundary_interval(intervalos: List[int]) -> Dict[st
         "frecuencia_intervalo_frontera": frecuencia
     }
 
-
-import xml.etree.ElementTree as ET
-from pathlib import Path
 
 def _analizar_frases_sb_mei(file_path: Path) -> dict[str, Any]:
     """

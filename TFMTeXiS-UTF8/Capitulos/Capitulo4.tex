@@ -38,6 +38,25 @@ Para mejorar el rendimiento de la búsqueda de características concretas en el 
 
 \subsection{}
 
+\subsection{Detección de plicas anómalas}
+Con el propósito de evaluar la coherencia gráfica de la notación musical, se implementó un sistema de detección automática de anomalías en la dirección de las plicas de las notas. El método se basa en las convenciones tradicionales de escritura musical, según las cuales las notas situadas por debajo de la tercera línea del pentagrama suelen representarse con la plica orientada hacia arriba, mientras que las notas situadas por encima de dicha línea se representan habitualmente con la plica orientada hacia abajo. Las desviaciones respecto a esta convención se consideran potenciales anomalías de notación.
+
+El algoritmo recibe como entrada una partitura representada mediante la estructura Score de Music21 y recorre de forma exhaustiva todas las notas individuales presentes en la obra. Para cada nota se recupera la dirección de la plica almacenada en el documento original. Únicamente se consideran aquellas notas cuya dirección ha sido especificada explícitamente (up o down), excluyéndose las plicas automáticas o ausentes, ya que en estos casos no es posible determinar una decisión editorial concreta.
+
+Posteriormente, el método identifica la clave activa en el contexto exacto de cada nota con el fin de determinar la posición correspondiente a la tercera línea del pentagrama. Esta referencia se transforma a una representación numérica basada en valores MIDI, permitiendo comparar de forma homogénea la altura de la nota con la posición central del pentagrama independientemente de la clave utilizada.
+
+Una vez establecida esta referencia, se verifica la correspondencia entre la altura de la nota y la orientación de su plica. Se registra una anomalía cuando una nota situada por debajo de la tercera línea presenta una plica orientada hacia abajo o cuando una nota situada por encima de la tercera línea presenta una plica orientada hacia arriba. Cada ocurrencia detectada incrementa un contador global y queda asociada al compás correspondiente para facilitar su posterior localización.
+
+Como resultado, este procedimiento genera un conjunto de indicadores descriptivos que incluyen la presencia o ausencia de anomalías, el número total de casos detectados y la identificación de los compases en los que se producen.
+
+\subsection{Extracción del volumen MIDI de la obra}
+Con el fin de obtener información sobre la dinámica de reproducción de las partituras analizadas, se desarrolló un procedimiento de extracción automática del volumen MIDI a partir de distintos formatos de representación musical digital.
+Ya que los tres formatos procesados en este corpus (MEI, XML y MSCZ) representan de distinta manera la información relativa a la partitura, el método diseñado se adapta a cada tipo de documento, proporcionando una interfaz unificada para la recuperación de este parámetro independientemente de la estructura interna de la obra.
+
+El algoritmo recibe como entrada la ruta del archivo a analizar y verifica inicialmente que su extensión se corresponda con alguno de los formatos soportados. En el caso de archivos MSCZ, el procedimiento accede al contenedor comprimido y localiza el archivo de configuración de audio (audiosettings.json). A continuación, analiza su contenido en formato JSON y extrae el valor asociado al atributo volumeDb dentro de la configuración maestra de audio. Este valor representa el nivel global de volumen definido para la reproducción de la partitura.
+
+Para los formatos basados en XML (MEI y MusicXML), el documento se procesa mediante un analizador sintáctico XML y se recorre de forma exhaustiva la estructura jerárquica de elementos. En los documentos MEI, el volumen MIDI se identifica a través del atributo midi.volume, presente en elementos instrDef, mientras que en MusicXML se localiza en elementos volume contenidos dentro de estructuras midi-instrument. Una vez recuperado el valor, se eliminan posibles caracteres de formato (como símbolos de porcentaje) y se realiza una conversión a representación numérica. Finalmente, el valor se redondea y almacena como un entero para garantizar una representación uniforme entre formatos.
+
 \subsection{Extracción de sustantivos y nombres propios (personas, lugares...) de la lírica de la obra}
 Con el objetivo de enriquecer el análisis temático de las obras, se ha implementado una herramienta que recorre la letra de cada canción para identificar y extraer los sustantivos y nombres propios presentes en ella. Esta información puede ser crucial para determinar los temas tratados en la obra, así como para realizar análisis comparativos entre distintas canciones, autores o regiones.
 

@@ -9,5 +9,6 @@ dependencies = [
     "mcp>=1.27.2",
     "music21>=10.3.0",
     "ollama>=0.6.2",
+    "sentence-transformers>=5.5.1",
     "spacy>=3.8.14",
 ]

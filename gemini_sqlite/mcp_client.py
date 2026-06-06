@@ -1,4 +1,3 @@
-# mcp_client.py
 import asyncio
 import sys
 import ollama

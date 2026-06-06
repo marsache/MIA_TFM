@@ -1205,7 +1205,7 @@ def detectar_polirritmias(file_path: str | Path) -> list[int]:
                 if q_len <= 0:
                     continue
                 
-                # Estrategia A: Identificación por tuplet explícito en metadatos
+                # Identificación por tuplet explícito en metadatos
                 if element.duration.tuplets:
                     for tuplet in element.duration.tuplets:
                         actual = tuplet.numberNotesActual
@@ -1213,7 +1213,7 @@ def detectar_polirritmias(file_path: str | Path) -> list[int]:
                         if actual and normal and actual != normal:
                             subdivisiones_compas.add(actual)
                 else:
-                    # Estrategia B: Análisis matemático de la fracción por si es un valor irregular oculto
+                    # Análisis matemático de la fracción por si es un valor irregular oculto
                     frac = Fraction(str(q_len)).limit_denominator(1000)
                     denom = frac.denominator
                     
@@ -1285,7 +1285,7 @@ def _calcular_tesitura(score: m21.stream.Score) -> tuple[str, str]:
     pitch_mas_aguda = max(todos_los_pitches, key=lambda p: p.ps)
     
     # Convertimos los objetos Pitch a strings legibles (ej: 'A4', 'E-5', 'C#3')
-    # Nota: music21 usa el signo '-' para los bemoles en nameWithOctave (ej: 'E-4' es Mi bemol 4)
+    # music21 usa el signo '-' para los bemoles en nameWithOctave (ej: 'E-4' es Mi bemol 4)
     return pitch_mas_grave.nameWithOctave, pitch_mas_aguda.nameWithOctave
 
 
@@ -1301,7 +1301,7 @@ def _clasificar_genero_autor(nombre_autor: str) -> str:
     nombre_limpio = nombre_autor.split()[0].lower()
     if nombre_limpio.endswith(('a', 'ines', 'isabel', 'menxu', 'carmen', 'luz')):
         # Excepciones rápidas de la heurística
-        if nombre_limpio not in ["andrea", "borja"]:
+        if nombre_limpio not in ["borja"]:
             return "femenino"
     if nombre_limpio.endswith(('o', 'r', 'l', 's', 'e')):
         return "masculino"
@@ -1333,7 +1333,7 @@ def _analizar_perspectiva_lirica(texto_letras: str) -> str:
     """
     
     payload = {
-        "model": "llama3", # o el modelo que tengas configurado localmente
+        "model": "llama3",
         "prompt": prompt,
         "stream": False,
         "format": "json"
@@ -1384,7 +1384,7 @@ def _extract_notes_and_rests(score: m21.stream.Score) -> str:
             secuencia.append("Silencio")
             
         elif isinstance(el, m21.chord.Chord):
-            # Si el archivo tiene polifonía (acordes), extraemos todas sus notas internas
+            # Si el archivo tiene polifonía, extraemos todas sus notas internas
             notas_acorde = [p.nameWithOctave.replace('-', 'b') for p in el.pitches]
             # Las envolvemos entre corchetes para indicar simultaneidad
             secuencia.append(f"[{'+'.join(notas_acorde)}]")
@@ -1396,7 +1396,7 @@ def _extract_notes_and_rests(score: m21.stream.Score) -> str:
 def _extract_melody_pitches(score: m21.stream.Score) -> List[m21.pitch.Pitch]:
     """
     Extrae cronológicamente las alturas (pitches) de la melodía.
-    Si detecta polifonía (acordes), selecciona la nota más aguda (línea del soprano).
+    Si detecta polifonía, selecciona la nota más aguda (línea del soprano).
     """
     pitches = []
     # Usamos flatten() para garantizar un orden cronológico absoluto sin importar las voces
@@ -1487,8 +1487,7 @@ def _clean_syllable_text(text: str) -> str:
     # Eliminar guiones de separación silábica residuales
     texto = re.sub(r'[-_]+', '', texto)
     
-    # Reemplazar espacios de no separación (\xa0), tabulaciones 
-    # o múltiples espacios consecutivos por un único espacio estándar ' '
+    # Reemplazar espacios de no separación (\xa0), tabulaciones o múltiples espacios consecutivos por un único espacio estándar
     texto = re.sub(r'\s+', ' ', texto)
     
     return texto.strip().lower()
@@ -1520,8 +1519,7 @@ def _extract_syllable_duration_mapping(score: m21.stream.Score) -> str:
         for silaba, duraciones in mapeo.items()
     }
     
-    # CLAVE: ensure_ascii=False le dice a Python que guarde la 'ñ' o 'á' tal cual, 
-    # en lugar de convertirlas a \\u00f1 o \\u00e1
+    # ensure_ascii=False le dice a Python que guarde la 'ñ' o 'á' tal cual en lugar de convertirlas a \\u00f1 o \\u00e1
     return json.dumps(mapeo_serializable, ensure_ascii=False)
 
 
@@ -1574,7 +1572,7 @@ def _extract_accidental_events(score: m21.stream.Score) -> List[Dict[str, Any]]:
 
 def _format_accidentals_report(eventos: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
-    Procesa y agrupa la lista de eventos brutos.
+    Procesa y agrupa la lista de eventos con alteraciones accidentales.
     Devuelve un JSON indexado para queries y un texto legible para visualización inmediata.
     """
     mapeo_compases = defaultdict(set)
@@ -1669,7 +1667,7 @@ def _extract_transcription_metadata(file_path: str | Path) -> Dict[str, Any]:
 
 def _extract_quality_control_metadata(score: m21.stream.Score) -> Dict[str, Any]:
     """
-    Realiza una auditoría automatizada de Control de Calidad (QC) de la 
+    Realiza una auditoría automatizada de control de calidad de la 
     estructura musical para identificar posibles errores de copia o digitalización.
     """
     qc = {

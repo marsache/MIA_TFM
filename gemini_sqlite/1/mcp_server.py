@@ -234,6 +234,23 @@ def ejecutar_consulta_sql(query_sql: str, ) -> str:
 
     Incorrecto:
         {"query_sql": {"type":"string","value":"SELECT * FROM piezas"}}
+
+    IMPORTANTE:
+    Nunca uses SELECT *.
+
+    Cuando el usuario solicite obras o canciones,
+    devuelve únicamente:
+
+    - piezas.id
+    - piezas.titulo
+    - piezas.autor
+    - piezas.compas
+    - piezas.tonalidad
+    - piezas.bpm
+    - piezas.region
+
+    y solo añade columnas de analisis_musical
+    si son necesarias para responder.
     """
 
     MAX_ROWS = 10
@@ -281,6 +298,7 @@ def ejecutar_consulta_sql(query_sql: str, ) -> str:
 
     except Exception as e:
         return f"Error al ejecutar SQL: {str(e)}"
+
 
 if __name__ == "__main__":
     # Arrancamos el servidor usando el transporte estándar de entrada/salida (stdio)

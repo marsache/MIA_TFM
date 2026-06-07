@@ -6,6 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 import sys
 import re
+from info_columnas import COLUMNAS
 
 
 # Inicializamos el servidor MCP para nuestro Corpus Musical
@@ -17,73 +18,6 @@ print("Cargando modelo...", file=sys.stderr)
 modelo_embeddings = SentenceTransformer(
     "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 )
-
-COLUMNAS = [
-    # {
-    #     "tabla": "analisis_musical",
-    #     "columna": "pieza_id",
-    #     "descripcion": "FOREIGN KEY hacia piezas.id",
-    #     "keywords": ["join", "relación", "pieza"],
-    #     "tipo": "INTEGER"
-    # },
-    {
-        "tabla": "piezas",
-        "columna": "titulo",
-        "descripcion": "Título de la obra musical",
-        "keywords": [
-            "título", "nombre"
-        ],
-        "ejemplos": [
-            "Scotch Air in Guy Mannering",
-            "IE-2019-D-HLS-007",
-            "Los caracoles o el burro",
-            "Matarile-rile-ró"
-        ],
-        "tipo": "TEXT"
-    },
-    {
-        "tabla": "piezas",
-        "columna": "bpm",
-        "descripcion": "Tempo o velocidad de la pieza",
-        "keywords": [
-            "bpm"
-        ],
-        "ejemplos": [
-            78, 120, 140
-        ],
-        "tipo": "INTEGER"
-    },
-    {
-        "tabla": "analisis_musical",
-        "columna": "desajuste_duracion_meter",
-        "descripcion": "Presencia de anacrusa o compás incompleto inicial",
-        "keywords": [
-            "anacrusa",
-            "compas incompleto",
-            "entrada anticipada"
-        ],
-        "ejemplos": [
-            0, 1
-        ],
-        "tipo": "INTEGER",
-        "valores_validos": [0, 1]
-    },
-    {
-        "tabla": "analisis_musical",
-        "columna": "tiene_sincopas",
-        "descripcion": "Indica si existen síncopas",
-        "keywords": [
-            "síncopa"
-        ],
-        "ejemplos": [
-            0, 1
-        ],
-        "tipo": "INTEGER",
-        "valores_validos": [0, 1],
-        "consulta_ejemplo": "SELECT piezas.titulo, analisis_musical.tiene_sincopas FROM piezas JOIN analisis_musical ON piezas.id = analisis_musical.pieza_id WHERE analisis_musical.tiene_sincopas = 1;"
-    },
-    #(TODO: completar)
-]
 
 # Se construye un texto enriquecido para cada columna
 documentos_columnas = []
@@ -236,7 +170,11 @@ def ejecutar_consulta_sql(query_sql: str, ) -> str:
         {"query_sql": {"type":"string","value":"SELECT * FROM piezas"}}
 
     IMPORTANTE:
-    Nunca uses SELECT *.
+    - Nunca uses SELECT *.
+    - Utiliza exclusivamente las columnas necesarias para responder.
+    - No hagas JOIN con analisis_musical salvo que la pregunta requiera datos de esa tabla.
+    - Antes de generar SQL verifica que todos los nombres de tablas existan exactamente como aparecen en obtener_esquema().
+    - Nunca inventes nombres de tablas en inglés (analysis_musical, songs, works, etc.).
 
     Cuando el usuario solicite obras o canciones,
     devuelve únicamente:
@@ -251,6 +189,8 @@ def ejecutar_consulta_sql(query_sql: str, ) -> str:
 
     y solo añade columnas de analisis_musical
     si son necesarias para responder.
+
+
     """
 
     MAX_ROWS = 10

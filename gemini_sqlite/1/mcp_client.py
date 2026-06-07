@@ -3,9 +3,49 @@ import sys
 import ollama
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+import json
+from info_columnas import RELACIONES
 
 #MODELO_LLM = "qwen3:8b"
 MODELO_LLM = "llama3.1:8b"
+
+def construir_mini_esquema(columnas_json: str) -> str:
+    columnas = json.loads(columnas_json)
+    tablas = {}
+
+    for col in columnas:
+        tabla = col["tabla"]
+        if tabla not in tablas:
+            tablas[tabla] = []
+        tablas[tabla].append(
+            f"- {col['columna']} ({col.get('tipo', 'TEXT')})"
+        )
+
+    partes = ["ESQUEMA RELEVANTE\n"]
+
+    for tabla, cols in tablas.items():
+        partes.append(f"Tabla: {tabla}")
+        for c in cols:
+            partes.append(c)
+        partes.append("")
+
+    tablas_presentes = set(tablas.keys())
+    joins = []
+
+    for rel in RELACIONES:
+        if (
+            rel["tabla_a"] in tablas_presentes
+            and rel["tabla_b"] in tablas_presentes
+        ):
+            joins.append(rel["join"])
+
+    if joins:
+        partes.append("RELACIONES:")
+
+        for j in joins:
+            partes.append(f"- {j}")
+
+    return "\n".join(partes)
 
 async def recuperar_columnas_relevantes(session, pregunta):
     resultado = await session.call_tool(
@@ -131,7 +171,7 @@ async def iniciar_chat_mcp():
             "Este JSON contiene varias piezas musicales..."
 
             Correcto:
-            "Se encontraron 10 obras con anacrusa: ..."
+            "Se encontraron las siguientes obras con anacrusa: ..."
             """
             }]
             
@@ -149,17 +189,41 @@ async def iniciar_chat_mcp():
                 print("\nColumnas relevantes encontradas:")
                 print(columnas_relevantes)
 
+                mini_esquema = construir_mini_esquema(
+                    columnas_relevantes
+                )
+
+                print("\nMini esquema:")
+                print(mini_esquema)
+
+                # mensaje_enriquecido = f"""
+                # Pregunta del usuario:
+
+                # {usuario_input}
+
+                # Columnas relevantes recuperadas:
+
+                # {columnas_relevantes}
+
+                # Genera la consulta SQL utilizando preferentemente
+                # las columnas anteriores.
+                # """
+
                 mensaje_enriquecido = f"""
                 Pregunta del usuario:
 
                 {usuario_input}
 
-                Columnas relevantes recuperadas:
+                {mini_esquema}
 
-                {columnas_relevantes}
+                INSTRUCCIONES:
 
-                Genera la consulta SQL utilizando preferentemente
-                las columnas anteriores.
+                - Usa únicamente las tablas y columnas anteriores.
+                - Si necesitas unir tablas, utiliza exclusivamente
+                las relaciones indicadas.
+                - No inventes tablas.
+                - No inventes columnas.
+                - Genera SQL válido para SQLite.
                 """
                 
                 historial_mensajes.append({"role": "user", "content": mensaje_enriquecido})

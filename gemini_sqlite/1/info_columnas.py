@@ -41,16 +41,24 @@ COLUMNAS = [
         "tabla": "analisis_musical",
         "columna": "desajuste_duracion_meter",
         "descripcion": "Presencia de anacrusa o compás incompleto inicial",
-        "keywords": ["anacrusa", "compas incompleto", "entrada anticipada"],
+        "keywords": ["anacrusa", "compas incompleto", "entrada anticipada", "anacrusas"],
         "ejemplos": [0, 1],
         "tipo": "INTEGER",
         "valores_validos": [0, 1]
     },
+    # {
+    #     "tabla": "analisis_musical",
+    #     "columna": "compases_desajuste_duracion_meter",
+    #     "descripcion": "Listado de compases donde ocurre anacrusa inicial o compás incompleto",
+    #     "keywords": ["anacrusa", "compas incompleto", "entrada anticipada", "anacrusas"],
+    #     "tipo": "TEXT",
+    #     "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
+    # },
     {
         "tabla": "analisis_musical",
         "columna": "tiene_sincopas",
         "descripcion": "Indica si existen síncopas en la pieza",
-        "keywords": ["síncopa", "ritmo"],
+        "keywords": ["síncopa", "ritmo", "síncopas", "tiene síncopa"],
         "ejemplos": [0, 1],
         "tipo": "INTEGER",
         "valores_validos": [0, 1],
@@ -110,14 +118,14 @@ COLUMNAS = [
         "ejemplos": ["jónico (mayor)", "mixolidio", "eólico (menor)", "locrio"],
         "tipo": "TEXT"
     },
-    {
-        "tabla": "piezas",
-        "columna": "modo_completo",
-        "descripcion": "Descripción completa del modo musical de la obra",
-        "keywords": ["modo completo", "escala completa"],
-        "ejemplos": ["G jónico (mayor)", "E dórico", "F-sharp eólico (menor)"],
-        "tipo": "TEXT"
-    },
+    # {
+    #     "tabla": "piezas",
+    #     "columna": "modo_completo",
+    #     "descripcion": "Descripción completa del modo musical de la obra",
+    #     "keywords": ["modo completo", "escala completa"],
+    #     "ejemplos": ["G jónico (mayor)", "E dórico", "F-sharp eólico (menor)"],
+    #     "tipo": "TEXT"
+    # },
     {
         "tabla": "piezas",
         "columna": "midi_volume",
@@ -186,39 +194,39 @@ COLUMNAS = [
         "tipo": "INTEGER",
         "valores_validos": [0, 1]
     },
-    {
-        "tabla": "analisis_musical",
-        "columna": "compases_hemiolia_vertical",
-        "descripcion": "Listado de compases donde ocurre hemiolia vertical",
-        "keywords": ["compases", "hemiolia vertical", "ubicación"],
-        "tipo": "TEXT",
-        "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
-    },
+    # {
+    #     "tabla": "analisis_musical",
+    #     "columna": "compases_hemiolia_vertical",
+    #     "descripcion": "Listado de compases donde ocurre hemiolia vertical",
+    #     "keywords": ["compases", "hemiolia vertical", "ubicación"],
+    #     "tipo": "TEXT",
+    #     "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
+    # },
     {
         "tabla": "analisis_musical",
         "columna": "tiene_hemiolia_horizontal",
         "descripcion": "Indica si la pieza contiene hemiolia horizontal",
-        "keywords": ["hemiolia", "horizontal", "ritmo"],
+        "keywords": ["hemiolia", "horizontal", "ritmo", "hemiolia horizontal"],
         "ejemplos": [0, 1],
         "tipo": "INTEGER",
         "valores_validos": [0, 1]
     },
-    {
-        "tabla": "analisis_musical",
-        "columna": "compases_hemiolia_horizontal",
-        "descripcion": "Listado de compases donde ocurre hemiolia horizontal",
-        "keywords": ["compases", "hemiolia horizontal", "ubicación"],
-        "tipo": "TEXT",
-        "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
-    },
-    {
-        "tabla": "analisis_musical",
-        "columna": "compases_sincopas",
-        "descripcion": "Listado de compases en los que se registran síncopas",
-        "keywords": ["compases", "síncopas", "ubicación"],
-        "tipo": "TEXT",
-        "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
-    },
+    # {
+    #     "tabla": "analisis_musical",
+    #     "columna": "compases_hemiolia_horizontal",
+    #     "descripcion": "Listado de compases donde ocurre hemiolia horizontal",
+    #     "keywords": ["compases", "hemiolia horizontal", "ubicación"],
+    #     "tipo": "TEXT",
+    #     "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
+    # },
+    # {
+    #     "tabla": "analisis_musical",
+    #     "columna": "compases_sincopas",
+    #     "descripcion": "Listado de compases en los que se registran síncopas",
+    #     "keywords": ["compases", "síncopas", "ubicación", "síncopa"],
+    #     "tipo": "TEXT",
+    #     "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
+    # },
     {
         "tabla": "analisis_musical",
         "columna": "temas",
@@ -236,14 +244,14 @@ COLUMNAS = [
         "tipo": "INTEGER",
         "valores_validos": [0, 1]
     },
-    {
-        "tabla": "analisis_musical",
-        "columna": "compases_cambio_resolucion",
-        "descripcion": "Listado de compases en los que se registran cambios en los valores de resolución rítmica",
-        "keywords": ["compases", "resolución rítmica", "ppq"],
-        "tipo": "TEXT",
-        "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
-    },
+    # {
+    #     "tabla": "analisis_musical",
+    #     "columna": "compases_cambio_resolucion",
+    #     "descripcion": "Listado de compases en los que se registran cambios en los valores de resolución rítmica",
+    #     "keywords": ["compases", "resolución rítmica", "ppq"],
+    #     "tipo": "TEXT",
+    #     "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
+    # },
     {
         "tabla": "analisis_musical",
         "columna": "valores_irregulares_ocultos",
@@ -286,14 +294,14 @@ COLUMNAS = [
         "tipo": "INTEGER",
         "valores_validos": [0, 1]
     },
-    {
-        "tabla": "analisis_musical",
-        "columna": "compases_polirritmia",
-        "descripcion": "Listado de compases en los que se registran polirritmias",
-        "keywords": ["compases", "polirritmia", "ritmos simultáneos"],
-        "tipo": "TEXT",
-        "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
-    },
+    # {
+    #     "tabla": "analisis_musical",
+    #     "columna": "compases_polirritmia",
+    #     "descripcion": "Listado de compases en los que se registran polirritmias",
+    #     "keywords": ["compases", "polirritmia", "ritmos simultáneos"],
+    #     "tipo": "TEXT",
+    #     "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
+    # },
     {
         "tabla": "analisis_musical",
         "columna": "lirica_voz",
@@ -453,14 +461,14 @@ COLUMNAS = [
         "tipo": "INTEGER",
         "ejemplos": [0, 1, 2, 6]
     },
-    {
-        "tabla": "analisis_musical",
-        "columna": "compases_plicas_anomalas",
-        "descripcion": "Listado de compases donde ocurren plicas anómalas",
-        "keywords": ["compases", "plicas anómalas", "ubicación"],
-        "tipo": "TEXT",
-        "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
-    },
+    # {
+    #     "tabla": "analisis_musical",
+    #     "columna": "compases_plicas_anomalas",
+    #     "descripcion": "Listado de compases donde ocurren plicas anómalas",
+    #     "keywords": ["compases", "plicas anómalas", "ubicación"],
+    #     "tipo": "TEXT",
+    #     "ejemplos": ["5, 7, 16", "2, 4, 6, 10, 14", "24"]
+    # },
     {
         "tabla": "analisis_musical",
         "columna": "lirica_sustantivos",

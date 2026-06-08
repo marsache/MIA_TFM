@@ -6,6 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 import sys
 import re
+import unicodedata
 from info_columnas import COLUMNAS
 
 
@@ -31,8 +32,8 @@ for c in COLUMNAS:
     Ejemplos: {c.get('ejemplos', [])}
     Tipo: {c['tipo']}
     Valores Válidos: {c.get('valores_validos', [])}
-    Consulta Ejemplo: {c.get('consulta_ejemplo', 'N/A')}
     """
+    #Consulta Ejemplo: {c.get('consulta_ejemplo', 'N/A')}
     
     documentos_columnas.append(texto)
 
@@ -43,8 +44,20 @@ embeddings_columnas = modelo_embeddings.encode(
     normalize_embeddings=True
 )
 
+def normalizar(texto: str) -> str:
+    texto = texto.lower()
+    texto = ''.join(
+        c for c in unicodedata.normalize('NFD', texto)
+        if unicodedata.category(c) != 'Mn'
+    )
+
+    return texto
+
 @mcp.tool()
-def buscar_columnas_relevantes(pregunta: str, top_k: int = 5) -> str:
+def buscar_columnas_relevantes(pregunta: str, top_k: int = 7) -> str:
+    # Se normaliza la pregunta
+    pregunta_norm = normalizar(pregunta)
+    
     # Se embede la pregunta
     query_embedding = modelo_embeddings.encode(
         pregunta,
@@ -57,8 +70,38 @@ def buscar_columnas_relevantes(pregunta: str, top_k: int = 5) -> str:
         embeddings_columnas
     )[0]
 
+    scores_finales = []
+
+    for idx, score_embedding in enumerate(scores):
+
+        col = COLUMNAS[idx]
+
+        score_final = float(score_embedding)
+
+        # Bonus por nombre de columna
+        nombre_columna = normalizar(col["columna"])
+
+        if nombre_columna in pregunta_norm:
+            score_final += 0.50
+
+        # Bonus por keywords
+        for kw in col.get("keywords", []):
+
+            kw_norm = normalizar(kw)
+
+            if kw_norm in pregunta_norm:
+                score_final += 0.30
+
+        scores_finales.append(score_final)
+
     # Ordenar
-    indices = scores.argsort()[::-1][:top_k]
+    #indices = scores.argsort()[::-1][:top_k]
+
+    indices = sorted(
+        range(len(scores_finales)),
+        key=lambda i: scores_finales[i],
+        reverse=True
+    )[:top_k]
 
     # Resultado
     resultado = []
@@ -79,8 +122,11 @@ def buscar_columnas_relevantes(pregunta: str, top_k: int = 5) -> str:
             "descripcion": col["descripcion"],
             "tipo": col.get("tipo"),
             "valores_validos": col.get("valores_validos"),
-            "consulta_ejemplo": col.get("consulta_ejemplo"),
-            "score": float(scores[idx])
+            # "consulta_ejemplo": col.get("consulta_ejemplo"),
+            #"score": float(scores[idx])
+
+            "score_embedding": round(float(scores[idx]), 4),
+            "score_final": round(float(scores_finales[idx]), 4)
         })
 
     return json.dumps(

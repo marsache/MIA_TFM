@@ -263,10 +263,7 @@ def _extract_tonality(score: m21.stream.Score) -> str | None:
     return tonality or None
 
 
-def _extract_title_and_author(
-    score: m21.stream.Score,
-    file_path: str | Path,
-) -> tuple[str, str | None]:
+def _extract_title_and_author(score: m21.stream.Score, file_path: str | Path) -> tuple[str, str | None]:
     metadata = score.metadata
 
     title = None
@@ -343,7 +340,7 @@ def _has_ternary_grouping(offsets: set[float]) -> bool:
 
 def _infer_mode_custom(score: m21.stream.Score) -> tuple[str | None, str | None]:
     """
-    Infiere la tónica (finalis) y el modo eclesiástico (jónico, dórico, frigio...)
+    Infiere la tónica (finalis) y el modo (jónico, dórico, frigio...)
     basándose en la última nota de la obra y en la duración acumulada de sus alturas.
     """
     all_notes = list(score.recurse().getElementsByClass(m21.note.Note))
@@ -522,15 +519,7 @@ def detectar_sincopas(file_path: str | Path) -> tuple[int, str, int]:
     Detecta síncopas en la partitura.
 
     Definición usada:
-    - Una nota empieza en parte débil del pulso
-    - y se prolonga atravesando una parte fuerte.
-
-    Retorna:
-        (
-            tiene_sincopas: int,
-            compases_texto: str,
-            conteo: int
-        )
+    Una nota empieza en parte débil del pulso y se prolonga atravesando una parte fuerte.
     """
     score = _safe_parse_score(file_path)
     if score is None:
@@ -1124,7 +1113,6 @@ def detectar_valores_irregulares_ocultos(file_path: str | Path) -> tuple[int, st
                 denom = frac.denominator
                 
                 # Comprobación matemática: ¿Es el denominador una potencia de 2?
-                # (Las notas regulares y con puntillos siempre tienen denominadores potencia de 2: 1, 2, 4, 8...)
                 es_potencia_de_2 = (denom > 0) and (denom & (denom - 1)) == 0
                 
                 if not es_potencia_de_2:

@@ -1,8 +1,22 @@
 \chapter{Conclusiones y Trabajo Futuro}
 \label{cap:conclusiones}
 
-Conclusiones del trabajo y líneas de trabajo futuro.
+(TODO: completar)
 
-Antes de la entrega de actas de cada convocatoria, en el plazo que se indica en el calendario de los trabajos de fin de máster, el estudiante entregará en el Campus Virtual la versión final de la memoria en PDF. En la portada de la misma deberán figurar, como se ha señalado anteriormente, la convocatoria y la calificación obtenida. Asimismo, el estudiante también entregará todo el material que tenga concedido en préstamo a lo largo del curso.
+\section{Conclusiones}
+(TODO: completar)
 
+\section{Trabajo futuro}
+La herramienta desarrollada constituye una primera aproximación a la aplicación de técnicas de inteligencia artificial y análisis musical computacional sobre corpus de partituras digitales. No obstante, existen diversas líneas de investigación que podrían explorarse en trabajos futuros con el objetivo de ampliar las capacidades analíticas de la herramienta, mejorar la calidad de las respuestas y enriquecer la experiencia de usuario.
 
+Una primera línea de desarrollo consiste en la implementación de arquitecturas multiagente basadas en el protocolo \textit{Agent-to-Agent} (A2A). En lugar de delegar todo el proceso de razonamiento en un único agente conversacional, sería posible distribuir las tareas entre agentes especializados en distintos ámbitos, como análisis musical, recuperación de información, interpretación musicológica o generación de respuestas. Este enfoque permitiría abordar consultas más complejas mediante procesos colaborativos entre agentes, facilitando la especialización y la escalabilidad funcional del sistema.
+
+Otra posible evolución consiste en la incorporación de técnicas de \textit{Graph Retrieval-Augmented Generation} (GraphRAG). Mientras que la implementación actual almacena los metadatos en una base de datos relacional, un modelo basado en grafos permitiría representar explícitamente las relaciones existentes entre canciones, autores, géneros, regiones geográficas, estructuras musicales y características estilísticas. Esta representación facilitaría consultas más complejas basadas en conexiones semánticas y musicológicas, así como la exploración automática de relaciones no evidentes dentro del corpus.
+
+Asimismo, podría investigarse la integración de modelos híbridos que combinen la base de datos actual con estructuras de conocimiento basadas en grafos. De este modo, sería posible mantener la eficiencia de las consultas estructuradas y, simultáneamente, aprovechar las ventajas de los sistemas de recuperación contextual basados en relaciones.
+
+Otra posible línea de investigación consiste en la implementación de mecanismos de búsqueda por similitud musical basados en representaciones vectoriales (\textit{embeddings}). A partir de los metadatos extraídos durante el preprocesamiento, cada obra podría representarse mediante un vector numérico que resumiera sus principales características musicales y textuales, tales como tonalidad, modo, compás, patrones rítmicos, fenómenos métricos o temáticas presentes en la letra. Esta representación permitiría calcular automáticamente el grado de similitud entre canciones y habilitar nuevas funcionalidades, como la búsqueda de obras relacionadas, la identificación de repertorios con características comunes o la recomendación automática de canciones.
+
+Por último, una mejora orientada al usuario consistiría en el desarrollo de una interfaz específica para la comparación de canciones. Esta funcionalidad permitiría seleccionar dos o más obras y visualizar de manera conjunta sus características musicales, textuales y estructurales. Entre otros aspectos, podrían compararse tonalidades, modos, compases, patrones rítmicos, densidad de eventos, fenómenos de síncopa, polirritmias, hemiolias o temáticas presentes en las letras. Una herramienta de este tipo facilitaría los estudios comparativos y podría resultar especialmente útil en contextos de investigación musicológica y análisis de repertorios tradicionales.
+
+Además de estas líneas concretas, la naturaleza modular de la arquitectura propuesta permite incorporar nuevos algoritmos de extracción de metadatos a medida que se identifiquen nuevas necesidades analíticas. Esto abre la puerta a futuras investigaciones centradas en la detección automática de fenómenos musicales más complejos y en la ampliación progresiva de la base de conocimiento utilizada por el sistema.

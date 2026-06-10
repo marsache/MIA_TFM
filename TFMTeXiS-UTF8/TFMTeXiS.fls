@@ -279,9 +279,6 @@ INPUT Cascaras\bibliografia.aux
 INPUT .\Apendices\appendixA.aux
 INPUT .\Apendices\appendixA.aux
 INPUT Apendices\appendixA.aux
-INPUT .\Apendices\appendixB.aux
-INPUT .\Apendices\appendixB.aux
-INPUT Apendices\appendixB.aux
 INPUT .\Cascaras\fin.aux
 INPUT .\Cascaras\fin.aux
 INPUT Cascaras\fin.aux
@@ -492,12 +489,6 @@ OUTPUT Apendices\appendixA.aux
 INPUT .\Apendices\appendixA.tex
 INPUT .\Apendices\appendixA.tex
 INPUT Apendices\appendixA.tex
-INPUT .\Apendices\appendixB.tex
-INPUT .\Apendices\appendixB.tex
-OUTPUT Apendices\appendixB.aux
-INPUT .\Apendices\appendixB.tex
-INPUT .\Apendices\appendixB.tex
-INPUT Apendices\appendixB.tex
 INPUT .\Cascaras\fin.tex
 INPUT .\Cascaras\fin.tex
 OUTPUT Cascaras\fin.aux
@@ -553,9 +544,6 @@ INPUT Cascaras\bibliografia.aux
 INPUT .\Apendices\appendixA.aux
 INPUT .\Apendices\appendixA.aux
 INPUT Apendices\appendixA.aux
-INPUT .\Apendices\appendixB.aux
-INPUT .\Apendices\appendixB.aux
-INPUT Apendices\appendixB.aux
 INPUT .\Cascaras\fin.aux
 INPUT .\Cascaras\fin.aux
 INPUT Cascaras\fin.aux

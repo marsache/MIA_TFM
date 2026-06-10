@@ -3,7 +3,15 @@
 
 \chapterquote{Many things we can't do are simply because we think we can't do them}{Satoru Iwata}
 
-(TODO: completar)
+El estudio de grandes corpus musicales constituye una de las principales herramientas de investigación dentro de disciplinas como la musicología histórica, la etnomusicología, el análisis musical o la documentación del patrimonio sonoro. A través del análisis sistemático de conjuntos extensos de obras es posible identificar patrones estilísticos, estructuras compositivas recurrentes, relaciones entre repertorios y fenómenos culturales que difícilmente pueden observarse mediante el estudio aislado de piezas individuales.
+
+Tradicionalmente, este tipo de investigaciones ha dependido de procesos manuales de lectura, catalogación y análisis de partituras, una metodología rigurosa pero limitada en términos de escalabilidad. El creciente volumen de material musical digitalizado, especialmente en ámbitos relacionados con la música tradicional y el patrimonio musical, ha puesto de manifiesto la necesidad de desarrollar herramientas capaces de automatizar parte de estas tareas y facilitar la exploración de grandes colecciones documentales.
+
+La aparición de formatos simbólicos estandarizados para la representación musical, como MusicXML o MEI ha impulsado el desarrollo de la musicología computacional y ha permitido aplicar técnicas de análisis automatizado sobre repertorios cada vez más amplios. Sin embargo, la práctica demuestra que siguen existiendo importantes desafíos relacionados con la heterogeneidad de los corpus, la compatibilidad entre formatos, la extracción de información musicológica compleja, la integración entre contenido musical y textual, y la recuperación eficiente de conocimiento a partir de grandes volúmenes de datos.
+
+De forma paralela, los avances recientes en inteligencia artificial y procesamiento del lenguaje natural han abierto nuevas posibilidades para la interacción con colecciones de datos extensas. No obstante, las particularidades de la información musical plantean limitaciones que dificultan la aplicación directa de estas tecnologías, especialmente cuando las consultas requieren conocimientos derivados de análisis musicales especializados que no se encuentran explícitamente representados en las fuentes originales.
+
+En este contexto, este proyecto propone el diseño y desarrollo de una arquitectura orientada al análisis automatizado de corpus musicales extensos y heterogéneos. El sistema combina técnicas de procesamiento de partituras, extracción de características musicales, catalogación automática, recuperación de información y asistencia a través de modelos de lenguaje, con el objetivo de proporcionar una plataforma capaz de facilitar la investigación musicológica y mejorar el acceso al conocimiento contenido en grandes colecciones musicales.
 
 En este contexto se desarrolla el proyecto \textit{"\textnormal{\textit{EA}}-DIGIFOLK-An European and Ibero-American approach 
 for the digital collection, analysis and dissemination of folk music (101086338)”}, financiado por 
@@ -14,37 +22,28 @@ Por otra parte, y más en relación con este proyecto, otro de los principales o
 musical y etnomusicológico del material audiovisual y escrito recopilado. Este trabajo se ha llevado
 a cabo como parte de este proyecto de investigación.
 
-(TODO: completar)
+% El estudiante elaborará una memoria descriptiva del trabajo realizado, con una \textbf{extensión mínima recomendada de 50 páginas} incluyendo al menos una introducción, objetivos y plan de trabajo, resultados con una discusión crítica y razonada de los mismos, conclusiones y bibliografía empleada en la elaboración de la memoria.
+
+% La memoria se puede redactar en castellano o en inglés, pero en el primer caso la introducción y las conclusiones de la memoria tienen que traducirse también al inglés y aparecerán como capítulos \textbf{al final de la memoria}. En ambos casos, el título de la memoria aparecerá en castellano y en inglés.
+
+% Además del cuerpo principal describiendo el trabajo realizado, la memoria contendrá los siguientes elementos, que no computarán para el cálculo de la extensión mínima del trabajo:
+
+% \begin{itemize}
+% \item un resumen en inglés de media página, incluyendo el título en inglés,
+% \item ese mismo resumen en castellano, incluyendo el título en castellano,
+% \item una lista de no más de 10 palabras clave en inglés,
+% \item esa misma lista en castellano,
+% \item un índice de contenidos, y
+% \item una bibliografía.
+% \end{itemize}
 
 
-El estudiante elaborará una memoria descriptiva del trabajo realizado, con una \textbf{extensión mínima recomendada de 50 páginas} incluyendo al menos una introducción, objetivos y plan de trabajo, resultados con una discusión crítica y razonada de los mismos, conclusiones y bibliografía empleada en la elaboración de la memoria.
+% Para facilitar la escritura de la memoria siguiendo esta estructura, el estudiante podrá usar las plantillas en LaTeX o Word preparadas al efecto y publicadas en la página web del máster correspondiente.
 
-La memoria se puede redactar en castellano o en inglés, pero en el primer caso la introducción y las conclusiones de la memoria tienen que traducirse también al inglés y aparecerán como capítulos \textbf{al final de la memoria}. En ambos casos, el título de la memoria aparecerá en castellano y en inglés.
-
-Además del cuerpo principal describiendo el trabajo realizado, la memoria contendrá los siguientes elementos, que no computarán para el cálculo de la extensión mínima del trabajo:
-
-\begin{itemize}
-\item un resumen en inglés de media página, incluyendo el título en inglés,
-\item ese mismo resumen en castellano, incluyendo el título en castellano,
-\item una lista de no más de 10 palabras clave en inglés,
-\item esa misma lista en castellano,
-\item un índice de contenidos, y
-\item una bibliografía.
-\end{itemize}
-
-
-Para facilitar la escritura de la memoria siguiendo esta estructura, el estudiante podrá usar las plantillas en LaTeX o Word preparadas al efecto y publicadas en la página web del máster correspondiente.
-
-Todo el material no original, ya sea texto o figuras, deberá ser convenientemente citado y referenciado. En el caso de material complementario se deben respetar las licencias y copyrights asociados al software y hardware que se emplee. En caso contrario no se autorizará la defensa, sin menoscabo de otras acciones que correspondan.
-
+% Todo el material no original, ya sea texto o figuras, deberá ser convenientemente citado y referenciado. En el caso de material complementario se deben respetar las licencias y copyrights asociados al software y hardware que se emplee. En caso contrario no se autorizará la defensa, sin menoscabo de otras acciones que correspondan.
 
 \section{Motivación}
-(TODO: completar y quitar) Introducción al tema del TFM.
-
-\subsection{El giro computacional en el análisis de textos artísticos y creativos}
-El procesamiento de lenguaje natural (PLN) ha evolucionado rápidamente en el transcurso de los últimos años. Aunque inicialmente [...], este desarrollo ha alcanzado la mejora en el ámbito de la generación de contenido creativo e incluso poético. 
-
-\subsection{Limitaciones actuales de la automatización del análisis musicológico computacional}
+% \subsection{Limitaciones actuales de la automatización del análisis musicológico computacional}
 El análisis musicológico de grandes volúmenes de música tradicional y/o folclórica se ha enfrentado históricamente a una limitación metodológica: la dependencia del análisis manual de partituras, lo que supone un proceso riguroso pero difícilmente escalable, ya que la automatización digital de este procedimiento resulta prácticamente imposible.
 La digitalización de archivos musicales en formatos simbólicos estructurados (como MusicXML o MEI) ha abierto las puertas a la musicología computacional, pero siguen persistiendo problemas fundamentales que dificultan cualquier metodología de automatización al digitalizar este tipo de contenido.
 Estos son algunos obstáculos y dificultades encontradas en el ámbito del análisis musical que han motivado el desarrollo de este proyecto:
@@ -98,11 +97,11 @@ Para desarrollar este proyecto se han seleccionado herramientas de código abier
 \section{Estructura del resto del documento}
 (TODO: completar)
 
-\section{Explicaciones adicionales sobre el uso de esta plantilla}
-Si quieres cambiar el \textbf{estilo del título} de los capítulos, edita \verb|TeXiS\TeXiS_pream.tex| y comenta la línea \verb|\usepackage[Lenny]{fncychap}| para dejar el estilo básico de \LaTeX.
+% \section{Explicaciones adicionales sobre el uso de esta plantilla}
+% Si quieres cambiar el \textbf{estilo del título} de los capítulos, edita \verb|TeXiS\TeXiS_pream.tex| y comenta la línea \verb|\usepackage[Lenny]{fncychap}| para dejar el estilo básico de \LaTeX.
 
-Si no te gusta que no haya \textbf{espacios entre párrafos} y quieres dejar un pequeño espacio en blanco, no metas saltos de línea (\verb|\\|) al final de los párrafos. En su lugar, busca el comando  \verb|\setlength{\parskip}{0.2ex}| en \verb|TeXiS\TeXiS_pream.tex| y aumenta el valor de $0.2ex$ a, por ejemplo, $1ex$.
+% Si no te gusta que no haya \textbf{espacios entre párrafos} y quieres dejar un pequeño espacio en blanco, no metas saltos de línea (\verb|\\|) al final de los párrafos. En su lugar, busca el comando  \verb|\setlength{\parskip}{0.2ex}| en \verb|TeXiS\TeXiS_pream.tex| y aumenta el valor de $0.2ex$ a, por ejemplo, $1ex$.
 
-TFMTeXiS se ha elaborado a partir de la plantilla de TeXiS\footnote{\url{http://gaia.fdi.ucm.es/research/texis/}}, creada por Marco Antonio y Pedro Pablo Gómez Martín para escribir su tesis doctoral. Para explicaciones más extensas y detalladas sobre cómo usar esta plantilla, recomendamos la lectura del documento \texttt{TeXiS-Manual-1.0.pdf} que acompaña a esta plantilla.
+% TFMTeXiS se ha elaborado a partir de la plantilla de TeXiS\footnote{\url{http://gaia.fdi.ucm.es/research/texis/}}, creada por Marco Antonio y Pedro Pablo Gómez Martín para escribir su tesis doctoral. Para explicaciones más extensas y detalladas sobre cómo usar esta plantilla, recomendamos la lectura del documento \texttt{TeXiS-Manual-1.0.pdf} que acompaña a esta plantilla.
 
-El siguiente texto se genera con el comando \verb|\lipsum[2-20]| que viene a continuación en el fichero .tex. El único propósito es mostrar el aspecto de las páginas usando esta plantilla. Quita este comando y, si quieres, comenta o elimina el paquete \textit{lipsum} al final de \verb|TeXiS\TeXiS_pream.tex|
+% El siguiente texto se genera con el comando \verb|\lipsum[2-20]| que viene a continuación en el fichero .tex. El único propósito es mostrar el aspecto de las páginas usando esta plantilla. Quita este comando y, si quieres, comenta o elimina el paquete \textit{lipsum} al final de \verb|TeXiS\TeXiS_pream.tex|

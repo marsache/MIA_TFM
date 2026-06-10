@@ -1,7 +1,7 @@
 \chapter{Introducción}
 \label{cap:introduccion}
 
-\chapterquote{Frase célebre dicha por alguien inteligente}{Autor}
+\chapterquote{Many things we can't do are simply because we think we can't do them}{Satoru Iwata}
 
 (TODO: completar)
 
@@ -44,30 +44,45 @@ Todo el material no original, ya sea texto o figuras, deberá ser convenientemen
 \subsection{El giro computacional en el análisis de textos artísticos y creativos}
 El procesamiento de lenguaje natural (PLN) ha evolucionado rápidamente en el transcurso de los últimos años. Aunque inicialmente [...], este desarrollo ha alcanzado la mejora en el ámbito de la generación de contenido creativo e incluso poético. 
 
-\subsection{(TODO: ETIQUETAR SUBSECCIÓN)}
+\subsection{Limitaciones actuales de la automatización del análisis musicológico computacional}
 El análisis musicológico de grandes volúmenes de música tradicional y/o folclórica se ha enfrentado históricamente a una limitación metodológica: la dependencia del análisis manual de partituras, lo que supone un proceso riguroso pero difícilmente escalable, ya que la automatización digital de este procedimiento resulta prácticamente imposible.
 La digitalización de archivos musicales en formatos simbólicos estructurados (como MusicXML o MEI) ha abierto las puertas a la musicología computacional, pero siguen persistiendo problemas fundamentales que dificultan cualquier metodología de automatización al digitalizar este tipo de contenido.
 Estos son algunos obstáculos y dificultades encontradas en el ámbito del análisis musical que han motivado el desarrollo de este proyecto:
 \begin{itemize}
-\item \textbf{Heterogeneidad en los corpus.} (TODO: completar)
+\item \textbf{Heterogeneidad en los corpus.} Los corpus musicales de gran tamaño, como con el que se ha trabajado a lo largo de este proyecto, suelen ser muy heterogéneos tanto a nivel estructural como a su catalogación. En primer lugar, las obras pueden encontrarse almacenadas en múltiples formatos de archivo (\textit{MSCZ}, \textit{MusicXML}, \textit{MEI}, entre otros), cada uno con particularidades técnicas y semánticas que requieren procesos de extracción y normalización específicos. Esta diversidad impide la construcción de flujos de análisis completamente automáticos y obliga a desarrollar procedimientos de preprocesado adaptados a cada fuente de información.
+
+Además, la heterogeneidad del corpus no se limita al formato de los ficheros, sino que también afecta a los criterios de catalogación y organización de los repositorios. En estos casos, pueden encontrarse con frecuencia colecciones donde ciertos metadatos fundamentales, como el título de la obra, el autor o la procedencia geográfica, se almacenan dentro de la propia estructura del archivo, mientras que en otros casos dicha información únicamente está disponible en el nombre del fichero o en la organización jerárquica de los directorios. La ausencia de estándares homogéneos de descripción documental dificulta la identificación automática de las obras y requiere mecanismos adicionales de inferencia y validación de metadatos.
 \item \textbf{Inconsistencia en los estándares simbólicos.} Muchas herramientas estándar utilizadas en el ámbito técnico del análisis musicológico, como \textit{music21} (TODO: insertar referencia) pueden experimentar fallos críticos o perder metadatos relevantes a la hora de de interpretar determinadas fuentes de información. Esto ocurre, por ejemplo, con ciertas etiquetas presentes en archivos MEI (como el atributo \textit{wordpos}, que indica la posición de una sílaba dentro de una palabra; sin embargo, no todos los valores que puede tomar no son interpretables por muchos programas como \textit{music21}), cuya implementación no está plenamente normalizada entre los distintos programas de edición de partituras.
 \item \textbf{Complejidad algorítmica en la detección de fenómenos rítmicos complejos.} En el mundo de la música existe una infinidad de estructuras expresivas y ambiguas, como las síncopas y las hemiolias (tanto horizontales como verticales), que requieren un modelado matemático con un estricto estudio previo basado en características muy concretas de las obras, como los tiempos de ataque y jerarquías métricas. Esto supone trabajar de cero en funciones que no están implementadas de forma nativa en las librerías analíticas convencionales.
 \item \textbf{División entre el análisis musical y el semántico.} Muchos sistemas de análisis musical automatizado aislan el contenido estructural y rítmico del contenido textual de la lírica. Esta es una separación muy problemática, ya que la separación de estas dos estructuras tan relacionadas entre sí implica una grave pérdida de información. Por ello es necesario diseñar un sistema capaz de extraer características musicales analíticas y, al mismo tiempo, clasificar el contenido temático y poético de las canciones.
+\item \textbf{Limitaciones contextuales de los modelos de lenguaje en corpus extensos.} Cuando el tamaño del corpus es elevado, resulta inviable proporcionar al modelo toda la información como contexto de entrada, especialmente en modelos de menor tamaño, cuyos límites de contexto y capacidad de razonamiento son más reducidos. Incluso empleando estrategias de recuperación de información (\textit{Retrieval-Augmented Generation}, RAG), muchas consultas musicológicas requieren previamente la extracción y el cálculo de características analíticas complejas sobre las partituras, tales como patrones rítmicos, estructuras melódicas o relaciones métricas. Dado que estos procesos no pueden ejecutarse de manera fiable en tiempo real por un modelo de lenguaje, se hace necesaria una arquitectura intermedia capaz de realizar análisis musicales especializados y almacenar sus resultados en estructuras optimizadas para la recuperación y consulta posterior.
 \end{itemize}
 
 El proyecto nace a partir de estas carencias, con el objetivo de resolverlas mediante el estudio y desarrollo de un sistema capaz de suplir las necesidades de las musicólogas y usuarias que necesiten herramientas más sofisticadas para enfrentarse a análisis de corpus de datos muy extensos y complejos. 
 
-El propósito principal de esta investigación se centra en el desarrollo de una arquitectura automatizada, robusta y escalable, que tenga la habilidad de analizar rasgos musicales latentes en un corpus.
+El propósito principal de esta investigación se centra en el desarrollo de una arquitectura automatizada, robusta y escalable, capaz de analizar rasgos latentes en un corpus de obras musicales, integrando simultáneamente información estructural, rítmica, melódica y semántica para facilitar el estudio musicológico de grandes colecciones folclóricas.
 
 \section{Objetivos}
-Descripción de los objetivos del trabajo.
+A partir de las limitaciones identificadas en las metodologías actuales de análisis musicológico computacional, este proyecto busca desarrollar una infraestructura tecnológica que facilite el estudio de grandes corpus musicales mediante técnicas de análisis automatizado, recuperación de información, análisis musicológico técnico y procesamiento del lenguaje natural. Para ello se establecen los siguientes objetivos.
 
 \subsection{Objetivos generales}
+Desarrollar un sistema automatizado, robusto y escalable para el análisis, catalogación y consulta de grandes corpus musicales heterogéneos, capaz de extraer conocimiento musicológico a partir de un gran número de obras almacenadas en distintos formatos, facilitando así el trabajo de investigación, exploración y recuperación de información por parte de musicólogas, investigadoras y otras usuarias especializadas.
 
 \subsection{Objetivos específicos}
+\begin{itemize}
+\item Diseñar una arquitectura capaz de procesar corpus musicales compuestos por distintos formatos de representación simbólica, garantizando la compatibilidad entre las diversas fuentes documentales.
+\item Desarrollar un sistema automático de extracción y normalización de metadatos musicales con el fin de facilitar la catalogación sistemática de las obras y la construcción de bases de datos fiables y consistentes.
+\item Implementar algoritmos de análisis musical que permitan detectar y cuantificar características estructurales, melódicas, rítmicas y métricas relevantes para la investigación musicológica.
+\item Integrar el análisis musical con el análisis semántico y textual de las letras, permitiendo estudiar conjuntamente los aspectos musicales y literarios de las obras.
+\item Automatizar tareas de procesamiento y análisis que habitualmente requieren una elevada inversión de tiempo o conocimientos técnicos especializados, reduciendo las barreras de acceso a herramientas avanzadas de investigación musical.
+\item Diseñar e implementar un sistema de recuperación de información que permita realizar búsquedas complejas sobre el corpus, incluyendo consultas basadas tanto en metadatos como en características musicales extraídas automáticamente.
+\item Evaluar las capacidades y limitaciones de los modelos de lenguaje de propósito general en tareas de análisis y consulta de corpus musicológicos extensos, identificando los problemas de escalabilidad, precisión y contexto que presentan estos sistemas.
+\item Proponer mecanismos complementarios que permitan superar las limitaciones observadas en dichos modelos mediante la incorporación de análisis musicológicos especializados y estructuras optimizadas para la recuperación de conocimiento.
+\end{itemize}
 
 \section{Plan de trabajo}
 Aquí se describe el plan de trabajo a seguir para la consecución de los objetivos descritos en el apartado anterior.
+(TODO: completar)
 
 \section{Metodología y tecnología}
 Para desarrollar este proyecto se han seleccionado herramientas de código abierto y la versión gratuita de la API de Gemini. Esta decisión garantiza la reproducción íntegra del proyecto de manera local (exceptuando la utilización de la API de Gemini).

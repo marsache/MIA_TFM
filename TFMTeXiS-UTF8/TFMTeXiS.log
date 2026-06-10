@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  10 JUN 2026 17:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  10 JUN 2026 19:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -804,17 +804,25 @@ LaTeX Info: Redefining \% on input line 56.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
 (babel)             Reported on input line 56.
  [2]
-LaTeX Info: Redefining \. on input line 78.
-LaTeX Info: Redefining \% on input line 78.
- [3])
+Underfull \vbox (badness 4726) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 67.
+LaTeX Info: Redefining \% on input line 67.
+ [3]
+LaTeX Info: Redefining \. on input line 89.
+LaTeX Info: Redefining \% on input line 89.
+ [4]
+LaTeX Info: Redefining \. on input line 108.
+LaTeX Info: Redefining \% on input line 108.
+ [5])
 LaTeX Info: Redefining \. on input line 140.
 LaTeX Info: Redefining \% on input line 140.
- [4]
+ [6]
 \openout2 = `Capitulos/EstadoDeLaCuestion.aux'.
 
  (Capitulos/EstadoDeLaCuestion.tex
 Cap\'itulo 2.
-) [5
+) [7
 
 
 
@@ -822,22 +830,22 @@ Cap\'itulo 2.
 ]
 \openout2 = `Capitulos/DescripcionTrabajo.aux'.
 
- (Capitulos/DescripcionTrabajo.tex [6
+ (Capitulos/DescripcionTrabajo.tex [8
 
 
 
 
 ]
 Cap\'itulo 3.
-<Imagenes/Vectorial/Todo.pdf, id=499, 408.52625pt x 256.96pt>
+<Imagenes/Vectorial/Todo.pdf, id=509, 408.52625pt x 256.96pt>
 File: Imagenes/Vectorial/Todo.pdf Graphic file (type pdf)
 <use Imagenes/Vectorial/Todo.pdf>
 Package pdftex.def Info: Imagenes/Vectorial/Todo.pdf  used on input line 8.
 (pdftex.def)             Requested size: 213.39568pt x 134.22377pt.
-) [7 <./Imagenes/Vectorial/Todo.pdf>]
+) [9 <./Imagenes/Vectorial/Todo.pdf>]
 \openout2 = `Capitulos/Capitulo3.aux'.
 
- (Capitulos/Capitulo3.tex [8
+ (Capitulos/Capitulo3.tex [10
 
 
 
@@ -847,7 +855,7 @@ Cap\'itulo 4.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
+ [11]
 LaTeX Info: Redefining \. on input line 33.
 LaTeX Info: Redefining \% on input line 33.
 
@@ -858,10 +866,10 @@ Package fancyhdr Warning: \headheight is too small (14.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.22652pt}.
 
-[10]
+[12]
 LaTeX Info: Redefining \. on input line 54.
 LaTeX Info: Redefining \% on input line 54.
- [11]
+ [13]
 LaTeX Info: Redefining \. on input line 78.
 LaTeX Info: Redefining \% on input line 78.
 
@@ -872,23 +880,23 @@ Package fancyhdr Warning: \headheight is too small (14.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-11.22652pt}.
 
-[12])
+[14])
 LaTeX Info: Redefining \. on input line 143.
 LaTeX Info: Redefining \% on input line 143.
- [13]
+ [15]
 \openout2 = `Capitulos/Capitulo4.aux'.
 
- (Capitulos/Capitulo4.tex [14
+ (Capitulos/Capitulo4.tex [16
 
 
 
 
 ]
 Cap\'itulo 5.
-[15]
+[17]
 LaTeX Info: Redefining \. on input line 43.
 LaTeX Info: Redefining \% on input line 43.
- [16]
+ [18]
 Underfull \hbox (badness 10000) in paragraph at lines 66--67
 []\T1/cmr/m/n/10.95 El mé-to-do prin-ci-pal uti-li-za-do pa-ra es-ta ex-trac-ción de la to-na-li-dad es
  []
@@ -900,69 +908,69 @@ Underfull \hbox (badness 5189) in paragraph at lines 72--73
 
 LaTeX Info: Redefining \. on input line 74.
 LaTeX Info: Redefining \% on input line 74.
-[17]
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 83--84
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de me-ta-da-tos es
  []
 
 LaTeX Info: Redefining \. on input line 99.
 LaTeX Info: Redefining \% on input line 99.
-[18]
+[20]
 Underfull \hbox (badness 10000) in paragraph at lines 113--114
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta de-tec-ción de he-miolias ver-ti-ca-les es
  []
 
 LaTeX Info: Redefining \. on input line 120.
 LaTeX Info: Redefining \% on input line 120.
-[19]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 134--135
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta de-tec-ción de he-miolias ho-ri-zon-ta-les es
  []
 
 LaTeX Info: Redefining \. on input line 143.
 LaTeX Info: Redefining \% on input line 143.
-[20]
+[22]
 LaTeX Info: Redefining \. on input line 167.
 LaTeX Info: Redefining \% on input line 167.
- [21]
+ [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 192.
 LaTeX Info: Redefining \% on input line 192.
- [22]
+ [24]
 LaTeX Info: Redefining \. on input line 217.
 LaTeX Info: Redefining \% on input line 217.
- [23]
+ [25]
 LaTeX Info: Redefining \. on input line 240.
 LaTeX Info: Redefining \% on input line 240.
- [24]
+ [26]
 LaTeX Info: Redefining \. on input line 263.
 LaTeX Info: Redefining \% on input line 263.
- [25]
+ [27]
 Underfull \hbox (badness 10000) in paragraph at lines 264--265
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de den-si-dad de even-tos es
  []
 
 LaTeX Info: Redefining \. on input line 286.
 LaTeX Info: Redefining \% on input line 286.
-[26]
+[28]
 Underfull \vbox (badness 3312) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 310.
 LaTeX Info: Redefining \% on input line 310.
- [27]
+ [29]
 LaTeX Info: Redefining \. on input line 333.
 LaTeX Info: Redefining \% on input line 333.
- [28]
+ [30]
 LaTeX Info: Redefining \. on input line 358.
 LaTeX Info: Redefining \% on input line 358.
- [29]
+ [31]
 LaTeX Info: Redefining \. on input line 383.
 LaTeX Info: Redefining \% on input line 383.
- [30]
+ [32]
 LaTeX Info: Redefining \. on input line 408.
 LaTeX Info: Redefining \% on input line 408.
- [31]
+ [33]
 Underfull \hbox (badness 10000) in paragraph at lines 412--413
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra de-tec-tar es-tas ano-ma-lías son
  []
@@ -971,14 +979,14 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 415.
 LaTeX Info: Redefining \. on input line 417.
 LaTeX Info: Redefining \% on input line 417.
-[32]
+[34]
 Underfull \hbox (badness 10000) in paragraph at lines 422--423
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de me-ta-da-tos es
  []
 
 LaTeX Info: Redefining \. on input line 438.
 LaTeX Info: Redefining \% on input line 438.
-[33]
+[35]
 Underfull \hbox (badness 10000) in paragraph at lines 439--440
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra eva-luar es-truc-tu-ral-men-te la par-ti-tu-ra es
  []
@@ -990,7 +998,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 454--455
 
 LaTeX Info: Redefining \. on input line 458.
 LaTeX Info: Redefining \% on input line 458.
-[34]
+[36]
 Underfull \hbox (badness 10000) in paragraph at lines 465--466
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra iden-ti-fi-car el vo-lu-men MI-DI de la obra es
  []
@@ -1000,7 +1008,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 481.
 LaTeX Info: Redefining \% on input line 481.
- [35]
+ [37]
 Underfull \hbox (badness 10000) in paragraph at lines 482--483
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra de-tec-tar es-tas ano-ma-lías son
  []
@@ -1012,14 +1020,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 496--497
 
 LaTeX Info: Redefining \. on input line 500.
 LaTeX Info: Redefining \% on input line 500.
-[36]
+[38]
 Underfull \hbox (badness 10000) in paragraph at lines 505--506
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra ha-cer es-ta iden-ti-fi-ca-ción de eti-que-tas es
  []
 
 LaTeX Info: Redefining \. on input line 518.
 LaTeX Info: Redefining \% on input line 518.
-[37]
+[39]
 Underfull \hbox (badness 10000) in paragraph at lines 524--525
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra ha-cer es-ta iden-ti-fi-ca-ción
  []
@@ -1039,7 +1047,7 @@ Underfull \vbox (badness 7186) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 533.
 LaTeX Info: Redefining \% on input line 533.
- [38]
+ [40]
 Underfull \hbox (badness 10000) in paragraph at lines 537--538
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra ha-cer es-ta iden-ti-fi-ca-ción de eti-que-tas es
  []
@@ -1049,31 +1057,31 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 578.
 LaTeX Info: Redefining \% on input line 578.
- [39]
+ [41]
 LaTeX Info: Redefining \. on input line 586.
 LaTeX Info: Redefining \% on input line 586.
- [40])
+ [42])
 LaTeX Info: Redefining \. on input line 144.
 LaTeX Info: Redefining \% on input line 144.
- [41]
+ [43]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
- (Capitulos/ConclusionesTrabajoFuturo.tex [42
+ (Capitulos/ConclusionesTrabajoFuturo.tex [44
 
 
 
 
 ]
 Cap\'itulo 6.
-[43])
+[45])
 LaTeX Info: Redefining \. on input line 146.
 LaTeX Info: Redefining \% on input line 146.
- [44]
+ [46]
 \openout2 = `Capitulos/Introduction.aux'.
 
  (Capitulos/Introduction.tex
 Chapter 7.
-) [45
+) [47
 
 
 
@@ -1081,43 +1089,43 @@ Chapter 7.
 ]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (Capitulos/ConclusionsFutureWork.tex [46
+ (Capitulos/ConclusionsFutureWork.tex [48
 
 
 
 
 ]
 Chapter 8.
-) [47]
+) [49]
 LaTeX Info: Redefining \. on input line 154.
 LaTeX Info: Redefining \% on input line 154.
 \openout2 = `Cascaras/bibliografia.aux'.
 
- (Cascaras/bibliografia.tex (TFMTeXiS.bbl [48
+ (Cascaras/bibliografia.tex (TFMTeXiS.bbl [50
 
 
 
 
-])) [49]
+])) [51]
 \openout2 = `Apendices/appendixA.aux'.
 
- (Apendices/appendixA.tex [50
+ (Apendices/appendixA.tex [52
 
 
 
 
 ]
 Ap\'{e}ndice A.
-) [51] [52
+) [53] [54
 
 
 
 ]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [53
+ (Cascaras/fin.tex [55
 
-] [54]) (TFMTeXiS.aux (Cascaras/cover.aux)
+] [56]) (TFMTeXiS.aux (Cascaras/cover.aux)
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
  (Cascaras/dedicatoria.aux) (Cascaras/agradecimientos.aux) (Cascaras/resumen.aux) (Cascaras/abstract.aux) (TeXiS/TeXiS_toc.aux)
@@ -1132,20 +1140,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
-(rerunfilecheck)             Checksum: A63D2E3BF3795559A6C74C8927FF3E41;18484.
+(rerunfilecheck)             Checksum: 4AED1F3737B3D976A17BF13C8DBDAEC3;18772.
  ) 
 Here is how much of TeX's memory you used:
- 18351 strings out of 467691
- 305628 string characters out of 5414987
- 746029 words of memory out of 5000000
- 46607 multiletter control sequences out of 15000+600000
+ 18359 strings out of 467691
+ 305720 string characters out of 5414987
+ 747031 words of memory out of 5000000
+ 46613 multiletter control sequences out of 15000+600000
  652000 words of font info for 88 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  97i,12n,109p,1753b,862s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (72 pages, 846092 bytes).
+Output written on TFMTeXiS.pdf (74 pages, 844988 bytes).
 PDF statistics:
- 1432 PDF objects out of 1440 (max. 8388607)
- 158 named destinations out of 1000 (max. 500000)
+ 1426 PDF objects out of 1440 (max. 8388607)
+ 160 named destinations out of 1000 (max. 500000)
  555 words of extra memory for PDF output out of 10000 (max. 10000000)
 

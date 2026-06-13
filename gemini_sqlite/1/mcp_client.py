@@ -93,6 +93,9 @@ async def preguntar_mcp(usuario_input: str):
             - Nunca describas columnas o estructuras técnicas.
             - Devuelve solo una respuesta final útil (lista o resumen).
 
+            RELACIONES DE BASE DE DATOS:
+            - piezas.id = analisis_musical.pieza_id
+
             IMPORTANTE:
             Los resultados devueltos por las herramientas son datos internos.
             Nunca describas el JSON, la estructura de los registros ni expliques el formato de los datos salvo que el usuario lo solicite explícitamente.

@@ -66,7 +66,7 @@ file_search_store = None
 
 print("Checking for existing file search store...")
 
-# 1. Look for an existing store with your display name
+# Look for an existing store with the display name
 existing_stores = client.file_search_stores.list()
 for store in existing_stores:
     if store.display_name == STORE_DISPLAY_NAME:
@@ -74,7 +74,7 @@ for store in existing_stores:
         print(f"Found existing store: {file_search_store.name}")
         break
 
-# 2. Create it only if it doesn't exist
+# Create it only if it doesn't exist
 if file_search_store is None:
     file_search_store = client.file_search_stores.create(
         config={
@@ -83,7 +83,7 @@ if file_search_store is None:
     )
     print(f"Created new store: {file_search_store.name}")
 
-# 3. Gather names of files already uploaded to prevent duplicates
+# Gather names of files already uploaded to prevent duplicates
 existing_file_names = set()
 try:
     # Fetch documents currently tracked in this store
@@ -95,9 +95,7 @@ try:
 except Exception as e:
     print(f"Could not retrieve existing documents (skipping duplicate check): {e}")
 
-# -----------------------------
-# HELPER: SAFE ASCII FILENAMES
-# -----------------------------
+# SAFE ASCII FILENAMES
 
 # def safe_display_name(path: Path) -> str:
 #     """
@@ -110,9 +108,6 @@ except Exception as e:
 #         .decode("ascii")
 #     )
 
-# -----------------------------
-# HELPER: SAFE ASCII FILENAMES
-# -----------------------------
 
 import re
 

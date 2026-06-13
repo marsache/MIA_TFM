@@ -122,6 +122,7 @@ def buscar_columnas_relevantes(pregunta: str, top_k: int = 7) -> str:
             "descripcion": col["descripcion"],
             "tipo": col.get("tipo"),
             "valores_validos": col.get("valores_validos"),
+            # "ejemplos": col.get("ejemplos"),
             # "consulta_ejemplo": col.get("consulta_ejemplo"),
             #"score": float(scores[idx])
 

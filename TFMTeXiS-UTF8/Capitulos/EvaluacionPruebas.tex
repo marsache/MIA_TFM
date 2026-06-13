@@ -1,0 +1,45 @@
+\chapter{Evaluación y pruebas}
+\label{cap:evaluacion}
+
+Como se expuso en el capítulo \ref{cap:capitulo3}, se elaboró un conjunto de preguntas para evaluar el funcionamiento de los distintos modelos e implementaciones propuestas.
+
+Dicho conjunto cubre distintos niveles de complejidad, desde consultas basadas en metadatos explícitos hasta preguntas que requieren inferencia sobre estructuras musicales, relaciones rítmicas y características analíticas no directamente codificadas de manera explícita en los documentos.
+
+Todas las pruebas se llevaron a cabo mediante \textit{one-shot}, presentando cada consulta de manera aislada al modelo sin historial previo de interacción ni ejemplos adicionales. Cada pregunta se pregunta una única vez a cada modelo, escogiendo la respuesta obtenida como resultado definitivo independientemente de si es correcta o no. La elección de este enfoque responde a la necesidad de evaluar de forma controlada la capacidad intrínseca de los sistemas para recuperar y razonar sobre la información contenida en el corpus, evitando la influencia de estrategias conversacionales, ajustes progresivos del contexto o dependencia de interacciones previas.
+
+En el caso particular del modelo basado en consultas a una base de datos SQLite mediante MCP (Model Context Protocol), la información recuperada se utiliza como mecanismo de RAG para la construcción de la respuesta final. Dado que el corpus utilizado en este caso está compuesto por aproximadamente 12.000 piezas musicales, se observó que la cantidad de resultados devueltos por algunas consultas podía ser excesiva para ser incluida de forma completa en el contexto del modelo. Esta situación resultaba especialmente problemática en el caso del modelo de menor tamaño (8B parámetros), el cual mostraba una tendencia a la degradación de la calidad de las respuestas y a la generación de alucinaciones cuando se le proporcionaban contextos demasiado extensos o ruidosos.
+
+Por este motivo y para este caso en concreto, se estableció una restricción de recuperación mediante LIMIT 10 en las consultas a la base de datos. Esta decisión permite controlar el tamaño del contexto proporcionado al modelo, priorizando los resultados más relevantes según el criterio de ordenación de la consulta, y reduciendo el riesgo de sobrecarga contextual.
+
+\section{Preguntas realizadas y respuestas de los modelos}
+\subsection{Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "La información proporcionada no permite identificar piezas específicas en 2/4 que contengan síncopas ligadas sistemáticamente entre el segundo pulso de un compás y el primero del siguiente. Los resultados de la búsqueda incluyen archivos MusicXML que, si bien indican que algunas piezas están en compás de 2/4, como se ve en el archivo ``MX-1910-00-EA-00032.musicxml.xml'' y ``CO-1948-00-BG-00007.musicxml.xml'', no ofrecen un análisis textual de las ligaduras de síncopa entre compases. Para confirmar esta característica, sería necesario un análisis detallado del contenido musical de cada archivo."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo qwen3:8b):} """Se encontraron las siguientes piezas en compás de 2/4 que contienen síncopas ligadas entre el segundo pulso y el primero del siguiente: 
+
+An Smachdaoin Crón
+
+‘I’m Asleep \& Don’t Waken Me’
+
+1018. The Cottage Maids — Fling
+
+1030. ‘Hey, Daddy’ — Walk Around
+
+1034. Carry the News to Mary — Walk Around
+
+1035. Chaw Roast Beef — Walk Around
+
+147. Congress Park — Reel
+
+251. Magnolia — Reel
+
+385. The Northern Light — Reel
+
+670. Celebrated Stop — Hornpipe
+
+Estas piezas pueden interesarte si buscas música con patrones rítmicos complejos y sistemáticos."""
+    \item \textbf{Resultado esperado.} 
+    \item \textbf{Revisión de respuestas.} 
+\end{itemize}
+
+\section{Resumen de preguntas formuladas y respuestas de los modelos}

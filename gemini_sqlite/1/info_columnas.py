@@ -41,7 +41,7 @@ COLUMNAS = [
         "tabla": "analisis_musical",
         "columna": "desajuste_duracion_meter",
         "descripcion": "Presencia de anacrusa o compás incompleto inicial",
-        "keywords": ["anacrusa", "compas incompleto", "entrada anticipada", "anacrusas"],
+        "keywords": ["anacrusa", "compas incompleto", "entrada anticipada", "anacrusas", "metersig", "duraciones"],
         "ejemplos": [0, 1],
         "tipo": "INTEGER",
         "valores_validos": [0, 1]
@@ -98,7 +98,7 @@ COLUMNAS = [
         "tabla": "piezas",
         "columna": "tonalidad",
         "descripcion": "Tonalidad en la que está escrita la pieza",
-        "keywords": ["tonalidad", "tono", "key"],
+        "keywords": ["tonalidad", "tono", "key", "armadura"],
         "ejemplos": ["D major", "E minor", "F# minor"],
         "tipo": "TEXT"
     },
@@ -106,7 +106,7 @@ COLUMNAS = [
         "tabla": "piezas",
         "columna": "fecha_codificacion",
         "descripcion": "Fecha en la que se codificó la pieza",
-        "keywords": ["fecha", "codificación"],
+        "keywords": ["fecha", "codificación", "recolectada", "recolección"],
         "ejemplos": ["2024-03-04", "2025-03-13", "2015-06-03"],
         "tipo": "TEXT"
     },
@@ -138,7 +138,7 @@ COLUMNAS = [
         "tabla": "piezas",
         "columna": "nota_mas_grave",
         "descripcion": "Nota con el registro más bajo encontrado en la obra",
-        "keywords": ["nota grave", "rango", "registro inferior", "mínima"],
+        "keywords": ["nota grave", "rango", "registro inferior", "mínima", "rango melódico", "nota más grave"],
         "ejemplos": ["G4", "B3", "F#4"],
         "tipo": "TEXT"
     },
@@ -146,7 +146,7 @@ COLUMNAS = [
         "tabla": "piezas",
         "columna": "nota_mas_aguda",
         "descripcion": "Nota con el registro más alto encontrado en la obra",
-        "keywords": ["nota aguda", "rango", "registro superior", "máxima"],
+        "keywords": ["nota aguda", "rango", "registro superior", "máxima", "rango melódico", "nota más aguda"],
         "ejemplos": ["G5", "B5", "F#5"],
         "tipo": "TEXT"
     },
@@ -167,15 +167,15 @@ COLUMNAS = [
         "ejemplos": ["Sibelius 7.1.3", "Desconocido", "MuseScore 4.5.2"],
         "tipo": "TEXT"
     },
-    {
-        "tabla": "piezas",
-        "columna": "convertido_via_verovio",
-        "descripcion": "Indicador lógico si el archivo fue convertido usando Verovio",
-        "keywords": ["verovio", "conversión", "mei"],
-        "ejemplos": [0, 1],
-        "tipo": "INTEGER",
-        "valores_validos": [0, 1]
-    },
+    # {
+    #     "tabla": "piezas",
+    #     "columna": "convertido_via_verovio",
+    #     "descripcion": "Indicador lógico si el archivo fue convertido usando Verovio",
+    #     "keywords": ["verovio", "conversión", "mei"],
+    #     "ejemplos": [0, 1],
+    #     "tipo": "INTEGER",
+    #     "valores_validos": [0, 1]
+    # },
     {
         "tabla": "piezas",
         "columna": "formato_origen",
@@ -378,7 +378,7 @@ COLUMNAS = [
         "tabla": "analisis_musical",
         "columna": "accidentales_compases_json",
         "descripcion": "Datos en formato JSON que representan la ubicación de alteraciones accidentales dentro de los compases",
-        "keywords": ["alteraciones", "alteraciones accidentales", "compases", "melodía"],
+        "keywords": ["alteraciones", "alteraciones accidentales", "compases", "melodía", "sostenidos", "bemoles"],
         "tipo": "TEXT",
         "ejemplos": [
             "{\"F#5\": [5]}", 
@@ -473,7 +473,7 @@ COLUMNAS = [
         "tabla": "analisis_musical",
         "columna": "lirica_sustantivos",
         "descripcion": "Listado de sustantivos encontrados en la letra de la pieza",
-        "keywords": ["lírica", "sustantivos", "letra"],
+        "keywords": ["lírica", "sustantivos", "letra", "palabra"],
         "tipo": "TEXT",
         "ejemplos": [
             "agravio, amigo, ave, cantora, hora, libertad, libro, puerta, ro, sabio, seve, tona, tone", 

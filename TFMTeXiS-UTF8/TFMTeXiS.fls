@@ -189,6 +189,8 @@ INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\pdfpages\pppdftex.def
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\pdfpages\pppdftex.def
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\pdfpages\pppdftex.def
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\makecell\makecell.sty
 INPUT .\TeXiS\TeXiS_cab.tex
 INPUT .\TeXiS\TeXiS_cab.tex
 INPUT .\TeXiS\TeXiS_cab.tex
@@ -380,6 +382,7 @@ INPUT .\TFMTeXiS.toc
 INPUT .\TFMTeXiS.toc
 INPUT TFMTeXiS.toc
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx1095.tfm
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0800.tfm
 OUTPUT TFMTeXiS.toc
 INPUT .\TFMTeXiS.lof
 INPUT .\TFMTeXiS.lof
@@ -403,7 +406,6 @@ INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1ptm.fd
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1ptm.fd
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1ptm.fd
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr7t.tfm
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0800.tfm
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0900.tfm
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
@@ -448,6 +450,7 @@ OUTPUT Capitulos\EvaluacionPruebas.aux
 INPUT .\Capitulos\EvaluacionPruebas.tex
 INPUT .\Capitulos\EvaluacionPruebas.tex
 INPUT Capitulos\EvaluacionPruebas.tex
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx0800.tfm
 INPUT .\Capitulos\DiscusionAnalisis.tex
 INPUT .\Capitulos\DiscusionAnalisis.tex
 OUTPUT Capitulos\DiscusionAnalisis.aux
@@ -472,17 +475,16 @@ OUTPUT Capitulos\ConclusionsFutureWork.aux
 INPUT .\Capitulos\ConclusionsFutureWork.tex
 INPUT .\Capitulos\ConclusionsFutureWork.tex
 INPUT Capitulos\ConclusionsFutureWork.tex
+INPUT .\TFMTeXiS.bbl
+INPUT .\TFMTeXiS.bbl
+INPUT TFMTeXiS.bbl
 INPUT .\Cascaras\bibliografia.tex
 INPUT .\Cascaras\bibliografia.tex
 OUTPUT Cascaras\bibliografia.aux
 INPUT .\Cascaras\bibliografia.tex
 INPUT .\Cascaras\bibliografia.tex
 INPUT Cascaras\bibliografia.tex
-INPUT .\TFMTeXiS.bbl
-INPUT .\TFMTeXiS.bbl
 INPUT TFMTeXiS.bbl
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1000.tfm
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1000.tfm
 INPUT .\Apendices\appendixA.tex
 INPUT .\Apendices\appendixA.tex
 OUTPUT Apendices\appendixA.aux
@@ -495,6 +497,8 @@ OUTPUT Cascaras\fin.aux
 INPUT .\Cascaras\fin.tex
 INPUT .\Cascaras\fin.tex
 INPUT Cascaras\fin.tex
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1000.tfm
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecti1000.tfm
 INPUT TFMTeXiS.aux
 INPUT .\Cascaras\cover.aux
 INPUT .\Cascaras\cover.aux
@@ -555,10 +559,10 @@ INPUT .\Cascaras\fin.aux
 INPUT Cascaras\fin.aux
 INPUT .\TFMTeXiS.out
 INPUT .\TFMTeXiS.out
-INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk
-INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
+INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx0800.pk
+INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx0800.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti0800.pk
@@ -587,10 +591,6 @@ INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecb
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\type1\urw\helvetic\uhvr8a.pfb
 INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmr8a.pfb

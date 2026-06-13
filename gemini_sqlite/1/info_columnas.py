@@ -389,6 +389,14 @@ COLUMNAS = [
     },
     {
         "tabla": "analisis_musical",
+        "columna": "conteo_accidentales_totales",
+        "descripcion": "Indica el número total de alteraciones accidentales en la obra",
+        "keywords": ["alteraciones", "alteraciones accidentales", "compases", "melodía", "sostenidos", "bemoles"],
+        "ejemplos": [0, 1, 4, 10, 13],
+        "tipo": "INTEGER"
+    },
+    {
+        "tabla": "analisis_musical",
         "columna": "qc_compases_vacios",
         "descripcion": "Indica el número de compases vacíos en la obra",
         "keywords": ["compases vacíos", "vacíos", "calidad de datos", "qc"],
@@ -485,7 +493,7 @@ COLUMNAS = [
         "tabla": "analisis_musical",
         "columna": "lirica_nombres_propios",
         "descripcion": "Listado de nombres propios encontrados en la letra de la pieza",
-        "keywords": ["lírica", "nombres propios", "letra"],
+        "keywords": ["lírica", "nombres propios", "letra", "nombre propio", "nombre"],
         "tipo": "TEXT",
         "ejemplos": [
             "Fray, Martín, dindon, dindon don dindon don, don", 

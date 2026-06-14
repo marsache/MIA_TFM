@@ -454,6 +454,7 @@ OUTPUT Capitulos\EvaluacionPruebas.aux
 INPUT .\Capitulos\EvaluacionPruebas.tex
 INPUT .\Capitulos\EvaluacionPruebas.tex
 INPUT Capitulos\EvaluacionPruebas.tex
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx0900.tfm
 INPUT .\Capitulos\DiscusionAnalisis.tex
 INPUT .\Capitulos\DiscusionAnalisis.tex
 OUTPUT Capitulos\DiscusionAnalisis.aux
@@ -564,6 +565,10 @@ INPUT .\TFMTeXiS.out
 INPUT .\TFMTeXiS.out
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk
+INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
+INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk
+INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx0900.pk
+INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx0900.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1095.pk
 INPUT C:\Users\maria\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecti0800.pk

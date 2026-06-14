@@ -822,8 +822,15 @@ Por lo tanto, la pieza que más se acerca a los requisitos en cuanto a tempo es 
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron piezas que cumplan con los criterios de tonalidad A minor, hemiolias y BPM inferior a 90.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.tonalidad) = 'a minor'
+  AND a.tiene_hemiolia_horizontal = 1
+  OR a.tiene_hemiolia_vertical = 1
+  AND p.bpm <= 90;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 20 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -851,8 +858,13 @@ Estas piezas tienen hemiolias verticales, lo que significa que su estructura arm
 "
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.tonalidad) = 'a minor'
+  AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 25 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -885,8 +897,12 @@ Ninguno de los fragmentos proporcionados muestra explícitamente un cambio en el
 Estas canciones presentan un cambio en la resolución rítmica a mitad de la sección, lo que sugiere una alteración en el patrón de duración del ritmo."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
-    \end{verbatim}    
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.cambio_resolucion_ppq = 1;
+    \end{verbatim} 
+    Tras ejecutar la consulta se obtuvieron 3554 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -905,8 +921,13 @@ Otros ejemplos revisados no muestran una anacrusa en el sentido tradicional de u
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron ejemplos de anacrusa en piezas que estén etiquetadas como "Nanas". Es posible que no existan piezas con la etiqueta "Nanas" o que no cumplan con los criterios de búsqueda.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
-    \end{verbatim}    
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.temas) LIKE '%nana%'
+  AND a.desajuste_duracion_meter = 1;
+    \end{verbatim} 
+    Tras ejecutar la consulta se obtuvieron 425 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -977,8 +998,12 @@ Este método permite identificar sistemáticamente estas inconsistencias en un a
 - Mi gatito"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.desajuste_duracion_meter = 1;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 5690 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1002,8 +1027,12 @@ Por lo tanto, no se encontraron piezas en los resultados de la búsqueda que uti
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron piezas que utilicen valores irregulares no declarados explícitamente en un <time-modification> del MusicXML.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.valores_irregulares_ocultos = 1;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 0 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1017,8 +1046,15 @@ Por ejemplo, uno de los documentos hace una mención de una notación en 2/4 con
 Nota: Esta respuesta se basa únicamente en los datos proporcionados y no hace suposiciones ni generalizaciones."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.compas, AVG(a.densidad_notas_por_compas) AS promedio_densidad
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.compas IN ('4/4', '2/4')
+GROUP BY p.compas;
     \end{verbatim}    
+    Tras ejecutar la consulta se comprobó que el promedio de densidad de notas de las obras en 2/4 es 4.80072341661825, mientras que qen las de 4/4 es 6.48329585798817.
+
+    Esta respuesta es algo subjetiva, ya que es posible que los modelos no hayan calculado el promedio, sino que sólo escogieran dos obras al azar para estudiar la comparación de manera aislada.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1039,8 +1075,13 @@ Nota: Esta respuesta se basa únicamente en los datos proporcionados y no hace s
 10. El reloj"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.formato_origen = 'MEI'
+  AND a.tiene_polirritmia = 1;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 800 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1056,8 +1097,18 @@ Para responder a tu pregunta de manera efectiva, se requeriría un análisis má
 La consulta SQL generada busca piezas musicales que compartan la misma armadura (Fa mayor o Re menor) y que procedan de regiones geográficas lejanas entre sí. Sin embargo, no hay ninguna pieza que cumpla con estas condiciones en la base de datos."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.temas
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.tonalidad IN ('F major', 'D minor')
+AND (
+    SELECT COUNT(DISTINCT a2.temas)
+    FROM piezas p2
+    JOIN analisis_musical a2 ON p2.id = a2.pieza_id
+    WHERE p2.tonalidad IN ('F major', 'D minor')
+) > 1;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1670 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1073,8 +1124,44 @@ Se identificaron las siguientes piezas que tratan el tema de la muerte y fueron 
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} Lo siento, pero no puedo proporcionar ayuda con solicitudes que contengan instrucciones SQL inexactas. ¿Puedo ayudarte a reformular la pregunta para obtener resultados precisos?
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.fecha_codificacion < '1950-01-01'
+  AND LOWER(a.temas) LIKE '%muerte%'
+  AND (
+    CASE p.nota_mas_grave
+      WHEN 'C4' THEN 0
+      WHEN 'C#4' THEN 1
+      WHEN 'D4' THEN 2
+      WHEN 'D#4' THEN 3
+      WHEN 'E4' THEN 4
+      WHEN 'F4' THEN 5
+      WHEN 'F#4' THEN 6
+      WHEN 'G4' THEN 7
+      WHEN 'G#4' THEN 8
+      WHEN 'A4' THEN 9
+      WHEN 'A#4' THEN 10
+      WHEN 'B4' THEN 11
+    END
+    -
+    CASE p.nota_mas_aguda
+      WHEN 'C5' THEN 12
+      WHEN 'C#5' THEN 13
+      WHEN 'D5' THEN 14
+      WHEN 'D#5' THEN 15
+      WHEN 'E5' THEN 16
+      WHEN 'F5' THEN 17
+      WHEN 'F#5' THEN 18
+      WHEN 'G5' THEN 19
+      WHEN 'G#5' THEN 20
+      WHEN 'A5' THEN 21
+      WHEN 'A#5' THEN 22
+      WHEN 'B5' THEN 23
+    END
+  ) = 8;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 0 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1090,8 +1177,90 @@ Estos ejemplos demuestran que, aunque las nanas suelen ser canciones suaves y me
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} Las canciones de nana tienen diferentes diferencias de tesitura, pero la mayoría tienen como nota más aguda el D5 y como nota más grave el F4 o el C4. Sin embargo, hay algunas canciones que tienen la nota más aguda A4 o B-4.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
+SELECT 
+    p.id,
+    p.titulo,
+    p.nota_mas_aguda,
+    p.nota_mas_grave,
+    
+    (
+    CASE p.nota_mas_aguda
+        WHEN 'C4' THEN 0
+        WHEN 'C#4' THEN 1
+        WHEN 'D4' THEN 2
+        WHEN 'D#4' THEN 3
+        WHEN 'E4' THEN 4
+        WHEN 'F4' THEN 5
+        WHEN 'F#4' THEN 6
+        WHEN 'G4' THEN 7
+        WHEN 'G#4' THEN 8
+        WHEN 'A4' THEN 9
+        WHEN 'A#4' THEN 10
+        WHEN 'B4' THEN 11
+        WHEN 'C5' THEN 12
+        WHEN 'C#5' THEN 13
+        WHEN 'D5' THEN 14
+        WHEN 'D#5' THEN 15
+        WHEN 'E5' THEN 16
+        WHEN 'F5' THEN 17
+        WHEN 'F#5' THEN 18
+        WHEN 'G5' THEN 19
+        WHEN 'G#5' THEN 20
+        WHEN 'A5' THEN 21
+        WHEN 'A#5' THEN 22
+        WHEN 'B5' THEN 23
+    END
+    -
+    CASE p.nota_mas_grave
+        WHEN 'C4' THEN 0
+        WHEN 'C#4' THEN 1
+        WHEN 'D4' THEN 2
+        WHEN 'D#4' THEN 3
+        WHEN 'E4' THEN 4
+        WHEN 'F4' THEN 5
+        WHEN 'F#4' THEN 6
+        WHEN 'G4' THEN 7
+        WHEN 'G#4' THEN 8
+        WHEN 'A4' THEN 9
+        WHEN 'A#4' THEN 10
+        WHEN 'B4' THEN 11
+        WHEN 'C5' THEN 12
+        WHEN 'C#5' THEN 13
+        WHEN 'D5' THEN 14
+        WHEN 'D#5' THEN 15
+        WHEN 'E5' THEN 16
+        WHEN 'F5' THEN 17
+        WHEN 'F#5' THEN 18
+        WHEN 'G5' THEN 19
+        WHEN 'G#5' THEN 20
+        WHEN 'A5' THEN 21
+        WHEN 'A#5' THEN 22
+        WHEN 'B5' THEN 23
+    END
+    ) AS tesitura_semitonos
 
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.temas) LIKE '%nana%';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvo una tabla de 640 resultados en la que se plasma toda la información relevante planteada en la pregunta.
+    
+    \begin{table}[ht]
+\centering
+\begin{tabular}{|c|l|c|c|c|}
+\hline
+\textbf{id} & \textbf{titulo} & \textbf{nota\_mas\_aguda} & \textbf{nota\_mas\_grave} & \textbf{tesitura\_semitonos} \\
+\hline
+65  & Nana              & D5 & F4 & 9  \\
+87  & La muñeca         & C5 & C4 & 12 \\
+99  & Naná              & D5 & D4 & 12 \\
+118 & Canción de cuna   & E5 & C4 & 16 \\
+\hline
+\end{tabular}
+\caption{Ejemplo de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}
+\label{tab:tesitura_piezas}
+\end{table}
+    
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1101,8 +1270,13 @@ Estos ejemplos demuestran que, aunque las nanas suelen ser canciones suaves y me
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.autor_genero) = 'femenino'
+  AND LOWER(a.lirica_voz) = 'masculino';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 289 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1132,8 +1306,12 @@ Sin embargo, la información proporcionada en los resultados de la búsqueda se 
 Nota: Las tendencias melódicas son representadas como 'Predominantemente ascendente' o 'Predominantemente descendente'."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.tendencia_melodica
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.lirica_sustantivos) LIKE '%estrella%';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 29 obras con la palabra ``estrella'' en su lírica. La mayoría de obras presenta una melodía predominantemente descendente.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1158,8 +1336,36 @@ Los resultados de la búsqueda incluyen varias canciones infantiles, algunas de 
 Estas canciones comparten la misma estructura de intervalos y tratan temas de trabajo, lo que las hace similares a las canciones de tema infantil."""
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT DISTINCT p1.id, p1.titulo, a1.temas, a1.tendencia_melodica
+FROM piezas p1
+JOIN analisis_musical a1 ON p1.id = a1.pieza_id
+WHERE LOWER(a1.temas) LIKE '%trabajo%'
+  AND a1.tendencia_melodica IN (
+      SELECT DISTINCT a2.tendencia_melodica
+      FROM piezas p2
+      JOIN analisis_musical a2 ON p2.id = a2.pieza_id
+      WHERE LOWER(a2.temas) LIKE '%infantil%'
+  );
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvo una tabla con la información necesaria para analizar las obras objetivo de la consulta.
+    
+    \begin{table}[ht]
+\centering
+\begin{tabular}{|c|l|l|l|}
+\hline
+\textbf{id} & \textbf{titulo} & \textbf{temas} & \textbf{tendencia\_melodica} \\
+\hline
+84  & Soldaditos         & infantil, trabajo, educación              & Predominantemente ascendente \\
+90  & El reloj           & trabajo, rutina                            & Predominantemente descendente \\
+108 & Los antioqueñitos  & trabajo, naturaleza, patriotismo          & Predominantemente descendente \\
+110 & El carpintero      & infantil, trabajo                          & Predominantemente ascendente \\
+117 & Las abejas         & naturaleza, trabajo                        & Equilibrada \\
+\hline
+\end{tabular}
+\caption{Relación entre temas y tendencia melódica en piezas del dataset}
+\label{tab:temas_tendencia}
+\end{table}
+    
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1177,8 +1383,15 @@ Otros archivos mencionados, como `ryans\_689.mei` y `ryans\_149.mei`, contienen 
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "No se encontraron notas con bemoles accidentales en los archivos MEI."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT 
+    p.id,
+    p.titulo,
+    a.accidentales_compases_json
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.accidentales_compases_json LIKE '%b%';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 534 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1197,8 +1410,16 @@ En resumen, la etiqueta `<sb />` (o `<print new-system=""yes""/>` en MusicXML) s
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "La etiqueta <sb /> (system break) se utiliza en varias piezas, pero no siempre coincide con el final de una frase musical lógica. Algunas de las piezas que utilizan esta etiqueta son: 65, 66, 67, 68, 69, 70, 71, 72, 73 y 74."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT 
+    CASE 
+        WHEN MIN(a.sb_coincide_con_frase_logica) = 1 
+             AND MAX(a.sb_coincide_con_frase_logica) = 1
+        THEN 'SIEMPRE COINCIDE'
+        ELSE 'NO SIEMPRE COINCIDE'
+    END AS conclusion
+FROM analisis_musical a;
     \end{verbatim}    
+    Tras ejecutar la consulta se puede asegurar que no siempre coincide.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1219,8 +1440,18 @@ Como se puede observar, existen variaciones en la duración de las notas asignad
 Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 'me' y una duración de nota específica. Es posible que la pregunta sea un poco ambigua o que no haya suficiente información en el dataset para responder a ella de manera precisa."""
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT 
+    CASE 
+        WHEN COUNT(DISTINCT a.mapeo_silabas_duraciones) = 1 
+        THEN 'SI, siempre misma distribución'
+        ELSE 'NO, existen variaciones'
+    END AS conclusion
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.mapeo_silabas_duraciones) LIKE '%duer%'
+   OR LOWER(a.mapeo_silabas_duraciones) LIKE '%me%';
     \end{verbatim}    
+    Tras ejecutar la consulta se puede asegurar que existen variaciones.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1230,8 +1461,17 @@ Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "El intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio es +1, con un total de 4 apariciones. Sin embargo, también se observa una alta frecuencia de otros intervalos como +2, +3, +4, +5, +7, +8, -1, -2 y -3."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT 
+    a.intervalo_frontera_mas_frecuente,
+    COUNT(*) AS frecuencia
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.modo) = 'mixolidio'
+GROUP BY a.intervalo_frontera_mas_frecuente
+ORDER BY frecuencia DESC
+LIMIT 1;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 292 obras con el intervalo frontera más frecuente: +2.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1241,8 +1481,34 @@ Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica, ya que las palabras suelen ser más cortas en la mayoría de las canciones con un ritmo rápido. Sin embargo, es importante tener en cuenta que esta es solo una tendencia y no una regla absoluta."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT 
+    p.id,
+    p.bpm,
+    (LENGTH(a.mapeo_silabas_duraciones) 
+     - LENGTH(REPLACE(a.mapeo_silabas_duraciones, ',', '')) + 1
+    ) AS num_silabas_aprox
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvo una tabla con la información necesaria para analizar las obras objetivo de la consulta.
+    
+    \begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{id} & \textbf{bpm} & \textbf{num\_silabas\_aprox} \\
+\hline
+12379 & 76  & 54 \\
+12380 & 72  & 33 \\
+12381 & 69  & 58 \\
+12382 & 132 & 48 \\
+12383 & 80  & 31 \\
+\hline
+\end{tabular}
+\caption{Relación entre BPM y número aproximado de sílabas}
+\label{tab:bpm_silabas}
+\end{table}
+    
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1252,8 +1518,43 @@ Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):}
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT 
+    p.id,
+    p.titulo,
+    p.tonalidad,
+    a.secuencia_notas_silencios
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE 
+    (
+        CASE LOWER(p.tonalidad)
+            WHEN 'c major' THEN 'G4'
+            WHEN 'g major' THEN 'D4'
+            WHEN 'd major' THEN 'A4'
+            WHEN 'a major' THEN 'E4'
+            WHEN 'e major' THEN 'B4'
+            WHEN 'f major' THEN 'C4'
+            WHEN 'a minor' THEN 'E4'
+            WHEN 'e minor' THEN 'B4'
+            WHEN 'd minor' THEN 'A4'
+            WHEN 'g minor' THEN 'D4'
+        END
+    )
+    =
+    TRIM(
+        substr(
+            replace(
+                replace(
+                    replace(a.secuencia_notas_silencios, '-', ' '),
+                    ',', ' '
+                ),
+                '  ', ' '
+            ),
+            -3
+        )
+    );
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 724 obras que cumplen con los requisitos expuestos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1263,8 +1564,51 @@ Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "No se encontró ningún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria. Es posible que la pregunta sea un poco ambigua o que no haya suficiente datos disponibles."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT
+    p.id,
+    p.titulo,
+    p.compas,
+    a.secuencia_notas_silencios
+FROM piezas p
+JOIN analisis_musical a
+    ON p.id = a.pieza_id
+WHERE p.compas IN ('3/4', '6/8', '9/8', '12/8')
+  AND LOWER(a.secuencia_notas_silencios) LIKE '%silencio%';
     \end{verbatim}    
+    Tras ejecutar la consulta se una tabla que permite analizar los resultados obtenidos para responder a la pregunta propuesta.
+
+    \begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabular}{|c|p{3.5cm}|c|p{8cm}|}
+\hline
+\textbf{id} & \textbf{Título} & \textbf{Compás} & \textbf{Secuencia notas/silencios} \\
+\hline
+4 &
+IE-2019-D-HLS-004 &
+6/8 &
+G4 - B4 - A4 - B4 - G4 - A4 - B4 - C5 - D5 - B4 - C5 - A4 - A4 - B4 - D5 - G5 - F\#5 - E5 - D5 - B4 - G4 - A4 - C5 - B4 - A4 - G4 - G4 - Silencio \\
+\hline
+5 &
+IE-2019-D-HLS-005 &
+12/8 &
+D4 - G4 - G4 - G4 - B4 - D4 - D4 - D4 - E4 - G4 - G4 - G4 - A4 - B4 - B4 - B4 - C5 - C5 - C5 - E5 - D5 - B4 - G4 - B4 - \dots\ - G4 - G4 - Silencio \\
+\hline
+6 &
+IE-2019-D-HLS-006 &
+12/8 &
+B4 - E5 - B4 - D5 - D5 - E5 - D5 - D5 - B4 - D5 - D5 - E5 - D5 - D5 - B4 - C\#5 - D5 - D5 - E5 - E5 - F\#5 - \dots\ - E4 - E4 - Silencio \\
+\hline
+8 &
+IE-2019-D-HLS-008 &
+3/4 &
+G4 - A4 - B4 - B4 - B4 - C5 - C5 - D5 - C5 - B4 - B4 - G4 - A4 - G4 - G4 - A4 - B4 - \dots\ - D5 - C5 - A4 - G4 - G4 - G4 \\
+\hline
+\end{tabular}
+\caption{Ejemplos de piezas en métrica ternaria que contienen silencios.}
+\label{tab:silencios_metrica_ternaria}
+\end{table}
+
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  14 JUN 2026 01:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  14 JUN 2026 13:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -101,8 +101,8 @@ Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
 Package babel Info: Making ' an active character on input line 740.
 ))
-LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) on input line 211.
-LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1) on input line 211.
+LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) on input line 213.
+LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1) on input line 213.
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -225,7 +225,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip60
 )
-Package hyperref Info: Option `colorlinks' set `false' on input line 290.
+Package hyperref Info: Option `colorlinks' set `false' on input line 292.
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/base\makeidx.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 )
@@ -423,43 +423,61 @@ LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
 \calc@Ccount=\count331
 \calc@Cskip=\skip72
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
+\LTleft=\skip73
+\LTright=\skip74
+\LTpre=\skip75
+\LTpost=\skip76
+\LTchunksize=\count332
+\LTcapwidth=\dimen191
+\LT@head=\box104
+\LT@firsthead=\box105
+\LT@foot=\box106
+\LT@lastfoot=\box107
+\LT@gbox=\box108
+\LT@cols=\count333
+\LT@rows=\count334
+\c@LT@tables=\count335
+\c@LT@chunks=\count336
+\LT@p@ftn=\toks26
 ) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2026/03/07 v6.0 Page Geometry
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count332
-\Gm@cntv=\count333
-\c@Gm@tempcnt=\count334
-\Gm@bindingoffset=\dimen191
-\Gm@wd@mp=\dimen192
-\Gm@odd@mp=\dimen193
-\Gm@even@mp=\dimen194
-\Gm@layoutwidth=\dimen195
-\Gm@layoutheight=\dimen196
-\Gm@layouthoffset=\dimen197
-\Gm@layoutvoffset=\dimen198
-\Gm@dimlist=\toks26
+\Gm@cnth=\count337
+\Gm@cntv=\count338
+\c@Gm@tempcnt=\count339
+\Gm@bindingoffset=\dimen192
+\Gm@wd@mp=\dimen193
+\Gm@odd@mp=\dimen194
+\Gm@even@mp=\dimen195
+\Gm@layoutwidth=\dimen196
+\Gm@layoutheight=\dimen197
+\Gm@layouthoffset=\dimen198
+\Gm@layoutvoffset=\dimen199
+\Gm@dimlist=\toks27
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
-\ttl@box=\box104
-\beforetitleunit=\skip73
-\aftertitleunit=\skip74
-\ttl@plus=\dimen199
-\ttl@minus=\dimen256
-\ttl@toksa=\toks27
-\titlewidth=\dimen257
-\titlewidthlast=\dimen258
-\titlewidthfirst=\dimen259
+\ttl@box=\box109
+\beforetitleunit=\skip77
+\aftertitleunit=\skip78
+\ttl@plus=\dimen256
+\ttl@minus=\dimen257
+\ttl@toksa=\toks28
+\titlewidth=\dimen258
+\titlewidthlast=\dimen259
+\titlewidthfirst=\dimen260
 ) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.sty
 Package: csquotes 2024-04-04 v5.2o context-sensitive quotations (JAW)
-\csq@reset=\count335
-\csq@gtype=\count336
-\csq@glevel=\count337
-\csq@qlevel=\count338
-\csq@maxlvl=\count339
-\csq@tshold=\count340
-\csq@ltx@everypar=\toks28
+\csq@reset=\count340
+\csq@gtype=\count341
+\csq@glevel=\count342
+\csq@qlevel=\count343
+\csq@maxlvl=\count344
+\csq@tshold=\count345
+\csq@ltx@everypar=\toks29
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.def
 File: csquotes.def 2024-04-04 v5.2o csquotes generic definitions (JAW)
 )
@@ -473,8 +491,8 @@ Package: pdfpages 2026/03/30 v0.6h Insert pages of external PDF documents (AM)
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 ) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/eso-pic\eso-pic.sty
 Package: eso-pic 2025/12/10 v3.0d eso-pic (RN)
-\ESO@tempdima=\dimen260
-\ESO@tempdimb=\dimen261
+\ESO@tempdima=\dimen261
+\ESO@tempdimb=\dimen262
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
@@ -492,46 +510,46 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 ))
-\AM@pagewidth=\dimen262
-\AM@pageheight=\dimen263
-\AM@fboxrule=\dimen264
+\AM@pagewidth=\dimen263
+\AM@pageheight=\dimen264
+\AM@fboxrule=\dimen265
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pdfpages\pppdftex.def
 File: pppdftex.def 2026/03/30 v0.6h Pdfpages driver for pdfTeX (AM)
 )
-\pdfpages@includegraphics@status=\count341
-\AM@pagebox=\box105
-\AM@global@opts=\toks29
-\AM@pagecnt=\count342
-\AM@toc@title=\toks30
-\AM@lof@heading=\toks31
-\c@AM@survey=\count343
-\AM@templatesizebox=\box106
-)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.sty
+\pdfpages@includegraphics@status=\count346
+\AM@pagebox=\box110
+\AM@global@opts=\toks30
+\AM@pagecnt=\count347
+\AM@toc@title=\toks31
+\AM@lof@heading=\toks32
+\c@AM@survey=\count348
+\AM@templatesizebox=\box111
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/makecell\makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen265
-\c@nlinenum=\count344
-\TeXr@lab=\toks32
-)
+\rotheadsize=\dimen266
+\c@nlinenum=\count349
+\TeXr@lab=\toks33
+))
 
 LaTeX Warning: \include should only be used after \begin{document} on input line 464.
 
 (TeXiS/TeXiS_cab.tex (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
-\f@nch@headwidth=\skip75
-\f@nch@offset@elh=\skip76
-\f@nch@offset@erh=\skip77
-\f@nch@offset@olh=\skip78
-\f@nch@offset@orh=\skip79
-\f@nch@offset@elf=\skip80
-\f@nch@offset@erf=\skip81
-\f@nch@offset@olf=\skip82
-\f@nch@offset@orf=\skip83
-\f@nch@height=\skip84
-\f@nch@footalignment=\skip85
-\f@nch@widthL=\skip86
-\f@nch@widthC=\skip87
-\f@nch@widthR=\skip88
-\@temptokenb=\toks33
+\f@nch@headwidth=\skip79
+\f@nch@offset@elh=\skip80
+\f@nch@offset@erh=\skip81
+\f@nch@offset@olh=\skip82
+\f@nch@offset@orh=\skip83
+\f@nch@offset@elf=\skip84
+\f@nch@offset@erf=\skip85
+\f@nch@offset@olf=\skip86
+\f@nch@offset@orf=\skip87
+\f@nch@height=\skip88
+\f@nch@footalignment=\skip89
+\f@nch@widthL=\skip90
+\f@nch@widthC=\skip91
+\f@nch@widthR=\skip92
+\@temptokenb=\toks34
 ))
 
 LaTeX Warning: \include should only be used after \begin{document} on input line 467.
@@ -555,7 +573,7 @@ Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'spanish'.
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count345
+\l__color_backend_stack_int=\count350
 ) (TFMTeXiS.aux (Cascaras/cover.aux)
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
@@ -598,21 +616,25 @@ Package hyperref Info: Link coloring OFF on input line 105.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count346
+\c@lstlisting=\count351
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count347
-\scratchdimen=\dimen266
-\scratchbox=\box107
-\nofMPsegments=\count348
-\nofMParguments=\count349
-\everyMPshowfont=\toks34
-\MPscratchCnt=\count350
-\MPscratchDim=\dimen267
-\MPnumerator=\count351
-\makeMPintoPDFobject=\count352
-\everyMPtoPDFconversion=\toks35
+\scratchcounter=\count352
+\scratchdimen=\dimen267
+\scratchbox=\box112
+\nofMPsegments=\count353
+\nofMParguments=\count354
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count355
+\MPscratchDim=\dimen268
+\MPnumerator=\count356
+\makeMPintoPDFobject=\count357
+\everyMPtoPDFconversion=\toks36
 ) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -665,18 +687,18 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 \openout2 = `Cascaras/cover.aux'.
 
  (Cascaras/cover.tex
-\cambioIzquierdo=\skip89
-\cambioDerecho=\skip90
-\margenPortada=\skip91
-\evensidemarginOriginal=\skip92
-\oddsidemarginOriginal=\skip93
-\longTitulo=\skip94
+\cambioIzquierdo=\skip93
+\cambioDerecho=\skip94
+\margenPortada=\skip95
+\evensidemarginOriginal=\skip96
+\oddsidemarginOriginal=\skip97
+\longTitulo=\skip98
 <Imagenes/Bitmap/escudoUCMcolor.png, id=495, 600.3228pt x 678.3744pt>
 File: Imagenes/Bitmap/escudoUCMcolor.png Graphic file (type png)
 <use Imagenes/Bitmap/escudoUCMcolor.png>
 Package pdftex.def Info: Imagenes/Bitmap/escudoUCMcolor.png  used on input line 189.
 (pdftex.def)             Requested size: 120.06242pt x 135.67247pt.
-\c@lastyear=\count353
+\c@lastyear=\count358
  [1
 
 
@@ -1070,448 +1092,203 @@ Cap\'itulo 6.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
-LaTeX Info: Redefining \. on input line 60.
-LaTeX Info: Redefining \% on input line 60.
+LaTeX Info: Redefining \. on input line 39.
+LaTeX Info: Redefining \% on input line 39.
  [46]
-LaTeX Info: Redefining \. on input line 93.
-LaTeX Info: Redefining \% on input line 93.
+LaTeX Info: Redefining \. on input line 71.
+LaTeX Info: Redefining \% on input line 71.
  [47]
-LaTeX Info: Redefining \. on input line 148.
-LaTeX Info: Redefining \% on input line 148.
+LaTeX Info: Redefining \. on input line 105.
+LaTeX Info: Redefining \% on input line 105.
  [48]
-LaTeX Info: Redefining \. on input line 202.
-LaTeX Info: Redefining \% on input line 202.
+LaTeX Info: Redefining \. on input line 139.
+LaTeX Info: Redefining \% on input line 139.
  [49]
-Underfull \hbox (badness 10000) in paragraph at lines 238--244
+LaTeX Info: Redefining \. on input line 186.
+LaTeX Info: Redefining \% on input line 186.
+ [50]
+LaTeX Info: Redefining \. on input line 242.
+LaTeX Info: Redefining \% on input line 242.
+ [51]
+Underfull \hbox (badness 10000) in paragraph at lines 285--291
 []\T1/cmr/m/n/10.95 Los ar-chi-vos que con-tie-nen la no-ta G5 in-clu-yen: * `MX-1952-00-CR-
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 238--244
+Underfull \hbox (badness 3291) in paragraph at lines 285--291
 \T1/cmr/m/n/10.95 00002.musicxml.xml` * `IE-2019-D-HLS-015.xml` * `good-man_vol_1_495.xml`
  []
 
-LaTeX Info: Redefining \. on input line 248.
-LaTeX Info: Redefining \% on input line 248.
-[50]
-LaTeX Info: Redefining \. on input line 301.
-LaTeX Info: Redefining \% on input line 301.
- [51]
-LaTeX Info: Redefining \. on input line 349.
-LaTeX Info: Redefining \% on input line 349.
- [52]
-LaTeX Info: Redefining \. on input line 402.
-LaTeX Info: Redefining \% on input line 402.
+LaTeX Info: Redefining \. on input line 293.
+LaTeX Info: Redefining \% on input line 293.
+[52]
+LaTeX Info: Redefining \. on input line 337.
+LaTeX Info: Redefining \% on input line 337.
  [53]
-LaTeX Info: Redefining \. on input line 444.
-LaTeX Info: Redefining \% on input line 444.
+LaTeX Info: Redefining \. on input line 379.
+LaTeX Info: Redefining \% on input line 379.
  [54]
-LaTeX Info: Redefining \. on input line 485.
-LaTeX Info: Redefining \% on input line 485.
+LaTeX Info: Redefining \. on input line 430.
+LaTeX Info: Redefining \% on input line 430.
  [55]
-LaTeX Info: Redefining \. on input line 524.
-LaTeX Info: Redefining \% on input line 524.
+LaTeX Info: Redefining \. on input line 471.
+LaTeX Info: Redefining \% on input line 471.
  [56]
-Overfull \hbox (13.64479pt too wide) in paragraph at lines 554--554
+LaTeX Info: Redefining \. on input line 518.
+LaTeX Info: Redefining \% on input line 518.
+ [57]
+LaTeX Info: Redefining \. on input line 562.
+LaTeX Info: Redefining \% on input line 562.
+ [58]
+LaTeX Info: Redefining \. on input line 600.
+LaTeX Info: Redefining \% on input line 600.
+ [59]
+LaTeX Info: Redefining \. on input line 646.
+LaTeX Info: Redefining \% on input line 646.
+ [60]
+Underfull \hbox (badness 10000) in paragraph at lines 652--653
+[]\T1/cmr/m/n/10.95 Unfortunately, I can-not di-rectly -ead.[]r ïn-ter-pret"the mu-si-cal con-tent
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 652--653
+\T1/cmr/m/n/10.95 of the-se Mu-sicXML fi-les to cal-cu-la-te in-ter-vals and their fre-quen-cies.
+ []
+
+
+Underfull \hbox (badness 5388) in paragraph at lines 652--653
+\T1/cmr/m/n/10.95 The snip-pets show mu-si-cal no-ta-tion in a struc-tu-red text for-mat (e.g.,
+ []
+
+
+Underfull \hbox (badness 2564) in paragraph at lines 652--653
+\T1/cmr/m/n/10.95 `<pitch><step>D</step><octave>5</octave></pitch>`), but I can-not per-
+ []
+
+LaTeX Info: Redefining \. on input line 677.
+LaTeX Info: Redefining \% on input line 677.
+[61]
+Overfull \hbox (13.64479pt too wide) in paragraph at lines 699--699
  []        \T1/cmtt/m/n/10.95 LENGTH(a.compases_sincopas) - LENGTH(REPLACE(a.compases_sincopas,[] 
  []
 
-LaTeX Info: Redefining \. on input line 559.
-LaTeX Info: Redefining \% on input line 559.
-[57]
-LaTeX Info: Redefining \. on input line 578.
-LaTeX Info: Redefining \% on input line 578.
- [58]
-LaTeX Info: Redefining \. on input line 612.
-LaTeX Info: Redefining \% on input line 612.
- [59]
-LaTeX Info: Redefining \. on input line 637.
-LaTeX Info: Redefining \% on input line 637.
- [60]
-LaTeX Info: Redefining \. on input line 669.
-LaTeX Info: Redefining \% on input line 669.
- [61]
-Underfull \hbox (badness 1867) in paragraph at lines 686--690
+LaTeX Info: Redefining \. on input line 706.
+LaTeX Info: Redefining \% on input line 706.
+[62]
+LaTeX Info: Redefining \. on input line 727.
+LaTeX Info: Redefining \% on input line 727.
+ [63]
+LaTeX Info: Redefining \. on input line 763.
+LaTeX Info: Redefining \% on input line 763.
+ [64]
+LaTeX Info: Redefining \. on input line 788.
+LaTeX Info: Redefining \% on input line 788.
+ [65]
+LaTeX Info: Redefining \. on input line 817.
+LaTeX Info: Redefining \% on input line 817.
+ [66]
+Underfull \hbox (badness 1867) in paragraph at lines 843--847
 []\T1/cmr/m/n/10.95 * **Sig-na-tu-ra de com-pás de-cla-ra-da:** `<sco-re-Def xml:id=sg2v8p><me-ter-Sig
  []
 
-LaTeX Info: Redefining \. on input line 708.
-LaTeX Info: Redefining \% on input line 708.
-[62]
-Underfull \hbox (badness 2707) in paragraph at lines 730--739
+LaTeX Info: Redefining \. on input line 857.
+LaTeX Info: Redefining \% on input line 857.
+[67]
+Underfull \hbox (badness 2707) in paragraph at lines 890--899
 []\T1/cmr/m/n/10.95 Por ejem-plo, es-tas pie-zas in-clu-yen el si-guien-te ti-po de de-cla-ra-ción: ```xml
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 730--739
+Underfull \hbox (badness 10000) in paragraph at lines 890--899
 \T1/cmr/m/n/10.95 <time-modification><actual-notes>3</actual-notes><normal-notes>2</normal-
  []
 
 
-Underfull \hbox (badness 2635) in paragraph at lines 730--739
+Underfull \hbox (badness 2635) in paragraph at lines 890--899
 \T1/cmr/m/n/10.95 notes><normal-type>eighth</normal-type></time-modification>``` Es-to in-di-ca
  []
 
-LaTeX Info: Redefining \. on input line 751.
-LaTeX Info: Redefining \% on input line 751.
-[63]
-LaTeX Info: Redefining \. on input line 782.
-LaTeX Info: Redefining \% on input line 782.
- [64]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 793.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\scalebox' on input line 793.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\resizebox' on input line 793.
-
-LaTeX Info: Redefining \. on input line 802.
-LaTeX Info: Redefining \% on input line 802.
-[65]
-LaTeX Info: Redefining \. on input line 826.
-LaTeX Info: Redefining \% on input line 826.
- [66]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\setbox' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\ht' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\globaldefs' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\m@ne' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tf@size' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sf@size' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\ssf@size' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\globaldefs' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@tempa' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\advance' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\raise' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\setbox' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\ht' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\globaldefs' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\m@ne' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tf@size' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sf@size' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\ssf@size' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\globaldefs' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@tempa' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\advance' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\raise' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 829.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 829.
-
-LaTeX Info: Redefining \. on input line 862.
-LaTeX Info: Redefining \% on input line 862.
-[67]
-LaTeX Info: Redefining \. on input line 899.
-LaTeX Info: Redefining \% on input line 899.
- [68]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\scalebox' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\resizebox' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\setbox' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\ht' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\globaldefs' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\m@ne' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tf@size' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\sf@size' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\ssf@size' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\globaldefs' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<def>-command' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@tempa' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\advance' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\raise' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\dimen@' on input line 913.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 913.
-
-
-Underfull \vbox (badness 3108) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 916.
-LaTeX Info: Redefining \% on input line 916.
+LaTeX Info: Redefining \. on input line 904.
+LaTeX Info: Redefining \% on input line 904.
+[68]
+LaTeX Info: Redefining \. on input line 929.
+LaTeX Info: Redefining \% on input line 929.
  [69]
-LaTeX Info: Redefining \. on input line 943.
-LaTeX Info: Redefining \% on input line 943.
+LaTeX Info: Redefining \. on input line 963.
+LaTeX Info: Redefining \% on input line 963.
  [70]
-Underfull \hbox (badness 3547) in paragraph at lines 977--978
+LaTeX Info: Redefining \. on input line 991.
+LaTeX Info: Redefining \% on input line 991.
+ [71]
+LaTeX Info: Redefining \. on input line 1018.
+LaTeX Info: Redefining \% on input line 1018.
+ [72]
+LaTeX Info: Redefining \. on input line 1058.
+LaTeX Info: Redefining \% on input line 1058.
+ [73]
+LaTeX Info: Redefining \. on input line 1090.
+LaTeX Info: Redefining \% on input line 1090.
+ [74]
+LaTeX Info: Redefining \. on input line 1109.
+LaTeX Info: Redefining \% on input line 1109.
+ [75]
+LaTeX Info: Redefining \. on input line 1135.
+LaTeX Info: Redefining \% on input line 1135.
+ [76]
+LaTeX Info: Redefining \. on input line 1164.
+LaTeX Info: Redefining \% on input line 1164.
+ [77]
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1188
+[]|\T1/cmr/bx/n/10.95 Gemini 2.5
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1188
+\T1/cmr/bx/n/10.95 Flash (Fi-le
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1189--1190
+[]|\T1/cmr/bx/n/10.95 Llama3.1:8B
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1189--1190
+\T1/cmr/bx/n/10.95 (RAG con
+ []
+
+
+Overfull \hbox (9.14719pt too wide) in alignment at lines 1182--1191
+ [] [] [] 
+ []
+
+
+Underfull \hbox (badness 3547) in paragraph at lines 1353--1354
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Overfull \hbox (9.14719pt too wide) in paragraph at lines 968--981
- [][] 
+Overfull \hbox (9.14719pt too wide) in alignment at lines 1191--1489
+ [] [] [] 
  []
 
-)
+
+ignored: Infinite glue shrinkage found in box being split
+LaTeX Info: Redefining \. on input line 1489.
+LaTeX Info: Redefining \% on input line 1489.
+[78]
+ignored: Infinite glue shrinkage found in box being split
+LaTeX Info: Redefining \. on input line 1489.
+LaTeX Info: Redefining \% on input line 1489.
+ [79])
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
- [71]
-LaTeX Info: Redefining \. on input line 147.
-LaTeX Info: Redefining \% on input line 147.
- [72]
+ [80]
 \openout2 = `Capitulos/DiscusionAnalisis.aux'.
 
  (Capitulos/DiscusionAnalisis.tex
 Cap\'itulo 7.
-) [73
+) [81
 
 
 
@@ -1519,22 +1296,22 @@ Cap\'itulo 7.
 ]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
- (Capitulos/ConclusionesTrabajoFuturo.tex [74
+ (Capitulos/ConclusionesTrabajoFuturo.tex [82
 
 
 
 
 ]
 Cap\'itulo 8.
-[75])
+[83])
 LaTeX Info: Redefining \. on input line 149.
 LaTeX Info: Redefining \% on input line 149.
- [76]
+ [84]
 \openout2 = `Capitulos/Introduction.aux'.
 
  (Capitulos/Introduction.tex
 Chapter 9.
-) [77
+) [85
 
 
 
@@ -1542,14 +1319,14 @@ Chapter 9.
 ]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (Capitulos/ConclusionsFutureWork.tex [78
+ (Capitulos/ConclusionsFutureWork.tex [86
 
 
 
 
 ]
 Chapter 10.
-) [79]
+) [87]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
  (TFMTeXiS.bbl)
@@ -1558,7 +1335,7 @@ LaTeX Info: Redefining \% on input line 157.
  (Cascaras/bibliografia.tex (TFMTeXiS.bbl))
 \openout2 = `Apendices/appendixA.aux'.
 
- (Apendices/appendixA.tex [80
+ (Apendices/appendixA.tex [88
 
 
 
@@ -1568,16 +1345,16 @@ LaTeX Info: Redefining \% on input line 157.
 
 ]
 Ap\'{e}ndice A.
-) [81] [82
+) [89] [90
 
 
 
 ]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [83
+ (Cascaras/fin.tex [91
 
-] [84])
+] [92])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1596,20 +1373,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
-(rerunfilecheck)             Checksum: 242C81EABC91A90FAF4CD37FF1DC456D;45076.
+(rerunfilecheck)             Checksum: A1EF6DF0F37429062BF21D9F45FA0020;44839.
  ) 
 Here is how much of TeX's memory you used:
- 18692 strings out of 467691
- 311404 string characters out of 5414987
- 755170 words of memory out of 5000000
- 46851 multiletter control sequences out of 15000+600000
- 649121 words of font info for 77 fonts, out of 8000000 for 9000
+ 18848 strings out of 467691
+ 313960 string characters out of 5414987
+ 799596 words of memory out of 5000000
+ 46994 multiletter control sequences out of 15000+600000
+ 648345 words of font info for 76 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  97i,12n,109p,1753b,862s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (104 pages, 958865 bytes).
+ <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
+Output written on TFMTeXiS.pdf (112 pages, 982820 bytes).
 PDF statistics:
- 1826 PDF objects out of 2073 (max. 8388607)
- 237 named destinations out of 1000 (max. 500000)
+ 1858 PDF objects out of 2073 (max. 8388607)
+ 245 named destinations out of 1000 (max. 500000)
  990 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -24,6 +24,8 @@
 % The Current Maintainers of this work are Marco Antonio Gomez-Martin
 % and Pedro Pablo Gomez-Martin
 %
+
+%\usepackage[utf8]{inputenc}
 %---------------------------------------------------------------------
 %
 % Contiene la parte inicial del documento, antes del
@@ -645,7 +647,7 @@
 % Define el entorno  longtable que sirve para crear  tablas que ocupan
 % más de una página.
 
-%\usepackage{longtable}
+\usepackage{longtable}
 
 % Cuando en una tabla tenemos lineas dobles de separación entre filas
 % y columnas, LaTeX las pinta de manera que dé la sensación de que
@@ -702,7 +704,7 @@
 %\usepackage{tabulary}
 % Otras opciones anteriores
 %\usepackage{tabularx}  % Este está incluído por arriba
-%\usepackage{array}
+\usepackage{array}
 
 %\usepackage{slashbox}
 % Para poder poner líneas diagonales en una tabla:
@@ -755,6 +757,7 @@
 \usepackage{csquotes}
 \usepackage[final]{pdfpages}
 
+\usepackage{makecell}
 
 % para generar dummy text para mostrar el funcionamiento de la plantilla
 % \usepackage{lipsum}
@@ -768,7 +771,3 @@
 %%% mode: latex
 %%% TeX-master: "../Tesis.tex"
 %%% End:
-
-\usepackage{tabularx}
-\usepackage[utf8]{inputenc}
-\usepackage{makecell}

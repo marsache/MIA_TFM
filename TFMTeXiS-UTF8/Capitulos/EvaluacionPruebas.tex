@@ -947,7 +947,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.cambio_resolucion_ppq = 1;
     \end{verbatim} 
     Tras ejecutar la consulta se obtuvieron 3554 obras que cumplen con los requisitos expuestos.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que no identifica de forma estructurada el cambio de resolución rítmica basado en el atributo dur.ppq, sino que realiza una inspección descriptiva de elementos MusicXML sin verificar cambios efectivos a mitad de sección. Esto conduce a una conclusión negativa no sustentada por el criterio formal definido en la base de datos. Ninguna de las canciones propocionadas por este modelo aparece en la lista de la consulta SQL correcta.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que recupera las piezas donde \texttt{cambio\_resolucion\_ppq = 1}, coincidiendo con la consulta SQL de referencia.
 \end{itemize}
 
 \subsection{Busca ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''}
@@ -962,7 +964,7 @@ Otros ejemplos revisados no muestran una anacrusa en el sentido tradicional de u
 *   La **""2. Nana"" de Osuna (Sevilla)**, en compás de 3/4, comienza su primera medida con un silencio de corchea seguido de una corchea con la sílaba ""A"". Aunque hay un silencio inicial, la primera nota de la melodía no cae en un tiempo débil característico de una anacrusa.
 *   La pieza **""369. Nana, nanita."" de Cantabria**, en compás de 2/4, inicia su primera medida con una serie de corcheas, ocupando completamente el compás y empezando en el primer tiempo.
 *   La pieza **""368. Nana, nana."" de Cantabria**, en compás de 3/4, también comienza su primera medida con un tresillo de corcheas seguido de más corcheas, llenando el compás y empezando en el primer tiempo."
-    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron ejemplos de anacrusa en piezas que estén etiquetadas como "Nanas". Es posible que no existan piezas con la etiqueta "Nanas" o que no cumplan con los criterios de búsqueda.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''. Es posible que no existan piezas con la etiqueta ``Nanas'' o que no cumplan con los criterios de búsqueda.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo
@@ -972,7 +974,9 @@ WHERE LOWER(a.temas) LIKE '%nana%'
   AND a.desajuste_duracion_meter = 1;
     \end{verbatim} 
     Tras ejecutar la consulta se obtuvieron 425 obras que cumplen con los requisitos expuestos.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es parcialmente correcta, ya que identifica algunos casos plausibles de anacrusa dentro de piezas etiquetadas como “Nanas” y realiza un análisis musical razonable basado en la posición métrica de las entradas. Sin embargo, este enfoque no se basa en el criterio estructurado definido en la base de datos, lo que implica que los ejemplos dependen de una interpretación textual del contenido musical y no de una verificación sistemática del atributo analítico. Por ello, aunque algunos ejemplos coinciden con el resultado esperado, la cobertura global no es fiable ni exhaustiva.
+
+Por el contrario, la respuesta del segundo modelo es incorrecta, ya que concluye la ausencia de resultados sin considerar adecuadamente la combinación de filtros sobre etiquetas temáticas y desajuste rítmico. Esto indica una posible falla de recuperación o de formulación de la consulta, dado que la base de datos sí contiene un total de 425 obras que cumplen los criterios especificados según la consulta SQL de referencia.
 \end{itemize}
 
 \subsection{Localiza obras que tengan compases donde la suma de las duraciones de las etiquetas <note> no coincida con el meterSig declarado en el staffDef}
@@ -1856,14 +1860,14 @@ Correcta \\
 \hline
 
 Encuentra canciones donde el valor de dur.ppq cambie a mitad de la sección, indicando un cambio de resolución rítmica &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Busca ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas'' &
-COMPLETAR &
-COMPLETAR \\
+Parcialmente correcta &
+Incorrecta \\
 
 \hline
 

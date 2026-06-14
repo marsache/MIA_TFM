@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  14 JUN 2026 16:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  14 JUN 2026 17:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1110,268 +1110,279 @@ LaTeX Info: Redefining \% on input line 157.
 LaTeX Info: Redefining \. on input line 197.
 LaTeX Info: Redefining \% on input line 197.
  [51]
-LaTeX Info: Redefining \. on input line 237.
-LaTeX Info: Redefining \% on input line 237.
+LaTeX Info: Redefining \. on input line 232.
+LaTeX Info: Redefining \% on input line 232.
  [52]
-LaTeX Info: Redefining \. on input line 288.
-LaTeX Info: Redefining \% on input line 288.
+LaTeX Info: Redefining \. on input line 268.
+LaTeX Info: Redefining \% on input line 268.
  [53]
-Underfull \hbox (badness 10000) in paragraph at lines 324--330
+LaTeX Info: Redefining \. on input line 299.
+LaTeX Info: Redefining \% on input line 299.
+ [54]
+Underfull \hbox (badness 10000) in paragraph at lines 332--338
 []\T1/cmr/m/n/10.95 Los ar-chi-vos que con-tie-nen la no-ta G5 in-clu-yen: * `MX-1952-00-CR-
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 324--330
+Underfull \hbox (badness 3291) in paragraph at lines 332--338
 \T1/cmr/m/n/10.95 00002.musicxml.xml` * `IE-2019-D-HLS-015.xml` * `good-man_vol_1_495.xml`
  []
 
-LaTeX Info: Redefining \. on input line 333.
-LaTeX Info: Redefining \% on input line 333.
-[54]
-LaTeX Info: Redefining \. on input line 382.
-LaTeX Info: Redefining \% on input line 382.
- [55]
-LaTeX Info: Redefining \. on input line 425.
-LaTeX Info: Redefining \% on input line 425.
+LaTeX Info: Redefining \. on input line 340.
+LaTeX Info: Redefining \% on input line 340.
+[55]
+LaTeX Info: Redefining \. on input line 366.
+LaTeX Info: Redefining \% on input line 366.
  [56]
-LaTeX Info: Redefining \. on input line 479.
-LaTeX Info: Redefining \% on input line 479.
+LaTeX Info: Redefining \. on input line 407.
+LaTeX Info: Redefining \% on input line 407.
  [57]
-LaTeX Info: Redefining \. on input line 521.
-LaTeX Info: Redefining \% on input line 521.
+LaTeX Info: Redefining \. on input line 439.
+LaTeX Info: Redefining \% on input line 439.
  [58]
-LaTeX Info: Redefining \. on input line 562.
-LaTeX Info: Redefining \% on input line 562.
+LaTeX Info: Redefining \. on input line 482.
+LaTeX Info: Redefining \% on input line 482.
  [59]
-LaTeX Info: Redefining \. on input line 604.
-LaTeX Info: Redefining \% on input line 604.
+LaTeX Info: Redefining \. on input line 535.
+LaTeX Info: Redefining \% on input line 535.
  [60]
-LaTeX Info: Redefining \. on input line 646.
-LaTeX Info: Redefining \% on input line 646.
+LaTeX Info: Redefining \. on input line 578.
+LaTeX Info: Redefining \% on input line 578.
  [61]
-LaTeX Info: Redefining \. on input line 694.
-LaTeX Info: Redefining \% on input line 694.
+LaTeX Info: Redefining \. on input line 616.
+LaTeX Info: Redefining \% on input line 616.
  [62]
-LaTeX Info: Redefining \. on input line 732.
-LaTeX Info: Redefining \% on input line 732.
+LaTeX Info: Redefining \. on input line 656.
+LaTeX Info: Redefining \% on input line 656.
  [63]
-Underfull \hbox (badness 10000) in paragraph at lines 747--748
+LaTeX Info: Redefining \. on input line 699.
+LaTeX Info: Redefining \% on input line 699.
+ [64]
+LaTeX Info: Redefining \. on input line 745.
+LaTeX Info: Redefining \% on input line 745.
+ [65]
+Underfull \hbox (badness 10000) in paragraph at lines 763--764
 []\T1/cmr/m/n/10.95 Unfortunately, I can-not di-rectly -ead.[]r ïn-ter-pret"the mu-si-cal con-tent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 747--748
+Underfull \hbox (badness 10000) in paragraph at lines 763--764
 \T1/cmr/m/n/10.95 of the-se Mu-sicXML fi-les to cal-cu-la-te in-ter-vals and their fre-quen-cies.
  []
 
 
-Underfull \hbox (badness 5388) in paragraph at lines 747--748
+Underfull \hbox (badness 5388) in paragraph at lines 763--764
 \T1/cmr/m/n/10.95 The snip-pets show mu-si-cal no-ta-tion in a struc-tu-red text for-mat (e.g.,
  []
 
 
-Underfull \hbox (badness 2564) in paragraph at lines 747--748
+Underfull \hbox (badness 2564) in paragraph at lines 763--764
 \T1/cmr/m/n/10.95 `<pitch><step>D</step><octave>5</octave></pitch>`), but I can-not per-
  []
 
-LaTeX Info: Redefining \. on input line 762.
-LaTeX Info: Redefining \% on input line 762.
-[64]
-LaTeX Info: Redefining \. on input line 796.
-LaTeX Info: Redefining \% on input line 796.
- [65]
-Overfull \hbox (13.64479pt too wide) in paragraph at lines 798--798
+LaTeX Info: Redefining \. on input line 778.
+LaTeX Info: Redefining \% on input line 778.
+[66]
+LaTeX Info: Redefining \. on input line 812.
+LaTeX Info: Redefining \% on input line 812.
+ [67]
+Overfull \hbox (13.64479pt too wide) in paragraph at lines 814--814
  []        \T1/cmtt/m/n/10.95 LENGTH(a.compases_sincopas) - LENGTH(REPLACE(a.compases_sincopas,[] 
  []
 
-LaTeX Info: Redefining \. on input line 818.
-LaTeX Info: Redefining \% on input line 818.
-[66]
-LaTeX Info: Redefining \. on input line 849.
-LaTeX Info: Redefining \% on input line 849.
- [67]
-Overfull \hbox (13.64479pt too wide) in paragraph at lines 865--865
+LaTeX Info: Redefining \. on input line 834.
+LaTeX Info: Redefining \% on input line 834.
+[68]
+LaTeX Info: Redefining \. on input line 865.
+LaTeX Info: Redefining \% on input line 865.
+ [69]
+Overfull \hbox (13.64479pt too wide) in paragraph at lines 881--881
  []  \T1/cmtt/m/n/10.95 AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);[] 
  []
 
-LaTeX Info: Redefining \. on input line 882.
-LaTeX Info: Redefining \% on input line 882.
-[68]
-LaTeX Info: Redefining \. on input line 914.
-LaTeX Info: Redefining \% on input line 914.
- [69]
-LaTeX Info: Redefining \. on input line 946.
-LaTeX Info: Redefining \% on input line 946.
- [70]
-Underfull \hbox (badness 1867) in paragraph at lines 963--967
+LaTeX Info: Redefining \. on input line 898.
+LaTeX Info: Redefining \% on input line 898.
+[70]
+LaTeX Info: Redefining \. on input line 930.
+LaTeX Info: Redefining \% on input line 930.
+ [71]
+LaTeX Info: Redefining \. on input line 962.
+LaTeX Info: Redefining \% on input line 962.
+ [72]
+Underfull \hbox (badness 1867) in paragraph at lines 979--983
 []\T1/cmr/m/n/10.95 * **Sig-na-tu-ra de com-pás de-cla-ra-da:** `<sco-re-Def xml:id=sg2v8p><me-ter-Sig
  []
 
-LaTeX Info: Redefining \. on input line 983.
-LaTeX Info: Redefining \% on input line 983.
-[71]
-Underfull \hbox (badness 2707) in paragraph at lines 1014--1023
+LaTeX Info: Redefining \. on input line 999.
+LaTeX Info: Redefining \% on input line 999.
+[73]
+Underfull \hbox (badness 2707) in paragraph at lines 1030--1039
 []\T1/cmr/m/n/10.95 Por ejem-plo, es-tas pie-zas in-clu-yen el si-guien-te ti-po de de-cla-ra-ción: ```xml
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1014--1023
+Underfull \hbox (badness 10000) in paragraph at lines 1030--1039
 \T1/cmr/m/n/10.95 <time-modification><actual-notes>3</actual-notes><normal-notes>2</normal-
  []
 
 
-Underfull \hbox (badness 2635) in paragraph at lines 1014--1023
+Underfull \hbox (badness 2635) in paragraph at lines 1030--1039
 \T1/cmr/m/n/10.95 notes><normal-type>eighth</normal-type></time-modification>``` Es-to in-di-ca
  []
 
-LaTeX Info: Redefining \. on input line 1027.
-LaTeX Info: Redefining \% on input line 1027.
-[72]
-LaTeX Info: Redefining \. on input line 1052.
-LaTeX Info: Redefining \% on input line 1052.
- [73]
-LaTeX Info: Redefining \. on input line 1091.
-LaTeX Info: Redefining \% on input line 1091.
- [74]
+LaTeX Info: Redefining \. on input line 1043.
+LaTeX Info: Redefining \% on input line 1043.
+[74]
+LaTeX Info: Redefining \. on input line 1068.
+LaTeX Info: Redefining \% on input line 1068.
+ [75]
+LaTeX Info: Redefining \. on input line 1107.
+LaTeX Info: Redefining \% on input line 1107.
+ [76]
 Underfull \vbox (badness 1448) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1118.
-LaTeX Info: Redefining \% on input line 1118.
- [75]
-LaTeX Info: Redefining \. on input line 1147.
-LaTeX Info: Redefining \% on input line 1147.
- [76]
-LaTeX Info: Redefining \. on input line 1184.
-LaTeX Info: Redefining \% on input line 1184.
+LaTeX Info: Redefining \. on input line 1134.
+LaTeX Info: Redefining \% on input line 1134.
  [77]
+LaTeX Info: Redefining \. on input line 1163.
+LaTeX Info: Redefining \% on input line 1163.
+ [78]
+LaTeX Info: Redefining \. on input line 1200.
+LaTeX Info: Redefining \% on input line 1200.
+ [79]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 1232.
-LaTeX Info: Redefining \% on input line 1232.
- [78]
-Overfull \hbox (28.2355pt too wide) in paragraph at lines 1250--1260
- [][] 
- []
-
-LaTeX Info: Redefining \. on input line 1276.
-LaTeX Info: Redefining \% on input line 1276.
-[79]
-LaTeX Info: Redefining \. on input line 1315.
-LaTeX Info: Redefining \% on input line 1315.
+LaTeX Info: Redefining \. on input line 1248.
+LaTeX Info: Redefining \% on input line 1248.
  [80]
-Overfull \hbox (31.16087pt too wide) in paragraph at lines 1354--1365
+Overfull \hbox (28.2355pt too wide) in paragraph at lines 1266--1276
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 1375.
-LaTeX Info: Redefining \% on input line 1375.
+LaTeX Info: Redefining \. on input line 1292.
+LaTeX Info: Redefining \% on input line 1292.
 [81]
-LaTeX Info: Redefining \. on input line 1401.
-LaTeX Info: Redefining \% on input line 1401.
+LaTeX Info: Redefining \. on input line 1331.
+LaTeX Info: Redefining \% on input line 1331.
  [82]
-LaTeX Info: Redefining \. on input line 1418.
-LaTeX Info: Redefining \% on input line 1418.
- [83]
-LaTeX Info: Redefining \. on input line 1453.
-LaTeX Info: Redefining \% on input line 1453.
+Overfull \hbox (31.16087pt too wide) in paragraph at lines 1370--1381
+ [][] 
+ []
+
+LaTeX Info: Redefining \. on input line 1391.
+LaTeX Info: Redefining \% on input line 1391.
+[83]
+LaTeX Info: Redefining \. on input line 1417.
+LaTeX Info: Redefining \% on input line 1417.
  [84]
-LaTeX Info: Redefining \. on input line 1482.
-LaTeX Info: Redefining \% on input line 1482.
+LaTeX Info: Redefining \. on input line 1434.
+LaTeX Info: Redefining \% on input line 1434.
  [85]
-LaTeX Info: Redefining \. on input line 1528.
-LaTeX Info: Redefining \% on input line 1528.
+LaTeX Info: Redefining \. on input line 1469.
+LaTeX Info: Redefining \% on input line 1469.
  [86]
-LaTeX Info: Redefining \. on input line 1565.
-LaTeX Info: Redefining \% on input line 1565.
+LaTeX Info: Redefining \. on input line 1498.
+LaTeX Info: Redefining \% on input line 1498.
  [87]
-Underfull \hbox (badness 10000) in paragraph at lines 1632--1632
+LaTeX Info: Redefining \. on input line 1544.
+LaTeX Info: Redefining \% on input line 1544.
+ [88]
+LaTeX Info: Redefining \. on input line 1581.
+LaTeX Info: Redefining \% on input line 1581.
+ [89]
+Underfull \hbox (badness 10000) in paragraph at lines 1648--1648
 []|\T1/cmr/bx/n/10.95 Gemini 2.5
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1632--1632
+Underfull \hbox (badness 10000) in paragraph at lines 1648--1648
 \T1/cmr/bx/n/10.95 Flash (Fi-le
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1633--1634
+Underfull \hbox (badness 10000) in paragraph at lines 1649--1650
 []|\T1/cmr/bx/n/10.95 Llama3.1:8B
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1633--1634
+Underfull \hbox (badness 10000) in paragraph at lines 1649--1650
 \T1/cmr/bx/n/10.95 (RAG con
  []
 
 
-Overfull \hbox (9.14719pt too wide) in alignment at lines 1626--1635
+Overfull \hbox (9.14719pt too wide) in alignment at lines 1642--1651
  [] [] [] 
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1646--1646
+Underfull \hbox (badness 3547) in paragraph at lines 1662--1662
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1647--1648
+Underfull \hbox (badness 3547) in paragraph at lines 1663--1664
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1797--1798
+Underfull \hbox (badness 3547) in paragraph at lines 1704--1704
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Overfull \hbox (9.14719pt too wide) in alignment at lines 1635--1933
+Underfull \hbox (badness 3547) in paragraph at lines 1813--1814
+[]|\T1/cmr/m/n/10.95 Parcialmente co-
+ []
+
+
+Overfull \hbox (9.14719pt too wide) in alignment at lines 1651--1949
  [] [] [] 
  []
 
 
 ignored: Infinite glue shrinkage found in box being split
-LaTeX Info: Redefining \. on input line 1933.
-LaTeX Info: Redefining \% on input line 1933.
-[88]
+LaTeX Info: Redefining \. on input line 1949.
+LaTeX Info: Redefining \% on input line 1949.
+[90]
 ignored: Infinite glue shrinkage found in box being split
-LaTeX Info: Redefining \. on input line 1933.
-LaTeX Info: Redefining \% on input line 1933.
- [89]
+LaTeX Info: Redefining \. on input line 1949.
+LaTeX Info: Redefining \% on input line 1949.
+ [91]
 ignored: Infinite glue shrinkage found in box being split
-LaTeX Info: Redefining \. on input line 1933.
-LaTeX Info: Redefining \% on input line 1933.
- [90])
+LaTeX Info: Redefining \. on input line 1949.
+LaTeX Info: Redefining \% on input line 1949.
+ [92])
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
- [91]
+ [93]
 \openout2 = `Capitulos/DiscusionAnalisis.aux'.
 
- (Capitulos/DiscusionAnalisis.tex [92
+ (Capitulos/DiscusionAnalisis.tex [94
 
 
 
 
 ]
 Cap\'itulo 7.
-) [93]
+) [95]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
- (Capitulos/ConclusionesTrabajoFuturo.tex [94
+ (Capitulos/ConclusionesTrabajoFuturo.tex [96
 
 
 
 
 ]
 Cap\'itulo 8.
-[95])
+[97])
 LaTeX Info: Redefining \. on input line 149.
 LaTeX Info: Redefining \% on input line 149.
- [96]
+ [98]
 \openout2 = `Capitulos/Introduction.aux'.
 
  (Capitulos/Introduction.tex
 Chapter 9.
-) [97
+) [99
 
 
 
@@ -1379,14 +1390,14 @@ Chapter 9.
 ]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (Capitulos/ConclusionsFutureWork.tex [98
+ (Capitulos/ConclusionsFutureWork.tex [100
 
 
 
 
 ]
 Chapter 10.
-) [99]
+) [101]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
  (TFMTeXiS.bbl)
@@ -1395,7 +1406,7 @@ LaTeX Info: Redefining \% on input line 157.
  (Cascaras/bibliografia.tex (TFMTeXiS.bbl))
 \openout2 = `Apendices/appendixA.aux'.
 
- (Apendices/appendixA.tex [100
+ (Apendices/appendixA.tex [102
 
 
 
@@ -1405,16 +1416,16 @@ LaTeX Info: Redefining \% on input line 157.
 
 ]
 Ap\'{e}ndice A.
-) [101] [102
+) [103] [104
 
 
 
 ]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [103
+ (Cascaras/fin.tex [105
 
-] [104])
+] [106])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1436,17 +1447,17 @@ Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
 (rerunfilecheck)             Checksum: 1B8A44A33216600CA73D0D86F1B228E0;44839.
  ) 
 Here is how much of TeX's memory you used:
- 18877 strings out of 467691
- 314400 string characters out of 5414987
- 803017 words of memory out of 5000000
+ 18879 strings out of 467691
+ 314416 string characters out of 5414987
+ 803019 words of memory out of 5000000
  47006 multiletter control sequences out of 15000+600000
  649121 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  97i,12n,109p,1753b,862s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (124 pages, 1036004 bytes).
+Output written on TFMTeXiS.pdf (126 pages, 1044404 bytes).
 PDF statistics:
- 1995 PDF objects out of 2073 (max. 8388607)
- 261 named destinations out of 1000 (max. 500000)
+ 2002 PDF objects out of 2073 (max. 8388607)
+ 263 named destinations out of 1000 (max. 500000)
  990 words of extra memory for PDF output out of 10000 (max. 10000000)
 

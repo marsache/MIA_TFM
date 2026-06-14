@@ -467,7 +467,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.tiene_sincopas = 1;
     \end{verbatim}    
     Tras realizar la consulta se obtuvieron 538 obras con síncopas.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo no identifica ninguna pieza concreta con síncopas y argumenta que la información disponible no permite realizar la clasificación solicitada, ya que los archivos recuperados no contienen metadatos explícitos sobre este rasgo rítmico a nivel de obra.
+    
+    La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{tiene\_sincopas = 1} según el análisis musical almacenado en la tabla \texttt{analisis\_musical}. No obstante, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación en el número de elementos devueltos por el sistema.
 \end{itemize}
 
 \subsection{Identifica piezas que traten la muerte como tema}
@@ -501,7 +503,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE LOWER(a.temas) LIKE '%muerte%';
     \end{verbatim}    
     Tras realizar la consulta, se obtuvieron 768 obras que tratan el tema de la muerte en sus letras.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es parcialmente correcta desde un punto de vista semántico, ya que identifica varias obras relacionadas con el tema de la muerte y aporta ejemplos textuales que evidencian dicha temática en el contenido lírico. No obstante, el enfoque se basa en coincidencias en los fragmentos recuperados y no en una consulta estructurada sobre los temas, lo que limita la exhaustividad del resultado y puede introducir sesgos de recuperación. En consecuencia, aunque las piezas mencionadas son plausibles, la respuesta no garantiza cobertura completa del conjunto de datos.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas corresponden a registros cuyo campo \texttt{temas} contiene explícitamente la palabra \texttt{muerte}, cumpliendo exactamente la condición de la consulta SQL. Sin embargo, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación del formato de salida o al truncamiento de la respuesta.
 \end{itemize}
 
 \subsection{Identifica piezas con polirritmia}
@@ -539,7 +543,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.tiene_polirritmia = 1;
     \end{verbatim}    
     Tras realizar la consulta se obtuvieron 1904 obras con polirritmia.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo infiere la presencia de polirritmia a partir de descripciones textuales vagas o interpretaciones de elementos rítmicos complejos (como menciones a golpes alternos o patrones de pandereta). Esto conduce a una sobreinterpretación de evidencia indirecta y a la inclusión de ejemplos que no están etiquetados explícitamente como polirritmia en el conjunto de datos. En consecuencia, la respuesta no es verificable ni exhaustiva y no refleja de forma fiable los registros reales.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{tiene\_polirritmia = 1} según el análisis musical almacenado en la tabla \texttt{analisis\_musical}. No obstante, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación del formato de respuesta o del número máximo de elementos devueltos.
 \end{itemize}
 
 \subsection{Identifica piezas cuyo contenido lírico esté escrito en voz masculina}
@@ -569,7 +575,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.lirica_voz = 'masculino';
     \end{verbatim}    
     Tras realizar la consulta se obtuvieron 2618 obras cuyo contenido lírico está escrito en voz masculina.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo basa su conclusión en el análisis de una única pieza concreta (“Macario Romero”), interpretando el contenido narrativo y la voz de los personajes como evidencia suficiente para determinar el género de la voz lírica. Sin embargo, esta inferencia se realiza a partir de un caso aislado, lo que introduce un sesgo de generalización y una falta de cobertura del conjunto de datos. En consecuencia, la respuesta no es representativa del total de obras etiquetadas como voz masculina.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{lirica\_voz = 'masculino'} según los metadatos del análisis musical. No obstante, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación en el número de elementos devueltos por el sistema.
 \end{itemize}
 
 \subsection{Identifica obras cuya tendencia melódica sea predominantemente descendente}
@@ -605,7 +613,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.tendencia_melodica = 'Predominantemente descendente';
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 6000 obras cuya tendencia melódica es predominantemente descendente.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo intenta inferir la tendencia melódica descendente a partir de fragmentos locales de algunas partituras recuperadas (por ejemplo, secuencias de notas descendentes en compases concretos), pero no realiza un análisis exhaustivo y completo de la obra. Esto provoca una decisión basada en evidencia parcial y no en el conjunto completo de datos, lo que introduce sesgos de muestreo y una cobertura muy limitada del corpus.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las obras listadas cumplen la condición \texttt{tendencia\_melodica = 'Predominantemente descendente'} según el análisis musical almacenado en la base de datos. No obstante, la salida presenta únicamente un subconjunto de los resultados totales debido a la limitación del número de elementos devueltos por el sistema.
 \end{itemize}
 
 \subsection{Identifica piezas con 4 alteraciones accidentales}
@@ -637,7 +647,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.conteo_accidentales_totales = 4;
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 190 obras con 4 alteraciones accidentales.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo interpreta la pregunta en términos de armaduras de clave y tonalidades, confundiendo el concepto de “4 alteraciones accidentales” con la cantidad de alteraciones en la armadura (sostenidos o bemoles). Esto provoca una desviación conceptual que impide identificar correctamente las obras solicitadas y conduce a una respuesta basada en teoría tonal general en lugar de datos del conjunto.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{conteo\_accidentales\_totales = 4} según el análisis musical almacenado en la base de datos. No obstante, la salida presenta únicamente un subconjunto de los resultados totales debido a la limitación del número de elementos devueltos por el sistema.
 \end{itemize}
 
 \subsection{Identifica piezas con compases vacíos}
@@ -658,7 +670,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.qc_compases_vacios > 0;
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 612 obras con compases vacíos.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta proporcionada por el primer modelo presenta resultados parcialmente correctos, ya que identifica algunas piezas que efectivamente contienen compases vacíos. Sin embargo, la cobertura es incompleta y se limita a un subconjunto muy reducido de la base de datos, sin reflejar el conjunto total de obras. Además, se observa cierta inconsistencia en la definición del criterio de compás vacío: el modelo mezcla casos de silencios explícitos a nivel de compás completo con descripciones de compases con silencios parciales, lo que introduce ambigüedad en la clasificación.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que recupera el conjunto de piezas correspondiente a la condición \texttt{qc\_compases\_vacios > 0}, alineándose con la consulta SQL de referencia y cubriendo adecuadamente la totalidad de resultados esperados en la base de datos.
 \end{itemize}
 
 \subsection{Identifica piezas con notas de duración 0}
@@ -684,7 +698,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.qc_notas_duracion_cero > 0;
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 1784 obras con notas de duración 0.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que concluye la ausencia de notas con duración 0 basándose en una interpretación superficial de los valores de duración presentes en los documentos. Este enfoque confunde la representación explícita de la duración en el formato textual con la existencia de registros donde el análisis musical identifica explícitamente duraciones nulas.
+
+En cambio, la respuesta del segundo modelo es correcta, ya que recupera los identificadores de piezas que cumplen la condición \texttt{qc\_notas\_duracion\_cero > 0}, coincidiendo con el resultado de la consulta SQL de referencia.
 \end{itemize}
 
 \subsection{Identifica piezas con plicas anómalas}
@@ -715,12 +731,14 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.tiene_plicas_anomalas = 1;
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 5554 obras con plicas anómalas.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que se limita a identificar la presencia explícita del atributo `stem.dir` en algunos archivos, sin aplicar el criterio de detección de plicas anómalas definido en el análisis musical. Esto conduce a una interpretación incompleta del problema, reduciendo la tarea a una simple detección de metadatos en lugar de una clasificación basado en un análisis más exhaustivo.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que recupera las piezas que cumplen la condición \texttt{tiene\_plicas\_anomalas = 1}, coincidiendo con la consulta SQL de referencia. Este resultado refleja adecuadamente la definición operacional de plicas anómalas en la base de datos y es consistente con el conjunto completo de obras identificadas.
 \end{itemize}
 
 \subsection{Identifica piezas que usen la palabra ``bondad''}
 \begin{itemize}
-    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontraron piezas que contengan la palabra "bondad" en los resultados de la búsqueda.
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontraron piezas que contengan la palabra ``bondad'' en los resultados de la búsqueda.
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas que usan la palabra ""bondad"":
 
 * Pieza con id 137: Padre nuéstro
@@ -735,12 +753,14 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE LOWER(a.lirica_sustantivos) LIKE '%bondad%';
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron dos canciones que contienen la palabra ``bondad'': ``Padre nuéstro'' y ``73. PADRE NUESTRO'' 
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que concluye la ausencia de coincidencias sin evidenciar un análisis exhaustivo del campo lírico, lo que puede indicar una limitación del proceso de recuperación o una búsqueda superficial que no considera variantes de normalización textual (mayúsculas, tildes o tokenización del contenido).
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que identifica las dos piezas que contienen la palabra ``bondad'' en el atributo \texttt{lirica\_sustantivos}, coincidiendo con el resultado de la consulta SQL de referencia. Esto confirma que su extracción está alineada con el criterio definido en la base de datos y recupera correctamente todos los casos esperados.
 \end{itemize}
 
 \subsection{Identifica piezas que mencionen el nombre propio ``Alfonsito''}
 \begin{itemize}
-    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontró ninguna pieza que mencione el nombre propio "Alfonsito" en los documentos proporcionados. Los resultados de la búsqueda hacen referencia a "Alfonso XII", "Alfonso Doce" y "Angelito", pero no a "Alfonsito" específicamente.
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontró ninguna pieza que mencione el nombre propio ``Alfonsito'' en los documentos proporcionados. Los resultados de la búsqueda hacen referencia a ``Alfonso XII'', ``Alfonso Doce'' y ``Angelito'', pero no a ``Alfonsito'' específicamente.
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas que mencionan el nombre propio ""Alfonsito"":
 
 * Pieza con id 6940: No se especifica el título en la base de datos.
@@ -753,7 +773,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE LOWER(a.lirica_nombres_propios) LIKE '%Alfonsito%';
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron dos obras que contienen el nombre propio ``Alfonsito'': ``None (id: 6940)'' y ``None (id: 7270)'' 
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que descarta la presencia del nombre propio ``Alfonsito'' basándose en coincidencias textuales aproximadas (como ``Alfonso XII'' o ``Alfonsito'' en variantes no normalizadas), sin realizar una búsqueda exacta sobre el campo estructurado de nombres propios. Esto provoca un falso negativo, al no considerar que el término puede aparecer en el análisis lírico de forma explícita y normalizada.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que identifica las piezas que contienen el término ``Alfonsito'' en el atributo \texttt{lirica\_nombres\_propios}, coincidiendo con el resultado de la consulta SQL de referencia. Aunque los títulos no estén especificados en la base de datos para estos registros, la extracción es válida y completa según el criterio definido en el esquema de datos.
 \end{itemize}
 
 \subsection{Identifica piezas cuyo intervalo frontera más frecuente sea +5}
@@ -783,7 +805,9 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.intervalo_frontera_mas_frecuente = '+5';
     \end{verbatim}   
     Tras ejecutar la consulta se obtuvieron 732 obras cuyo intervalo frontera más frecuente es +5. 
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que reconoce explícitamente la incapacidad de analizar los intervalos melódicos a partir de los datos MusicXML proporcionados. Aunque esta observación es razonable desde un punto de vista descriptivo, el modelo no realiza ninguna inferencia ni recuperación estructurada mediante análisis musical.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que identifica las piezas cuyo campo \texttt{intervalo\_frontera\_mas\_frecuente} es igual a `+5`, coincidiendo con la consulta SQL de referencia.
 \end{itemize}
 
 \subsection{Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}
@@ -847,7 +871,9 @@ WHERE LOWER(p.tonalidad) = 'a minor'
   AND p.bpm <= 90;
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 20 obras que cumplen con los requisitos expuestos.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} Ambas respuestas son incorrectas, ya que no aplican de forma adecuada la combinación de condiciones requerida por la consulta. En el caso del primer modelo, se observa un enfoque exploratorio basado en coincidencias parciales de tonalidad y tempo, sin utilizar los atributos estructurados de hemiolias ni una verificación explícita del criterio `bpm <= 90`, lo que conduce a una inferencia no verificable sobre la adecuación de las piezas.
+
+Por su parte, la respuesta del segundo modelo, aunque sí intenta ceñirse a un filtrado directo sobre la base de datos, falla al no identificar ninguna coincidencia, lo que indica una posible interpretación incorrecta de la condición lógica compuesta (especialmente en la combinación de `AND` y `OR` en los predicados de hemiolia y BPM) y un posible error en la formulación de la consulta SQL. En consecuencia, ambas respuestas no recuperan correctamente el conjunto esperado de 20 obras según la consulta SQL de referencia.
 \end{itemize}
 
 \subsection{Identifica piezas de tonalidad A minor que tengan hemiolias}
@@ -881,7 +907,9 @@ WHERE LOWER(p.tonalidad) = 'a minor'
   AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 25 obras que cumplen con los requisitos expuestos.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que aunque identifica correctamente piezas en tonalidad A minor basándose en la armadura y realiza una discusión general sobre la posible presencia de hemiolas, no aplica un criterio estructurado ni verificable basado en un análisis musical exhaustivo. En consecuencia, su análisis es interpretativo y dependiente de inferencias sobre el formato MusicXML, sin una validación explícita sobre la base de datos.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que filtra directamente las piezas que cumplen simultáneamente la condición de tonalidad A minor y presencia de hemiolias (horizontal o vertical), en concordancia con la consulta SQL de referencia.
 \end{itemize}
 
 \subsection{Encuentra canciones donde el valor de dur.ppq cambie a mitad de la sección, indicando un cambio de resolución rítmica}
@@ -1737,74 +1765,74 @@ Correcta \\
 \hline
 
 Identifica piezas con síncopas &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas que traten la muerte como tema &
-COMPLETAR &
-COMPLETAR \\
+Parcialmente correcta &
+Correcta \\
 
 \hline
 
 Identifica piezas con polirritmia &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas cuyo contenido lírico esté escrito en voz masculina &
-COMPLETAR &
-COMPLETAR \\
+Parcialmente correcta &
+Correcta \\
 
 \hline
 
 Identifica obras cuya tendencia melódica sea predominantemente descendente &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas con 4 alteraciones accidentales &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas con compases vacíos &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas con notas de duración 0 &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas con plicas anómalas &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas que usen la palabra ''bondad'' &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas que mencionen el nombre propio ``Alfonsito'' &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas cuyo intervalo frontera más frecuente sea +5 &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
@@ -1816,14 +1844,14 @@ Parcialmente correcta \\
 \hline
 
 Identifica piezas de tonalidad A minor que tengan hemiolias y que no superen los 90 bpm &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Incorrecta \\
 
 \hline
 
 Identifica piezas de tonalidad A minor que tengan hemiolias &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 

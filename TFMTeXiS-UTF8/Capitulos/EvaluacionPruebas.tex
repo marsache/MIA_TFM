@@ -445,8 +445,12 @@ Para identificar piezas con síncopas, sería necesario analizar la estructura r
 Estas piezas tienen síncopas según el análisis musical."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tiene_sincopas = 1;
     \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 538 obras con síncopas.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -475,8 +479,12 @@ Estas piezas tienen síncopas según el análisis musical."
 Estas piezas tienen un total de eventos musicales relacionados con la muerte en su análisis musical."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.temas
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.temas) LIKE '%muerte%';
     \end{verbatim}    
+    Tras realizar la consulta, se obtuvieron 768 obras que tratan el tema de la muerte en sus letras.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -509,8 +517,12 @@ Además, otras piezas contienen descripciones rítmicas que podrían implicar po
 Estas piezas tienen polirritmia, según los análisis musicales realizados."""
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tiene_polirritmia = 1;
     \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 1904 obras con polirritmia.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -535,8 +547,12 @@ Estas piezas tienen polirritmia, según los análisis musicales realizados."""
 Es posible que haya más piezas con contenido lírico en voz masculina en la base de datos."""
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.lirica_voz
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.lirica_voz = 'masculino';
     \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 2618 obras cuyo contenido lírico está escrito en voz masculina.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -567,8 +583,12 @@ Finalmente, una canción infantil titulada ""Qué Lloras Retirada"" de María Ga
 Estas obras presentan una tendencia melódica descendente en más de un 50\% de los intervalos utilizados, lo que indica que la melodía tiende a moverse hacia abajo."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.tendencia_melodica
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tendencia_melodica = 'Predominantemente descendente';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 6000 obras cuya tendencia melódica es predominantemente descendente.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -595,8 +615,12 @@ Para tener 4 alteraciones accidentales en la armadura, las tonalidades serían:
 * IE-2019-D-HLS-037"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.conteo_accidentales_totales
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.conteo_accidentales_totales = 4;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 190 obras con 4 alteraciones accidentales.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -612,8 +636,12 @@ Adicionalmente, la pieza CO-1948-00-BG-00041.musicxml.xml incluye compases compu
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} Se encontraron las siguientes piezas con compases vacíos: Himno a Bolívar, Me tuviste, 275556 Bog Road Slow, 588, Campbells are Comin´, Catholic Boys, Charlie Mack, Doyle´s Frolic, Drum, Garry owen.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.qc_compases_vacios
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.qc_compases_vacios > 0;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 612 obras con compases vacíos.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -634,8 +662,12 @@ Adicionalmente, la pieza CO-1948-00-BG-00041.musicxml.xml incluye compases compu
 * 585"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.qc_notas_duracion_cero
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.qc_notas_duracion_cero > 0;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1784 obras con notas de duración 0.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -661,8 +693,12 @@ Cabe destacar que, para determinar qué constituye una ""plica anómala"", serí
 - The Lady’s Cup of Tea"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.tiene_plicas_anomalas
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tiene_plicas_anomalas = 1;
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 5554 obras con plicas anómalas.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -677,8 +713,12 @@ Cabe destacar que, para determinar qué constituye una ""plica anómala"", serí
 Nota: Las títulos se muestran exactamente como se encuentran en la base de datos."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.lirica_sustantivos
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.lirica_sustantivos) LIKE '%bondad%';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron dos canciones que contienen la palabra ``bondad'': ``Padre nuéstro'' y ``73. PADRE NUESTRO'' 
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -691,8 +731,12 @@ Nota: Las títulos se muestran exactamente como se encuentran en la base de dato
 * Pieza con id 7270: No se especifica el título en la base de datos."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, a.lirica_nombres_propios
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.lirica_nombres_propios) LIKE '%Alfonsito%';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron dos obras que contienen el nombre propio ``Alfonsito'': ``None (id: 6940)'' y ``None (id: 7270)'' 
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -717,8 +761,12 @@ Therefore, I cannot identify pieces whose most frequent boundary interval is +5 
 * Ejercicio (Título: Ejercicio, Autor: José Miguel Hernández Jaramillo, Compás: 4/4, Tonalidad: G mayor)"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
-    \end{verbatim}    
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.intervalo_frontera_mas_frecuente = '+5';
+    \end{verbatim}   
+    Tras ejecutar la consulta se obtuvieron 732 obras cuyo intervalo frontera más frecuente es +5. 
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 

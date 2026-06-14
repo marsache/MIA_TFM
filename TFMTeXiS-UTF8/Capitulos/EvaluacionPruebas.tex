@@ -96,7 +96,11 @@ Este resultado pone de manifiesto un aspecto relevante en sistemas basados en ba
     WHERE p.compas = '4/4';
     \end{verbatim}
     Tras ejecutar la consulta se obtuvieron 1690 obras de compás 4/4.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es correcta en cuanto a la identificación del compás solicitado, ya que la única pieza devuelta efectivamente presenta un compás de 4/4. Sin embargo, la respuesta es claramente incompleta, ya que el corpus contiene un total de 1690 obras con esta característica. En este caso, el sistema no garantiza cobertura completa del espacio de búsqueda, lo que conduce a una recuperación parcial incluso cuando la información está disponible.
+
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta y completa en el contexto de la evaluación realizada. El modelo recupera correctamente las 10 primeras obras con compás de 4/4, coherentes con el límite impuesto por la consulta de recuperación (LIMIT 10). Aunque esta limitación impide mostrar el conjunto completo de 1690 resultados, la ejecución de la consulta SQL es correcta y devuelve resultados válidos y representativos del conjunto total. A diferencia del sistema basado en File Search, este enfoque garantiza exhaustividad respecto a la porción de datos consultada, al operar directamente sobre una base de datos estructurada.
+
+En consecuencia, la respuesta de Gemini 2.5 Flash se considera correcta pero incompleta, mientras que la respuesta del modelo basado en SQLite se considera correcta dentro de las restricciones de recuperación establecidas por el sistema.
 \end{itemize}
 
 \subsection{Identifica piezas con hemiolias horizontales}
@@ -109,9 +113,17 @@ Para identificar piezas con hemiolias horizontales, se necesitaría un análisis
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con hemiolias horizontales: IE-2019-D-HLS-027, IE-2019-D-HLS-030, A Stor Mo Chroi, The Wild Rover, 575, 580, 583, 585, 608 y Muiñeira de Poio."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+    SELECT p.id, p.titulo
+    FROM piezas p
+    JOIN analisis_musical a ON p.id = a.pieza_id
+    WHERE a.tiene_hemiolia_horizontal = 1;
     \end{verbatim}    
-    \item \textbf{Revisión de respuestas.}
+    Tras realizar la consulta, se obtuvieron 220 piezas con hemiolias horizontales.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta en términos de recuperación, ya que el modelo no identifica ninguna pieza con hemiolias horizontales. En su lugar, ofrece una explicación general sobre la naturaleza de los datos musicales presentes en el corpus y concluye que no es posible determinar la existencia de este rasgo a partir de la información recuperada.
+    
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta, ya que identifica adecuadamente piezas que contienen hemiolias horizontales según el campo estructurado \texttt{tiene\_hemiolia\_horizontal}. El modelo recupera una lista de obras coherente con la condición de la consulta, incluyendo tanto identificadores numéricos como títulos.
+
+En consecuencia, el sistema basado en File Search falla al no recuperar ninguna instancia relevante del corpus, mientras que el sistema basado en SQLite ofrece una respuesta correcta pero parcial en términos de cobertura, aunque adecuada dentro del contexto de visualización limitada de resultados.
 \end{itemize}
 
 \subsection{Identifica piezas con hemiolias verticales}
@@ -135,9 +147,17 @@ Una hemiolia vertical es un dispositivo rítmico en el que dos o más voces o l�
 Estas piezas tienen hemiolias verticales en su análisis musical."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+    SELECT p.id, p.titulo
+    FROM piezas p
+    JOIN analisis_musical a ON p.id = a.pieza_id
+    WHERE a.tiene_hemiolia_vertical = 1;
     \end{verbatim}
-    \item \textbf{Revisión de respuestas.}
+    Tras ejecutar la consulta, se obtuvieron 86 obras con hemiolias verticales.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta en términos de recuperación, ya que el modelo no devuelve ninguna pieza concreta con hemiolias verticales. En su lugar, proporciona una explicación general del concepto de hemiolia vertical y describe su interpretación musicológica, sin ofrecer resultados específicos del corpus. Este comportamiento sugiere que el sistema, al no encontrar evidencia explícita del fenómeno en los fragmentos recuperados, opta por una respuesta descriptiva basada en conocimiento general en lugar de realizar una recuperación efectiva de instancias del dataset.
+
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta en cuanto a la identificación de piezas con hemiolias verticales, ya que todas las obras listadas cumplen la condición definida por el campo estructurado \texttt{tiene\_hemiolia\_vertical}. Según la consulta de referencia, el conjunto completo está compuesto por 86 obras, por lo que la respuesta representa únicamente una muestra parcial del total.
+
+En consecuencia, el sistema basado en File Search falla al no recuperar instancias del corpus, mientras que el sistema basado en SQLite produce resultados correctos pero limitados en número debido a restricciones en la estrategia de consulta, aunque suficientes para evaluar correctamente la presencia del fenómeno.
 \end{itemize}
 
 \subsection{Identifica piezas con la tonalidad G major}
@@ -166,9 +186,16 @@ Estas partituras están escritas para acordeón y cada una tiene una armadura de
 Estas piezas tienen la tonalidad de G mayor."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+    SELECT p.id, p.titulo, p.tonalidad
+    FROM piezas p
+    WHERE LOWER(TRIM(p.tonalidad)) = 'g major';
     \end{verbatim}    
-    \item \textbf{Revisión de respuestas.}
+    Tras realizar la consulta, se obtuvieron 2722 obras en G Major.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta, ya que sólo dos de las piezas identificadas presentan tonalidad de G major, mientras que el resto pertenecen a otras tonalidades distintas.
+
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta en términos de recuperación, ya que todas las piezas listadas cumplen la condición de pertenecer a la tonalidad de G major según el campo estructurado \texttt{tonalidad}. Sin embargo, al igual que en casos anteriores, la respuesta es necesariamente parcial debido a la limitación impuesta por la estrategia de recuperación (\texttt{LIMIT 10}), lo que implica que únicamente se muestran los primeros resultados del conjunto completo de 2722 obras.
+
+En consecuencia, el sistema basado en File Search presenta una recuperación incorrecta, mientras que el sistema basado en SQLite ofrece resultados correctos y consistentes, aunque restringidos en su presentación por limitaciones deliberadas de muestreo.
 \end{itemize}
 
 \subsection{Identifica piezas que estén en modo dórico}
@@ -196,8 +223,11 @@ Es importante señalar que la determinación del modo dórico en estas piezas se
 10. Náña"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
-    \end{verbatim}    
+    SELECT p.id, p.titulo, p.modo
+    FROM piezas p
+    WHERE LOWER(p.modo) LIKE '%dórico%';
+    \end{verbatim}  
+    Tras realizar la consulta se obtuvieron 1658 obras en modo dórico.  
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -227,8 +257,11 @@ Cabe mencionar que la pieza ""120. Ayer te quise.xml"" tiene un tempo de 99, no 
 Nota: Hay dos piezas con el mismo título pero diferentes IDs, lo que sugiere que pueden ser versiones o revisiones de la misma pieza."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+    SELECT p.id, p.titulo, p.bpm
+    FROM piezas p
+    WHERE p.bpm = 120;
     \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 27 obras con un bpm 120.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -251,8 +284,11 @@ Nota: Hay dos piezas con el mismo título pero diferentes IDs, lo que sugiere qu
 8. EL TURPIALITO"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
-    \end{verbatim}    
+    SELECT p.id, p.titulo, p.midi_volume
+    FROM piezas p
+    WHERE p.midi_volume = 79;
+    \end{verbatim}  
+    Tras realizar la consulta se obtuvieron 1549 obras con un volumen midi de 79.  
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -273,8 +309,11 @@ Nota: Hay dos piezas con el mismo título pero diferentes IDs, lo que sugiere qu
 * ID 1742"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, p.nota_mas_grave
+FROM piezas p
+WHERE p.nota_mas_grave = 'A3';
     \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 403 obras cuya nota más grave es A3.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -293,8 +332,11 @@ Es importante señalar que, en los archivos `MX-1952-00-CR-00002.musicxml.xml` y
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas cuya nota más aguda es G5: IE-2019-D-HLS-001, IE-2019-D-HLS-003, IE-2019-D-HLS-004, IE-2019-D-HLS-008, IE-2019-D-HLS-012, IE-2019-D-HLS-024, IE-2019-D-HLS-026, IE-2019-D-HLS-027, IE-2019-D-HLS-031 y IE-2019-D-HLS-033."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, p.nota_mas_aguda
+FROM piezas p
+WHERE p.nota_mas_aguda = 'G5';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1529 obras cuya nota más aguda es G5.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -326,8 +368,11 @@ Dado que ""Compositor / arreglista"" no especifica el género del autor, y en el
 Es posible que haya más piezas con autores de género masculino en la base de datos."""
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, p.autor_genero
+FROM piezas p
+WHERE p.autor_genero = 'masculino';
     \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1451 obras con autor de género masculino.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -346,8 +391,11 @@ Es posible que haya más piezas con autores de género masculino en la base de d
 * The Lady’s Cup of Tea (ID: 2007)"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, p.software_codificacion
+FROM piezas p
+WHERE p.software_codificacion = 'Sibelius 7.1.3';
     \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 4641 obras codificadas con Sibelius 7.1.3.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -368,8 +416,11 @@ Es posible que haya más piezas con autores de género masculino en la base de d
 10. The Basket of Oysters"""
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
-
+SELECT p.id, p.titulo, p.fecha_codificacion
+FROM piezas p
+WHERE p.fecha_codificacion = '2015-07-01';
     \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 1607 obras codificadas el 2015-07-01.
     \item \textbf{Revisión de respuestas.}
 \end{itemize}
 
@@ -1170,6 +1221,7 @@ Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 
 \end{itemize}
 
 \section{Resumen de preguntas formuladas y respuestas de los modelos}
+(TODO: explicar Correcta, Parcialmente correcta e Incorrecta)
 
 % \begin{table}[ht]
 % \centering
@@ -1199,32 +1251,32 @@ Correcta \\
 \hline
 
 Identifica piezas cuyo autor sea Schumann &
-COMPLETAR &
-COMPLETAR \\
+Parcialmente correcta &
+Parcialmente correcta \\
 
 \hline
 
 Identifica piezas con un compás de 4/4 &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas con hemiolias horizontales &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas con hemiolias verticales &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Identifica piezas con la tonalidad G major &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 

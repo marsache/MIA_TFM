@@ -111,12 +111,12 @@
 \contentsline {subsection}{\numberline {6.1.47}Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}{96}{subsection.119}%
 \contentsline {subsection}{\numberline {6.1.48}Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}{97}{subsection.120}%
 \contentsline {section}{\numberline {6.2}Resumen de preguntas formuladas y respuestas de los modelos}{98}{section.122}%
-\contentsline {chapter}{\numberline {7}Discusión y análisis de limitaciones}{101}{chapter.123}%
-\contentsline {chapter}{\numberline {8}Conclusiones y Trabajo Futuro}{103}{chapter.124}%
-\contentsline {section}{\numberline {8.1}Conclusiones}{103}{section.125}%
-\contentsline {section}{\numberline {8.2}Trabajo futuro}{103}{section.126}%
-\contentsline {chapter}{\numberline {9}Introduction}{105}{chapter.127}%
+\contentsline {chapter}{\numberline {7}Discusión y análisis de limitaciones}{103}{chapter.123}%
+\contentsline {chapter}{\numberline {8}Conclusiones y Trabajo Futuro}{105}{chapter.124}%
+\contentsline {section}{\numberline {8.1}Conclusiones}{105}{section.125}%
+\contentsline {section}{\numberline {8.2}Trabajo futuro}{105}{section.126}%
+\contentsline {chapter}{\numberline {9}Introduction}{107}{chapter.127}%
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {10}Conclusions and Future Work}{107}{chapter.128}%
-\contentsline {chapter}{\numberline {A}Presentación del proyecto en congresos y seminarios}{109}{appendix.129}%
+\contentsline {chapter}{\numberline {10}Conclusions and Future Work}{109}{chapter.128}%
+\contentsline {chapter}{\numberline {A}Presentación del proyecto en congresos y seminarios}{111}{appendix.129}%
 \babel@toc {spanish}{}\relax 

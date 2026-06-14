@@ -1728,7 +1728,11 @@ Por otro lado, la respuesta del modelo local es incorrecta, aunque formalmente c
 \end{itemize}
 
 \section{Resumen de preguntas formuladas y respuestas de los modelos}
-(TODO: explicar Correcta, Parcialmente correcta e Incorrecta)
+En esta sección se presenta un resumen comparativo de las respuestas obtenidas por los dos enfoques evaluados: el modelo basado en File Search como RAG (Gemini 2.5 Flash) y el modelo local Llama3.1:8B con acceso a una base de datos SQLite. Para cada consulta planteada sobre el dataset musical, se ha clasificado la respuesta de ambos sistemas en términos de su corrección respecto a los resultados esperados obtenidos mediante consultas SQL.
+
+Las etiquetas utilizadas en la evaluación son: \textit{Correcta}, cuando la respuesta coincide plenamente con el resultado de la consulta (teniendo en cuenta, en el caso del modelo local, que existe un límite impuesto de 10 resultados por consulta); \textit{Parcialmente correcta}, cuando la respuesta es razonable pero incompleta o imprecisa; e \textit{Incorrecta}, cuando la respuesta no coincide con los datos del dataset o presenta errores relevantes de inferencia o recuperación de información.
+
+A continuación se muestra la tabla resumen con la comparación de ambos modelos en todas las preguntas evaluadas.
 
 % \begin{table}[ht]
 % \centering

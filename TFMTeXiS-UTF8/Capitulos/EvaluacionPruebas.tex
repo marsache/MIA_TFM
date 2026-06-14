@@ -1490,7 +1490,10 @@ JOIN analisis_musical a ON p.id = a.pieza_id
 WHERE a.accidentales_compases_json LIKE '%b%';
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 534 obras que cumplen con los requisitos expuestos.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es parcialmente correcta, ya que identifica correctamente la presencia de notas con bemoles accidentales en distintos archivos MEI y menciona varios casos concretos con sus identificadores. Sin embargo, la respuesta es incompleta, ya que no sistematiza todos los resultados disponibles en el dataset ni ofrece una visión exhaustiva de todos los compases implicados, limitándose a ejemplos puntuales extraídos de los fragmentos recuperados.
+
+Por otro lado, la respuesta del modelo local es incorrecta, ya que afirma que no se han encontrado notas con bemoles accidentales, lo cual contradice directamente la evidencia presente en el dataset y el resultado de la consulta SQL. Este fallo sugiere una limitación en la capacidad de recuperación y formulación correcta de consultas SQL.
+
 \end{itemize}
 
 \subsection{Identifica el uso de la etiqueta <sb /> (system break) y determina si coincide siempre con el final de una frase musical lógica}
@@ -1518,7 +1521,9 @@ SELECT
 FROM analisis_musical a;
     \end{verbatim}    
     Tras ejecutar la consulta se puede asegurar que no siempre coincide.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es parcialmente correcta. Explica adecuadamente el significado de la etiqueta <sb /> y proporciona una interpretación razonable sobre su relación con la estructura musical y el flujo de las frases. Sin embargo, su análisis es incompleto, ya que se basa en ejemplos aislados y no verifica de forma sistemática si la coincidencia entre saltos de sistema y frases musicales lógicas se cumple en todos los casos del dataset.
+
+La respuesta del modelo local basado en Ollama es correcta, ya que asegura que aunque la etiqueta <sb /> no siempre coincide con el final de una frase musical.
 \end{itemize}
 
 \subsection{Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota?}
@@ -1550,13 +1555,15 @@ WHERE LOWER(a.mapeo_silabas_duraciones) LIKE '%duer%'
    OR LOWER(a.mapeo_silabas_duraciones) LIKE '%me%';
     \end{verbatim}    
     Tras ejecutar la consulta se puede asegurar que existen variaciones.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} En el primer caso, la respuesta del modelo basado en File Search como RAG es parcialmente correcta, ya que identifica adecuadamente que no existe una asignación fija entre las sílabas “duer” y “me” y la duración de las notas, y además aporta ejemplos concretos que muestran variaciones entre distintos archivos del dataset. Sin embargo, su análisis es incompleto, ya que no realiza una verificación sistemática sobre la consistencia global del patrón en todos los registros disponibles.
+
+Por otro lado, la respuesta del modelo local es incorrecta, ya que no logra recuperar ni analizar correctamente la relación entre sílabas y duraciones, limitándose a una salida genérica sin evidencia ni extracción real de datos del dataset. Esto puede deberse a una incapacidad por generar correctamente la consulta SQL esperada.
 \end{itemize}
 
 \subsection{¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio?}
 \begin{itemize}
     \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontró información específica en los documentos proporcionados sobre cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en piezas de modo mixolidio. Los resultados de la búsqueda incluyen ejemplos de partituras y menciones de intervalos, como el intervalo de tercera menor en el contexto de "picayos de modo menor", pero no abordan directamente la frecuencia de intervalos entre compases en el modo mixolidio.
-    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "El intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio es +1, con un total de 4 apariciones. Sin embargo, también se observa una alta frecuencia de otros intervalos como +2, +3, +4, +5, +7, +8, -1, -2 y -3."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} ``El intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio es +1, con un total de 4 apariciones. Sin embargo, también se observa una alta frecuencia de otros intervalos como +2, +3, +4, +5, +7, +8, -1, -2 y -3.''
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT 
@@ -1570,7 +1577,9 @@ ORDER BY frecuencia DESC
 LIMIT 1;
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 292 obras con el intervalo frontera más frecuente: +2.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es incorrecta, ya que no identifica el valor del intervalo más frecuente ni proporciona un análisis cuantitativo sobre la distribución de intervalos en piezas en modo mixolidio. El modelo se limita a justificar la ausencia de información en los fragmentos recuperados, sin intentar inferir ni agregar evidencia estructurada del dataset.
+
+En cambio, la respuesta del modelo local sí propone un intervalo más frecuente (+1) y acompaña la respuesta con una distribución de otros intervalos observados. Sin embargo, este resultado es incorrecto en el valor principal, ya que no coincide con el valor real obtenido mediante agregación global del dataset.
 \end{itemize}
 
 \subsection{Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica}
@@ -1607,13 +1616,17 @@ JOIN analisis_musical a ON p.id = a.pieza_id;
 \label{tab:bpm_silabas}
 \end{table}
     
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG identifica de la limitación del problema, ya que reconoce que el análisis requiere procesamiento estadístico y estructural de datos (tempo y segmentación silábica), algo que excede la simple recuperación de información. Sin embargo, no aporta ningún análisis sobre el dataset ni intenta contrastar la hipótesis planteada.
+
+Por otro lado, la respuesta del modelo local es incorrecta, ya que formula una conclusión general sin soporte empírico ni cálculo sobre los datos. Afirma una tendencia entre BPM altos y menor longitud silábica, pero no realiza ningún tipo de agregación ni comparación entre subconjuntos de piezas, por lo que se trata de una inferencia no verificada.
 \end{itemize}
 
 \subsection{Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}
 \begin{itemize}
-    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):}
-    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} None
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes piezas donde la nota final es la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta:
+
+* No se encontraron resultados. Es posible que la pregunta sea un poco ambigua o que no haya suficiente datos disponibles."""
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT 
@@ -1653,12 +1666,14 @@ WHERE
     );
     \end{verbatim}    
     Tras ejecutar la consulta se obtuvieron 724 obras que cumplen con los requisitos expuestos.
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es incorrecta, ya que no proporciona ningún resultado ni análisis sobre la condición planteada. La ausencia de respuesta sugiere una incapacidad del sistema para recuperar o interpretar información relevante sobre la relación entre la tonalidad, la secuencia final de notas y la identificación de la dominante.
+
+Por otro lado, la respuesta del modelo local también es incorrecta, aunque por un motivo distinto: en lugar de intentar resolver el problema, devuelve una negación genérica (“no se encontraron resultados”) sin realizar ningún análisis estructural de la secuencia melódica ni de la correspondencia entre la última nota y el quinto grado de la tonalidad. Esto indica un fallo en la inferencia lógica necesaria para este tipo de consulta musical.
 \end{itemize}
 
 \subsection{Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}
 \begin{itemize}
-    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} Los resultados de la búsqueda no identifican un patrón de silencios (`<rest />`) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria. Si bien algunos fragmentos musicales en métrica ternaria, como los de los archivos "CO-1948-00-BG-00041.musicxml.xml" y "MX-1964-00-VM-02050.musicxml.xml", contienen silencios en compases consecutivos, no se observa una recurrencia regular cada cuatro compases.
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} Los resultados de la búsqueda no identifican un patrón de silencios (`<rest />`) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria. Si bien algunos fragmentos musicales en métrica ternaria, como los de los archivos ``CO-1948-00-BG-00041.musicxml.xml'' y ``MX-1964-00-VM-02050.musicxml.xml'', contienen silencios en compases consecutivos, no se observa una recurrencia regular cada cuatro compases.
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "No se encontró ningún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria. Es posible que la pregunta sea un poco ambigua o que no haya suficiente datos disponibles."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
@@ -1707,7 +1722,9 @@ G4 - A4 - B4 - B4 - B4 - C5 - C5 - D5 - C5 - B4 - B4 - G4 - A4 - G4 - G4 - A4 - 
 \label{tab:silencios_metrica_ternaria}
 \end{table}
 
-    \item \textbf{Revisión de respuestas.}
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG identifica adecuadamente la presencia de silencios en algunas piezas con métrica ternaria y reconoce que no se observa de forma clara un patrón periódico cada cuatro compases. Sin embargo, su análisis es incompleto, ya que se limita a una observación cualitativa sobre ejemplos aislados sin realizar una verificación sistemática del patrón temporal en el conjunto del dataset.
+
+Por otro lado, la respuesta del modelo local es incorrecta, aunque formalmente coherente, ya que concluye que no existe suficiente información sin analizar los datos disponibles ni considerar la posibilidad de detección de patrones estructurales en la secuencia de compases. Esto refleja una dificultad para generar la consulta compleja que requiere esta pregunta.
 \end{itemize}
 
 \section{Resumen de preguntas formuladas y respuestas de los modelos}
@@ -1982,44 +1999,44 @@ Correcta \\
 \hline
 
 Localiza todas las notas que tengan bemoles accidentales y dime en qué compases aparecen en los archivos MEI encontrados &
-COMPLETAR &
-COMPLETAR \\
+Parcialmente correcta &
+Incorrecta \\
 
 \hline
 
 Identifica el uso de la etiqueta <sb />(system break) y determina si coincide siempre con el final de una frase musical lógica &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Correcta \\
 
 \hline
 
 Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota? &
-COMPLETAR &
-COMPLETAR \\
+Parcialmente correcta &
+Incorrecta \\
 
 \hline
 
 ¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio? &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Incorrecta \\
 
 \hline
 
 Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Incorrecta \\
 
 \hline
 
 Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Incorrecta \\
 
 \hline
 
 Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria &
-COMPLETAR &
-COMPLETAR \\
+Incorrecta &
+Incorrecta \\
 
 \hline
 

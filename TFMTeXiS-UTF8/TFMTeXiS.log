@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 00:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 01:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1294,114 +1294,128 @@ Overfull \hbox (31.16087pt too wide) in paragraph at lines 1450--1461
 LaTeX Info: Redefining \. on input line 1482.
 LaTeX Info: Redefining \% on input line 1482.
 [90]
-LaTeX Info: Redefining \. on input line 1508.
-LaTeX Info: Redefining \% on input line 1508.
+LaTeX Info: Redefining \. on input line 1509.
+LaTeX Info: Redefining \% on input line 1509.
  [91]
-LaTeX Info: Redefining \. on input line 1537.
-LaTeX Info: Redefining \% on input line 1537.
+LaTeX Info: Redefining \. on input line 1532.
+LaTeX Info: Redefining \% on input line 1532.
  [92]
-LaTeX Info: Redefining \. on input line 1564.
-LaTeX Info: Redefining \% on input line 1564.
+LaTeX Info: Redefining \. on input line 1561.
+LaTeX Info: Redefining \% on input line 1561.
  [93]
-LaTeX Info: Redefining \. on input line 1616.
-LaTeX Info: Redefining \% on input line 1616.
+LaTeX Info: Redefining \. on input line 1588.
+LaTeX Info: Redefining \% on input line 1588.
  [94]
-LaTeX Info: Redefining \. on input line 1649.
-LaTeX Info: Redefining \% on input line 1649.
+LaTeX Info: Redefining \. on input line 1627.
+LaTeX Info: Redefining \% on input line 1627.
  [95]
-Underfull \hbox (badness 10000) in paragraph at lines 1730--1730
+LaTeX Info: Redefining \. on input line 1667.
+LaTeX Info: Redefining \% on input line 1667.
+ [96]
+LaTeX Info: Redefining \. on input line 1723.
+LaTeX Info: Redefining \% on input line 1723.
+ [97]
+Underfull \hbox (badness 10000) in paragraph at lines 1747--1747
 []|\T1/cmr/bx/n/10.95 Gemini 2.5
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1730--1730
+Underfull \hbox (badness 10000) in paragraph at lines 1747--1747
 \T1/cmr/bx/n/10.95 Flash (Fi-le
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1731--1732
+Underfull \hbox (badness 10000) in paragraph at lines 1748--1749
 []|\T1/cmr/bx/n/10.95 Llama3.1:8B
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1731--1732
+Underfull \hbox (badness 10000) in paragraph at lines 1748--1749
 \T1/cmr/bx/n/10.95 (RAG con
  []
 
 
-Overfull \hbox (9.14719pt too wide) in alignment at lines 1724--1733
+Overfull \hbox (9.14719pt too wide) in alignment at lines 1741--1750
  [] [] [] 
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1744--1744
+Underfull \hbox (badness 3547) in paragraph at lines 1761--1761
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1745--1746
+Underfull \hbox (badness 3547) in paragraph at lines 1762--1763
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1786--1786
+Underfull \hbox (badness 3547) in paragraph at lines 1803--1803
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1828--1828
+Underfull \hbox (badness 3547) in paragraph at lines 1845--1845
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1840--1840
+Underfull \hbox (badness 3547) in paragraph at lines 1857--1857
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1895--1896
+Underfull \hbox (badness 3547) in paragraph at lines 1912--1913
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1919--1919
+Underfull \hbox (badness 3547) in paragraph at lines 1936--1936
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 1962--1963
+Underfull \hbox (badness 3547) in paragraph at lines 1979--1980
 []|\T1/cmr/m/n/10.95 Parcialmente co-
  []
 
 
-Overfull \hbox (9.14719pt too wide) in alignment at lines 1733--2031
+Underfull \hbox (badness 3547) in paragraph at lines 2002--2002
+[]|\T1/cmr/m/n/10.95 Parcialmente co-
+ []
+
+
+Underfull \hbox (badness 3547) in paragraph at lines 2014--2014
+[]|\T1/cmr/m/n/10.95 Parcialmente co-
+ []
+
+
+Overfull \hbox (9.14719pt too wide) in alignment at lines 1750--2048
  [] [] [] 
  []
 
-LaTeX Info: Redefining \. on input line 2031.
-LaTeX Info: Redefining \% on input line 2031.
-[96]
+
 ignored: Infinite glue shrinkage found in box being split
-LaTeX Info: Redefining \. on input line 2031.
-LaTeX Info: Redefining \% on input line 2031.
- [97]
+LaTeX Info: Redefining \. on input line 2048.
+LaTeX Info: Redefining \% on input line 2048.
+[98]
 ignored: Infinite glue shrinkage found in box being split
-LaTeX Info: Redefining \. on input line 2031.
-LaTeX Info: Redefining \% on input line 2031.
- [98])
+LaTeX Info: Redefining \. on input line 2048.
+LaTeX Info: Redefining \% on input line 2048.
+ [99])
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
- [99]
+ [100]
 \openout2 = `Capitulos/DiscusionAnalisis.aux'.
 
- (Capitulos/DiscusionAnalisis.tex [100
+ (Capitulos/DiscusionAnalisis.tex
+Cap\'itulo 7.
+) [101
 
 
 
 
 ]
-Cap\'itulo 7.
-) [101]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
  (Capitulos/ConclusionesTrabajoFuturo.tex [102
@@ -1484,17 +1498,17 @@ Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
 (rerunfilecheck)             Checksum: 1B8A44A33216600CA73D0D86F1B228E0;44839.
  ) 
 Here is how much of TeX's memory you used:
- 18884 strings out of 467691
- 314463 string characters out of 5414987
- 802104 words of memory out of 5000000
- 47005 multiletter control sequences out of 15000+600000
+ 18885 strings out of 467691
+ 314478 string characters out of 5414987
+ 803104 words of memory out of 5000000
+ 47006 multiletter control sequences out of 15000+600000
  649121 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  97i,12n,109p,1753b,862s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (132 pages, 1072679 bytes).
+Output written on TFMTeXiS.pdf (132 pages, 1076631 bytes).
 PDF statistics:
- 2029 PDF objects out of 2073 (max. 8388607)
+ 2026 PDF objects out of 2073 (max. 8388607)
  269 named destinations out of 1000 (max. 500000)
  990 words of extra memory for PDF output out of 10000 (max. 10000000)
 

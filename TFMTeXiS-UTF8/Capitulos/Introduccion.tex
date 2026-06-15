@@ -154,7 +154,25 @@ Para desarrollar este proyecto se han seleccionado herramientas de código abier
 \end{itemize}
 
 \section{Estructura del resto del documento}
-(TODO: completar)
+Para facilitar la lectura y comprensión del proyecto desarrollado, el contenido de esta memoria se organiza en diferentes capítulos de manera secuencial de acuerdo con el ciclo de vida del proyecto desarrollado:
+
+\begin{itemize}
+    \item \textbf{Capítulo 2: Estado de la Cuestión.} Ofrece el marco teórico fundamental de la investigación. En él se contextualiza el fenómeno conocido como el \textit{``giro computacional''} aplicado al análisis de textos artísticos, creativos y musicales, revisando las metodologías existentes y los desafíos actuales en el procesamiento simbólico musical.
+    
+    \item \textbf{Capítulo 3: Captura de requisitos con musicólogas y formulación de preguntas.} Detalla la fase de captura de requisitos llevada a cabo mediante trabajo de campo. Se describen las entrevistas personales y los formularios web realizados con musicólogas expertas con el fin de definir las necesidades del usuario final. Además, se presenta el banco final de preguntas diseñado para someter a prueba las capacidades analíticas de los modelos de lenguaje y los sistemas implementados.
+    
+    \item \textbf{Capítulo 4: Sistema de indexación y recuperación de información basado en RAG Gemini File Search.} Expone la implementación de la primera aproximación tecnológica de este proyecto. Se detalla el pipeline encargado de preparar e indexar los documentos del corpus y la estrategia de recuperación mediante búsqueda semántica utilizando el motor de indexación de \textit{Gemini}.
+    
+    \item \textbf{Capítulo 5: Preprocesamiento del corpus musical para su extracción de metadatos.} Constituye el núcleo metodológico y el desarrollo técnico principal de la investigación. Describe detalladamente la implementación del pipeline que extrae de forma automatizada diversas variables musicológicas, estructurales, líricas y de calidad a partir de la librería \textit{music21}. Asimismo, se explica la configuración del entorno \textit{Model Context Protocol} (MCP) que habilita las consultas relacionales directas sobre un archivo local \textit{SQLite} empleando un modelo pequeño local (\textit{Llama3.1:8B}) y concluye con la implementación de la interfaz de la aplicación web desarrollada.
+    
+    \item \textbf{Capítulo 6: Evaluación y pruebas.} Presenta los resultados del proyecto a través de la ejecución del banco de pruebas en ambas arquitecturas. Se contrastan y analizan de forma explícita las respuestas e inferencias proporcionadas por los modelos de lenguaje ante cada una de las cuestiones musicales complejas formuladas.
+    
+    \item \textbf{Capítulo 7: Discusión y análisis de limitaciones.} Aborda de manera crítica la comparativa cualitativa y cuantitativa entre el enfoque determinista relacional (\textit{Text-to-SQL}) y la aproximación semántica (\textit{RAG}), discutiendo abiertamente las tasas de alucinación encontradas, los problemas de contexto y las limitaciones técnicas resueltas durante el desarrollo de la arquitectura.
+    
+    \item \textbf{Capítulo 8: Conclusiones y Trabajo Futuro.} Sintetiza los hallazgos principales derivados de la investigación, validando el cumplimiento de los objetivos generales y específicos propuestos. Paralelamente, define las líneas de investigación prioritarias e inmediatas, tales como la implementación de arquitecturas multiagente (A2A), técnicas de \textit{GraphRAG} o la explotación de variables semiestructuradas JSON mediante funciones nativas.
+\end{itemize}
+
+Finalmente, la memoria incorpora un \textbf{Apéndice A}, donde se recopilan las actividades de transferencia del conocimiento científico, detallando la presentación y el impacto del proyecto en congresos nacionales e internacionales y seminarios académicos del área. Cabe destacar que, para cumplir con las directrices de difusión internacional de la investigación, los capítulos correspondientes a la \textbf{Introducción} y las \textbf{Conclusiones y Trabajo Futuro} se replican en lengua inglesa en los capítulos 9 y 10, respectivamente.
 
 \section{Uso de Inteligencia Artificial}
 Este trabajo ha sido desarrollado con el apoyo puntual de herramientas de inteligencia artificial como asistencia técnica y de redacción. Su uso se ha limitado a tareas auxiliares, tales como la organización de ideas, la mejora de la claridad en la redacción y el apoyo en la implementación de ciertas partes del código. En todos los casos, las decisiones de diseño, la validación de resultados y la responsabilidad final sobre el contenido y la implementación recaen exclusivamente sobre la autora.

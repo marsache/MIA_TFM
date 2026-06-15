@@ -126,7 +126,25 @@ To develop this project, open-source tools and the free version of the Gemini AP
 \end{itemize}
 
 \section{Structure of the Rest of the Document}
-(TODO: complete)
+To facilitate the reading and comprehension of the developed project, the content of this report is organized into different chapters sequentially, in accordance with the lifecycle of the developed project:
+
+\begin{itemize}
+    \item \textbf{Chapter 2: State of the Art.} Provides the fundamental theoretical framework of the research. It contextualizes the phenomenon known as the \textit{``computational turn''} applied to the analysis of artistic, creative, and musical texts, reviewing existing methodologies and current challenges in symbolic musical processing.
+    
+    \item \textbf{Chapter 3: Requirements Elicitation with Musicologists and Question Formulation.} Details the requirements elicitation phase carried out through fieldwork. It describes the personal interviews and web forms conducted with expert musicologists to define the needs of the end user. In addition, it presents the final set of questions designed to test the analytical capabilities of both the language models and the implemented systems.
+    
+    \item \textbf{Chapter 4: Information Indexing and Retrieval System Based on RAG Gemini File Search.} Presents the implementation of the first technological approach of this project. It details the pipeline responsible for preparing and indexing the corpus documents, as well as the retrieval strategy through semantic search utilizing the \textit{Gemini} indexing engine.
+    
+    \item \textbf{Chapter 5: Preprocessing of the Musical Corpus for Metadata Extraction.} Constitutes the methodological core and the main technical development of the research. It describes in detail the implementation of the pipeline that automatically extracts various musicological, structural, lyrical, and quality variables using the \textit{music21} library. Furthermore, it explains the configuration of the \textit{Model Context Protocol} (MCP) environment that enables direct relational queries over a local \textit{SQLite} file using a small local model (\textit{Llama3.1:8B}), and concludes with the implementation of the developed web application interface.
+    
+    \item \textbf{Chapter 6: Evaluation and Testing.} Presents the results of the project through the execution of the testbed across both architectures. The responses and inferences provided by the language models for each of the formulated complex musical questions are explicitly contrasted and analyzed.
+    
+    \item \textbf{Chapter 7: Discussion and Analysis of Limitations.} Critically addresses the qualitative and quantitative comparison between the relational deterministic approach (\textit{Text-to-SQL}) and the semantic approach (\textit{RAG}), openly discussing the encountered hallucination rates, context issues, and the technical limitations resolved during the development of the architecture.
+    
+    \item \textbf{Chapter 8: Conclusions and Future Work.} Synthesizes the main findings derived from the research, validating the fulfillment of the proposed general and specific objectives. Concurrently, it defines priority and immediate research lines, such as the implementation of multi-agent architectures (A2A), \textit{GraphRAG} techniques, or the exploitation of semi-structured JSON variables through native functions.
+\end{itemize}
+
+Finally, the report incorporates an \textbf{Appendix A}, which compiles scientific knowledge transfer activities, detailing the presentation and impact of the project in national and international conferences as well as academic seminars in the field. It is worth noting that, to comply with international research dissemination guidelines, the chapters corresponding to the \textbf{Introduction} and \textbf{Conclusions and Future Work} are replicated in English in Chapters 9 and 10, respectively.
 
 \section{Use of Artificial Intelligence}
 This work has been developed with the occasional support of artificial intelligence tools for technical assistance and editing. Their use was limited to auxiliary tasks, such as organizing ideas, improving writing clarity, and supporting the implementation of certain parts of the code. In all cases, design decisions, result validation, and ultimate responsibility for the content and implementation rest exclusively with the author.

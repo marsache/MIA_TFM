@@ -119,5 +119,7 @@
 \contentsline {chapter}{\numberline {9}Introduction}{111}{chapter.130}%
 \babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {10}Conclusions and Future Work}{113}{chapter.131}%
-\contentsline {chapter}{\numberline {A}Presentación del proyecto en congresos y seminarios}{115}{appendix.132}%
+\contentsline {section}{\numberline {10.1}Conclusions}{113}{section.132}%
+\contentsline {section}{\numberline {10.2}Future Work}{114}{section.133}%
+\contentsline {chapter}{\numberline {A}Presentación del proyecto en congresos y seminarios}{117}{appendix.134}%
 \babel@toc {spanish}{}\relax 

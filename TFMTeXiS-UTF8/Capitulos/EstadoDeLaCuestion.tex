@@ -1,21 +1,54 @@
 \chapter{Estado de la Cuestión}
 \label{cap:estadoDeLaCuestion}
 
-En el estado de la cuestión es donde aparecen gran parte de las referencias bibliográficas del trabajo. Una de las formas más cómodas de gestionar la bibliografía en {\LaTeX} es utilizando \textbf{bibtex}. Las entradas bibliográficas deben estar en un fichero con extensión \textit{.bib} (con esta plantilla se proporciona el fichero biblio.bib, donde están las entradas referenciadas más abajo). Cada entrada bibliográfica tiene una clave que permite referenciarla desde cualquier parte del texto con los siguiente comandos:
+% En el estado de la cuestión es donde aparecen gran parte de las referencias bibliográficas del trabajo. Una de las formas más cómodas de gestionar la bibliografía en {\LaTeX} es utilizando \textbf{bibtex}. Las entradas bibliográficas deben estar en un fichero con extensión \textit{.bib} (con esta plantilla se proporciona el fichero biblio.bib, donde están las entradas referenciadas más abajo). Cada entrada bibliográfica tiene una clave que permite referenciarla desde cualquier parte del texto con los siguiente comandos:
 
-\begin{itemize}
-\item Referencia bibliografica con cite: \cite{ldesc2e}
-\item Referencia bibliográfica con citep: \citep{notsoshort}
-\item Referencia bibliográfica con citet: \citet{latexAPrimer}
-\end{itemize}
+% \begin{itemize}
+% \item Referencia bibliografica con cite: \cite{ldesc2e}
+% \item Referencia bibliográfica con citep: \citep{notsoshort}
+% \item Referencia bibliográfica con citet: \citet{latexAPrimer}
+% \end{itemize}
 
-Es posible citar más de una fuente, como por ejemplo \citep{latexCompanion,LaTeXLamport,texKnuth}
+% Es posible citar más de una fuente, como por ejemplo \citep{latexCompanion,LaTeXLamport,texKnuth}
 
-Después, latex se ocupa de rellenar la sección de bibliografía con las entradas \textbf{que hayan sido citadas} (es decir, no con todas las entradas que hay en el .bib, sino sólo con aquellas que se hayan citado en alguna parte del texto).
+% Después, latex se ocupa de rellenar la sección de bibliografía con las entradas \textbf{que hayan sido citadas} (es decir, no con todas las entradas que hay en el .bib, sino sólo con aquellas que se hayan citado en alguna parte del texto).
 
-Bibtex es un programa separado de latex, pdflatex o cualquier otra cosa que se use para compilar los .tex, de manera que para que se rellene correctamente la sección de bibliografía es necesario compilar primero el trabajo (a veces es necesario compilarlo dos veces), compilar después con bibtex, y volver a compilar otra vez el trabajo (de nuevo, puede ser necesario compilarlo dos veces). 
+% Bibtex es un programa separado de latex, pdflatex o cualquier otra cosa que se use para compilar los .tex, de manera que para que se rellene correctamente la sección de bibliografía es necesario compilar primero el trabajo (a veces es necesario compilarlo dos veces), compilar después con bibtex, y volver a compilar otra vez el trabajo (de nuevo, puede ser necesario compilarlo dos veces). 
 
-\subsection{El giro computacional en el análisis de textos artísticos y creativos}
-(TODO: revisar que flipas)
-El procesamiento de lenguaje natural (PLN) ha evolucionado rápidamente en el transcurso de los últimos años. Aunque inicialmente [...], este desarrollo ha alcanzado la mejora en el ámbito de la generación de contenido creativo e incluso poético. 
+% \subsection{El giro computacional en el análisis de textos artísticos y creativos}
+% (TODO: revisar que flipas)
+% El procesamiento de lenguaje natural (PLN) ha evolucionado rápidamente en el transcurso de los últimos años. Aunque inicialmente [...], este desarrollo ha alcanzado la mejora en el ámbito de la generación de contenido creativo e incluso poético. 
 
+El desarrollo de una arquitectura capaz de automatizar el análisis, catalogación e interrogación de grandes corpus de música folclórica mediante Inteligencia Artificial requiere converger disciplinas históricamente distantes. Este capítulo examina el marco conceptual y los antecedentes científicos organizados en tres ejes fundamentales: el giro computacional en las humanidades y el procesamiento simbólico de partituras, la emergencia de las tecnologías basadas en Modelos de Lenguaje de Gran Escala (LLMs), y los paradigmas contrapuestos de recuperación de información simbólica y relacional.
+
+\section{El giro computacional en el análisis de textos artísticos y el procesamiento simbólico musical}
+\label{sec:giro_computacional}
+
+En las últimas décadas, las disciplinas humanísticas han experimentado lo que la literatura científica denomina el \textit{``giro computacional''} (\textit{computational turn}), un desplazamiento metodológico que transita desde el análisis microscópico de obras aisladas hacia la explotación macroscópica de grandes volúmenes de datos mediante técnicas de \textit{Distant Reading} \cite{moretti2013distant}. En el dominio de la musicología, este cambio de paradigma se ha consolidado bajo la disciplina de la musicología computacional, habilitando el estudio de patrones estilísticos, estructuras melódicas y evoluciones folclóricas sobre colecciones que exceden la capacidad de absorción del análisis manual analógico \cite{cook2004computational}.
+
+El éxito de este enfoque está íntimamente ligado a la estandarización de formatos de representación simbólica digital. Estructuras lógicas y lenguajes de marcado como \textit{MusicXML} y, más recientemente, el estándar de la \textit{Music Encoding Initiative} (MEI), han permitido codificar no solo las propiedades acústicas o de rendimiento de una obra (a la manera del formato MIDI estándar), sino su semántica textual y ontología musical compleja, integrando elementos líricos, métricos y estructurales dentro de esquemas arbóreos jerárquicos basados en XML \cite{roland2002music}.
+
+No obstante, la manipulación directa de estos ficheros impone una elevada complejidad algorítmica. Para superar esta barrera, la comunidad científica ha desarrollado \textit{frameworks} orientados a objetos específicos para la manipulación musicológica. Entre ellos, el ecosistema \textbf{music21} se ha consolidado como el estándar de facto en el ámbito de la investigación \cite{cuthbert2010music21}. Concebido como un conjunto de herramientas de código abierto basadas en Python, \textit{music21} abstrae la complejidad de los formatos de marcado subyacentes, permitiendo a los investigadores programar algoritmos analíticos para la búsqueda de patrones de intervalos, la extracción de líneas melódicas y el cómputo de jerarquías métricas. A pesar de su robustez, el uso de estos entornos sigue requiriendo competencias avanzadas de programación, lo que introduce una brecha técnica crítica para los investigadores de corte humanístico y musicológico tradicional.
+
+\section{Modelos de Lenguaje de Gran Escala (LLMs) y el dominio musical simbólico}
+\label{sec:llms_musicales}
+
+La llegada de la arquitectura \textit{Transformer} \cite{vaswani2017attention} revolucionó el procesamiento del lenguaje natural (NLP) y, de forma paulatina, ha comenzado a influir en las metodologías de análisis de datos estructurados y creativos. La capacidad intrínseca de los Modelos de Lenguaje de Gran Escala (LLMs) para modelar dependencias a largo plazo y capturar representaciones semánticas complejas ha impulsado el desarrollo de iniciativas recientes orientadas a la comprensión y generación de música simbólica.
+
+Trabajos pioneros en este campo exploraron el entrenamiento de modelos de lenguaje autorregresivos sobre representaciones textualizadas de partituras (como notación ABC o secuencias linearizadas de eventos MIDI). Sin embargo, la investigación contemporánea ha detectado limitaciones severas en estos enfoques debido a la naturaleza multidimensional y polifónica de la música, características que la sintaxis puramente secuencial del lenguaje de texto no puede codificar de manera directa \cite{ji2023comprehensive}.
+
+Recientemente, el paradigma ha evolucionado hacia sistemas multimodales capaces de alinear codificadores musicales especializados con modelos fundacionales de texto. Un ejemplo representativo es la emergencia de arquitecturas de instrucción como \textit{MIDI-LLaMA} o adaptaciones basadas en \textit{MusicBERT}, las cuales buscan que el modelo comprenda estructuras armónicas latentes mediante técnicas de alineamiento de características y ajuste fino conversacional \cite{chou2024midillama}. A pesar de estos avances de frontera, los modelos generales de última generación (como los pertenecientes a las familias \textit{Gemini} o \textit{Llama}) siguen manifestando deficiencias estructurales cuando operan de manera directa sobre partituras complejas codificadas en lenguaje natural: la densidad sintáctica de los formatos XML satura con rapidez las ventanas de contexto operativo y degrada los mecanismos de atención, provocando fallos sistemáticos en tareas que involucran razonamiento musical abstracto, cálculos matemáticos métricos o análisis de fenómenos expresivos sutiles como síncopas y hemiolias.
+
+\section{Recuperación de Información en Grandes Corpus: RAG Semántico frente a Enfoques Relacionales (Text-to-SQL)}
+\label{sec:rag_vs_sql}
+
+Ante la imposibilidad técnica de inyectar colecciones masivas de datos musicales en el contexto de un modelo de lenguaje, la ingeniería de la IA ha bifurcado sus esfuerzos de recuperación de información en dos aproximaciones distintas:
+
+\subsection{Generación Aumentada por Recuperación (RAG)}
+El enfoque RAG (\textit{Retrieval-Augmented Generation}) se basa en segmentar el corpus de documentos, proyectar dichos fragmentos en un espacio vectorial continuo mediante modelos de \textit{embeddings} y recuperar de forma semántica las secciones más relevantes de cara a fundamentar la respuesta del generador \cite{lewis2020retrieval}. Implementaciones avanzadas proporcionadas por la industria, tales como el motor nativo \textit{File Search} de Google Gemini, han facilitado el despliegue de estos sistemas sobre repositorios documentales extensos. No obstante, en contextos científicos de alta especificidad (como la musicología técnica), el RAG tradicional vectorizado o basado en texto presenta serios problemas de fiabilidad. Al carecer de capacidades intrínsecas de cómputo estructurado, los modelos de lenguaje tienden a la generación de fenómenos de alucinación, deduciendo métricas inexistentes o inventando referencias líricas o de autoría ausentes en el conjunto original de datos \cite{huang2023citation}.
+
+\subsection{Aproximaciones Relacionales y Text-to-SQL}
+Con el fin de limitar la variabilidad de los modelos conversacionales puros, la literatura científica ha propuesto el paradigma de traducción de lenguaje natural a lenguaje de consultas estructuradas (\textit{Text-to-SQL}). En este diseño de arquitectura, el modelo de lenguaje no actúa como el almacén o el recuperador indexado de los datos, sino como un agente traductor (un sintetizador de consultas) intercalado entre la interfaz de usuario y un motor de base de datos relacional determinista como \textit{SQLite} \cite{katsogiannis2023text}. Almacenar las variables musicológicas extraídas previamente mediante un procesamiento algorítmico estricto (por ejemplo, computadas previamente con \textit{music21}) garantiza que la fase de recuperación de información sea determinista, auditable y libre de alucinaciones factuales. Sin embargo, este enfoque desplaza la fuente de error hacia la capacidad de inferencia del LLM: si el modelo comete fallos sintácticos al construir la \textit{query} SQL, o si es incapaz de plasmar una condición musicológica abstracta dentro de las restricciones de un esquema de base de datos relacional, el sistema comete fallos críticos de recuperación.
+
+\subsection{Integración de Contexto y el Protocolo MCP}
+Como respuesta a la necesidad de estandarizar la conexión segura, bidireccional y eficiente entre agentes de IA y fuentes de datos relacionales locales (o APIs externas), la industria del software ha introducido frameworks de conectividad avanzados como el \textbf{Model Context Protocol (MCP)} impulsado a finales de 2024 \cite{anthropic2024mcp}. MCP define un protocolo abierto cliente-servidor que formaliza cómo un modelo de lenguaje puede descubrir y ejecutar herramientas y recursos específicos en su entorno operativo. En lugar de desarrollar conectores acoplados para cada base de datos, el protocolo MCP permite desacoplar la base de datos (por ejemplo, encapsulando las operaciones de extracción \textit{SQLite}) en un servidor independiente con el que el modelo interactúa dinámicamente según el contexto de la consulta planteada por el usuario. La investigación sobre la viabilidad de este protocolo combinado con modelos locales pequeños (SLMs, como \textit{Llama 3.1:8B}) para la ejecución de pipelines científicos específicos y la construcción de aplicaciones web guiadas representa uno de los campos de desarrollo más activos y con mayor potencial de transferencia tecnológica en la ingeniería de software actual.

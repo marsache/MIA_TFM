@@ -1,0 +1,72 @@
+\begin{thebibliography}{11}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Anthropic PBC}(2024)}]{anthropic2024mcp}
+{\sc {Anthropic PBC}}.
+\newblock Model context protocol (mcp): Open-sourcing the infrastructure for ai
+  context.
+\newblock \url{https://modelcontextprotocol.io/}, 2024.
+
+\bibitem[{Chou y et~al.(2026)}]{chou2024midillama}
+{\sc Chou, Y.-H.} y {\sc et~al.}
+\newblock Midi-llama: An instruction-following multimodal llm for symbolic
+  music understanding.
+\newblock {\em arXiv preprint arXiv:2601.21740\/}, 2026.
+
+\bibitem[{Cook(2004)}]{cook2004computational}
+{\sc Cook, N.}
+\newblock Computational and comparative musicology.
+\newblock {\em Empirical Musicology: Aims, Methods, Prospects\/}, 2004.
+
+\bibitem[{Cuthbert y Ariza(2010)}]{cuthbert2010music21}
+{\sc Cuthbert, M.~S.} y {\sc Ariza, C.}
+\newblock music21: A toolkit for computer-aided musicology and symbolic music
+  data.
+\newblock {\em International Society for Music Information Retrieval
+  (ISMIR)\/}, 2010.
+
+\bibitem[{Huang y et~al.(2023)}]{huang2023citation}
+{\sc Huang, L.} y {\sc et~al.}
+\newblock A survey on hallucination in large language models: Principles,
+  taxonomy, challenges, and open questions.
+\newblock {\em arXiv preprint arXiv:2311.05232\/}, 2023.
+
+\bibitem[{Ji et\ al.(2023)Ji, Zhang y Sullivan}]{ji2023comprehensive}
+{\sc Ji, S.}, {\sc Zhang, S.} y {\sc Sullivan, M.}
+\newblock A comprehensive survey on deep learning for relation extraction.
+\newblock {\em ACM Computing Surveys\/}, 2023.
+
+\bibitem[{Katsogiannis-Meimarakis y Koutrika(2023)}]{katsogiannis2023text}
+{\sc Katsogiannis-Meimarakis, G.} y {\sc Koutrika, G.}
+\newblock Text-to-sql generation: A survey on systems, datasets, and evaluation
+  metrics.
+\newblock {\em ACM Computing Surveys\/}, 2023.
+
+\bibitem[{Lewis et\ al.(2020)Lewis, Perez, Piktus, Petroni, Lewis, Riedel y
+  Kiela}]{lewis2020retrieval}
+{\sc Lewis, P.}, {\sc Perez, E.}, {\sc Piktus, A.}, {\sc Petroni, F.}, {\sc
+  Lewis, V.}, {\sc Riedel, S.} y {\sc Kiela, D.}
+\newblock Retrieval-augmented generation for knowledge-intensive nlp tasks.
+\newblock {\em Advances in Neural Information Processing Systems\/}, vol.\ 33,
+  p\'aginas 9459--9474, 2020.
+
+\bibitem[{Moretti(2013)}]{moretti2013distant}
+{\sc Moretti, F.}
+\newblock {\em Distant reading\/}.
+\newblock Verso Books, 2013.
+
+\bibitem[{Roland(2002)}]{roland2002music}
+{\sc Roland, P.}
+\newblock The music encoding initiative (mei).
+\newblock En {\em Proceedings of the First International Conference on Musical
+  Applications Using XML\/}. 2002.
+
+\bibitem[{Vaswani et\ al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
+  Gomez, Kaiser y Polosukhin}]{vaswani2017attention}
+{\sc Vaswani, A.}, {\sc Shazeer, N.}, {\sc Parmar, N.}, {\sc Uszkoreit, J.},
+  {\sc Jones, L.}, {\sc Gomez, A.~N.}, {\sc Kaiser, {\L}.} y {\sc Polosukhin,
+  I.}
+\newblock Attention is all you need.
+\newblock 2017.
+
+\end{thebibliography}

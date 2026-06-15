@@ -608,15 +608,14 @@ OUTPUT Capitulos\ConclusionsFutureWork.aux
 INPUT .\Capitulos\ConclusionsFutureWork.tex
 INPUT .\Capitulos\ConclusionsFutureWork.tex
 INPUT Capitulos\ConclusionsFutureWork.tex
-INPUT .\TFMTeXiS.bbl
-INPUT .\TFMTeXiS.bbl
-INPUT TFMTeXiS.bbl
 INPUT .\Cascaras\bibliografia.tex
 INPUT .\Cascaras\bibliografia.tex
 OUTPUT Cascaras\bibliografia.aux
 INPUT .\Cascaras\bibliografia.tex
 INPUT .\Cascaras\bibliografia.tex
 INPUT Cascaras\bibliografia.tex
+INPUT .\TFMTeXiS.bbl
+INPUT .\TFMTeXiS.bbl
 INPUT TFMTeXiS.bbl
 INPUT .\Apendices\appendixA.tex
 INPUT .\Apendices\appendixA.tex

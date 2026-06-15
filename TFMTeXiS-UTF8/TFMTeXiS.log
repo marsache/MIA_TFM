@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 01:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 02:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1417,40 +1417,49 @@ LaTeX Info: Redefining \% on input line 147.
 
 ]
 Cap\'itulo 7.
-) [103]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [103])
+LaTeX Info: Redefining \. on input line 148.
+LaTeX Info: Redefining \% on input line 148.
+ [104]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
- (Capitulos/ConclusionesTrabajoFuturo.tex [104
+ (Capitulos/ConclusionesTrabajoFuturo.tex
+Cap\'itulo 8.
+[105
 
 
 
 
 ]
-Cap\'itulo 8.
-[105])
+LaTeX Info: Redefining \. on input line 31.
+LaTeX Info: Redefining \% on input line 31.
+ [106])
 LaTeX Info: Redefining \. on input line 149.
 LaTeX Info: Redefining \% on input line 149.
- [106]
+ [107]
 \openout2 = `Capitulos/Introduction.aux'.
 
- (Capitulos/Introduction.tex
-Chapter 9.
-) [107
+ (Capitulos/Introduction.tex [108
 
 
 
 
 ]
+Chapter 9.
+) [109]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (Capitulos/ConclusionsFutureWork.tex [108
+ (Capitulos/ConclusionsFutureWork.tex [110
 
 
 
 
 ]
 Chapter 10.
-) [109]
+) [111]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
  (TFMTeXiS.bbl)
@@ -1459,7 +1468,7 @@ LaTeX Info: Redefining \% on input line 157.
  (Cascaras/bibliografia.tex (TFMTeXiS.bbl))
 \openout2 = `Apendices/appendixA.aux'.
 
- (Apendices/appendixA.tex [110
+ (Apendices/appendixA.tex [112
 
 
 
@@ -1469,16 +1478,16 @@ LaTeX Info: Redefining \% on input line 157.
 
 ]
 Ap\'{e}ndice A.
-) [111] [112
+) [113] [114
 
 
 
 ]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [113
+ (Cascaras/fin.tex [115
 
-] [114])
+] [116])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1500,17 +1509,17 @@ Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
 (rerunfilecheck)             Checksum: 1B8A44A33216600CA73D0D86F1B228E0;44839.
  ) 
 Here is how much of TeX's memory you used:
- 18887 strings out of 467691
- 314494 string characters out of 5414987
+ 18889 strings out of 467691
+ 314510 string characters out of 5414987
  804104 words of memory out of 5000000
  47006 multiletter control sequences out of 15000+600000
  649121 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  97i,12n,109p,1753b,862s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (134 pages, 1078741 bytes).
+Output written on TFMTeXiS.pdf (136 pages, 1086485 bytes).
 PDF statistics:
- 2036 PDF objects out of 2073 (max. 8388607)
- 271 named destinations out of 1000 (max. 500000)
+ 2045 PDF objects out of 2073 (max. 8388607)
+ 273 named destinations out of 1000 (max. 500000)
  990 words of extra memory for PDF output out of 10000 (max. 10000000)
 

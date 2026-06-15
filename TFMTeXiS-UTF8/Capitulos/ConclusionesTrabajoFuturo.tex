@@ -1,10 +1,22 @@
 \chapter{Conclusiones y Trabajo Futuro}
 \label{cap:conclusiones}
 
-(TODO: completar)
-
 \section{Conclusiones}
-(TODO: completar)
+Este trabajo se ha desarrollado en el marco del proyecto europeo e iberoamericano \textit{EA-DIGIFOLK}, con el propósito de diseñar, implementar y evaluar una arquitectura automatizada, robusta y escalable capaz de superar las limitaciones metodológicas tradicionales en el análisis de grandes corpus musicales folclóricos. Frente a los problemas de heterogeneidad de formatos y las limitaciones de contexto de los modelos de lenguaje (LLM) de propósito general, se propuso una infraestructura intermedia fundamentada en la extracción y normalización de metadatos mediante herramientas especializadas como \textit{music21} y el almacenamiento de la información en una base de datos relacional estructurada (\textit{SQLite}). 
+
+La evaluación y análisis comparativo de este sistema frente a aproximaciones alternativas han arrojado resultados determinantes sobre el comportamiento de la inteligencia artificial aplicada a la musicología computacional. El estudio demuestra que el acceso directo a una base de datos estructurada mediante inferencia SQL local (utilizando \textit{Llama3.1:8B}) ofrece una extracción de datos sustancialmente más determinista, precisa y consistente que los sistemas basados puramente en recuperación y búsqueda de archivos (\textit{Retrieval-Augmented Generation} o RAG con modelos grandes y generales como \textit{Gemini 2.5 Flash}). Mientras que el enfoque RAG destaca por su flexibilidad lingüística y capacidad de síntesis, su propensión a las alucinaciones y a la generación de contenido no respaldado por el dataset disminuye críticamente su fiabilidad en entornos de investigación especializada, como es el caso de la musicología técnica. No obstante, los resultados también evidencian que ambos enfoques sufren ante consultas que requieren razonamiento musical complejo en varios pasos.
+
+A partir de los hallazgos y de la discusión detallada, se extraen las siguientes conclusiones principales:
+
+\begin{itemize}
+    \item El almacenamiento estructurado en SQLite combinado con un modelo local permite una recuperación de información altamente fiable y libre de alucinaciones cuando los datos requeridos están explícitamente representados en el esquema. Por el contrario, los sistemas RAG basados en File Search aportan una mayor riqueza contextual y descriptiva en lenguaje natural, pero introduce imprecisiones y falsos positivos (como la invención de piezas inexistentes en el corpus).
+    
+    \item La principal limitación del enfoque local estructurado no reside en la disponibilidad de los datos analíticos, sino en la capacidad del modelo para traducir correctamente preguntas complejas de lenguaje natural a consultas SQL ejecutables. Los errores en esta traducción intermedia constituyen una fuente de fallo crítica que disminuye la robustez del sistema ante consultas no triviales o compuestas.
+    
+    \item Ninguno de los dos enfoques evaluados es completamente autónomo o robusto a la hora de resolver de manera directa consultas que impliquen abstracciones complejas o cálculos matemáticos y musicales en varios pasos (como el análisis de intervalos fronterizos, síncopas o estructuras melódicas avanzadas). Ambos sistemas tienden a simplificar las respuestas o a asumir correlaciones injustificadas ante la falta de una capa de procesamiento analítico previo.
+    
+    \item Para que las herramientas basadas en LLMs sean verdaderamente útiles en la investigación musicológica de grandes colecciones, la representación de los datos no sólo debe estar estructurada, sino explícitamente optimizada para consultas analíticas. Se concluye que para mejorar estas herramientas y sus resultados es necesario un diseño de arquitecturas intermedias que combinen de forma híbrida la generación guiada de consultas, la validación estricta de resultados y módulos especializados de razonamiento estructurado.
+\end{itemize}
 
 \section{Trabajo futuro}
 La herramienta desarrollada constituye una primera aproximación a la aplicación de técnicas de inteligencia artificial y análisis musical computacional sobre corpus de partituras digitales. No obstante, existen diversas líneas de investigación que podrían explorarse en trabajos futuros con el objetivo de ampliar las capacidades analíticas de la herramienta, mejorar la calidad de las respuestas y enriquecer la experiencia de usuario.

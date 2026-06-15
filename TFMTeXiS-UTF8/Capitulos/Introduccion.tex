@@ -81,12 +81,72 @@ Desarrollar un sistema automatizado, robusto y escalable para el análisis, cata
 
 \section{Plan de trabajo}
 Aquí se describe el plan de trabajo a seguir para la consecución de los objetivos descritos en el apartado anterior.
-(TODO: completar)
+
+Para la consecución de los objetivos propuestos se ha diseñado un plan de trabajo estructurado en seis fases principales, abarcando desde finales de octubre hasta principios de junio. Este cronograma contempla desde la investigación inicial y la captura de requisitos mediante trabajo de campo, hasta el desarrollo técnico de la arquitectura, su evaluación comparativa y la redacción final de la memoria de investigación.
+
+A continuación, se detalla la planificación temporal mediante un diagrama de Gantt (Figura~\ref{fig:gantt_plan}):
+
+\begin{figure}[htbp]
+\raggedright
+\hspace*{-2.5cm}
+\begin{ganttchart}[
+    vgrid,
+    hgrid,
+    x unit=0.05cm,
+    y unit chart=0.7cm,
+    time slot format=isodate-yearmonth,
+    title/.style={fill=gray!20, draw=black, font=\small\bfseries},
+    bar/.style={fill=blue!40, draw=black},
+    milestone/.style={fill=red, draw=black},
+    progress label text={},
+    group right shift=0,
+    group top shift=.6,
+    group height=.2
+]{2025-10}{2026-06}
+    \gantttitlecalendar{year, month=letter} \\
+    
+    \ganttgroup{F1: Estado del Arte e Inv. Inicial}{2025-10}{2025-12} \\
+    \ganttbar{Revisión bibliográfica}{2025-10}{2025-11} \\
+    \ganttbar{Análisis de formatos (MusicXML, MEI)}{2025-11}{2025-12} \\
+    
+    \ganttgroup{F2: Captura de Requisitos}{2026-03}{2026-03} \\
+    \ganttbar{Entrevistas a musicólogas}{2026-03}{2026-03} \\
+    \ganttbar{Definición de requisitos de usuario}{2026-03}{2026-03} \\
+    
+    \ganttgroup{F3: Diseño de la Arquitectura}{2025-12}{2026-02} \\
+    \ganttbar{Diseño del esquema de base de datos SQLite}{2025-12}{2026-01} \\
+    \ganttbar{Desarrollo del pipeline de normalización}{2026-01}{2026-02} \\
+    
+    \ganttgroup{F4: Implementación y Análisis}{2026-02}{2026-04} \\
+    \ganttbar{Módulos de análisis musical (music21)}{2026-02}{2026-03} \\
+    \ganttbar{Integración de análisis semántico (Ollama)}{2026-03}{2026-04} \\
+    
+    \ganttgroup{F5: Evaluación y Pruebas}{2026-04}{2026-05} \\
+    \ganttbar{Pruebas con Gemini 2.5 Flash (RAG)}{2026-04}{2026-05} \\
+    \ganttbar{Evaluación comparativa Llama3 vs Gemini}{2026-05}{2026-05} \\
+    
+    \ganttgroup{F6: Documentación Final}{2026-04}{2026-06} \\
+    \ganttbar{Redacción de la memoria técnica}{2026-04}{2026-06} \\
+    \ganttmilestone{Entrega de la Memoria}{2026-06}
+\end{ganttchart}
+\caption{Diagrama de Gantt del plan de trabajo (octubre - junio).}
+\label{fig:gantt_plan}
+\end{figure}
+
+A nivel operativo, el desarrollo se desglosa en las siguientes actividades clave ligadas directamente a los objetivos del proyecto:
+\begin{itemize}
+    \item \textbf{Fase 1 (Octubre -- Diciembre):} Dedicada al estudio profundo del estado del arte en musicología computacional.
+    \item \textbf{Fase 2 (Marzo):} Dedicada de forma exclusiva a la captura de requisitos mediante la realización de entrevistas cualitativas a musicólogas e investigadoras del área. El objetivo de este hito es alinear las capacidades del sistema con las necesidades analíticas reales y cotidianas de las usuarias expertas.
+    \item \textbf{Fase 3 (Diciembre -- Febrero):} Centrada en el diseño e implementación de la infraestructura intermedia y el pipeline de normalización automática, encargados de unificar la persistencia de datos en el archivo local de SQLite independientemente de la heterogeneidad u organización original del corpus folclórico.
+    \item \textbf{Fase 4 (Febrero -- Abril):} Enfocada en el desarrollo de algoritmos basados en \textit{music21} para la extracción de rasgos técnicos complejos (estructuras rítmicas y melódicas) y su integración con los modelos de lenguaje locales (\textit{Llama3} a través de \textit{Ollama}) destinados a la clasificación semántica y temática de la lírica de las obras.
+    \item \textbf{Fase 5 (Abril -- Mayo):} Destinada a la fase crítica de evaluación. Se realizan las pruebas sobre el sistema de recuperación de información implementando tanto la aproximación local de texto a SQL como el enfoque RAG en la nube mediante la funcionalidad \textit{File Search} de la API de Gemini, permitiendo contrastar los límites de precisión, contexto y alucinaciones de ambas tecnologías.
+    \item \textbf{Fase 6 (Abril -- Junio):} Consistente en la redacción de la memoria de investigación y preparación de la documentación del software desarrollado para garantizar su total reproducibilidad técnica posterior.
+\end{itemize}
 
 \section{Metodología y tecnología}
 Para desarrollar este proyecto se han seleccionado herramientas de código abierto y la versión gratuita de la API de Gemini. Esta decisión garantiza la reproducción íntegra del proyecto de manera local (exceptuando la utilización de la API de Gemini).
 \begin{itemize}
-\item \textbf{Python 3.} Utilizado como base para desarrollar todo el proyecto. (TODO: completar)
+\item \textbf{Python 3.} Utilizado como base para desarrollar todo el proyecto. Se ha seleccionado este lenguaje de programación de alto nivel y propósito general fundamentalmente por albergar el ecosistema de librerías más avanzado para la musicología computacional, la ciencia de datos y la inteligencia artificial. Su versatilidad permite articular en un único flujo de trabajo automatizado desde el preprocesamiento de partituras y la normalización de metadatos procedentes de corpus musicales heterogéneos, hasta la gestión de bases de datos locales, la comunicación con servidores de modelos de lenguaje mediante peticiones estructuradas y la posterior evaluación analítica de los resultados.
 \item \textbf{Music21.} Kit de herramientas líder para la musicología computacional. Permite realizar un análisis musical profundo de cada obra en torno a sus notas, intervalos, acordes, escalas, etc., lo que facilita el estudio de patrones armónicos, melódicos y rítmicos, difíciles de identificar con otras herramientas y, en este caso, con LLMs. Además, tiene soporte para múltiples formatos, como MIDI o XML, lo que resulta muy útil en esta investigación, donde se trabaja con un extenso y heterogéneo corpus de obras en distintos formatos. Por otra parte, su integración con Python y otras librerías facilita la extracción y el análisis de la información del corpus musical.
 \item \textbf{Ollama.} Servidor local que permite utilizar modelos de lenguaje de manera local y personalizada. Se ha seleccionado \textit{llama3} como LLM para ejecutar distintas tareas de procesamiento de lenguaje natural. Esto mitiga costes de APIs externas, protege la privacidad del corpus y facilita la invariabilidad de las salidas mediante la restricción nativa de respuestas en formato JSON estructurado.
 \item \textbf{API de Gemini (versión gratuita).} Plataforma de servicios en la nube basada en inteligencia artificial generativa desarrollada por Google. En este proyecto se ha seleccionado específicamente el modelo \textit{Gemini 2.5 Flash} a través de su API libre de costes para implementar una aproximación de recuperación y consulta basada en arquitecturas RAG asistidas por la funcionalidad nativa \textit{File Search}.

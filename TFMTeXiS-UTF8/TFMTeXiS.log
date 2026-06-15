@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 02:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 03:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -529,6 +529,236 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen266
 \c@nlinenum=\count349
 \TeXr@lab=\toks33
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgfgantt\pgfgantt.sty
+Package: pgfgantt 2024/06/19 v5.0a Draw Gantt diagrams with TikZ
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
+\pgfutil@everybye=\toks34
+\pgfutil@tempdima=\dimen267
+\pgfutil@tempdimb=\dimen268
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
+\pgfutil@abb=\box112
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks35
+\pgfkeys@temptoks=\toks36
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks37
+))
+\pgf@x=\dimen269
+\pgf@y=\dimen270
+\pgf@xa=\dimen271
+\pgf@ya=\dimen272
+\pgf@xb=\dimen273
+\pgf@yb=\dimen274
+\pgf@xc=\dimen275
+\pgf@yc=\dimen276
+\pgf@xd=\dimen277
+\pgf@yd=\dimen278
+\w@pgf@writea=\write5
+\r@pgf@reada=\read4
+\c@pgf@counta=\count350
+\c@pgf@countb=\count351
+\c@pgf@countc=\count352
+\c@pgf@countd=\count353
+\t@pgf@toka=\toks38
+\t@pgf@tokb=\toks39
+\t@pgf@tokc=\toks40
+\pgf@sys@id@count=\count354
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+))) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count355
+\pgfsyssoftpath@bigbuffer@items=\count356
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
+\pgfmath@dimen=\dimen279
+\pgfmath@count=\count357
+\pgfmath@box=\box113
+\pgfmath@toks=\toks41
+\pgfmath@stack@operand=\toks42
+\pgfmath@stack@operation=\toks43
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count358
+)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.tex) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen280
+\pgf@picmaxx=\dimen281
+\pgf@picminy=\dimen282
+\pgf@picmaxy=\dimen283
+\pgf@pathminx=\dimen284
+\pgf@pathmaxx=\dimen285
+\pgf@pathminy=\dimen286
+\pgf@pathmaxy=\dimen287
+\pgf@xx=\dimen288
+\pgf@xy=\dimen289
+\pgf@yx=\dimen290
+\pgf@yy=\dimen291
+\pgf@zx=\dimen292
+\pgf@zy=\dimen293
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen294
+\pgf@path@lasty=\dimen295
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen296
+\pgf@shorten@start@additional=\dimen297
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box114
+\pgf@hbox=\box115
+\pgf@layerbox@main=\box116
+\pgf@picture@serial@count=\count359
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen298
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen299
+\pgf@pt@y=\dimen300
+\pgf@pt@temp=\dimen301
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen302
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen303
+\pgf@sys@shading@range@num=\count360
+\pgf@shadingcount=\count361
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box117
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box118
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen304
+\pgf@nodesepend=\dimen305
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen306
+\pgffor@skip=\dimen307
+\pgffor@stack=\toks44
+\pgffor@toks=\toks45
+)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count362
+\pgfplotmarksize=\dimen308
+)
+\tikz@lastx=\dimen309
+\tikz@lasty=\dimen310
+\tikz@lastxsaved=\dimen311
+\tikz@lastysaved=\dimen312
+\tikz@lastmovetox=\dimen313
+\tikz@lastmovetoy=\dimen314
+\tikzleveldistance=\dimen315
+\tikzsiblingdistance=\dimen316
+\tikz@figbox=\box119
+\tikz@figbox@bg=\box120
+\tikz@tempbox=\box121
+\tikz@tempbox@bg=\box122
+\tikztreelevel=\count363
+\tikznumberofchildren=\count364
+\tikznumberofcurrentchild=\count365
+\tikz@fig@count=\count366
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count367
+\pgfmatrixcurrentcolumn=\count368
+\pgf@matrix@numberofcolumns=\count369
+)
+\tikz@expandcount=\count370
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\arrowsize=\dimen317
+)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarybackgrounds.code.tex
+File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@layerbox@background=\box123
+\pgf@layerboxsaved@background=\box124
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypatterns.code.tex
+File: tikzlibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibrarypatterns.code.tex
+File: pgflibrarypatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+ (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/shapes\pgflibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfcalendar.sty (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfcalendar.code.tex
+File: pgfcalendar.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfcalendarcurrentjulian=\count371
+\pgf@cal@easter@Y=\count372
+\pgf@cal@easter@G=\count373
+\pgf@cal@easter@C=\count374
+\pgf@cal@easter@X=\count375
+\pgf@cal@easter@Z=\count376
+\pgf@cal@easter@D=\count377
+\pgf@cal@easter@E=\count378
+\pgf@cal@easter@N=\count379
+\pgf@cal@easter@M=\count380
+\pgf@cal@easter@julianday=\count381
+))
+\gtt@currentline=\count382
+\gtt@lasttitleline=\count383
+\gtt@currgrid=\count384
+\gtt@chartwidth=\count385
+\gtt@lasttitleslot=\count386
+\gtt@elementid=\count387
+\gtt@today@slot=\count388
+\gtt@startjulian=\count389
+\gtt@endjulian=\count390
+\gtt@chartid=\count391
+\gtt@vrule@slot=\count392
+\gtt@calendar@slots=\count393
+\gtt@calendar@weeknumber=\count394
+\gtt@calendar@startofweek=\count395
+\gtt@left@slot=\count396
+\gtt@right@slot=\count397
 ))
 
 LaTeX Warning: \include should only be used after \begin{document} on input line 464.
@@ -549,7 +779,7 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthL=\skip90
 \f@nch@widthC=\skip91
 \f@nch@widthR=\skip92
-\@temptokenb=\toks34
+\@temptokenb=\toks46
 ))
 
 LaTeX Warning: \include should only be used after \begin{document} on input line 467.
@@ -573,7 +803,7 @@ Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'spanish'.
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count350
+\l__color_backend_stack_int=\count398
 ) (TFMTeXiS.aux (Cascaras/cover.aux)
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
@@ -610,8 +840,8 @@ LaTeX Info: Redefining \. on input line 105.
 LaTeX Info: Redefining \% on input line 105.
 Package hyperref Info: Link coloring OFF on input line 105.
  (TFMTeXiS.out) (TFMTeXiS.out)
-\@outlinefile=\write5
-\openout5 = `TFMTeXiS.out'.
+\@outlinefile=\write6
+\openout6 = `TFMTeXiS.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
@@ -621,20 +851,20 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count351
+\c@lstlisting=\count399
  (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count352
-\scratchdimen=\dimen267
-\scratchbox=\box112
-\nofMPsegments=\count353
-\nofMParguments=\count354
-\everyMPshowfont=\toks35
-\MPscratchCnt=\count355
-\MPscratchDim=\dimen268
-\MPnumerator=\count356
-\makeMPintoPDFobject=\count357
-\everyMPtoPDFconversion=\toks36
+\scratchcounter=\count400
+\scratchdimen=\dimen318
+\scratchbox=\box125
+\nofMPsegments=\count401
+\nofMParguments=\count402
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count403
+\MPscratchDim=\dimen319
+\MPnumerator=\count404
+\makeMPintoPDFobject=\count405
+\everyMPtoPDFconversion=\toks48
 ) (C:\Users\maria\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -693,12 +923,12 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 \evensidemarginOriginal=\skip96
 \oddsidemarginOriginal=\skip97
 \longTitulo=\skip98
-<Imagenes/Bitmap/escudoUCMcolor.png, id=499, 600.3228pt x 678.3744pt>
+<Imagenes/Bitmap/escudoUCMcolor.png, id=502, 600.3228pt x 678.3744pt>
 File: Imagenes/Bitmap/escudoUCMcolor.png Graphic file (type png)
 <use Imagenes/Bitmap/escudoUCMcolor.png>
 Package pdftex.def Info: Imagenes/Bitmap/escudoUCMcolor.png  used on input line 189.
 (pdftex.def)             Requested size: 120.06242pt x 135.67247pt.
-\c@lastyear=\count358
+\c@lastyear=\count406
  [1
 
 
@@ -769,19 +999,19 @@ Underfull \vbox (badness 5667) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 123.
 LaTeX Info: Redefining \% on input line 123.
 )
-\tf@toc=\write6
-\openout6 = `TFMTeXiS.toc'.
+\tf@toc=\write7
+\openout7 = `TFMTeXiS.toc'.
 
  [16] (TFMTeXiS.lof
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
-LaTeX Info: Redefining \. on input line 16.
-LaTeX Info: Redefining \% on input line 16.
+LaTeX Info: Redefining \. on input line 17.
+LaTeX Info: Redefining \% on input line 17.
 )
-\tf@lof=\write7
-\openout7 = `TFMTeXiS.lof'.
+\tf@lof=\write8
+\openout8 = `TFMTeXiS.lof'.
 
  [17
 
@@ -795,8 +1025,8 @@ LaTeX Info: Redefining \% on input line 3.
 LaTeX Info: Redefining \. on input line 21.
 LaTeX Info: Redefining \% on input line 21.
 )
-\tf@lot=\write8
-\openout8 = `TFMTeXiS.lot'.
+\tf@lot=\write9
+\openout9 = `TFMTeXiS.lot'.
 
  [19]) [20
 
@@ -831,15 +1061,25 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 LaTeX Info: Redefining \. on input line 69.
 LaTeX Info: Redefining \% on input line 69.
  [3]
-LaTeX Info: Redefining \. on input line 90.
-LaTeX Info: Redefining \% on input line 90.
- [4])
+Overfull \hbox (79.88058pt too wide) in paragraph at lines 91--132
+[]|  []  
+ []
+
+LaTeX Info: Redefining \. on input line 138.
+LaTeX Info: Redefining \% on input line 138.
+[4]
+LaTeX Info: Redefining \. on input line 138.
+LaTeX Info: Redefining \% on input line 138.
+ [5]
+LaTeX Info: Redefining \. on input line 151.
+LaTeX Info: Redefining \% on input line 151.
+ [6])
 LaTeX Info: Redefining \. on input line 141.
 LaTeX Info: Redefining \% on input line 141.
- [5]
+ [7]
 \openout2 = `Capitulos/EstadoDeLaCuestion.aux'.
 
- (Capitulos/EstadoDeLaCuestion.tex [6
+ (Capitulos/EstadoDeLaCuestion.tex [8
 
 
 
@@ -847,31 +1087,31 @@ LaTeX Info: Redefining \% on input line 141.
 ]
 Cap\'itulo 2.
 
-Package natbib Warning: Citation `ldesc2e' on page 7 undefined on input line 7.
+Package natbib Warning: Citation `ldesc2e' on page 9 undefined on input line 7.
 
 
-Package natbib Warning: Citation `notsoshort' on page 7 undefined on input line 8.
+Package natbib Warning: Citation `notsoshort' on page 9 undefined on input line 8.
 
 
-Package natbib Warning: Citation `latexAPrimer' on page 7 undefined on input line 9.
+Package natbib Warning: Citation `latexAPrimer' on page 9 undefined on input line 9.
 
 
-Package natbib Warning: Citation `latexCompanion' on page 7 undefined on input line 12.
+Package natbib Warning: Citation `latexCompanion' on page 9 undefined on input line 12.
 
 
-Package natbib Warning: Citation `LaTeXLamport' on page 7 undefined on input line 12.
+Package natbib Warning: Citation `LaTeXLamport' on page 9 undefined on input line 12.
 
 
-Package natbib Warning: Citation `texKnuth' on page 7 undefined on input line 12.
+Package natbib Warning: Citation `texKnuth' on page 9 undefined on input line 12.
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 18.
 
-) [7]
+) [9]
 \openout2 = `Capitulos/CapturaRequisitos.aux'.
 
- (Capitulos/CapturaRequisitos.tex [8
+ (Capitulos/CapturaRequisitos.tex [10
 
 
 
@@ -881,37 +1121,37 @@ Cap\'itulo 3.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
+ [11]
 LaTeX Info: Redefining \. on input line 33.
 LaTeX Info: Redefining \% on input line 33.
- [10]
+ [12]
 LaTeX Info: Redefining \. on input line 54.
 LaTeX Info: Redefining \% on input line 54.
- [11]
+ [13]
 LaTeX Info: Redefining \. on input line 78.
 LaTeX Info: Redefining \% on input line 78.
- [12])
+ [14])
 LaTeX Info: Redefining \. on input line 144.
 LaTeX Info: Redefining \% on input line 144.
- [13]
+ [15]
 \openout2 = `Capitulos/FileSearchGemini.aux'.
 
- (Capitulos/FileSearchGemini.tex [14
+ (Capitulos/FileSearchGemini.tex [16
 
 
 
 
 ]
 Cap\'itulo 4.
-[15])
+[17])
 LaTeX Info: Redefining \. on input line 145.
 LaTeX Info: Redefining \% on input line 145.
- [16]
+ [18]
 \openout2 = `Capitulos/Capitulo4.aux'.
 
  (Capitulos/Capitulo4.tex
 Cap\'itulo 5.
-[17
+[19
 
 
 
@@ -919,7 +1159,7 @@ Cap\'itulo 5.
 ]
 LaTeX Info: Redefining \. on input line 43.
 LaTeX Info: Redefining \% on input line 43.
- [18]
+ [20]
 Underfull \hbox (badness 10000) in paragraph at lines 66--67
 []\T1/cmr/m/n/10.95 El mé-to-do prin-ci-pal uti-li-za-do pa-ra es-ta ex-trac-ción de la to-na-li-dad es
  []
@@ -931,69 +1171,69 @@ Underfull \hbox (badness 5189) in paragraph at lines 72--73
 
 LaTeX Info: Redefining \. on input line 74.
 LaTeX Info: Redefining \% on input line 74.
-[19]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 83--84
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de me-ta-da-tos es
  []
 
 LaTeX Info: Redefining \. on input line 99.
 LaTeX Info: Redefining \% on input line 99.
-[20]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 113--114
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta de-tec-ción de he-miolias ver-ti-ca-les es
  []
 
 LaTeX Info: Redefining \. on input line 120.
 LaTeX Info: Redefining \% on input line 120.
-[21]
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 134--135
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta de-tec-ción de he-miolias ho-ri-zon-ta-les es
  []
 
 LaTeX Info: Redefining \. on input line 143.
 LaTeX Info: Redefining \% on input line 143.
-[22]
+[24]
 LaTeX Info: Redefining \. on input line 167.
 LaTeX Info: Redefining \% on input line 167.
- [23]
+ [25]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 192.
 LaTeX Info: Redefining \% on input line 192.
- [24]
+ [26]
 LaTeX Info: Redefining \. on input line 217.
 LaTeX Info: Redefining \% on input line 217.
- [25]
+ [27]
 LaTeX Info: Redefining \. on input line 240.
 LaTeX Info: Redefining \% on input line 240.
- [26]
+ [28]
 LaTeX Info: Redefining \. on input line 263.
 LaTeX Info: Redefining \% on input line 263.
- [27]
+ [29]
 Underfull \hbox (badness 10000) in paragraph at lines 264--265
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de den-si-dad de even-tos es
  []
 
 LaTeX Info: Redefining \. on input line 286.
 LaTeX Info: Redefining \% on input line 286.
-[28]
+[30]
 Underfull \vbox (badness 3312) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 310.
 LaTeX Info: Redefining \% on input line 310.
- [29]
+ [31]
 LaTeX Info: Redefining \. on input line 333.
 LaTeX Info: Redefining \% on input line 333.
- [30]
+ [32]
 LaTeX Info: Redefining \. on input line 358.
 LaTeX Info: Redefining \% on input line 358.
- [31]
+ [33]
 LaTeX Info: Redefining \. on input line 383.
 LaTeX Info: Redefining \% on input line 383.
- [32]
+ [34]
 LaTeX Info: Redefining \. on input line 408.
 LaTeX Info: Redefining \% on input line 408.
- [33]
+ [35]
 Underfull \hbox (badness 10000) in paragraph at lines 412--413
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra de-tec-tar es-tas ano-ma-lías son
  []
@@ -1002,14 +1242,14 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 415.
 LaTeX Info: Redefining \. on input line 417.
 LaTeX Info: Redefining \% on input line 417.
-[34]
+[36]
 Underfull \hbox (badness 10000) in paragraph at lines 422--423
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de me-ta-da-tos es
  []
 
 LaTeX Info: Redefining \. on input line 438.
 LaTeX Info: Redefining \% on input line 438.
-[35]
+[37]
 Underfull \hbox (badness 10000) in paragraph at lines 439--440
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra eva-luar es-truc-tu-ral-men-te la par-ti-tu-ra es
  []
@@ -1021,7 +1261,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 454--455
 
 LaTeX Info: Redefining \. on input line 458.
 LaTeX Info: Redefining \% on input line 458.
-[36]
+[38]
 Underfull \hbox (badness 10000) in paragraph at lines 465--466
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra iden-ti-fi-car el vo-lu-men MI-DI de la obra es
  []
@@ -1031,7 +1271,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 481.
 LaTeX Info: Redefining \% on input line 481.
- [37]
+ [39]
 Underfull \hbox (badness 10000) in paragraph at lines 482--483
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra de-tec-tar es-tas ano-ma-lías son
  []
@@ -1043,14 +1283,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 496--497
 
 LaTeX Info: Redefining \. on input line 500.
 LaTeX Info: Redefining \% on input line 500.
-[38]
+[40]
 Underfull \hbox (badness 10000) in paragraph at lines 505--506
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra ha-cer es-ta iden-ti-fi-ca-ción de eti-que-tas es
  []
 
 LaTeX Info: Redefining \. on input line 518.
 LaTeX Info: Redefining \% on input line 518.
-[39]
+[41]
 Underfull \hbox (badness 10000) in paragraph at lines 524--525
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra ha-cer es-ta iden-ti-fi-ca-ción
  []
@@ -1070,7 +1310,7 @@ Underfull \vbox (badness 7186) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 533.
 LaTeX Info: Redefining \% on input line 533.
- [40]
+ [42]
 Underfull \hbox (badness 10000) in paragraph at lines 537--538
 []\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra ha-cer es-ta iden-ti-fi-ca-ción de eti-que-tas es
  []
@@ -1080,16 +1320,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 578.
 LaTeX Info: Redefining \% on input line 578.
- [41]
+ [43]
 LaTeX Info: Redefining \. on input line 586.
 LaTeX Info: Redefining \% on input line 586.
- [42])
+ [44])
 LaTeX Info: Redefining \. on input line 146.
 LaTeX Info: Redefining \% on input line 146.
- [43]
+ [45]
 \openout2 = `Capitulos/EvaluacionPruebas.aux'.
 
- (Capitulos/EvaluacionPruebas.tex [44
+ (Capitulos/EvaluacionPruebas.tex [46
 
 
 
@@ -1099,34 +1339,34 @@ Cap\'itulo 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [45]
+ [47]
 LaTeX Info: Redefining \. on input line 39.
 LaTeX Info: Redefining \% on input line 39.
- [46]
+ [48]
 LaTeX Info: Redefining \. on input line 71.
 LaTeX Info: Redefining \% on input line 71.
- [47]
+ [49]
 LaTeX Info: Redefining \. on input line 102.
 LaTeX Info: Redefining \% on input line 102.
- [48]
+ [50]
 LaTeX Info: Redefining \. on input line 125.
 LaTeX Info: Redefining \% on input line 125.
- [49]
+ [51]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
- [50]
+ [52]
 LaTeX Info: Redefining \. on input line 197.
 LaTeX Info: Redefining \% on input line 197.
- [51]
+ [53]
 LaTeX Info: Redefining \. on input line 232.
 LaTeX Info: Redefining \% on input line 232.
- [52]
+ [54]
 LaTeX Info: Redefining \. on input line 268.
 LaTeX Info: Redefining \% on input line 268.
- [53]
+ [55]
 LaTeX Info: Redefining \. on input line 299.
 LaTeX Info: Redefining \% on input line 299.
- [54]
+ [56]
 Underfull \hbox (badness 10000) in paragraph at lines 332--338
 []\T1/cmr/m/n/10.95 Los ar-chi-vos que con-tie-nen la no-ta G5 in-clu-yen: * `MX-1952-00-CR-
  []
@@ -1138,43 +1378,43 @@ Underfull \hbox (badness 3291) in paragraph at lines 332--338
 
 LaTeX Info: Redefining \. on input line 340.
 LaTeX Info: Redefining \% on input line 340.
-[55]
+[57]
 LaTeX Info: Redefining \. on input line 366.
 LaTeX Info: Redefining \% on input line 366.
- [56]
+ [58]
 LaTeX Info: Redefining \. on input line 407.
 LaTeX Info: Redefining \% on input line 407.
- [57]
+ [59]
 LaTeX Info: Redefining \. on input line 439.
 LaTeX Info: Redefining \% on input line 439.
- [58]
+ [60]
 LaTeX Info: Redefining \. on input line 478.
 LaTeX Info: Redefining \% on input line 478.
- [59]
+ [61]
 LaTeX Info: Redefining \. on input line 517.
 LaTeX Info: Redefining \% on input line 517.
- [60]
+ [62]
 LaTeX Info: Redefining \. on input line 556.
 LaTeX Info: Redefining \% on input line 556.
- [61]
+ [63]
 LaTeX Info: Redefining \. on input line 588.
 LaTeX Info: Redefining \% on input line 588.
- [62]
+ [64]
 LaTeX Info: Redefining \. on input line 624.
 LaTeX Info: Redefining \% on input line 624.
- [63]
+ [65]
 LaTeX Info: Redefining \. on input line 662.
 LaTeX Info: Redefining \% on input line 662.
- [64]
+ [66]
 LaTeX Info: Redefining \. on input line 693.
 LaTeX Info: Redefining \% on input line 693.
- [65]
+ [67]
 LaTeX Info: Redefining \. on input line 731.
 LaTeX Info: Redefining \% on input line 731.
- [66]
+ [68]
 LaTeX Info: Redefining \. on input line 759.
 LaTeX Info: Redefining \% on input line 759.
- [67]
+ [69]
 Underfull \hbox (badness 10000) in paragraph at lines 785--786
 []\T1/cmr/m/n/10.95 Unfortunately, I can-not di-rectly -ead.[]r ïn-ter-pret"the mu-si-cal con-tent
  []
@@ -1196,46 +1436,46 @@ Underfull \hbox (badness 2564) in paragraph at lines 785--786
 
 LaTeX Info: Redefining \. on input line 786.
 LaTeX Info: Redefining \% on input line 786.
-[68]
+[70]
 LaTeX Info: Redefining \. on input line 816.
 LaTeX Info: Redefining \% on input line 816.
- [69]
+ [71]
 Overfull \hbox (13.64479pt too wide) in paragraph at lines 838--838
  []        \T1/cmtt/m/n/10.95 LENGTH(a.compases_sincopas) - LENGTH(REPLACE(a.compases_sincopas,[] 
  []
 
 LaTeX Info: Redefining \. on input line 845.
 LaTeX Info: Redefining \% on input line 845.
-[70]
+[72]
 LaTeX Info: Redefining \. on input line 866.
 LaTeX Info: Redefining \% on input line 866.
- [71]
+ [73]
 LaTeX Info: Redefining \. on input line 891.
 LaTeX Info: Redefining \% on input line 891.
- [72]
+ [74]
 Overfull \hbox (13.64479pt too wide) in paragraph at lines 907--907
  []  \T1/cmtt/m/n/10.95 AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);[] 
  []
 
 LaTeX Info: Redefining \. on input line 926.
 LaTeX Info: Redefining \% on input line 926.
-[73]
+[75]
 LaTeX Info: Redefining \. on input line 951.
 LaTeX Info: Redefining \% on input line 951.
- [74]
+ [76]
 LaTeX Info: Redefining \. on input line 978.
 LaTeX Info: Redefining \% on input line 978.
- [75]
+ [77]
 LaTeX Info: Redefining \. on input line 1002.
 LaTeX Info: Redefining \% on input line 1002.
- [76]
+ [78]
 Underfull \hbox (badness 1867) in paragraph at lines 1011--1015
 []\T1/cmr/m/n/10.95 * **Sig-na-tu-ra de com-pás de-cla-ra-da:** `<sco-re-Def xml:id=sg2v8p><me-ter-Sig
  []
 
 LaTeX Info: Redefining \. on input line 1056.
 LaTeX Info: Redefining \% on input line 1056.
-[77]
+[79]
 Underfull \hbox (badness 2707) in paragraph at lines 1064--1073
 []\T1/cmr/m/n/10.95 Por ejem-plo, es-tas pie-zas in-clu-yen el si-guien-te ti-po de de-cla-ra-ción: ```xml
  []
@@ -1252,72 +1492,72 @@ Underfull \hbox (badness 2635) in paragraph at lines 1064--1073
 
 LaTeX Info: Redefining \. on input line 1086.
 LaTeX Info: Redefining \% on input line 1086.
-[78]
+[80]
 LaTeX Info: Redefining \. on input line 1105.
 LaTeX Info: Redefining \% on input line 1105.
- [79]
+ [81]
 LaTeX Info: Redefining \. on input line 1138.
 LaTeX Info: Redefining \% on input line 1138.
- [80]
+ [82]
 LaTeX Info: Redefining \. on input line 1171.
 LaTeX Info: Redefining \% on input line 1171.
- [81]
+ [83]
 LaTeX Info: Redefining \. on input line 1199.
 LaTeX Info: Redefining \% on input line 1199.
- [82]
+ [84]
 LaTeX Info: Redefining \. on input line 1238.
 LaTeX Info: Redefining \% on input line 1238.
- [83]
+ [85]
 LaTeX Info: Redefining \. on input line 1259.
 LaTeX Info: Redefining \% on input line 1259.
- [84]
+ [86]
 LaTeX Info: Redefining \. on input line 1305.
 LaTeX Info: Redefining \% on input line 1305.
- [85]
+ [87]
 Overfull \hbox (28.2355pt too wide) in paragraph at lines 1331--1341
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 1350.
 LaTeX Info: Redefining \% on input line 1350.
-[86]
+[88]
 LaTeX Info: Redefining \. on input line 1372.
 LaTeX Info: Redefining \% on input line 1372.
- [87]
+ [89]
 LaTeX Info: Redefining \. on input line 1407.
 LaTeX Info: Redefining \% on input line 1407.
- [88]
+ [90]
 LaTeX Info: Redefining \. on input line 1442.
 LaTeX Info: Redefining \% on input line 1442.
- [89]
+ [91]
 Overfull \hbox (31.16087pt too wide) in paragraph at lines 1450--1461
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 1482.
 LaTeX Info: Redefining \% on input line 1482.
-[90]
+[92]
 LaTeX Info: Redefining \. on input line 1509.
 LaTeX Info: Redefining \% on input line 1509.
- [91]
+ [93]
 LaTeX Info: Redefining \. on input line 1532.
 LaTeX Info: Redefining \% on input line 1532.
- [92]
+ [94]
 LaTeX Info: Redefining \. on input line 1561.
 LaTeX Info: Redefining \% on input line 1561.
- [93]
+ [95]
 LaTeX Info: Redefining \. on input line 1588.
 LaTeX Info: Redefining \% on input line 1588.
- [94]
+ [96]
 LaTeX Info: Redefining \. on input line 1627.
 LaTeX Info: Redefining \% on input line 1627.
- [95]
+ [97]
 LaTeX Info: Redefining \. on input line 1667.
 LaTeX Info: Redefining \% on input line 1667.
- [96]
+ [98]
 LaTeX Info: Redefining \. on input line 1723.
 LaTeX Info: Redefining \% on input line 1723.
- [97]
+ [99]
 Underfull \hbox (badness 10000) in paragraph at lines 1751--1751
 []|\T1/cmr/bx/n/10.95 Gemini 2.5
  []
@@ -1399,21 +1639,21 @@ Overfull \hbox (9.14719pt too wide) in alignment at lines 1754--2052
 
 LaTeX Info: Redefining \. on input line 2052.
 LaTeX Info: Redefining \% on input line 2052.
-[98]
+[100]
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 2052.
 LaTeX Info: Redefining \% on input line 2052.
- [99]
+ [101]
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 2052.
 LaTeX Info: Redefining \% on input line 2052.
- [100])
+ [102])
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
- [101]
+ [103]
 \openout2 = `Capitulos/DiscusionAnalisis.aux'.
 
- (Capitulos/DiscusionAnalisis.tex [102
+ (Capitulos/DiscusionAnalisis.tex [104
 
 
 
@@ -1423,15 +1663,15 @@ Cap\'itulo 7.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [103])
+ [105])
 LaTeX Info: Redefining \. on input line 148.
 LaTeX Info: Redefining \% on input line 148.
- [104]
+ [106]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
  (Capitulos/ConclusionesTrabajoFuturo.tex
 Cap\'itulo 8.
-[105
+[107
 
 
 
@@ -1439,30 +1679,30 @@ Cap\'itulo 8.
 ]
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
- [106])
+ [108])
 LaTeX Info: Redefining \. on input line 149.
 LaTeX Info: Redefining \% on input line 149.
- [107]
+ [109]
 \openout2 = `Capitulos/Introduction.aux'.
 
- (Capitulos/Introduction.tex [108
+ (Capitulos/Introduction.tex [110
 
 
 
 
 ]
 Chapter 9.
-) [109]
+) [111]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (Capitulos/ConclusionsFutureWork.tex [110
+ (Capitulos/ConclusionsFutureWork.tex [112
 
 
 
 
 ]
 Chapter 10.
-) [111]
+) [113]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
  (TFMTeXiS.bbl)
@@ -1471,7 +1711,7 @@ LaTeX Info: Redefining \% on input line 157.
  (Cascaras/bibliografia.tex (TFMTeXiS.bbl))
 \openout2 = `Apendices/appendixA.aux'.
 
- (Apendices/appendixA.tex [112
+ (Apendices/appendixA.tex [114
 
 
 
@@ -1481,16 +1721,16 @@ LaTeX Info: Redefining \% on input line 157.
 
 ]
 Ap\'{e}ndice A.
-) [113] [114
+) [115] [116
 
 
 
 ]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [115
+ (Cascaras/fin.tex [117
 
-] [116])
+] [118])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1509,20 +1749,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
-(rerunfilecheck)             Checksum: 97BD00D6ACC91008173288CF73606A42;45054.
+(rerunfilecheck)             Checksum: D937072BE8318A093C7E6A7133F87356;45055.
  ) 
 Here is how much of TeX's memory you used:
- 18891 strings out of 467691
- 314534 string characters out of 5414987
- 804104 words of memory out of 5000000
- 47007 multiletter control sequences out of 15000+600000
- 649121 words of font info for 77 fonts, out of 8000000 for 9000
+ 31312 strings out of 467691
+ 599347 string characters out of 5414987
+ 1066255 words of memory out of 5000000
+ 59183 multiletter control sequences out of 15000+600000
+ 649897 words of font info for 78 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
- 97i,12n,109p,1753b,862s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (136 pages, 1088602 bytes).
+ 121i,12n,127p,1753b,933s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
+Output written on TFMTeXiS.pdf (138 pages, 1109771 bytes).
 PDF statistics:
- 2052 PDF objects out of 2073 (max. 8388607)
- 274 named destinations out of 1000 (max. 500000)
- 998 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2081 PDF objects out of 2487 (max. 8388607)
+ 277 named destinations out of 1000 (max. 500000)
+ 1010 words of extra memory for PDF output out of 10000 (max. 10000000)
 

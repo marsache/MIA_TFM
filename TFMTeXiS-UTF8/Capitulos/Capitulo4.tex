@@ -1,8 +1,8 @@
-\chapter{Capítulo 4: (TODO: título del capítulo)}
+\chapter{Preprocesamiento del corpus musical para su extracción de metadatos y posterior almacenamiento en una base de datos SQLite y sistema de MCP para realizar consultas a la base de datos desde un modelo pequeño local}
 \label{cap:capitulo5}
 \sloppy
 
-\section{(TODO: poner nombre)}
+\section{Introducción a la implementación y pipeline del sistema}
 
 Derivar archivos de formato MEI y XML directamente como texto a un LLM general como Gemini dificulta mucho la extracción de información; el modelo tiende a perderse entre la jerarquía de etiquetas de estos ficheros. Procesar los documentos de formato MSCZ supone un desafío mayor para estos modelos, ya que no representan directamente las partituras, sino que son archivos binarios comprimidos que contienen la partitura correspondiente, así como otros metadatos relacionados con la obra y archivos de configuración.
 
@@ -28,8 +28,6 @@ Para procesar y extraer la información musicológica de la obra, se descomprime
 \item \textbf{Fase de análisis semántico de la lírica mediante LLMs locales.} Extracción del texto lírico estructurado de cada obra y su posterior envío a un LLM local para su etiquetado. El modelo determina qué temas trata la letra, asignándole, como máximo, cuatro temáticas a cada canción (Nana, Religión, Naturaleza, Picaresca, Amor, etc.).
 \item \textbf{Fase de consolidación, estructuración y almacenamiento en la base de datos SQLite.} Compilación de los diccionarios que contienen las características mencionadas con anterioridad y su exportación a una base de datos SQLite.
 \end{itemize}
-
-(TODO: ¿se añade el prompt?)
 
 \section{Herramientas desarrolladas para la extracción de información de las obras}
 Para mejorar el rendimiento de la búsqueda de características concretas en el corpus se han diseñado e implementado una serie de funciones que abordan de manera más específica y técnica, basándose en teoría musical, los desafíos de extracción musical y semántica que presentan los motores de búsqueda con modelos de IA generales.
@@ -567,11 +565,11 @@ La función incluye además mecanismos de validación para asegurar que el archi
 % \item \textbf{Almacenamiento en la base de datos SQLite.} Tras seguir todo el procedimiento de extracción de información, todos los datos se vuelcan en la base de datos pertinente.
 % \end{itemize}
 
-\subsection{(TODO: estructurar bien, so sé si poner esta sección aquí) Problemas encontrados al implementar ciertas herramientas}
-En el proceso de identificación e inferencia de ciertos datos de las obras para aportar más información a las consultas, se ha encontrado una serie de problemas tras implementar ciertas funcionalidades.
-\begin{itemize}
-    \item \textbf{Identificación e inferencia mixta de región geográfica de procedencia.} Para determinar el origen geográfico de una obra, se ha implementado una herramienta que sigue un proceso en el que se incluyen fases tanto deterministas como de inferencia por parte de LLMs.
-\end{itemize}
+% \subsection{(TODO: estructurar bien, so sé si poner esta sección aquí) Problemas encontrados al implementar ciertas herramientas}
+% En el proceso de identificación e inferencia de ciertos datos de las obras para aportar más información a las consultas, se ha encontrado una serie de problemas tras implementar ciertas funcionalidades.
+% \begin{itemize}
+%     \item \textbf{Identificación e inferencia mixta de región geográfica de procedencia.} Para determinar el origen geográfico de una obra, se ha implementado una herramienta que sigue un proceso en el que se incluyen fases tanto deterministas como de inferencia por parte de LLMs.
+% \end{itemize}
 
 \section{Ventajas que ofrece la metodología escogida para la herramienta desarrollada}
 El sistema diseñado e implementado se basa en un proceso de extracción previa de metadatos musicales y textuales a partir de los archivos originales que contienen las partituras y otros detalles sobre las obras, seguido de su almacenamiento estructurado en una base de datos relacional. Este enfoque presenta diversas ventajas frente a sistemas que delegan todo el análisis directamente en modelos de lenguaje durante el momento de la consulta.
@@ -586,3 +584,17 @@ El sistema diseñado e implementado se basa en un proceso de extracción previa 
 \item \textbf{Separación entre análisis y consulta.} La arquitectura distingue claramente entre la fase de extracción de conocimiento y la fase de interacción con el usuario. Esta separación facilita el mantenimiento del sistema, simplifica la incorporación de nuevos algoritmos de análisis y permite ampliar progresivamente el conjunto de metadatos sin modificar la lógica de consulta ya implementada.
 \item \textbf{Escalabilidad en la extracción de metadatos.} La arquitectura modular empleada permite incorporar nuevos algoritmos de análisis sin necesidad de modificar significativamente el resto del sistema. Cada característica musical se obtiene mediante funciones independientes especializadas en la detección de fenómenos concretos, como aspectos rítmicos, melódicos, armónicos, textuales o estructurales. Esta organización facilita la ampliación progresiva de la base de conocimiento mediante la incorporación de nuevos métodos de extracción de metadatos, permitiendo adaptar la herramienta a futuras necesidades de investigación o a nuevos objetivos analíticos. De este modo, el sistema puede evolucionar para identificar estructuras musicales más complejas o incorporar nuevos criterios musicológicos sin comprometer la compatibilidad con los análisis ya realizados.
 \end{itemize}
+
+\section{Desarrollo de aplicación web para facilitar el acceso a la herramienta}
+Con el objetivo de facilitar el acceso a la herramienta técnica por parte de los usuarios, se ha diseñado e implementado una interfaz gráfica de usuario en formato de aplicación web accesible desde cualquier navegador. Aunque la arquitectura intermedia basada en el protocolo MCP (\textit{Model Context Protocol}) y la abstracción relacional en \textit{SQLite} resuelven con éxito la complejidad del procesamiento musicológico, su ejecución nativa a través de interfaces de línea de comandos o scripts aislados introduce una barrera técnica crítica para el perfil de usuario objetivo del proyecto, compuesto mayoritariamente por musicólogas, etnomusicólogos e investigadores de las humanidades.
+
+La aplicación web actúa como una capa extra que encapsula la lógica interna del sistema y proporciona un entorno visual intuitivo, interactivo y guiado.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Imagenes/Bitmap/UITool.png}
+    \caption{Interfaz de la aplicación web desarrollada para interactuar con la herramienta.}
+    \label{fig:UITool}
+\end{figure}
+
+Esta interfaz contiene un chat con el que se establece la conexión con el LLM local, permitiendo enviar preguntas desde la barra de búsqueda.

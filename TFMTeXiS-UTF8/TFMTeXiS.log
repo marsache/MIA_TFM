@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 05:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 05:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -812,7 +812,11 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
  (Cascaras/dedicatoria.aux) (Cascaras/agradecimientos.aux) (Cascaras/resumen.aux) (Cascaras/abstract.aux) (TeXiS/TeXiS_toc.aux)
 LaTeX Info: Redefining \. on input line 20.
 LaTeX Info: Redefining \% on input line 20.
- (Capitulos/Introduccion.aux) (Capitulos/EstadoDeLaCuestion.aux) (Capitulos/CapturaRequisitos.aux) (Capitulos/FileSearchGemini.aux) (Capitulos/Capitulo4.aux) (Capitulos/EvaluacionPruebas.aux) (Capitulos/DiscusionAnalisis.aux) (Capitulos/ConclusionesTrabajoFuturo.aux) (Capitulos/Introduction.aux) (Capitulos/ConclusionsFutureWork.aux) (Cascaras/bibliografia.aux) (Apendices/appendixA.aux)
+ (Capitulos/Introduccion.aux) (Capitulos/EstadoDeLaCuestion.aux) (Capitulos/CapturaRequisitos.aux) (Capitulos/FileSearchGemini.aux) (Capitulos/Capitulo4.aux) (Capitulos/EvaluacionPruebas.aux) (Capitulos/DiscusionAnalisis.aux) (Capitulos/ConclusionesTrabajoFuturo.aux) (Capitulos/Introduction.aux
+
+LaTeX Warning: Label `fig:gantt_plan' multiply defined.
+
+) (Capitulos/ConclusionsFutureWork.aux) (Cascaras/bibliografia.aux) (Apendices/appendixA.aux)
 LaTeX Info: Redefining \. on input line 36.
 LaTeX Info: Redefining \% on input line 36.
  (Cascaras/fin.aux))
@@ -923,7 +927,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 \evensidemarginOriginal=\skip96
 \oddsidemarginOriginal=\skip97
 \longTitulo=\skip98
-<Imagenes/Bitmap/escudoUCMcolor.png, id=510, 600.3228pt x 678.3744pt>
+<Imagenes/Bitmap/escudoUCMcolor.png, id=542, 600.3228pt x 678.3744pt>
 File: Imagenes/Bitmap/escudoUCMcolor.png Graphic file (type png)
 <use Imagenes/Bitmap/escudoUCMcolor.png>
 Package pdftex.def Info: Imagenes/Bitmap/escudoUCMcolor.png  used on input line 189.
@@ -993,8 +997,8 @@ LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
  [13] [14] [15]
-LaTeX Info: Redefining \. on input line 125.
-LaTeX Info: Redefining \% on input line 125.
+LaTeX Info: Redefining \. on input line 133.
+LaTeX Info: Redefining \% on input line 133.
 )
 \tf@toc=\write7
 \openout7 = `TFMTeXiS.toc'.
@@ -1004,8 +1008,8 @@ LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
-LaTeX Info: Redefining \. on input line 18.
-LaTeX Info: Redefining \% on input line 18.
+LaTeX Info: Redefining \. on input line 19.
+LaTeX Info: Redefining \% on input line 19.
 )
 \tf@lof=\write8
 \openout8 = `TFMTeXiS.lof'.
@@ -1418,7 +1422,7 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [44]
-<Imagenes/Bitmap/UITool.png, id=980, 714.2685pt x 491.436pt>
+<Imagenes/Bitmap/UITool.png, id=1022, 714.2685pt x 491.436pt>
 File: Imagenes/Bitmap/UITool.png Graphic file (type png)
 <use Imagenes/Bitmap/UITool.png>
 Package pdftex.def Info: Imagenes/Bitmap/UITool.png  used on input line 595.
@@ -1803,17 +1807,25 @@ LaTeX Info: Redefining \% on input line 149.
 
 ]
 Chapter 9.
-) [111]
+
+Underfull \vbox (badness 1005) has occurred while \output is active []
+
+ [111] [112] [113]
+Overfull \hbox (71.1506pt too wide) in paragraph at lines 59--100
+[]|  []  
+ []
+
+[114] [115] [116]) [117]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (Capitulos/ConclusionsFutureWork.tex [112
+ (Capitulos/ConclusionsFutureWork.tex [118
 
 
 
 
 ]
 Chapter 10.
-[113] [114]) [115]
+[119] [120]) [121]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
  (TFMTeXiS.bbl)
@@ -1822,7 +1834,7 @@ LaTeX Info: Redefining \% on input line 157.
  (Cascaras/bibliografia.tex (TFMTeXiS.bbl))
 \openout2 = `Apendices/appendixA.aux'.
 
- (Apendices/appendixA.tex [116
+ (Apendices/appendixA.tex [122
 
 
 
@@ -1832,16 +1844,16 @@ LaTeX Info: Redefining \% on input line 157.
 
 ]
 Ap\'{e}ndice A.
-) [117] [118
+) [123] [124
 
 
 
 ]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [119
+ (Cascaras/fin.tex [125
 
-] [120])
+] [126])
 
 Package natbib Warning: There were undefined citations.
 
@@ -1859,21 +1871,25 @@ LaTeX Info: Redefining \% on input line 36.
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
-(rerunfilecheck)             Checksum: 95428D2858616A1C058207CF3FBDFF51;46158.
+(rerunfilecheck)             Checksum: BD1691F5619E48BBAC72101277766112;47465.
  ) 
 Here is how much of TeX's memory you used:
- 31318 strings out of 467691
- 599538 string characters out of 5414987
- 1066661 words of memory out of 5000000
- 59185 multiletter control sequences out of 15000+600000
+ 31344 strings out of 467691
+ 599870 string characters out of 5414987
+ 1068663 words of memory out of 5000000
+ 59195 multiletter control sequences out of 15000+600000
  649211 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
- 121i,12n,127p,1753b,933s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 121i,12n,127p,1753b,1266s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (140 pages, 1149810 bytes).
+Output written on TFMTeXiS.pdf (146 pages, 1183050 bytes).
 PDF statistics:
- 2099 PDF objects out of 2487 (max. 8388607)
- 282 named destinations out of 1000 (max. 500000)
- 1031 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2179 PDF objects out of 2487 (max. 8388607)
+ 298 named destinations out of 1000 (max. 500000)
+ 1095 words of extra memory for PDF output out of 10000 (max. 10000000)
 

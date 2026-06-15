@@ -1,13 +1,132 @@
 \chapter{Introduction}
 \label{cap:introduction}
 
-Introduction to the subject area. This chapter contains the translation of Chapter \ref{cap:introduccion}.
+\chapterquote{Many things we can't do are simply because we think we can't do them}{Satoru Iwata}
 
+The study of large musical corpora constitutes one of the primary research tools within disciplines such as historical musicology, ethnomusicology, musical analysis, or sound heritage documentation. Through the systematic analysis of extensive sets of works, it is possible to identify stylistic patterns, recurring compositional structures, relationships between repertoires, and cultural phenomena that can hardly be observed through the isolated study of individual pieces.
 
+Traditionally, this type of research has depended on manual processes of score reading, cataloging, and analysis—a rigorous methodology but limited in terms of scalability. The growing volume of digitized musical material, especially in fields related to traditional music and musical heritage, has highlighted the need to develop tools capable of automating part of these tasks and facilitating the exploration of large documentary collections.
 
+The emergence of standardized symbolic formats for musical representation, such as MusicXML or MEI, has driven the development of computational musicology and has enabled the application of automated analysis techniques over increasingly broad repertoires. However, practice demonstrates that significant challenges persist regarding corpus heterogeneity, format compatibility, the extraction of complex musicological information, the integration between musical and textual content, and efficient knowledge retrieval from large volumes of data.
 
+In parallel, recent advances in artificial intelligence and natural language processing have opened new possibilities for interacting with extensive collections of data. Nevertheless, the particularities of musical information pose limitations that hinder the direct application of these technologies, especially when queries require knowledge derived from specialized musical analyses that are not explicitly represented in the original sources.
 
+In this context, this project proposes the design and development of an architecture oriented towards the automated analysis of large and heterogeneous musical corpora. The system combines score processing techniques, musical feature extraction, automatic cataloging, information retrieval, and assistance through language models, with the aim of providing a platform capable of facilitating musicological research and improving access to the knowledge contained within large musical collections.
 
+Within this framework, the project \textit{"\textnormal{\textit{EA}}-DIGIFOLK-An European and Ibero-American approach for the digital collection, analysis and dissemination of folk music (101086338)”} is developed. Funded by the European Union, with the participation of the UCM\footnote{\url{https://cordis.europa.eu/project/id/101086338}}, its primary objective is to preserve and share European and Ibero-American popular folk culture, especially within the musical domain. EA-DIGIFOLK seeks to create a platform that facilitates the dissemination of this culture to educational environments and audiences. Furthermore, and more closely related to this project, another core objective is the musical and ethnomusicological analysis of the collected audiovisual and written material. This work has been carried out as part of this research project.
 
+\section{Motivation}
+The musicological analysis of large volumes of traditional and/or folk music has historically faced a methodological limitation: its dependence on the manual analysis of scores, which represents a rigorous but hardly scalable process, making the digital automation of this procedure virtually impossible. While the digitization of musical archives into structured symbolic formats (such as MusicXML or MEI) has opened the doors to computational musicology, fundamental problems that hinder any automation methodology when digitizing this type of content continue to persist.
 
+The following are some obstacles and difficulties encountered in the field of musical analysis that have motivated the development of this project:
+\begin{itemize}
+\item \textbf{Heterogeneity in the corpora.} Large-scale musical corpora, such as the one used throughout this project, tend to be highly heterogeneous both structurally and in their cataloging. First, works may be stored in multiple file formats (\textit{MSCZ}, \textit{MusicXML}, \textit{MEI}, among others), each with technical and semantic particularities that require specific extraction and normalization processes. This diversity prevents the construction of fully automated analysis workflows and forces the development of preprocessing procedures adapted to each information source. Furthermore, corpus heterogeneity is not limited to file formats but also affects the cataloging criteria and organization of repositories. In these cases, collections are frequently encountered where certain fundamental metadata, such as the title of the work, the author, or the geographical origin, are stored within the structure of the file itself, whereas in other cases, such information is only available in the filename or in the hierarchical organization of the directories. The lack of homogeneous standards for documentary description complicates the automatic identification of works and requires additional mechanisms for inference and metadata validation.
 
+\item \textbf{Inconsistency in symbolic standards.} Many standard tools used in the technical field of musicological analysis, such as \textit{music21} can experience critical failures or lose relevant metadata when interpreting certain information sources. This occurs, for example, with certain tokens present in MEI files (such as the \textit{wordpos} attribute, which indicates the position of a syllable within a word; however, not all the values it can take are interpretable by many programs like \textit{music21}), whose implementation is not fully normalized among different score editing software.
+
+\item \textbf{Algorithmic complexity in the detection of complex rhythmic phenomena.} In the world of music, there is an infinity of expressive and ambiguous structures, such as syncopations and hemiolas (both horizontal and vertical), which require mathematical modeling with a strict preliminary study based on very specific characteristics of the works, such as attack times and metric hierarchies. This entails working from scratch on functions that are not natively implemented in conventional analytical libraries.
+
+\item \textbf{Division between musical and semantic analysis.} Many automated musical analysis systems isolate structural and rhythmic content from the textual content of the lyrics. This is a highly problematic separation, as decoupling these two deeply related structures results in a severe loss of information. Therefore, it is necessary to design a system capable of extracting analytical musical characteristics while simultaneously classifying the thematic and poetic content of the songs.
+
+\item \textbf{Contextual limitations of language models in extensive corpora.} When the size of the corpus is large, providing the model with all the information as input context becomes unfeasible, particularly in smaller models whose context limits and reasoning capabilities are more restricted. Even when employing information retrieval strategies (\textit{Retrieval-Augmented Generation}, RAG), many musicological queries require the prior extraction and calculation of complex analytical features from the scores, such as rhythmic patterns, melodic structures, or metric relationships. Since these processes cannot be reliably executed in real time by a language model, an intermediate architecture capable of performing specialized musical analysis and storing its results in optimized structures for subsequent retrieval and querying becomes necessary.
+\end{itemize}
+
+The project originates from these gaps, aiming to resolve them through the study and development of a system capable of meeting the needs of musicologists and users who require more sophisticated tools to handle the analysis of very extensive and complex corpora of data. The main purpose of this research centers on developing an automated, robust, and scalable architecture capable of analyzing latent features in a corpus of musical works, simultaneously integrating structural, rhythmic, melodic, and semantic information to facilitate the musicological study of large folk collections.
+
+\section{Objectives}
+Based on the limitations identified in current computational musicological analysis methodologies, this project seeks to develop a technological infrastructure that facilitates the study of large musical corpora through automated analysis techniques, information retrieval, technical musicological analysis, and natural language processing. To this end, the following objectives are established.
+
+\subsection{General Objectives}
+To develop an automated, robust, and scalable system for the analysis, cataloging, and querying of large, heterogeneous musical corpora, capable of extracting musicological knowledge from a large number of works stored in different formats, thereby facilitating research, exploration, and information retrieval for musicologists, researchers, and other specialized users.
+
+\subsection{Specific Objectives}
+\begin{itemize}
+\item Design an architecture capable of processing musical corpora composed of different symbolic representation formats, guaranteeing compatibility between diverse documentary sources.
+\item Develop an automatic system for the extraction and normalization of musical metadata in order to facilitate the systematic cataloging of works and the construction of reliable and consistent databases.
+\item Implement musical analysis algorithms that allow for the detection and quantification of structural, melodic, rhythmic, and metric characteristics relevant to musicological research.
+\item Integrate musical analysis with the semantic and textual analysis of the lyrics, enabling the joint study of both the musical and literary aspects of the works.
+\item Automate processing and analysis tasks that usually require a high investment of time or specialized technical knowledge, reducing barriers to access advanced musical research tools.
+\item Design and implement an information retrieval system that allows for complex searches over the corpus, including queries based on both metadata and automatically extracted musical features.
+\item Evaluate the capabilities and limitations of general-purpose language models in tasks involving the analysis and querying of extensive musicological corpora, identifying the scalability, precision, and context problems that these systems present.
+\item Propose complementary mechanisms to overcome the limitations observed in these models through the incorporation of specialized musicological analysis and optimized structures for knowledge retrieval.
+\end{itemize}
+
+\section{Work Plan}
+The work plan to be followed to achieve the objectives described in the previous section is detailed here. In order to attain the proposed objectives, a work plan structured into six main phases has been designed, spanning from late October to early June. This schedule encompasses everything from the initial research and requirements gathering through field work, to the technical development of the architecture, its comparative evaluation, and the final writing of the research report. Below, the temporal planning is detailed using a Gantt chart (Figure~\ref{fig:gantt_plan}):
+
+\begin{figure}[htbp]
+\raggedright
+\hspace*{-2.5cm}
+\begin{ganttchart}[
+    vgrid,
+    hgrid,
+    x unit=0.05cm,
+    y unit chart=0.7cm,
+    time slot format=isodate-yearmonth,
+    title/.style={fill=gray!20, draw=black, font=\small\bfseries},
+    bar/.style={fill=blue!40, draw=black},
+    milestone/.style={fill=red, draw=black},
+    progress label text={},
+    group right shift=0,
+    group top shift=.6,
+    group height=.2
+]{2025-10}{2026-06}
+    \gantttitlecalendar{year, month=letter} \\
+    
+    \ganttgroup{F1: State of the Art \& Initial Res.}{2025-10}{2025-12} \\
+    \ganttbar{Literature review}{2025-10}{2025-11} \\
+    \ganttbar{Format analysis (MusicXML, MEI)}{2025-11}{2025-12} \\
+    
+    \ganttgroup{F2: Requirements Elicitation}{2026-03}{2026-03} \\
+    \ganttbar{Interviews with musicologists}{2026-03}{2026-03} \\
+    \ganttbar{Definition of user requirements}{2026-03}{2026-03} \\
+    
+    \ganttgroup{F3: Architectural Design}{2025-12}{2026-02} \\
+    \ganttbar{SQLite DB schema design}{2025-12}{2026-01} \\
+    \ganttbar{Normalization pipeline development}{2026-01}{2026-02} \\
+    
+    \ganttgroup{F4: Implementation \& Analysis}{2026-02}{2026-04} \\
+    \ganttbar{Musical analysis modules (music21)}{2026-02}{2026-03} \\
+    \ganttbar{Semantic analysis integration (Ollama)}{2026-03}{2026-04} \\
+    
+    \ganttgroup{F5: Evaluation \& Testing}{2026-04}{2026-05} \\
+    \ganttbar{Tests with Gemini 2.5 Flash (RAG)}{2026-04}{2026-05} \\
+    \ganttbar{Comparative evaluation Llama3 vs Gemini}{2026-05}{2026-05} \\
+    
+    \ganttgroup{F6: Final Documentation}{2026-04}{2026-06} \\
+    \ganttbar{Technical report writing}{2026-04}{2026-06} \\
+    \ganttmilestone{Report Submission}{2026-06}
+\end{ganttchart}
+\caption{Gantt chart of the work plan (October - June).}
+\label{fig:gantt_plan}
+\end{figure}
+
+At an operational level, the development is broken down into the following key activities directly linked to the project's objectives:
+\begin{itemize}
+    \item \textbf{Phase 1 (October -- December):} Dedicated to the deep study of the state of the art in computational musicology.
+    \item \textbf{Phase 2 (March):} Exclusively dedicated to requirements gathering through qualitative interviews with musicologists and researchers in the field. The goal of this milestone is to align the system's capabilities with the actual daily analytical needs of expert users.
+    \item \textbf{Phase 3 (December -- February):} Focused on the design and implementation of the intermediate infrastructure and the automatic normalization pipeline, responsible for unifying data persistence into the local SQLite file regardless of the original heterogeneity or organization of the folk corpus.
+    \item \textbf{Phase 4 (February -- April):} Focused on the development of algorithms based on \textit{music21} for extracting complex technical features (rhythmic and melodic structures) and their integration with local language models (\textit{Llama3} via \textit{Ollama}) intended for the semantic and thematic classification of the works' lyrics.
+    \item \textbf{Phase 5 (April -- May):} Allocated to the critical evaluation phase. Tests are conducted on the information retrieval system, implementing both the local text-to-SQL approach and the cloud-based RAG approach via the native \textit{File Search} functionality of the Gemini API, enabling a contrast of precision, context, and hallucination boundaries between both technologies.
+    \item \textbf{Phase 6 (April -- June):} Consisting of writing the research report and preparing the documentation for the developed software to ensure full technical reproducibility later on.
+\end{itemize}
+
+\section{Methodology and Technology}
+To develop this project, open-source tools and the free version of the Gemini API have been selected. This decision ensures the full reproducibility of the project locally (with the exception of utilizing the Gemini API).
+\begin{itemize}
+\item \textbf{Python 3.} Used as the base to develop the entire project. This high-level, general-purpose programming language was selected primarily because it hosts the most advanced ecosystem of libraries for computational musicology, data science, and artificial intelligence. Its versatility allows for articulating within a single automated workflow everything from score preprocessing and metadata normalization from heterogeneous musical corpora, to local database management, communication with language model servers via structured requests, and the subsequent analytical evaluation of results.
+
+\item \textbf{Music21.} A leading toolkit for computational musicology. It allows for a deep musical analysis of each work regarding its notes, intervals, chords, scales, etc., which facilitates the study of harmonic, melodic, and rhythmic patterns that are difficult to identify with other tools and, in this case, with LLMs. Additionally, it supports multiple formats, such as MIDI or XML, which is highly useful in this research, where we work with an extensive and heterogeneous corpus of works in different formats. Moreover, its integration with Python and other libraries facilitates the extraction and analysis of information from the musical corpus.
+
+\item \textbf{Ollama.} A local server that enables the use of language models in a local and customized manner. \textit{Llama3} has been selected as the LLM to execute various natural language processing tasks. This mitigates external API costs, protects the privacy of the corpus, and facilitates output invariance through the native restriction of responses to structured JSON format.
+
+\item \textbf{Gemini API (Free Version).} A cloud services platform based on generative artificial intelligence developed by Google. In this project, the \textit{Gemini 2.5 Flash} model has been specifically selected through its cost-free API to implement a retrieval and query approach based on RAG architectures assisted by the native \textit{File Search} feature.
+
+\item \textbf{SQLite.} A library that implements a small, free, and open-source SQL database engine. This specific tool was chosen to store the extracted information because, unlike other databases such as MySQL, PostgreSQL, or SQL Server—which require installing software that runs in the background of your computer, configuring users, passwords, and ports—SQLite does not depend on a server, but instead creates the database as a single local file.
+\end{itemize}
+
+\section{Structure of the Rest of the Document}
+(TODO: complete)
+
+\section{Use of Artificial Intelligence}
+This work has been developed with the occasional support of artificial intelligence tools for technical assistance and editing. Their use was limited to auxiliary tasks, such as organizing ideas, improving writing clarity, and supporting the implementation of certain parts of the code. In all cases, design decisions, result validation, and ultimate responsibility for the content and implementation rest exclusively with the author.

@@ -1,32 +1,31 @@
 \chapter{Sistema de indexación y recuperación de información basado en RAG}
 \label{cap:capitulo4}
 
-\section{Implementación del sistema de indexación y recuperación}
 Con el objetivo de habilitar la consulta semántica del corpus musical heterogéneo utilizado en el proyecto, se desarrolló un sistema de indexación de documentos basado en la infraestructura de búsqueda de archivos proporcionada por Gemini. El sistema permite la incorporación automática de documentos musicales y metadatos asociados, así como su posterior recuperación mediante consultas en lenguaje natural.
 
-\subsection{Preparación e identificación de documentos}
+\section{Preparación e identificación de documentos}
 El proceso comienza con la exploración recursiva del conjunto local de datos que contiene todas las partituras. Se admiten diversos formatos de archivo, incluyendo texto plano (.txt), Markdown (.md), JSON (.json), CSV (.csv), XML (.xml), MEI (.mei) y archivos de partituras comprimidas de MuseScore (.mscz). Cada extensión se asocia explícitamente con un tipo MIME apropiado para facilitar su correcta interpretación por parte del sistema de indexación.
 
 Con el fin de garantizar la compatibilidad con los servicios remotos y evitar problemas derivados del uso de caracteres especiales, todos los nombres de archivo son normalizados mediante una transformación Unicode a ASCII. Posteriormente se eliminan caracteres potencialmente conflictivos, conservando únicamente letras, números y un conjunto reducido de símbolos seguros.
 
-\subsection{Creación y gestión del almacén de búsqueda de archivos}
+\section{Creación y gestión del almacén de búsqueda de archivos}
 La infraestructura utiliza un almacén de búsqueda (File Search Store) como repositorio centralizado de documentos indexados. Antes de iniciar la carga de nuevos archivos, el sistema verifica la existencia previa del almacén y, en caso necesario, crea una nueva instancia.
 
 Para evitar la indexación redundante de documentos ya procesados, se recupera el listado de archivos previamente almacenados. Los nombres normalizados de dichos documentos se emplean como mecanismo de comparación para identificar duplicados y excluirlos de posteriores cargas.
 
-\subsection{Procesamiento de archivos musicales MuseScore}
+\section{Procesamiento de archivos musicales MuseScore}
 Los archivos MuseScore comprimidos (.mscz) requieren un tratamiento específico, ya que son contenedores ZIP que almacenan internamente la representación estructurada de la partitura en formato XML (.mscx). Durante la fase de preparación, estos archivos son descomprimidos temporalmente y se extrae el documento XML principal. De esta forma, el contenido musical estructurado puede ser interpretado directamente por el sistema de indexación, mejorando significativamente la capacidad de recuperación semántica frente al almacenamiento de archivos binarios comprimidos.
 
 Los documentos extraídos son renombrados con extensión XML antes de ser enviados al servicio de indexación, manteniendo así la coherencia entre el formato real del contenido y la información de metadatos asociada.
 
-\subsection{Estrategia de carga e indexación}
+\section{Estrategia de carga e indexación}
 La incorporación de documentos al sistema de almacenamiento se realiza procesándolos por lotes. Esta estrategia reduce la carga sobre la API, facilita la monitorización del progreso y minimiza la probabilidad de alcanzar límites de uso del servicio.
 
 Para cada documento, el sistema genera una copia temporal con nombre normalizado y envía tanto el archivo como sus metadatos asociados al almacén de búsqueda. Cada operación de carga produce un identificador de proceso asíncrono que es monitorizado periódicamente hasta que la indexación finaliza correctamente.
 
 Tras completar cada lote, el sistema introduce una pausa controlada antes de iniciar el siguiente conjunto de documentos. Este mecanismo actúa como medida preventiva frente a restricciones de frecuencia de acceso y contribuye a mejorar la estabilidad del proceso de ingestión.
 
-\subsection{Recuperación de información mediante búsqueda semántica}
+\section{Recuperación de información mediante búsqueda semántica}
 Una vez completada la indexación, el sistema habilita una interfaz de consulta interactiva con el modelo Gemini. Las preguntas formuladas por el usuario se envían al modelo junto con una herramienta de búsqueda conectada al almacén de partituras previamente construido.
 
 Durante la generación de respuestas, el modelo recupera automáticamente los documentos más relevantes para la consulta planteada y los utiliza como contexto adicional. Este enfoque combina técnicas de recuperación de información con RAG, permitiendo responder preguntas complejas sobre el corpus musical sin necesidad de incorporar explícitamente todo el contenido documental en cada solicitud.

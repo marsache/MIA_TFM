@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{13}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Anthropic PBC}(2024)}]{anthropic2024mcp}
@@ -24,6 +24,17 @@
   data.
 \newblock {\em International Society for Music Information Retrieval
   (ISMIR)\/}, 2010.
+
+\bibitem[{Good(2001)}]{good2001musicxml}
+{\sc Good, M.}
+\newblock Musicxml: An internet-friendly format for sheet music.
+\newblock 2001.
+
+\bibitem[{Grove(1900)}]{grove1900dictionary}
+{\sc Grove, G.}, editor.
+\newblock {\em A Dictionary of Music and Musicians\/}.
+\newblock Macmillan and Co., London, 1900.
+\newblock Wikisource edition consulted online.
 
 \bibitem[{Huang y et~al.(2023)}]{huang2023citation}
 {\sc Huang, L.} y {\sc et~al.}

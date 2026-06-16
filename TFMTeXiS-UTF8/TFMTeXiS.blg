@@ -44,45 +44,45 @@ Reallocating 'name_of_file' (item size: 1) to 17 items.
 A level-1 auxiliary file: Cascaras/fin.aux
 Database file #1: biblio.bib
 Warning--empty journal in vaswani2017attention
-You've used 11 entries,
+You've used 13 entries,
             2962 wiz_defined-function locations,
-            1146 strings with 14558 characters,
-and the built_in function-call counts, 6129 in all, are:
-= -- 451
-> -- 262
-< -- 10
-+ -- 107
-- -- 90
-* -- 442
-:= -- 944
-add.period$ -- 34
-call.type$ -- 11
-change.case$ -- 86
-chr.to.int$ -- 11
-cite$ -- 12
-duplicate$ -- 507
-empty$ -- 450
-format.name$ -- 123
-if$ -- 1178
+            1158 strings with 14795 characters,
+and the built_in function-call counts, 6961 in all, are:
+= -- 516
+> -- 283
+< -- 12
++ -- 117
+- -- 96
+* -- 484
+:= -- 1078
+add.period$ -- 41
+call.type$ -- 13
+change.case$ -- 98
+chr.to.int$ -- 13
+cite$ -- 14
+duplicate$ -- 579
+empty$ -- 525
+format.name$ -- 131
+if$ -- 1345
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 106
-newline$ -- 59
-num.names$ -- 44
-pop$ -- 258
+missing$ -- 120
+newline$ -- 70
+num.names$ -- 53
+pop$ -- 291
 preamble$ -- 1
-purify$ -- 74
+purify$ -- 84
 quote$ -- 0
-skip$ -- 186
+skip$ -- 215
 stack$ -- 0
-substring$ -- 167
-swap$ -- 233
+substring$ -- 193
+swap$ -- 258
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 107
+type$ -- 124
 warning$ -- 1
-while$ -- 36
+while$ -- 42
 width$ -- 0
-write$ -- 135
+write$ -- 160
 (There was 1 warning)

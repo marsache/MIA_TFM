@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  15 JUN 2026 07:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  16 JUN 2026 18:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -976,12 +976,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 
-]
-Overfull \hbox (4.84029pt too wide) in paragraph at lines 7--8
-[]\T1/cmr/m/n/10.95 In this con-text, and as part of the Eu-ro-pean and Ibero-American project EA-DIGIFOLK,
- []
-
-) [11]
+]) [11]
 LaTeX Info: Redefining \. on input line 125.
 LaTeX Info: Redefining \% on input line 125.
 \openout2 = `TeXiS/TeXiS_toc.aux'.
@@ -996,10 +991,10 @@ LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
- [13]
-Underfull \vbox (badness 1019) has occurred while \output is active []
+ [13] [14]
+Underfull \vbox (badness 2277) has occurred while \output is active []
 
- [14] [15] [16]
+ [15] [16]
 LaTeX Info: Redefining \. on input line 138.
 LaTeX Info: Redefining \% on input line 138.
 )
@@ -1013,8 +1008,8 @@ LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
-LaTeX Info: Redefining \. on input line 18.
-LaTeX Info: Redefining \% on input line 18.
+LaTeX Info: Redefining \. on input line 19.
+LaTeX Info: Redefining \% on input line 19.
 )
 \tf@lof=\write8
 \openout8 = `TFMTeXiS.lof'.
@@ -1026,8 +1021,8 @@ LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
-LaTeX Info: Redefining \. on input line 20.
-LaTeX Info: Redefining \% on input line 20.
+LaTeX Info: Redefining \. on input line 21.
+LaTeX Info: Redefining \% on input line 21.
 )
 \tf@lot=\write9
 \openout9 = `TFMTeXiS.lot'.
@@ -1078,8 +1073,8 @@ LaTeX Info: Redefining \% on input line 138.
 LaTeX Info: Redefining \. on input line 151.
 LaTeX Info: Redefining \% on input line 151.
  [6]
-LaTeX Info: Redefining \. on input line 167.
-LaTeX Info: Redefining \% on input line 167.
+LaTeX Info: Redefining \. on input line 168.
+LaTeX Info: Redefining \% on input line 168.
  [7])
 LaTeX Info: Redefining \. on input line 141.
 LaTeX Info: Redefining \% on input line 141.
@@ -1162,28 +1157,20 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
-[]\T1/cmr/m/n/10.95 El mé-to-do prin-ci-pal uti-li-za-do pa-ra es-ta ex-trac-ción de la to-na-li-dad es
- []
-
-LaTeX Info: Redefining \. on input line 67.
-LaTeX Info: Redefining \% on input line 67.
-[23]
-Underfull \hbox (badness 5189) in paragraph at lines 70--71
+<Scores/tempo.cropped.pdf, id=1011, 127.47626pt x 49.18375pt>
+File: Scores/tempo.cropped.pdf Graphic file (type pdf)
+<use Scores/tempo.cropped.pdf>
+Package pdftex.def Info: Scores/tempo.cropped.pdf  used on input line 42.
+(pdftex.def)             Requested size: 142.26378pt x 54.89177pt.
+LaTeX Info: Redefining \. on input line 75.
+LaTeX Info: Redefining \% on input line 75.
+ [23 <./Scores/tempo.cropped.pdf>]
+Underfull \hbox (badness 5189) in paragraph at lines 85--86
 []\T1/cmr/m/n/10.95 De for-ma com-ple-men-ta-ria, se im-ple-men-tó un se-gun-do mé-to-do de-no-mi-na-do
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--82
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de me-ta-da-tos es
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 93.
-LaTeX Info: Redefining \% on input line 93.
-
+LaTeX Info: Redefining \. on input line 99.
+LaTeX Info: Redefining \% on input line 99.
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
 (fancyhdr)                Make it at least 38.82652pt, for example:
@@ -1192,19 +1179,12 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [24]
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta de-tec-ción de he-miolias ver-ti-ca-les es
- []
+LaTeX Info: Redefining \. on input line 121.
+LaTeX Info: Redefining \% on input line 121.
+ [25]
+LaTeX Info: Redefining \. on input line 142.
+LaTeX Info: Redefining \% on input line 142.
 
-LaTeX Info: Redefining \. on input line 114.
-LaTeX Info: Redefining \% on input line 114.
-[25]
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta de-tec-ción de he-miolias ho-ri-zon-ta-les es
- []
-
-LaTeX Info: Redefining \. on input line 138.
-LaTeX Info: Redefining \% on input line 138.
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
 (fancyhdr)                Make it at least 38.82652pt, for example:
@@ -1213,11 +1193,11 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [26]
-LaTeX Info: Redefining \. on input line 162.
-LaTeX Info: Redefining \% on input line 162.
+LaTeX Info: Redefining \. on input line 165.
+LaTeX Info: Redefining \% on input line 165.
  [27]
-LaTeX Info: Redefining \. on input line 184.
-LaTeX Info: Redefining \% on input line 184.
+LaTeX Info: Redefining \. on input line 186.
+LaTeX Info: Redefining \% on input line 186.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1227,11 +1207,11 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [28]
-LaTeX Info: Redefining \. on input line 211.
-LaTeX Info: Redefining \% on input line 211.
+LaTeX Info: Redefining \. on input line 210.
+LaTeX Info: Redefining \% on input line 210.
  [29]
-LaTeX Info: Redefining \. on input line 233.
-LaTeX Info: Redefining \% on input line 233.
+LaTeX Info: Redefining \. on input line 230.
+LaTeX Info: Redefining \% on input line 230.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1241,15 +1221,12 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [30]
-LaTeX Info: Redefining \. on input line 258.
-LaTeX Info: Redefining \% on input line 258.
+LaTeX Info: Redefining \. on input line 253.
+LaTeX Info: Redefining \% on input line 253.
  [31]
-Underfull \hbox (badness 10000) in paragraph at lines 262--263
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de den-si-dad de even-tos es
- []
+LaTeX Info: Redefining \. on input line 274.
+LaTeX Info: Redefining \% on input line 274.
 
-LaTeX Info: Redefining \. on input line 281.
-LaTeX Info: Redefining \% on input line 281.
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
 (fancyhdr)                Make it at least 38.82652pt, for example:
@@ -1258,11 +1235,11 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [32]
-LaTeX Info: Redefining \. on input line 301.
-LaTeX Info: Redefining \% on input line 301.
+LaTeX Info: Redefining \. on input line 294.
+LaTeX Info: Redefining \% on input line 294.
  [33]
-LaTeX Info: Redefining \. on input line 327.
-LaTeX Info: Redefining \% on input line 327.
+LaTeX Info: Redefining \. on input line 316.
+LaTeX Info: Redefining \% on input line 316.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1272,13 +1249,11 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [34]
-LaTeX Info: Redefining \. on input line 350.
-LaTeX Info: Redefining \% on input line 350.
+LaTeX Info: Redefining \. on input line 338.
+LaTeX Info: Redefining \% on input line 338.
  [35]
-Underfull \vbox (badness 7576) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 377.
-LaTeX Info: Redefining \% on input line 377.
+LaTeX Info: Redefining \. on input line 360.
+LaTeX Info: Redefining \% on input line 360.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1288,17 +1263,23 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [36]
-LaTeX Info: Redefining \. on input line 400.
-LaTeX Info: Redefining \% on input line 400.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 384.
+LaTeX Info: Redefining \% on input line 384.
  [37]
-Underfull \hbox (badness 10000) in paragraph at lines 410--411
+Underfull \hbox (badness 10000) in paragraph at lines 385--386
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra de-tec-tar es-tas ano-ma-lías son
  []
 
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 413.
-LaTeX Info: Redefining \. on input line 415.
-LaTeX Info: Redefining \% on input line 415.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 388.
+
+Underfull \vbox (badness 1189) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 394.
+LaTeX Info: Redefining \% on input line 394.
+
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
 (fancyhdr)                Make it at least 38.82652pt, for example:
@@ -1307,22 +1288,11 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 420--421
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra es-ta ex-trac-ción de me-ta-da-tos es
- []
-
-LaTeX Info: Redefining \. on input line 433.
-LaTeX Info: Redefining \% on input line 433.
-[39]
-Underfull \hbox (badness 10000) in paragraph at lines 437--438
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra eva-luar es-truc-tu-ral-men-te la par-ti-tu-ra es
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 451.
-LaTeX Info: Redefining \% on input line 451.
+LaTeX Info: Redefining \. on input line 411.
+LaTeX Info: Redefining \% on input line 411.
+ [39]
+LaTeX Info: Redefining \. on input line 428.
+LaTeX Info: Redefining \% on input line 428.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1332,24 +1302,18 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [40]
-Underfull \hbox (badness 10000) in paragraph at lines 452--453
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra iden-ti-fi-car el vo-lu-men MI-DI de la obra es
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 463--464
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra iden-ti-fi-car el vo-lu-men MI-DI de la obra es
- []
-
-LaTeX Info: Redefining \. on input line 472.
-LaTeX Info: Redefining \% on input line 472.
-[41]
-Underfull \hbox (badness 10000) in paragraph at lines 480--481
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra de-tec-tar es-tas ano-ma-lías son
  []
 
-LaTeX Info: Redefining \. on input line 493.
-LaTeX Info: Redefining \% on input line 493.
+LaTeX Info: Redefining \. on input line 450.
+LaTeX Info: Redefining \% on input line 450.
+[41]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 467.
+LaTeX Info: Redefining \% on input line 467.
+
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
 (fancyhdr)                Make it at least 38.82652pt, for example:
@@ -1358,34 +1322,25 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [42]
-Underfull \hbox (badness 10000) in paragraph at lines 494--495
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra iden-ti-fi-car el vo-lu-men MI-DI de la obra es
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 503--504
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra ha-cer es-ta iden-ti-fi-ca-ción de eti-que-tas es
- []
-
-LaTeX Info: Redefining \. on input line 512.
-LaTeX Info: Redefining \% on input line 512.
-[43]
-Underfull \hbox (badness 10000) in paragraph at lines 522--523
+LaTeX Info: Redefining \. on input line 483.
+LaTeX Info: Redefining \% on input line 483.
+ [43]
+Underfull \hbox (badness 10000) in paragraph at lines 485--486
 []\T1/cmr/m/n/10.95 Los mé-to-dos uti-li-za-dos pa-ra ha-cer es-ta iden-ti-fi-ca-ción
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 522--523
+Underfull \hbox (badness 10000) in paragraph at lines 485--486
 \T1/cmr/m/n/10.95 de in-ter-va-los son [][]\T1/cmtt/m/n/10.95 _extract_measure_boundary_intervals []\T1/cmr/m/n/10.95 y
  []
 
 
-Overfull \hbox (12.69997pt too wide) in paragraph at lines 526--527
+Overfull \hbox (12.69997pt too wide) in paragraph at lines 489--490
 []\T1/cmr/bx/n/10.95 Contador de in-ter-va-los fron-te-ra \T1/cmtt/m/n/10.95 _calculate_most_frequent_boundary_interval\T1/cmr/bx/n/10.95 .
  []
 
-LaTeX Info: Redefining \. on input line 527.
-LaTeX Info: Redefining \% on input line 527.
+LaTeX Info: Redefining \. on input line 499.
+LaTeX Info: Redefining \% on input line 499.
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
 (fancyhdr)                Make it at least 38.82652pt, for example:
@@ -1394,15 +1349,11 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [44]
-Underfull \hbox (badness 10000) in paragraph at lines 535--536
-[]\T1/cmr/m/n/10.95 El mé-to-do uti-li-za-do pa-ra ha-cer es-ta iden-ti-fi-ca-ción de eti-que-tas es
- []
-
-LaTeX Info: Redefining \. on input line 576.
-LaTeX Info: Redefining \% on input line 576.
-[45]
-LaTeX Info: Redefining \. on input line 585.
-LaTeX Info: Redefining \% on input line 585.
+LaTeX Info: Redefining \. on input line 542.
+LaTeX Info: Redefining \% on input line 542.
+ [45]
+LaTeX Info: Redefining \. on input line 553.
+LaTeX Info: Redefining \% on input line 553.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1412,39 +1363,28 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
 
 [46]
-<Imagenes/Bitmap/UITool.png, id=1109, 714.2685pt x 491.436pt>
+<Imagenes/Bitmap/UITool.png, id=1126, 714.2685pt x 491.436pt>
 File: Imagenes/Bitmap/UITool.png Graphic file (type png)
 <use Imagenes/Bitmap/UITool.png>
-Package pdftex.def Info: Imagenes/Bitmap/UITool.png  used on input line 595.
+Package pdftex.def Info: Imagenes/Bitmap/UITool.png  used on input line 556.
 (pdftex.def)             Requested size: 341.43437pt x 234.91927pt.
 )
 LaTeX Info: Redefining \. on input line 146.
 LaTeX Info: Redefining \% on input line 146.
  [47 <./Imagenes/Bitmap/UITool.png>]
-LaTeX Info: Redefining \. on input line 146.
-LaTeX Info: Redefining \% on input line 146.
-
-
-Package fancyhdr Warning: \headheight is too small (25.22652pt): 
-(fancyhdr)                Make it at least 38.82652pt, for example:
-(fancyhdr)                \setlength{\headheight}{38.82652pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-13.6pt}.
-
-[48]
 \openout2 = `Capitulos/EvaluacionPruebas.aux'.
 
- (Capitulos/EvaluacionPruebas.tex
-Cap\'itulo 6.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [49
+ (Capitulos/EvaluacionPruebas.tex [48
 
 
 
 
 ]
+Cap\'itulo 6.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [49]
 LaTeX Info: Redefining \. on input line 39.
 LaTeX Info: Redefining \% on input line 39.
  [50]
@@ -1863,20 +1803,20 @@ L3 programming layer <2026-03-20>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
-(rerunfilecheck)             Checksum: B394E3BBAFCDA6102624F4FF5D0FD2D6;49666.
+(rerunfilecheck)             Checksum: CE253DF61386EB0FF79F41A5F2451E1B;49564.
  ) 
 Here is how much of TeX's memory you used:
- 31411 strings out of 467691
- 601280 string characters out of 5414987
- 1069737 words of memory out of 5000000
- 59241 multiletter control sequences out of 15000+600000
+ 31421 strings out of 467691
+ 601568 string characters out of 5414987
+ 1069810 words of memory out of 5000000
+ 59249 multiletter control sequences out of 15000+600000
  649211 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  121i,12n,127p,1753b,1266s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (152 pages, 1229569 bytes).
+Output written on TFMTeXiS.pdf (152 pages, 1260579 bytes).
 PDF statistics:
- 2321 PDF objects out of 2487 (max. 8388607)
- 321 named destinations out of 1000 (max. 500000)
- 1143 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2337 PDF objects out of 2487 (max. 8388607)
+ 323 named destinations out of 1000 (max. 500000)
+ 1148 words of extra memory for PDF output out of 10000 (max. 10000000)
 

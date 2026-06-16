@@ -35,9 +35,16 @@ Para mejorar el rendimiento de la búsqueda de características concretas en el 
 \subsection{Extracción de tempo}
 Con el objetivo de caracterizar el tempo global de las obras del corpus, se implementó un sistema de extracción automática de la indicación de tempo a partir de la representación simbólica de la partitura.
 
-El método utilizado para esta extracción de tempo es \verb|_extract_bpm|.
+El \textbf{tempo} es la velocidad a la que se ejecuta una obra musical. El tempo se señala explícitamente mediante términos (generalmente italianos) o referencias metronómicas.
 
-El método recorre la estructura jerárquica del objeto musical en busca de elementos de tipo \verb|MetronomeMark|, los cuales contienen información explícita sobre la velocidad de ejecución expresada en pulsaciones por minuto (BPM). Dado que una obra puede presentar múltiples cambios de tempo a lo largo de su desarrollo, el algoritmo selecciona la primera marca de metrónomo válida encontrada durante el recorrido de la partitura.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=5cm]{Scores/tempo.cropped.pdf}
+    \caption{Ejemplo de indicación de tempo (negra con puntillo = 62)}
+    \label{fig:tempo}
+\end{figure}
+
+El método recorre la estructura jerárquica del objeto musical en busca de elementos que contengan información explícita sobre la velocidad de ejecución expresada en pulsaciones por minuto (BPM). Dado que una obra puede presentar múltiples cambios de tempo a lo largo de su desarrollo, el algoritmo selecciona la primera marca de metrónomo válida encontrada durante el recorrido de la partitura.
 
 Cuando se identifica una indicación de tempo con un valor numérico definido, este se extrae y se redondea al entero más cercano con el fin de obtener una representación estandarizada del tempo. Este valor se interpreta como una aproximación del tempo inicial o predominante de la obra.
 
@@ -45,10 +52,20 @@ En caso de que no exista ninguna indicación explícita en la partitura, el mét
 
 El resultado final consiste en un valor entero que representa el tempo en BPM.
 
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{BPM} \\
+IE-2019-D-HLS-009 & 51 \\
+IE-2019-D-HLS-010 & 128 \\
+IE-2019-D-HLS-011 & 128 \\
+IE-2019-D-HLS-012 & 60 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su BPM}
+\end{table}
+
 \subsection{Extracción de compás}
 Con el objetivo de identificar el compás de cada obra del corpus, se implementó un procedimiento de extracción de la indicación de compás a partir de la estructura simbólica de la partitura.
-
-El método utilizado para esta extracción de compás es \verb|_extract_compas|.
 
 El procedimiento recorre la representación interna del objeto musical en busca de elementos de tipo \verb|TimeSignature|, que contienen la información relativa a la métrica escrita en la partitura. Dado que una obra puede incluir múltiples indicaciones de compás a lo largo de su desarrollo, el algoritmo selecciona la primera ocurrencia válida encontrada en el recorrido jerárquico de la estructura musical.
 
@@ -60,8 +77,6 @@ El resultado final consiste en una cadena de texto que representa el compás de 
 
 \subsection{Extracción híbrida de la tonalidad}
 Con el objetivo de determinar la tonalidad de las obras del corpus, se implementaron dos sistemas complementarios de inferencia tonal: un método basado en análisis armónico automático y otro basado en heurísticas estructurales que combinan información de armadura y distribución de alturas.
-
-El método principal utilizado para esta extracción de la tonalidad es \verb|_extract_tonality|.
 
 Este sistema emplea las capacidades de análisis tonal integradas en la librería music21. A partir de la partitura completa, se ejecuta un algoritmo de estimación de tonalidad que identifica la relación más probable entre la tónica y el modo (mayor o menor) en función del contenido armónico global de la obra. El resultado se expresa como una combinación de nota fundamental y modalidad.
 
@@ -78,8 +93,6 @@ En los casos en los que la última nota no coincide claramente con ninguna de la
 \subsection{Extracción de título y autor}
 Con el objetivo de normalizar la información descriptiva asociada a cada obra del corpus, se implementó un procedimiento de extracción automática del título y del compositor o autor de la pieza.
 
-El método utilizado para esta extracción de metadatos es \verb|_extract_title_and_author|.
-
 El procedimiento toma como entrada un objeto estructurado de tipo Score junto con la ruta original del archivo. En primer lugar, se accede a los metadatos internos del objeto musical. A partir de dicha información se extraen el título de la obra (o el nombre del movimiento) y el compositor o entidad responsable de la composición.
 
 Dado que los metadatos en colecciones musicales digitalizadas pueden contener inconsistencias o valores generados automáticamente durante procesos de conversión, el algoritmo incorpora un conjunto de reglas de filtrado y depuración. En particular, se consideran inválidos aquellos títulos que corresponden a valores temporales o de sistema, tales como cadenas prefijadas con “tmp”, así como aquellos derivados directamente del nombre del archivo original. Estos últimos casos se descartan.
@@ -90,8 +103,6 @@ El resultado final del procedimiento consiste en un par de valores normalizados:
 
 \subsection{Inferencia del modo de la obra}
 Con el objetivo de caracterizar la organización modal de las piezas del corpus, se implementó un sistema de inferencia automática de modo musical basado en la distribución temporal de las alturas. Esta metodología permite estimar tanto la tónica de referencia como el modo predominante de una obra a partir de la duración acumulada de los distintos grados.
-
-El método utilizado para esta inferencia del modo es \verb|_infer_mode_custom|.
 
 Este método parte de la identificación de todas las notas presentes en la partitura. En ausencia de información explícita sobre la tonalidad o el centro modal, se adopta una estrategia heurística que considera la última nota de la obra como posible candidata a tónica. Esta decisión se fundamenta en prácticas frecuentes en repertorios de tradición modal y en música de transmisión oral, donde la resolución final tiende a coincidir con el centro tonal percibido.
 
@@ -107,8 +118,6 @@ El modo final se obtiene seleccionando aquel cuya plantilla acumula la mayor can
 
 \subsection{Detección de hemiolias verticales}
 Con el objetivo de identificar fenómenos de superposición métrica simultánea dentro de una partitura, se implementó un sistema de detección automática de hemiolias verticales. Esta metodología busca localizar compases en los que diferentes voces presentan organizaciones rítmicas incompatibles, generando una coexistencia de agrupaciones binarias y ternarias dentro de una misma estructura métrica.
-
-El método utilizado para esta detección de hemiolias verticales es \verb|detectar_hemiolas_verticales|.
 
 La detección se centra en los compases de 3/4 y 6/8, ya que constituyen los contextos métricos más habituales para la aparición de este tipo de hemiolias. Ambos compases poseen una duración temporal equivalente, pero difieren en la organización de sus pulsos principales. Mientras que el compás de 3/4 se articula mediante tres pulsos regulares, el compás de 6/8 suele estructurarse como dos pulsos principales con subdivisión ternaria. La interacción simultánea entre ambas formas de organización constituye el fundamento de la hemiolia vertical.
 
@@ -129,8 +138,6 @@ Finalmente, el método devuelve una lista ordenada con los números de los compa
 \subsection{Detección de hemiolias horizontales}
 Con el objetivo de identificar fenómenos de reinterpretación métrica sucesiva dentro de una partitura, se implementó un sistema de detección automática de hemiolias horizontales. Esta metodología busca localizar compases en los que, manteniéndose constante la indicación de compás escrita, se produce un cambio significativo en el patrón interno de acentuación rítmica, generando una percepción métrica diferente a la esperada.
 
-El método utilizado para esta detección de hemiolias horizontales es \verb|detectar_hemiolas_horizontales|.
-
 La detección se centra en la relación tradicional entre los compases de 6/8 y 3/4, dos estructuras métricas que poseen la misma duración total pero distribuyen los acentos de manera diferente. Mientras que el compás de 6/8 suele organizarse como dos pulsos principales subdivididos ternariamente, el compás de 3/4 se articula como tres pulsos regulares de subdivisión binaria. La alternancia perceptiva entre ambas organizaciones constituye una de las manifestaciones más características de la hemiolia.
 
 Como paso inicial, la partitura se carga y procesa para obtener todas las partes y compases de la obra. El análisis se restringe exclusivamente a compases escritos en 6/8 o 3/4, ya que son las configuraciones métricas sobre las que se fundamenta la definición operativa utilizada por el algoritmo.
@@ -145,8 +152,6 @@ Los compases que satisfacen estos criterios se registran como casos de hemiolia 
 
 \subsection{Detección de síncopas}
 Con el objetivo de identificar fenómenos de desplazamiento acentual dentro de una partitura, se implementó un sistema de detección automática de síncopas. Esta metodología busca localizar compases en los que una nota o acorde comienza en una posición métricamente débil y prolonga su duración atravesando una posición de mayor jerarquía métrica, generando una suspensión temporal del acento esperado.
-
-El método utilizado para esta detección de síncopas es \verb|detectar_sincopas|.
 
 Como paso inicial, la partitura se carga y procesa para obtener una representación estructurada de sus elementos musicales. Posteriormente, el algoritmo recorre todas las partes instrumentales y analiza cada compás de forma independiente.
 
@@ -164,8 +169,6 @@ Cuando se detecta al menos una síncopa dentro de un compás, el número de dich
 
 \subsection{Extracción de letras}
 Con el objetivo de incorporar información textual al proceso de análisis musical, se implementó un sistema de extracción automática de letras capaz de operar sobre diversos formatos de representación musical digital. Esta metodología permite recuperar el texto cantado de una obra y reconstruirlo en forma legible a partir de la información silábica almacenada en la partitura.
-
-El método principal utilizado para esta extracción es \verb|_extract_lyrics|.
 
 Dado que cada formato musical emplea estructuras internas diferentes para representar las letras, el sistema incorpora mecanismos específicos de extracción para archivos MEI, MusicXML y MuseScore.
 
@@ -188,8 +191,6 @@ El resultado final consiste en una cadena de texto que contiene la letra reconst
 \subsection{Análisis temático de la lírica de las obras con LLMs}
 Con el objetivo de enriquecer la descripción semántica de las canciones del corpus, se implementó un sistema de extracción automática de temas basado en LLMs. Esta metodología permite identificar de forma automática los tópicos predominantes presentes en el texto de una canción a partir de su título y de su letra.
 
-El método utilizado para este análisis es \verb|_analizar_temas_con_ollama|.
-
 El procedimiento recibe como entrada el título y la letra de una canción. Cuando ambos campos se encuentran vacíos, el análisis se omite y el método devuelve un resultado nulo. En caso contrario, la información textual se utiliza para construir una consulta dirigida a un modelo de lenguaje ejecutado localmente mediante Ollama.
 
 Para guiar el proceso de clasificación, el algoritmo genera un mensaje de instrucción que incorpora explícitamente tanto el título como la letra de la canción. Dicho mensaje solicita la identificación de los temas más representativos de la obra, limitando la respuesta a un máximo de cuatro categorías. Entre los ejemplos de referencia proporcionados al modelo se incluyen etiquetas habituales en el ámbito del folklore musical, como nana, naturaleza, muerte, religión, amor, trabajo, picaresca, fiesta, sátira, infancia, guerra o viaje.
@@ -204,8 +205,6 @@ En caso de producirse errores durante la comunicación con el modelo, fallos de 
 
 \subsection{Detección de cambio de resolución rítmica}
 Con el objetivo de evaluar la consistencia de la representación temporal interna de las partituras codificadas en formato MEI, se implementó un sistema para detectar cambios de resolución rítmica durante el transcurso de una obra. Esta metodología permite identificar modificaciones en la relación entre las figuras musicales y los pulsos utilizados para representar su duración.
-
-El método utilizado para esta detección es \verb|_detectar_cambio_resolucion_ppq|.
 
 La métrica se basa en el concepto de resolución temporal expresada mediante PPQ (\textit{Pulses Per Quarter Note}), un parámetro que define el número de pulsos internos que corresponden a una negra. Cuando la resolución permanece estable, una misma figura musical mantiene siempre la misma equivalencia en pulsos. Por el contrario, si esta relación cambia dentro de una misma sección de la obra, pueden aparecer inconsistencias que afecten a la interpretación temporal de los datos.
 
@@ -225,8 +224,6 @@ Todos los compases donde se detecta alguna de estas situaciones son registrados 
 \subsection{Detección de desajustes en duraciones de notas}
 Con el objetivo de evaluar la consistencia métrica de las partituras, se implementó un sistema de detección automática de desajustes entre el contenido rítmico de los compases y la indicación de compás declarada en la obra. Esta metodología permite identificar errores de codificación, omisiones o inconsistencias que provocan que la duración de una voz no coincida con la capacidad temporal establecida por el compás vigente.
 
-El método utilizado para esta detección es \verb|detectar_desajustes_meter_sig|.
-
 Este método mantiene en todo momento un estado interno que representa la indicación de compás activa. Inicialmente, este estado se obtiene a partir de las definiciones globales de la obra. Posteriormente, durante el recorrido secuencial de los compases, el algoritmo actualiza dicha información cuando detecta nuevas definiciones métricas locales. De este modo, se garantiza que los cambios de compás se tengan en cuenta exactamente en el punto donde aparecen en la partitura.
 
 Para cada compás se calcula primero su duración teórica esperada en unidades de negra. Por ejemplo, un compás de 3/4 posee una duración total de tres negras, mientras que un compás de 6/8 equivale igualmente a tres negras.
@@ -244,8 +241,6 @@ Finalmente, el método devuelve un indicador binario que señala la presencia o 
 \subsection{Detección de valores irregulares ocultos (grupillos)}
 Con el objetivo de evaluar la calidad y consistencia de la codificación rítmica de las partituras, se implementó un procedimiento para la detección de valores irregulares ocultos. Estos casos corresponden a eventos musicales cuyas duraciones representan subdivisiones no convencionales (como tresillos, quintillos o septillos) pero que no han sido declaradas explícitamente mediante los mecanismos estándar de notación.
 
-El método utilizado para esta detección es \verb|detectar_valores_irregulares_ocultos|.
-
 Tras cargar la partitura, el método recorre todas las partes instrumentales y examina cada uno de sus compases. Para cada compás se inspeccionan las notas y acordes presentes, ignorando aquellos elementos que no representan eventos sonoros válidos o cuya duración sea nula.
 
 El análisis se centra en la duración de cada evento musical, expresada en unidades de negra. Con el fin de minimizar posibles errores derivados de la representación en coma flotante, cada duración se transforma en una fracción cuyo denominador queda limitado a un valor máximo predefinido.
@@ -259,8 +254,6 @@ Los compases donde se detecta al menos un caso de este tipo son registrados y a�
 \subsection{Cálculo de densidad de eventos musicales por compás}
 Con el objetivo de cuantificar la actividad musical presente en una partitura, se implementó un sistema de cálculo de densidad de eventos. Esta métrica permite estimar el grado de concentración de eventos sonoros a lo largo de la obra a través de la relación entre el número total de eventos musicales y la cantidad de compases de la pieza.
 
-El método utilizado para esta extracción de densidad de eventos es \verb|_calcular_densidad_eventos|.
-
 Este método recibe como entrada una partitura completa representada como un objeto \verb|Score|. En primer lugar, se realiza un recorrido exhaustivo de toda la estructura musical para localizar los eventos sonoros presentes en la obra. Para ello, se consideran exclusivamente notas individuales y acordes, mientras que los silencios son descartados del análisis al no aportar información sobre la actividad sonora.
 
 A continuación, el algoritmo contabiliza el número total de eventos identificados. Cada nota y cada acorde se consideran una única unidad de análisis, independientemente de su duración o complejidad interna. El resultado de este paso proporciona una medida absoluta de la cantidad de material musical contenido en la partitura.
@@ -273,8 +266,6 @@ Finalmente, el método devuelve tres valores: el número total de eventos musica
 
 \subsection{Detección automática de polirritmias verticales}
 Con el objetivo de identificar fenómenos de superposición rítmica compleja dentro de una partitura, se implementó un sistema de detección automática de polirritmias verticales. Esta metodología busca localizar compases en los que coexisten simultáneamente subdivisiones rítmicas incompatibles entre distintas voces o partes instrumentales, tales como tresillos frente a subdivisiones binarias regulares o combinaciones más complejas como 3:4, 3:5 o 5:7.
-
-El método utilizado para esta detección de polirritmias es \verb|detectar_polirritmias|.
 
 Este método recibe como entrada un apartitura y la procesa para facilitar su análisis. Posteriormente, todas las medidas de la obra se agrupan según su número de compás, permitiendo examinar conjuntamente el contenido rítmico que ocurre de manera simultánea en cada instante de la obra.
 
@@ -291,8 +282,6 @@ Los compases que satisfacen alguno de estos criterios se registran como polirrit
 \subsection{Extracción de la tesitura de la obra}
 Con el objetivo de identificar el registro de la composición, se implementó un sistema destinado a determinar la tesitura de una partitura. En este caso la tesitura se define como el rango comprendido entre la altura más grave y la altura más aguda registradas en la obra.
 
-El método utilizado para esta extracción de tesitura es \verb|_calcular_tesitura|.
-
 Este método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza un recorrido recursivo sobre todos los eventos musicales que contienen información de altura. El análisis considera tanto notas individuales como acordes, garantizando que todas las alturas presentes en la obra participen en el cálculo de los límites de la tesitura.
 
 Cuando el evento corresponde a una nota aislada, su altura se incorpora directamente al conjunto de datos analizado. En el caso de los acordes, el sistema extrae todas las alturas que forman parte del evento armónico y las incorpora individualmente al conjunto de observaciones.
@@ -306,8 +295,6 @@ En aquellos casos en los que la partitura no contiene eventos con altura definid
 \subsection{Inferencia del género del autor a partir del nombre}
 Con el objetivo de incorporar información descriptiva adicional sobre los autores presentes en el corpus musical, se implementó un sistema muy básico de inferencia del gémerp asociado al nombre del autor.
 
-El método utilizado para esta inferencia es \verb|_clasificar_genero_autor|.
-
 Este método recibe como entrada una cadena de texto correspondiente al nombre del autor y genera una clasificación en una de tres categorías: masculino, femenino o desconocido. Antes de realizar el análisis, se lleva a cabo una fase de validación destinada a identificar casos en los que la información disponible no permite efectuar una inferencia razonable. En particular, los autores anónimos, tradicionales o aquellos cuya identificación no está especificada son clasificados directamente como desconocidos.
 
 Posteriormente, el algoritmo extrae el primer componente nominal del nombre completo. Sobre este lexema se aplican una serie de reglas heurísticas basadas en terminaciones frecuentemente asociadas a nombres propios masculinos y femeninos en lengua española.
@@ -318,8 +305,6 @@ Cuando ninguna de las reglas definidas proporciona evidencia suficiente para una
 
 \subsection{Análisis automático de la perspectiva lírica}
 Con el objetivo de caracterizar la voz narrativa presente en el texto de una canción, se implementó un sistema de clasificación semántica orientado a identificar la perspectiva lírica expresada en la letra. Esta metodología analiza las marcas lingüísticas presentes en el discurso con el fin de determinar si la voz que interpreta la obra presenta rasgos predominantemente masculinos, femeninos, neutros o insuficientes para realizar una clasificación fiable.
-
-El método utilizado para este análisis es \verb|_analizar_perspectiva_lirica|.
 
 Este método recibe como entrada el texto completo de la letra y realiza una validación inicial para comprobar que la cantidad de contenido disponible sea suficiente para el análisis. Los textos excesivamente breves son clasificados automáticamente como indeterminados debido a la ausencia de evidencia lingüística suficiente.
 
@@ -333,8 +318,6 @@ El resultado final consiste en una etiqueta categórica que resume la perspectiv
 
 \subsection{Extracción de notas y silencios}
 Con el propósito de obtener una representación textual compacta de la estructura musical de una partitura, se implementó un sistema de extracción secuencial de eventos sonoros y silencios. El método transforma la información simbólica contenida en la partitura en una cadena de texto lineal que preserva el orden cronológico de aparición de los eventos musicales, facilitando su inspección visual, almacenamiento y análisis.
-
-El método utilizado para esta extracción es \verb|_extract_notes_and_rests|.
 
 Este método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza un recorrido cronológico sobre todos los eventos musicales relevantes. Para garantizar una secuencia temporal única, la estructura jerárquica de la obra se aplana previamente mediante una transformación que integra en un único flujo los eventos procedentes de diferentes voces, pentagramas o niveles.
 
@@ -351,8 +334,6 @@ Una vez procesados todos los eventos, los elementos obtenidos se concatenan sigu
 \subsection{Extracción de la secuencia melódica de la obra}
 Con el objetivo de obtener una representación lineal de la melodía principal de una partitura, se implementó un sistema de extracción cronológica de alturas musicales basado en la secuencia de eventos sonoros presentes en la obra.
 
-El método utilizado para esta extracción es \verb|_extract_melody_pitches|.
-
 El método recibe como entrada una partitura representada mediante la estructura Score de Music21 y genera una secuencia ordenada de alturas (pitches). Para garantizar la correcta preservación del orden temporal de los eventos, la estructura jerárquica de la partitura se transforma previamente en una representación lineal mediante una operación de aplanamiento (flattening). Esta transformación permite integrar en una única secuencia los eventos procedentes de diferentes voces, pentagramas o niveles estructurales, manteniendo su disposición cronológica dentro de la obra.
 
 A continuación, el algoritmo recorre todos los eventos musicales identificados como notas o acordes. Cuando el evento corresponde a una nota individual, su altura se incorpora directamente a la secuencia melódica resultante. En cambio, cuando el evento corresponde a un acorde, se selecciona la nota más aguda de este, asociada normalmente a la melodía.
@@ -361,8 +342,6 @@ El resultado final es una secuencia cronológicamente ordenada de alturas musica
 
 \subsection{Análisis de la dirección de los intervalos melódicos}
 Con el objetivo de examinar el comportamiento direccional de una melodía, se implementó un procedimiento destinado a analizar la orientación de los intervalos entre alturas consecutivas. Este enfoque permite describir el perfil general del movimiento melódico mediante la cuantificación de ascensos, descensos y repeticiones de altura, independientemente de la magnitud exacta de los intervalos involucrados.
-
-El método utilizado para este análisis es \verb|_analyze_interval_directions|.
 
 Este método recibe como entrada una secuencia ordenada de alturas musicales (pitches). A partir de esta secuencia se examinan todos los pares de notas consecutivas presentes en la línea melódica. Cuando la secuencia contiene menos de dos eventos, el procedimiento concluye inmediatamente, ya que no existen intervalos a analizar.
 
@@ -374,8 +353,6 @@ A lo largo del recorrido, el sistema mantiene contadores independientes para cad
 
 \subsection{Clasificación de la tendencia melódica predominante}
 Con el fin de caracterizar el comportamiento global del movimiento melódico, se implementó un sistema de clasificación basado en la distribución relativa de intervalos ascendentes y descendentes. Este método permite resumir el perfil direccional de una obra mediante una única etiqueta descriptiva acompañada de indicadores cuantitativos.
-
-El método utilizado para esta clasificación es \verb|_determine_predominant_trend|.
 
 El procedimiento recibe como entrada los conteos previamente obtenidos para las tres categorías fundamentales de movimiento melódico: intervalos ascendentes, intervalos descendentes y repeticiones de altura. A diferencia de enfoques que consideran todas las transiciones por igual, el método se centra exclusivamente en los movimientos que implican un cambio efectivo de altura, excluyendo las repeticiones del cálculo.
 
@@ -389,8 +366,6 @@ El resultado final consiste en un conjunto de indicadores compuesto por la categ
 
 \subsection{Extracción de correspondencias entre sílabas y duraciones musicales}
 Con el objetivo de analizar la relación entre el texto cantado y su realización rítmica, se implementó un método destinado a extraer las correspondencias entre las sílabas presentes en una partitura vocal y las duraciones musicales asociadas a cada una de ellas. Este enfoque permite identificar patrones de asignación temporal del texto.
-
-El método utilizado para esta extracción es \verb|_extract_syllable_duration_mapping|.
 
 El método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza un recorrido lineal sobre todos los eventos melódicos presentes en la obra. El análisis se limita a aquellas notas que contienen información lírica explícita, excluyendo automáticamente los eventos instrumentales o las notas sin texto asociado.
 
@@ -417,8 +392,6 @@ Los métodos utilizados para detectar estas anomalías son \verb|_extract_accide
 \subsection{Extracción de metadatos de transcripción y procedencia digital}
 Con el objetivo de reconstruir información relativa al proceso de codificación y transformación de las partituras digitales, se desarrolló un procedimiento de extracción automática de metadatos de transcripción. Este método permite identificar el software empleado durante la generación o conversión del documento, recuperar información temporal asociada a su codificación y determinar el formato de origen del archivo analizado.
 
-El método utilizado para esta extracción de metadatos es \verb|_extract_transcription_metadata|.
-
 El procedimiento recibe como entrada la ruta de un archivo musical en formato XML, MusicXML o MEI y realiza una inspección directa de su contenido textual. A diferencia de otros métodos centrados en la estructura musical, este análisis se orienta exclusivamente a los metadatos de procedencia incorporados por los programas de edición, conversión o publicación digital.
 
 En los documentos codificados en formato MEI, el procedimiento examina la sección de descripción de la codificación, buscando elementos asociados a aplicaciones de software responsables de la creación o transformación del archivo. Cuando esta información está disponible, se registra el nombre de la herramienta empleada. También se inspeccionan los elementos relacionados con fechas de creación o codificación para recuperar información cronológica relevante.
@@ -434,8 +407,6 @@ Este método genera un conjunto normalizado de metadatos que incluye el software
 \subsection{Auditoría automatizada de control de calidad estructural}
 Con el fin de evaluar la integridad estructural de las partituras digitales y detectar posibles errores derivados de procesos de transcripción, digitalización o conversión entre formatos, se implementó un procedimiento automatizado de control de calidad. Este procedimiento genera un conjunto de indicadores para medir la consistencia básica de la representación musical y a señalar posibles anomalías que puedan comprometer análisis posteriores.
 
-El método utilizado para evaluar estructuralmente la partitura es \verb|_extract_quality_control_metadata|.
-
 Este método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza una inspección sistemática de todos los compases presentes en la obra. Durante este proceso se analizan tanto los eventos musicales (notas y silencios) como determinadas propiedades temporales asociadas a cada nota.
 
 La primera comprobación se centra en la identificación de compases compuestos exclusivamente por silencios, es decir, compases vacíos. Para ello, se recopilan todos los eventos contenidos en cada compás y se verifica si la totalidad de ellos corresponde a silencios. Aunque este tipo de compases puede ser musicalmente válido en determinados contextos, en este caso concreto de análisis de obras folclóricas, una frecuencia elevada de ocurrencias puede indicar problemas de importación, pérdidas de información durante la conversión o fragmentos incompletos de la partitura original. El número total de compases detectados bajo esta condición se registra como indicador de calidad.
@@ -449,8 +420,6 @@ Finalmente, la puntuación resultante se utiliza para asignar una clasificación
 \subsection{Extracción de intervalos melódicos}
 Con el objetivo de obtener una representación de la estructura melódica de una partitura, se implementó un procedimiento de extracción de intervalos melódicos basado en las distancias en semitonos entre eventos musicales consecutivos. Este enfoque permite describir el movimiento de la melodía independientemente de su altura absoluta, facilitando la comparación entre fragmentos musicales transpuestos a diferentes tonalidades.
 
-El método utilizado para identificar el volumen MIDI de la obra es \verb|_extract_melodic_intervals|.
-
 El algoritmo recibe como entrada una partitura y genera una secuencia ordenada de alturas expresadas en valores MIDI. Para ello, la partitura se transforma previamente en una representación lineal mediante el aplanamiento de su estructura jerárquica, preservando el orden temporal de los eventos musicales y omitiendo los silencios. De este modo, únicamente se consideran notas individuales y acordes presentes en la secuencia musical.
 
 Cuando el evento corresponde a una nota aislada, se extrae directamente su altura en formato MIDI. En el caso de los acordes, se selecciona la nota más aguda como representante del evento. Esta decisión se fundamenta en que, en gran parte de la música tonal occidental, la voz superior suele desempeñar la función melódica principal, permitiendo aproximar el contorno melódico incluso en presencia de textura armónica.
@@ -459,8 +428,6 @@ Una vez obtenida la secuencia de alturas, se calculan los intervalos melódicos 
 
 \subsection{Detección y conteo de leitmotivs recurrentes}
 Con el objetivo de identificar patrones melódicos recurrentes dentro de una partitura, se implementó un procedimiento basado en el análisis de n-gramas sobre secuencias de intervalos melódicos. Este enfoque permite detectar fragmentos musicales que reaparecen a lo largo de una obra independientemente de su altura absoluta, favoreciendo la identificación de motivos característicos y posibles estructuras temáticas recurrentes.
-
-El método utilizado para identificar el volumen MIDI de la obra es \verb|_detect_leitmotivs_ngrams|.
 
 Este método toma como punto de partida la secuencia de intervalos melódicos obtenida a partir de la sucesión lineal de eventos musicales. Dado que los intervalos representan relaciones entre alturas consecutivas y no alturas absolutas, la representación resultante es invariante frente a transposiciones, lo que facilita la detección de patrones equivalentes en diferentes contextos.
 
@@ -491,16 +458,12 @@ Como resultado, este procedimiento genera un conjunto de indicadores descriptivo
 Con el fin de obtener información sobre la dinámica de reproducción de las partituras analizadas, se desarrolló un procedimiento de extracción automática del volumen MIDI a partir de distintos formatos de representación musical digital.
 Ya que los tres formatos procesados en este corpus (MEI, XML y MSCZ) representan de distinta manera la información relativa a la partitura, el método diseñado se adapta a cada tipo de documento, proporcionando una interfaz unificada para la recuperación de este parámetro independientemente de la estructura interna de la obra.
 
-El método utilizado para identificar el volumen MIDI de la obra es \verb|_extract_midi_volume|.
-
 El algoritmo recibe como entrada la ruta del archivo a analizar y verifica inicialmente que su extensión se corresponda con alguno de los formatos soportados. En el caso de archivos MSCZ, el procedimiento accede al contenedor comprimido y localiza el archivo de configuración de audio (audiosettings.json). A continuación, analiza su contenido en formato JSON y extrae el valor asociado al atributo volumeDb dentro de la configuración maestra de audio. Este valor representa el nivel global de volumen definido para la reproducción de la partitura.
 
 Para los formatos basados en XML (MEI y MusicXML), el documento se procesa mediante un analizador sintáctico XML y se recorre de forma exhaustiva la estructura jerárquica de elementos. En los documentos MEI, el volumen MIDI se identifica a través del atributo midi.volume, presente en elementos instrDef, mientras que en MusicXML se localiza en elementos volume contenidos dentro de estructuras midi-instrument. Una vez recuperado el valor, se eliminan posibles caracteres de formato (como símbolos de porcentaje) y se realiza una conversión a representación numérica. Finalmente, el valor se redondea y almacena como un entero para garantizar una representación uniforme entre formatos.
 
 \subsection{Extracción de sustantivos y nombres propios (personas, lugares...) de la lírica de la obra}
 Con el objetivo de enriquecer el análisis temático de las obras, se ha implementado una herramienta que recorre la letra de cada canción para identificar y extraer los sustantivos y nombres propios presentes en ella. Esta información puede ser crucial para determinar los temas tratados en la obra, así como para realizar análisis comparativos entre distintas canciones, autores o regiones.
-
-El método utilizado para hacer esta identificación de etiquetas es \verb|_extraer_sustantivos_y_propios|.
 
 Esta implementación se diseñó con el objetivo de identificar y extraer automáticamente los sustantivos comunes y los nombres propios presentes en las líricas de las canciones en español del corpus. Para ello se apoya en técnicas de procesamiento del lenguaje natural implementadas mediante la biblioteca spaCy y su modelo lingüístico para español.
 
@@ -531,8 +494,6 @@ Una de las preguntas orientadas a probar el sistema de búsqueda basándose en l
 
 Aunque music21 es excelente para extraer alturas e intervalos, a menudo abstrae o separa los elementos de diseño visual (como <sb /> o saltos de sistema) en capas independientes, perdiendo su posición secuencial exacta respecto a las etiquetas de compás (<measure>) del archivo original.
 Por ello, y dado que la condición específica que se busca sólo aparece en archivos con formato MEI, la solución ideal es diseñar una herramienta que parsee directamente el archivo como un árbol XML mediante \verb|xml.etree.ElementTree|.
-
-El método utilizado para hacer esta identificación de etiquetas es \verb|_analizar_frases_sb_mei|.
 
 Tras procesar inicialmente el archivo XML, se localizan todas las secciones musicales (<section>) y se analizan secuencialmente sus elementos en busca de etiquetas <sb />. Por cada salto de sistema identificado, la función localiza el compás (<measure>) inmediatamente anterior y extrae las sílabas líricas (<syl>) contenidas en él. A continuación, examina la última sílaba del compás y comprueba si finaliza con algún signo de puntuación considerado delimitador de frase (punto, coma, punto y coma, signo de exclamación, signo de interrogación o puntos suspensivos). Cuando esta condición se cumple, el salto de sistema se considera coincidente con el final de una frase lógica.
 

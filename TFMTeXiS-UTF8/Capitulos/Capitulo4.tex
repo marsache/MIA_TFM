@@ -296,7 +296,7 @@ La \textbf{síncopa} \citep{grove1900dictionary} es un recurso rítmico que desp
 \begin{figure}[H]
     \centering
     \includegraphics[height=2cm]{Scores/sincopa.cropped.pdf}
-    \caption{Ejemplo de síncopas}
+    \caption{Ejemplo de obra con dos síncopas}
     \label{fig:sincopa}
 \end{figure}
 
@@ -329,6 +329,13 @@ Siobhán Mhór, or The Eagle’s Whistle & 8 \\
 \subsection{Extracción de letras}
 Con el objetivo de incorporar información textual al proceso de análisis musical, se implementó un sistema de extracción automática de letras capaz de operar sobre diversos formatos de representación musical digital. Esta metodología permite recuperar el texto cantado de una obra y reconstruirlo en forma legible a partir de la información silábica almacenada en la partitura.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=3cm]{Scores/letra.cropped.pdf}
+    \caption{Ejemplo de obra con letra}
+    \label{fig:letra}
+\end{figure}
+
 Dado que cada formato musical emplea estructuras internas diferentes para representar las letras, el sistema incorpora mecanismos específicos de extracción para archivos MEI, MusicXML y MuseScore.
 
 En todos los casos, el algoritmo identifica los elementos textuales contenidos en la partitura y los agrupa según el número de verso o estrofa al que pertenecen. Este paso resulta esencial para evitar la mezcla de textos procedentes de diferentes líneas poéticas o variantes simultáneas de una misma canción.
@@ -347,6 +354,16 @@ Una vez completada la reconstrucción de todas las estrofas, el sistema genera u
 
 El resultado final consiste en una cadena de texto que contiene la letra reconstruida de la obra.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{9.5cm}}
+\textbf{Título} & \textbf{Texto letras extraído} \\
+Corre, caballo & Corre caballo, corre ligero, gana la guerra de el gallinero. \\
+Patito, Patito Color de Café & Patito, patito, color de café, si tú no me quieres pues luego de qué \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su letra}
+\end{table}
+
 \subsection{Análisis temático de la lírica de las obras con LLMs}
 Con el objetivo de enriquecer la descripción semántica de las canciones del corpus, se implementó un sistema de extracción automática de temas basado en LLMs. Esta metodología permite identificar de forma automática los tópicos predominantes presentes en el texto de una canción a partir de su título y de su letra.
 
@@ -361,6 +378,18 @@ La comunicación con el modelo se realiza mediante una llamada a la interfaz loc
 Una vez recibida la respuesta, el algoritmo interpreta el contenido JSON generado por el modelo y recupera la lista de temas identificados. Estas etiquetas se incorporan posteriormente al conjunto de metadatos que describen la canción.
 
 En caso de producirse errores durante la comunicación con el modelo, fallos de procesamiento o respuestas inválidas, el procedimiento devuelve una lista vacía sin interrumpir el flujo general de análisis.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Temas} \\
+Los Monos & infantil, naturaleza \\
+Jota del Ferrocarril & picaresca, viaje \\
+El sitio de Querétaro & guerra, muerte \\
+Santo Domingo & religión, infantil \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y los temas que se tratan en sus letras}
+\end{table}
 
 \subsection{Detección de cambio de resolución rítmica}
 Con el objetivo de evaluar la consistencia de la representación temporal interna de las partituras codificadas en formato MEI, se implementó un sistema para detectar cambios de resolución rítmica durante el transcurso de una obra. Esta metodología permite identificar modificaciones en la relación entre las figuras musicales y los pulsos utilizados para representar su duración.
@@ -382,6 +411,18 @@ Cuando una figura previamente observada reaparece asociada a un número de pulso
 
 Todos los compases donde se detecta alguna de estas situaciones son registrados y añadidos al conjunto de resultados. Finalmente, el método devuelve un indicador binario que señala la presencia o ausencia de cambios de resolución temporal y una lista con los números de los compases afectados.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Cambio resolución PPQ} \\
+Reading made Easy & 1 \\
+974.  The Miller of Drone — Strathspey & 1 \\
+98.  The Boston — Reel & 0 \\
+Los Herrera (corrido suriano) & 0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y si tienen un cambio de resolución rítmica (1) o no (0)}
+\end{table}
+
 \subsection{Detección de desajustes en duraciones de notas}
 Con el objetivo de evaluar la consistencia métrica de las partituras, se implementó un sistema de detección automática de desajustes entre el contenido rítmico de los compases y la indicación de compás declarada en la obra. Esta metodología permite identificar errores de codificación, omisiones o inconsistencias que provocan que la duración de una voz no coincida con la capacidad temporal establecida por el compás vigente.
 
@@ -399,10 +440,29 @@ Cuando la duración total de una voz difiere significativamente de la duración 
 
 Finalmente, el método devuelve un indicador binario que señala la presencia o ausencia de desajustes métricos en la partitura y una lista de los compases afectados.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Desajuste duración meter} \\
+581.  The Jolly Pedler’s — Jig (slip) & 1 \\
+El Palo Verde (guajira) & 1 \\
+El canto de la madre (Duerme pronto) & 0 \\
+LA RETRETA & 0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y si tienen un desajuste en la duración de las notas (1) o no (0)}
+\end{table}
+
 \subsection{Detección de valores irregulares ocultos (grupillos)}
 Con el objetivo de evaluar la calidad y consistencia de la codificación rítmica de las partituras, se implementó un procedimiento para la detección de valores irregulares ocultos. Estos casos corresponden a eventos musicales cuyas duraciones representan subdivisiones no convencionales (como tresillos, quintillos o septillos) pero que no han sido declaradas explícitamente mediante los mecanismos estándar de notación.
 
 Los \textbf{grupillos} \citep{grove1900dictionary} son agrupaciones rítmicas irregulares que sustituyen la subdivisión métrica habitual por otra proporcionalmente equivalente (como tres notas en el tiempo de dos).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/tresillo.cropped.pdf}
+    \caption{Ejemplo de obra con dos tresillos}
+    \label{fig:tresillo}
+\end{figure}
 
 Tras cargar la partitura, el método recorre todas las partes instrumentales y examina cada uno de sus compases. Para cada compás se inspeccionan las notas y acordes presentes, ignorando aquellos elementos que no representan eventos sonoros válidos o cuya duración sea nula.
 
@@ -414,10 +474,22 @@ La detección definitiva de un valor irregular oculto requiere una segunda verif
 
 Los compases donde se detecta al menos un caso de este tipo son registrados y añadidos al conjunto de resultados. Finalmente, el método devuelve tres indicadores: una variable binaria que señala la presencia o ausencia de valores irregulares ocultos en la obra, una cadena de texto con los números de los compases afectados y el número total de compases en los que se ha identificado esta anomalía.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Valores irregulares ocultos} \\
+Las hormigas & 0 \\
+Repique el pandero & 0 \\
+Muiñeira de Ourense & 0 \\
+Foxy Mary & 0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y si tienen valores irregulares ocultos (1) o no (0)}
+\end{table}
+
 \subsection{Cálculo de densidad de eventos musicales por compás}
 Con el objetivo de cuantificar la actividad musical presente en una partitura, se implementó un sistema de cálculo de densidad de eventos. Esta métrica permite estimar el grado de concentración de eventos sonoros a lo largo de la obra a través de la relación entre el número total de eventos musicales y la cantidad de compases de la pieza.
 
-Este método recibe como entrada una partitura completa representada como un objeto \verb|Score|. En primer lugar, se realiza un recorrido exhaustivo de toda la estructura musical para localizar los eventos sonoros presentes en la obra. Para ello, se consideran exclusivamente notas individuales y acordes, mientras que los silencios son descartados del análisis al no aportar información sobre la actividad sonora.
+Este método recibe como entrada una partitura completa. En primer lugar, se realiza un recorrido exhaustivo de toda la estructura musical para localizar los eventos sonoros presentes en la obra. Para ello, se consideran exclusivamente notas individuales y acordes, mientras que los silencios son descartados del análisis al no aportar información sobre la actividad sonora.
 
 A continuación, el algoritmo contabiliza el número total de eventos identificados. Cada nota y cada acorde se consideran una única unidad de análisis, independientemente de su duración o complejidad interna. El resultado de este paso proporciona una medida absoluta de la cantidad de material musical contenido en la partitura.
 
@@ -427,10 +499,29 @@ Una vez obtenidos el número total de eventos y el número de compases, se calcu
 
 Finalmente, el método devuelve tres valores: el número total de eventos musicales detectados, el número total de compases únicos presentes en la obra y la densidad media calculada.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Densidad notas por compás} \\
+The Wedding Ring & 3.32 \\
+VE A LA ESTACIÓN & 2.67 \\
+155. Ó bareira, ó bareirinha & 3.75 \\
+170. Corridinho & 6.12 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su densidad de notas por compás}
+\end{table}
+
 \subsection{Detección automática de polirritmias}
 Con el objetivo de identificar fenómenos de superposición rítmica compleja dentro de una partitura, se implementó un sistema de detección automática de polirritmias verticales. Esta metodología busca localizar compases en los que coexisten simultáneamente subdivisiones rítmicas incompatibles entre distintas voces o partes instrumentales, tales como tresillos frente a subdivisiones binarias regulares o combinaciones más complejas como 3:4, 3:5 o 5:7.
 
 La \textbf{polirritmia} \citep{grove1900dictionary} es la superposición o articulación simultánea de distintos esquemas rítmicos dentro de un mismo compás, fundamentados en relaciones proporcionales entre subdivisiones del pulso.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/hemioliav.cropped.pdf}
+    \caption{Ejemplo de polirritmia}
+    \label{fig:hemioliav}
+\end{figure}
 
 Este método recibe como entrada un apartitura y la procesa para facilitar su análisis. Posteriormente, todas las medidas de la obra se agrupan según su número de compás, permitiendo examinar conjuntamente el contenido rítmico que ocurre de manera simultánea en cada instante de la obra.
 
@@ -444,12 +535,24 @@ La detección final se basa en la coexistencia de subdivisiones incompatibles de
 
 Los compases que satisfacen alguno de estos criterios se registran como polirritmias y se incorporan al conjunto de datos. Finalmente se devuelve una lista ordenada de números de compás donde se han detectado estas polirritmias.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Tiene polirritmia} \\
+La pájara pinta & 1 \\
+A la rueda de San Miguel & 1 \\
+Tengo una canasta & 0 \\
+Para quebrar la piñata & 0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y si tienen polirritmia (1) o no (0)}
+\end{table}
+
 \subsection{Extracción de la tesitura de la obra}
 Con el objetivo de identificar el registro de la composición, se implementó un sistema destinado a determinar la tesitura de una partitura. En este caso la tesitura se define como el rango comprendido entre la altura más grave y la altura más aguda registradas en la obra.
 
 La \textbf{tesitura} \citep{grove1900dictionary} es el ámbito del registro vocal o instrumental en el que una voz o instrumento se desenvuelve con mayor naturalidad dentro de su extensión total. La tesitura queda comprendida entre su sonido más grave y su sonido más agudo.
 
-Este método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza un recorrido recursivo sobre todos los eventos musicales que contienen información de altura. El análisis considera tanto notas individuales como acordes, garantizando que todas las alturas presentes en la obra participen en el cálculo de los límites de la tesitura.
+Este método recibe como entrada una partitura y realiza un recorrido recursivo sobre todos los eventos musicales que contienen información de altura. El análisis considera tanto notas individuales como acordes, garantizando que todas las alturas presentes en la obra participen en el cálculo de los límites de la tesitura.
 
 Cuando el evento corresponde a una nota aislada, su altura se incorpora directamente al conjunto de datos analizado. En el caso de los acordes, el sistema extrae todas las alturas que forman parte del evento armónico y las incorpora individualmente al conjunto de observaciones.
 
@@ -724,7 +827,7 @@ El servidor web (\texttt{web\_frontend.py}) actúa como una pasarela API y un se
 
 El núcelo arquitectónico de la interfaz reside en el \textit{endpoint} conversacional asíncrono expuesto en la ruta de tipo \texttt{POST} \texttt{"/api/chat"}. Cuando una investigadora introduce una consulta musicológica en lenguaje natural desde la interfaz gráfica, se desencadena una secuencia de operaciones distribuidas en tres planos de ejecución:
 
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     
     \begin{tikzpicture}[

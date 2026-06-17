@@ -14,11 +14,18 @@
 \contentsline {table}{\numberline {5.6}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia vertical (1) o no (0)}}{36}{table.caption.64}%
 \contentsline {table}{\numberline {5.7}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia horizontal (1) o no (0)}}{37}{table.caption.67}%
 \contentsline {table}{\numberline {5.8}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la cantidad de síncopas que tienen}}{38}{table.caption.70}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su letra}}{39}{table.caption.73}%
+\contentsline {table}{\numberline {5.10}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y los temas que se tratan en sus letras}}{40}{table.caption.75}%
+\contentsline {table}{\numberline {5.11}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen un cambio de resolución rítmica (1) o no (0)}}{41}{table.caption.77}%
+\contentsline {table}{\numberline {5.12}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen un desajuste en la duración de las notas (1) o no (0)}}{42}{table.caption.79}%
+\contentsline {table}{\numberline {5.13}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen valores irregulares ocultos (1) o no (0)}}{43}{table.caption.82}%
+\contentsline {table}{\numberline {5.14}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su densidad de notas por compás}}{44}{table.caption.84}%
+\contentsline {table}{\numberline {5.15}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen polirritmia (1) o no (0)}}{45}{table.caption.87}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Fragmento de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}}{102}{table.caption.140}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Fragmento de la tabla de relaciones entre temas y tendencia melódica en piezas del dataset}}{106}{table.caption.144}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces Fragmento de la tabla de relaciones entre BPM y número aproximado de sílabas}}{111}{table.caption.150}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces Fragmento de la tabla de ejemplos de piezas en métrica ternaria que contienen silencios.}}{114}{table.caption.153}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Fragmento de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}}{102}{table.caption.150}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Fragmento de la tabla de relaciones entre temas y tendencia melódica en piezas del dataset}}{106}{table.caption.154}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Fragmento de la tabla de relaciones entre BPM y número aproximado de sílabas}}{111}{table.caption.160}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Fragmento de la tabla de ejemplos de piezas en métrica ternaria que contienen silencios.}}{114}{table.caption.163}%
 \contentsline {table}{\numberline {6.5}{\ignorespaces Resumen de resultados obtenidos para las consultas de evaluación.}}{115}{table.6.5}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -293,6 +293,13 @@ Con el objetivo de identificar fenómenos de desplazamiento acentual dentro de u
 
 La \textbf{síncopa} \citep{grove1900dictionary} es un recurso rítmico que desplaza o anticipa el acento respecto de su posición métrica habitual, de modo que una nota situada en un tiempo débil se prolonga o adquiere el énfasis que normalmente correspondería a un tiempo fuerte.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/sincopa.cropped.pdf}
+    \caption{Ejemplo de síncopas}
+    \label{fig:sincopa}
+\end{figure}
+
 Como paso inicial, la partitura se carga y procesa para obtener una representación estructurada de sus elementos musicales. Posteriormente, el algoritmo recorre todas las partes instrumentales y analiza cada compás de forma independiente.
 
 Para cada compás, el sistema examina todas las notas y acordes presentes, ignorando los silencios y cualquier otro elemento que no represente un evento sonoro. De cada evento se recuperan su posición de inicio dentro del compás y su duración, ambas expresadas en unidades de negra.
@@ -307,6 +314,18 @@ La detección se basa, por tanto, en dos condiciones simultáneas. En primer lug
 
 Cuando se detecta al menos una síncopa dentro de un compás, el número de dicho compás se incorpora al conjunto de resultados. Finalmente, el método devuelve tres indicadores: una variable binaria que señala la presencia o ausencia de síncopas en la obra, una lista con los números de los compases afectados y el número total de compases donde se ha identificado este fenómeno rítmico.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Conteo síncopas} \\
+D’Éalódh Máire liomsa & 1 \\
+An Maidrín Ruadh & 4 \\
+Allisdrum’s March, Battle of Cnoc na nDos, Laments & 16 \\
+Siobhán Mhór, or The Eagle’s Whistle & 8 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y la cantidad de síncopas que tienen}
+\end{table}
+
 \subsection{Extracción de letras}
 Con el objetivo de incorporar información textual al proceso de análisis musical, se implementó un sistema de extracción automática de letras capaz de operar sobre diversos formatos de representación musical digital. Esta metodología permite recuperar el texto cantado de una obra y reconstruirlo en forma legible a partir de la información silábica almacenada en la partitura.
 
@@ -316,9 +335,9 @@ En todos los casos, el algoritmo identifica los elementos textuales contenidos e
 
 La reconstrucción de las palabras se realiza utilizando la información por sílabas almacenada en cada formato. Los elementos textuales pueden aparecer etiquetados como palabras completas o como sílabas que representan el inicio, la continuación o el final de una palabra. A partir de esta información, el algoritmo concatena las sílabas correspondientes hasta reconstruir cada término completo respetando su orden original dentro de la partitura.
 
-En el caso de los archivos MEI, el sistema analiza los elementos \verb|verse| y \verb|syl|. Cada sílaba incorpora un atributo \verb|wordpos| que indica su posición dentro de la palabra. Los valores correspondientes a inicio, interior y final permiten reconstruir secuencias silábicas completas antes de incorporarlas al texto final. Las distintas estrofas se procesan de forma independiente y posteriormente se concatenan respetando su numeración original.
+En el caso de los archivos MEI, el sistema analiza los elementos que representan una estrofa o conjunto de versos dentro de la letra (\verb|verse|) y una sílaba individual del texto (\verb|syl|). Cada sílaba incorpora un atributo que indica su posición dentro de la palabra (\verb|wordpos|). Los valores correspondientes a inicio, interior y final permiten reconstruir secuencias silábicas completas antes de incorporarlas al texto final. Las distintas estrofas se procesan de forma independiente y posteriormente se concatenan respetando su numeración original.
 
-Para los archivos MusicXML, la extracción se basa en los elementos \verb|lyric|. La posición silábica se obtiene mediante el elemento \verb|syllabic|, cuyos valores distinguen palabras completas de sílabas iniciales, intermedias y finales. Además, se realizan tareas de normalización textual destinadas a eliminar ciertos marcadores de notación fonética o melismática que podrían dificultar los análisis posteriores del contenido lingüístico.
+Para los archivos MusicXML, la extracción se basa en el elemento que funciona como el contenedor principal del texto cantado asociado a una línea vocal (\verb|lyric|). La posición silábica se obtiene mediante el elemento (\verb|syllabic|) que distingue palabras completas de sílabas iniciales, intermedias y finales. Además, se realizan tareas de normalización textual destinadas a eliminar ciertos marcadores de notación fonética o melismática que podrían dificultar los análisis posteriores del contenido lingüístico.
 
 En el caso de MuseScore XML (\verb|.mscx|), el algoritmo procesa los elementos \verb|Lyrics| y utiliza la información de numeración de estrofas y sílabas para reconstruir las palabras. El procedimiento sigue una estrategia equivalente a la utilizada en MusicXML, adaptada a la estructura específica del formato MuseScore.
 
@@ -352,7 +371,7 @@ La métrica se basa en el concepto de resolución temporal expresada mediante PP
 
 Como paso inicial, el algoritmo verifica que el archivo analizado corresponda al formato MEI y procesa su estructura XML. Posteriormente, la obra se divide en sus distintas secciones musicales (\verb|section|) que se analizan de forma independiente.
 
-Para cada sección se mantienen dos mecanismos de control. El primero consiste en registrar el valor de resolución PPQ declarado explícitamente en las definiciones de partitura (\verb|scoreDef|) o pentagrama (\verb|staffDef|). El segundo almacena la correspondencia observada entre cada figura rítmica nominal y el número de pulsos asignados mediante el atributo \verb|dur.ppq|.
+Para cada sección se mantienen dos mecanismos de control. El primero consiste en registrar el valor de resolución PPQ declarado explícitamente en las definiciones de partitura (\verb|scoreDef|) o pentagrama (\verb|staffDef|). El segundo almacena la correspondencia observada entre cada figura rítmica nominal y el número de pulsos asignados (\verb|dur.ppq|).
 
 La detección de cambios se realiza mediante dos estrategias complementarias.
 La primera estrategia examina las redefiniciones explícitas de resolución que puedan aparecer a lo largo de la partitura. Durante el recorrido secuencial de los compases, el algoritmo inspecciona las cabeceras locales contenidas en cada compás. Cuando se encuentra un atributo \verb|ppq| cuyo valor difiere de la resolución previamente activa, el compás correspondiente se registra como un posible punto de cambio de resolución temporal.
@@ -467,7 +486,7 @@ El resultado final consiste en una etiqueta categórica que resume la perspectiv
 \subsection{Extracción de notas y silencios}
 Con el propósito de obtener una representación textual compacta de la estructura musical de una partitura, se implementó un sistema de extracción secuencial de eventos sonoros y silencios. El método transforma la información simbólica contenida en la partitura en una cadena de texto lineal que preserva el orden cronológico de aparición de los eventos musicales, facilitando su inspección visual, almacenamiento y análisis.
 
-Este método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza un recorrido cronológico sobre todos los eventos musicales relevantes. Para garantizar una secuencia temporal única, la estructura jerárquica de la obra se aplana previamente mediante una transformación que integra en un único flujo los eventos procedentes de diferentes voces, pentagramas o niveles.
+Este método recibe como entrada una partitura y realiza un recorrido cronológico sobre todos los eventos musicales relevantes. Para garantizar una secuencia temporal única, la estructura jerárquica de la obra se aplana previamente mediante una transformación que integra en un único flujo los eventos procedentes de diferentes voces, pentagramas o niveles.
 
 Durante el recorrido se consideran tres tipos fundamentales de eventos: notas individuales, silencios y acordes. Otros elementos de notación, como claves, armaduras de clave, indicaciones métricas o anotaciones editoriales, son excluidos deliberadamente del análisis por no formar parte de la secuencia sonora.
 
@@ -482,7 +501,7 @@ Una vez procesados todos los eventos, los elementos obtenidos se concatenan sigu
 \subsection{Extracción de la secuencia melódica de la obra}
 Con el objetivo de obtener una representación lineal de la melodía principal de una partitura, se implementó un sistema de extracción cronológica de alturas musicales basado en la secuencia de eventos sonoros presentes en la obra.
 
-El método recibe como entrada una partitura representada mediante la estructura Score de Music21 y genera una secuencia ordenada de alturas (pitches). Para garantizar la correcta preservación del orden temporal de los eventos, la estructura jerárquica de la partitura se transforma previamente en una representación lineal mediante una operación de aplanamiento (flattening). Esta transformación permite integrar en una única secuencia los eventos procedentes de diferentes voces, pentagramas o niveles estructurales, manteniendo su disposición cronológica dentro de la obra.
+El método recibe como entrada una partitura y genera una secuencia ordenada de alturas (pitches). Para garantizar la correcta preservación del orden temporal de los eventos, la estructura jerárquica de la partitura se transforma previamente en una representación lineal mediante una operación de aplanamiento (flattening). Esta transformación permite integrar en una única secuencia los eventos procedentes de diferentes voces, pentagramas o niveles estructurales, manteniendo su disposición cronológica dentro de la obra.
 
 A continuación, el algoritmo recorre todos los eventos musicales identificados como notas o acordes. Cuando el evento corresponde a una nota individual, su altura se incorpora directamente a la secuencia melódica resultante. En cambio, cuando el evento corresponde a un acorde, se selecciona la nota más aguda de este, asociada normalmente a la melodía.
 
@@ -519,7 +538,7 @@ El resultado final consiste en un conjunto de indicadores compuesto por la categ
 \subsection{Extracción de correspondencias entre sílabas y duraciones musicales}
 Con el objetivo de analizar la relación entre el texto cantado y su realización rítmica, se implementó un método destinado a extraer las correspondencias entre las sílabas presentes en una partitura vocal y las duraciones musicales asociadas a cada una de ellas. Este enfoque permite identificar patrones de asignación temporal del texto.
 
-El método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza un recorrido lineal sobre todos los eventos melódicos presentes en la obra. El análisis se limita a aquellas notas que contienen información lírica explícita, excluyendo automáticamente los eventos instrumentales o las notas sin texto asociado.
+El método recibe como entrada una partitura y realiza un recorrido lineal sobre todos los eventos melódicos presentes en la obra. El análisis se limita a aquellas notas que contienen información lírica explícita, excluyendo automáticamente los eventos instrumentales o las notas sin texto asociado.
 
 Para cada nota vocal identificada, el algoritmo recupera su duración musical utilizando la representación estándar basada en unidades de negra. Esta representación proporciona una medida normalizada del valor rítmico de cada evento, independientemente de la notación específica empleada en la partitura.
 
@@ -538,7 +557,7 @@ La \textbf{alteración accidental} \citep{grove1900dictionary} es la modificaci�
 
 \begin{itemize}
 \item \textbf{Extractor de alteraciones accidentales.} Se recorre la partitura por compases, identificando la armadura recuperándola de la correspondiente estructura KeySignature. Esta información se utiliza posteriormente para distinguir entre alteraciones originales de la tonalidad y alteraciones introducidas explícitamente por el compositor o editor. A continuación, se inspeccionan todos los eventos musicales contenidos en cada compás, incluyendo tanto notas individuales como acordes. En el caso de los acordes, el análisis se realiza sobre cada una de las alturas que los componen, garantizando así la detección de alteraciones presentes en estructuras polifónicas. Para cada altura musical se verifica la existencia de una alteración asociada. El procedimiento se centra exclusivamente en sostenidos, bemoles y becuadros, ignorando las alteraciones naturales de acuerdo con los criterios establecidos para el análisis. Una vez identificada una posible alteración, se determina si esta corresponde realmente a una modificación accidental o si forma parte de la armadura de clave vigente. Cuando la alteración observada coincide exactamente con la definida por la tonalidad, el evento se considera parte de la armadura y se excluye del análisis. Por el contrario, cuando existe una discrepancia o no se encuentra una alteración equivalente en la armadura, el evento se clasifica como una alteración accidental explícita y se registra junto con el número de compás en el que aparece. Cada evento almacena la nota alterada, incluyendo su octava y su localización.
-\item \textbf{Contador de alteraciones accidentales.} Se almacena inicialmente los compases por conjuntos para que la representación resultante refleje únicamente la presencia de la alteración en cada compás independientemente de cuántas veces aparezca dentro de este. Posteriormente, los conjuntos de compases se convierten en listas ordenadas para garantizar la compatibilidad con formatos como JSON. Esto produce una estructura indexada en la que cada nota alterada se asocia explícitamente con los compases donde aparece, facilitando consultas posteriores y análisis automatizado. Además de la representación estructurada, el procedimiento genera un resumen textual orientado a la visualización inmediata de los resultados. Para cada nota alterada se construye una expresión legible que incluye la identificación de la nota y la relación de compases correspondientes. Cuando la alteración aparece en un único compás se utiliza una referencia singular, mientras que las apariciones múltiples se representan mediante una enumeración ordenada de compases. El resultado final consiste en una cadena de texto que sintetiza toda la información detectada. Finalmente, el método devuelve tres elementos complementarios: una representación JSON de las alteraciones agrupadas por nota, adecuada para almacenamiento en la base de datos; un resumen textual diseñado para la inspección directa; y un indicador que indica el número total de eventos detectados durante el análisis.
+\item \textbf{Contador de alteraciones accidentales.} Se almacenan inicialmente los compases por conjuntos para que la representación resultante refleje únicamente la presencia de la alteración en cada compás independientemente de cuántas veces aparezca dentro de este. Posteriormente, los conjuntos de compases se convierten en listas ordenadas para garantizar la compatibilidad con formatos como JSON. Esto produce una estructura indexada en la que cada nota alterada se asocia explícitamente con los compases donde aparece, facilitando consultas posteriores y análisis automatizado. Además de la representación estructurada, el procedimiento genera un resumen textual orientado a la visualización inmediata de los resultados. Para cada nota alterada se construye una expresión legible que incluye la identificación de la nota y la relación de compases correspondientes. Cuando la alteración aparece en un único compás se utiliza una referencia singular, mientras que las apariciones múltiples se representan mediante una enumeración ordenada de compases. El resultado final consiste en una cadena de texto que sintetiza toda la información detectada. Finalmente, el método devuelve tres elementos complementarios: una representación JSON de las alteraciones agrupadas por nota, adecuada para almacenamiento en la base de datos; un resumen textual diseñado para la inspección directa; y un indicador que indica el número total de eventos detectados durante el análisis.
 \end{itemize}
 
 \subsection{Extracción de metadatos de transcripción y procedencia digital}
@@ -559,7 +578,7 @@ Este método genera un conjunto normalizado de metadatos que incluye el software
 \subsection{Auditoría automatizada de control de calidad estructural}
 Con el fin de evaluar la integridad estructural de las partituras digitales y detectar posibles errores derivados de procesos de transcripción, digitalización o conversión entre formatos, se implementó un procedimiento automatizado de control de calidad. Este procedimiento genera un conjunto de indicadores para medir la consistencia básica de la representación musical y a señalar posibles anomalías que puedan comprometer análisis posteriores.
 
-Este método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza una inspección sistemática de todos los compases presentes en la obra. Durante este proceso se analizan tanto los eventos musicales (notas y silencios) como determinadas propiedades temporales asociadas a cada nota.
+Este método recibe como entrada una partitura y realiza una inspección sistemática de todos los compases presentes en la obra. Durante este proceso se analizan tanto los eventos musicales (notas y silencios) como determinadas propiedades temporales asociadas a cada nota.
 
 La primera comprobación se centra en la identificación de compases compuestos exclusivamente por silencios, es decir, compases vacíos. Para ello, se recopilan todos los eventos contenidos en cada compás y se verifica si la totalidad de ellos corresponde a silencios. Aunque este tipo de compases puede ser musicalmente válido en determinados contextos, en este caso concreto de análisis de obras folclóricas, una frecuencia elevada de ocurrencias puede indicar problemas de importación, pérdidas de información durante la conversión o fragmentos incompletos de la partitura original. El número total de compases detectados bajo esta condición se registra como indicador de calidad.
 
@@ -600,7 +619,7 @@ Con el propósito de evaluar la coherencia gráfica de la notación musical, se 
 
 La \textbf{plica} \citep{grove1900dictionary} es el trazo vertical asociado a la cabeza de la nota que contribuye a definir su valor rítmico y su organización dentro del compás en la notación musical moderna.
 
-El algoritmo recibe como entrada una partitura representada mediante la estructura Score de Music21 y recorre de forma exhaustiva todas las notas individuales presentes en la obra. Para cada nota se recupera la dirección de la plica almacenada en el documento original. Únicamente se consideran aquellas notas cuya dirección ha sido especificada explícitamente (up o down), excluyéndose las plicas automáticas o ausentes, ya que en estos casos no es posible determinar una decisión editorial concreta.
+El algoritmo recibe como entrada una partitura y recorre de forma exhaustiva todas las notas individuales presentes en la obra. Para cada nota se recupera la dirección de la plica almacenada en el documento original. Únicamente se consideran aquellas notas cuya dirección ha sido especificada explícitamente (up o down), excluyéndose las plicas automáticas o ausentes, ya que en estos casos no es posible determinar una decisión editorial concreta.
 
 Posteriormente, el método identifica la clave activa en el contexto exacto de cada nota con el fin de determinar la posición correspondiente a la tercera línea del pentagrama. Esta referencia se transforma a una representación numérica basada en valores MIDI, permitiendo comparar de forma homogénea la altura de la nota con la posición central del pentagrama independientemente de la clave utilizada.
 
@@ -698,6 +717,46 @@ La aplicación web actúa como una capa extra que encapsula la lógica interna d
 \end{figure}
 
 Esta interfaz contiene un chat con el que se establece la conexión con el LLM local, permitiendo enviar preguntas desde la barra de búsqueda.
+
+La interfaz web se sustenta sobre una arquitectura de microservicios desacoplada, diseñada específicamente para gestionar operaciones asíncronas de entrada/salida sin bloquear el hilo principal de ejecución del sistema. El núcleo operativo de este módulo se implementa mediante el \textit{framework} de alto rendimiento \textit{FastAPI}, aprovechando el estándar ASGI (\textit{Asynchronous Server Gateway Interface}) para orquestar la comunicación concurrente entre el cliente web, el modelo de lenguaje de pequeña escala y la base de datos a través de la API intermedia.
+
+El servidor web (\texttt{web\_frontend.py}) actúa como una pasarela API y un servidor de archivos estáticos centralizado. 
+
+El núcelo arquitectónico de la interfaz reside en el \textit{endpoint} conversacional asíncrono expuesto en la ruta de tipo \texttt{POST} \texttt{"/api/chat"}. Cuando una investigadora introduce una consulta musicológica en lenguaje natural desde la interfaz gráfica, se desencadena una secuencia de operaciones distribuidas en tres planos de ejecución:
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{tikzpicture}[
+        node distance=1cm,
+        box/.style={draw, rounded corners, align=center, minimum width=4cm, minimum height=0.9cm},
+        arrow/.style={-Latex, thick} 
+    ]
+    
+    \shorthandoff{>}
+    
+    \node[box] (user) {Consulta de la usuaria};
+    \node[box, below=of user] (web) {Interfaz web};
+    \node[box, below=of web] (llm) {LLM local\\(procesa la pregunta)};
+    \node[box, below=of llm] (mcp) {MCP};
+    \node[box, below=of mcp] (db) {Consulta a base de datos\\SQLite};
+    \node[box, below=of db] (mcp2) {MCP\\(devuelve datos)};
+    \node[box, below=of mcp2] (llm2) {LLM local\\(genera la respuesta)};
+    \node[box, below=of llm2] (web2) {Interfaz web\\(muestra la respuesta)};
+    
+    \draw[arrow] (user) -- (web);
+    \draw[arrow] (web) -- (llm);
+    \draw[arrow] (llm) -- (mcp);
+    \draw[arrow] (mcp) -- (db);
+    \draw[arrow] (db) -- (mcp2);
+    \draw[arrow] (mcp2) -- (llm2);
+    \draw[arrow] (llm2) -- (web2);
+    
+    \end{tikzpicture}
+    
+    \caption{Flujo de interacción con la interfaz web y su conexión con el LLM local y la base de datos SQLite.}
+    \label{fig:arquitectura_llm}
+\end{figure}
 
 \section{Inconvenientes encontrados durante el desarrollo del sistema}
 \begin{itemize}

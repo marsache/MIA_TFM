@@ -1,4 +1,4 @@
-\begin{thebibliography}{13}
+\begin{thebibliography}{30}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Anthropic PBC}(2024)}]{anthropic2024mcp}
@@ -7,11 +7,33 @@
   context.
 \newblock \url{https://modelcontextprotocol.io/}, 2024.
 
+\bibitem[{Bart{\'o}k y Lord(1951)}]{bartok1951serbo}
+{\sc Bart{\'o}k, B.} y {\sc Lord, A.~B.}
+\newblock {\em Serbo-Croatian Folk Songs\/}.
+\newblock Columbia University Press, New York, USA, 1951.
+
+\bibitem[{Berry(2011)}]{berry2011computational}
+{\sc Berry, D.~M.}
+\newblock {\em The Computational Turn: Thinking About the Digital
+  Humanities\/}.
+\newblock Bloomsbury Publishing, London, UK, 2011.
+
+\bibitem[{Blei et\ al.(2003)Blei, Ng y Jordan}]{blei2003latent}
+{\sc Blei, D.~M.}, {\sc Ng, A.~Y.} y {\sc Jordan, M.~I.}
+\newblock Latent dirichlet allocation.
+\newblock {\em Journal of Machine Learning Research\/}, vol.\ 3, p\'aginas
+  993--1022, 2003.
+
 \bibitem[{Chou y et~al.(2026)}]{chou2024midillama}
 {\sc Chou, Y.-H.} y {\sc et~al.}
 \newblock Midi-llama: An instruction-following multimodal llm for symbolic
   music understanding.
 \newblock {\em arXiv preprint arXiv:2601.21740\/}, 2026.
+
+\bibitem[{Conklin y Witten(2003)}]{conklin1995multiple}
+{\sc Conklin, D.} y {\sc Witten, I.}
+\newblock Multiple viewpoint systems for music prediction.
+\newblock {\em J. New Music Res\/}, vol.\ 24, 2003.
 
 \bibitem[{Cook(2004)}]{cook2004computational}
 {\sc Cook, N.}
@@ -25,16 +47,41 @@
 \newblock {\em International Society for Music Information Retrieval
   (ISMIR)\/}, 2010.
 
+\bibitem[{Dhariwal et\ al.(2020)Dhariwal, Jun, Payne, Kim, Radford y
+  Sutskever}]{dhariwal2020jukebox}
+{\sc Dhariwal, P.}, {\sc Jun, H.}, {\sc Payne, C.}, {\sc Kim, J.~W.}, {\sc
+  Radford, A.} y {\sc Sutskever, I.}
+\newblock Jukebox: A generative model for music.
+\newblock 2020.
+
+\bibitem[{Edge et\ al.(2024)Edge, Trinh, Cheng, Bradley, Chao, Mody, Truitt y
+  Larson}]{edge2024from}
+{\sc Edge, D.}, {\sc Trinh, H.}, {\sc Cheng, N.}, {\sc Bradley, J.}, {\sc Chao,
+  A.}, {\sc Mody, A.~N.}, {\sc Truitt, S.} y {\sc Larson, J.}
+\newblock From local to global: A graph rag approach to query-focused
+  summarization.
+\newblock {\em ArXiv\/}, vol. abs/2404.16130, 2024.
+
 \bibitem[{Good(2001)}]{good2001musicxml}
 {\sc Good, M.}
 \newblock Musicxml: An internet-friendly format for sheet music.
 \newblock 2001.
+
+\bibitem[{Good y LLC(2006)}]{good2011lessons}
+{\sc Good, M.} y {\sc LLC, R.}
+\newblock Lessons from the adoption of musicxml as an interchange standard.
+\newblock 2006.
 
 \bibitem[{Grove(1900)}]{grove1900dictionary}
 {\sc Grove, G.}, editor.
 \newblock {\em A Dictionary of Music and Musicians\/}.
 \newblock Macmillan and Co., London, 1900.
 \newblock Wikisource edition consulted online.
+
+\bibitem[{Hochreiter y Schmidhuber(1997)}]{hochreiter1997long}
+{\sc Hochreiter, S.} y {\sc Schmidhuber, J.}
+\newblock Long short-term memory.
+\newblock {\em Neural Computation\/}, vol.\ 9, p\'aginas 1735--1780, 1997.
 
 \bibitem[{Huang y et~al.(2023)}]{huang2023citation}
 {\sc Huang, L.} y {\sc et~al.}
@@ -46,6 +93,13 @@
 {\sc Ji, S.}, {\sc Zhang, S.} y {\sc Sullivan, M.}
 \newblock A comprehensive survey on deep learning for relation extraction.
 \newblock {\em ACM Computing Surveys\/}, 2023.
+
+\bibitem[{Jurafsky y Martin(2008)}]{jurafsky2000speech}
+{\sc Jurafsky, D.} y {\sc Martin, J.}
+\newblock {\em Speech and Language Processing: An Introduction to Natural
+  Language Processing, Computational Linguistics, and Speech Recognition\/},
+  vol.\ 2.
+\newblock 2008.
 
 \bibitem[{Katsogiannis-Meimarakis y Koutrika(2023)}]{katsogiannis2023text}
 {\sc Katsogiannis-Meimarakis, G.} y {\sc Koutrika, G.}
@@ -61,16 +115,55 @@
 \newblock {\em Advances in Neural Information Processing Systems\/}, vol.\ 33,
   p\'aginas 9459--9474, 2020.
 
+\bibitem[{Mangal et\ al.(2019)Mangal, Modak y Joshi}]{mangal2019lstm}
+{\sc Mangal, S.}, {\sc Modak, R.} y {\sc Joshi, P.}
+\newblock {LSTM} based music generation system.
+\newblock {\em CoRR\/}, vol. abs/1908.01080, 2019.
+
 \bibitem[{Moretti(2013)}]{moretti2013distant}
 {\sc Moretti, F.}
 \newblock {\em Distant reading\/}.
 \newblock Verso Books, 2013.
+
+\bibitem[{Nettl(2015)}]{nettl2015study}
+{\sc Nettl, B.}
+\newblock {\em The Study of Ethnomusicology: Thirty-three Discussions\/}.
+\newblock University of Illinois Press, Urbana, Illinois, USA, 3rd edici\'on,
+  2015.
+
+\bibitem[{Oore et\ al.(2018)Oore, Simon, Dieleman, Eck y
+  Simonyan}]{oore2020this}
+{\sc Oore, S.}, {\sc Simon, I.}, {\sc Dieleman, S.}, {\sc Eck, D.} y {\sc
+  Simonyan, K.}
+\newblock This time with feeling: Learning expressive musical performance.
+\newblock 2018.
+
+\bibitem[{Robertson y Zaragoza(2009)}]{robertson2009probabilistic}
+{\sc Robertson, S.} y {\sc Zaragoza, H.}
+\newblock The probabilistic relevance framework: Bm25 and beyond.
+\newblock {\em Foundations and Trends in Information Retrieval\/}, vol.\ 3,
+  p\'aginas 333--389, 2009.
 
 \bibitem[{Roland(2002)}]{roland2002music}
 {\sc Roland, P.}
 \newblock The music encoding initiative (mei).
 \newblock En {\em Proceedings of the First International Conference on Musical
   Applications Using XML\/}. 2002.
+
+\bibitem[{Sturm et\ al.(2016)Sturm, Santos, Ben-Tal y
+  Korshunova}]{sturm2016music}
+{\sc Sturm, B.~L.}, {\sc Santos, J.~F.}, {\sc Ben-Tal, O.} y {\sc Korshunova,
+  I.}
+\newblock Music transcription modelling and composition using deep learning.
+\newblock 2016.
+
+\bibitem[{Thakur et\ al.(2021)Thakur, Reimers, Rücklé, Srivastava y
+  Gurevych}]{thakur2021beir}
+{\sc Thakur, N.}, {\sc Reimers, N.}, {\sc Rücklé, A.}, {\sc Srivastava, A.} y
+  {\sc Gurevych, I.}
+\newblock Beir: A heterogenous benchmark for zero-shot evaluation of
+  information retrieval models.
+\newblock 2021.
 
 \bibitem[{Vaswani et\ al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
   Gomez, Kaiser y Polosukhin}]{vaswani2017attention}
@@ -79,5 +172,20 @@
   I.}
 \newblock Attention is all you need.
 \newblock 2017.
+
+\bibitem[{Zeng et\ al.(2021)Zeng, Tan, Wang, Ju, Qin y Liu}]{zeng2021musicbert}
+{\sc Zeng, M.}, {\sc Tan, X.}, {\sc Wang, R.}, {\sc Ju, Z.}, {\sc Qin, T.} y
+  {\sc Liu, T.-Y.}
+\newblock Musicbert: Symbolic music understanding with large-scale
+  pre-training.
+\newblock 2021.
+
+\bibitem[{Zhao et\ al.(2024)Zhao, Deng, Yang, Wang, Zhang, Cheng, Lam, Shen y
+  Xu}]{zhao2023comprehensive}
+{\sc Zhao, X.}, {\sc Deng, Y.}, {\sc Yang, M.}, {\sc Wang, L.}, {\sc Zhang,
+  R.}, {\sc Cheng, H.}, {\sc Lam, W.}, {\sc Shen, Y.} y {\sc Xu, R.}
+\newblock A comprehensive survey on relation extraction: Recent advances and
+  new frontiers.
+\newblock 2024.
 
 \end{thebibliography}

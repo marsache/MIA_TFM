@@ -51,9 +51,9 @@ Con el objetivo de caracterizar el tempo global de las obras del corpus, se impl
 
 El \textbf{tempo} \citep{grove1900dictionary} es la velocidad a la que se ejecuta una obra musical. El tempo se señala explícitamente mediante términos (generalmente italianos) o referencias metronómicas.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=5cm]{Scores/tempo.cropped.pdf}
+    \includegraphics[height=2cm]{Scores/tempo.cropped.pdf}
     \caption{Ejemplo de indicación de tempo (negra con puntillo = 62)}
     \label{fig:tempo}
 \end{figure}
@@ -66,14 +66,14 @@ En caso de que no exista ninguna indicación explícita en la partitura, el mét
 
 El resultado final consiste en un valor entero que representa el tempo en BPM.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \begin{tabular}{lr}
 \textbf{Título} & \textbf{BPM} \\
-IE-2019-D-HLS-009 & 51 \\
-IE-2019-D-HLS-010 & 128 \\
-IE-2019-D-HLS-011 & 128 \\
-IE-2019-D-HLS-012 & 60 \\
+Las Sembradoras. & 132 \\
+La Sanmarqueña & 96 \\
+JOTA TAPATÍA & 160 \\
+La Sandunga & 110 \\
 \end{tabular}
 \caption{Ejemplos de obras almacenadas en la base de datos y su BPM}
 \end{table}
@@ -81,7 +81,16 @@ IE-2019-D-HLS-012 & 60 \\
 \subsection{Extracción de compás}
 Con el objetivo de identificar el compás de cada obra del corpus, se implementó un procedimiento de extracción de la indicación de compás a partir de la estructura simbólica de la partitura.
 
-El procedimiento recorre la representación interna del objeto musical en busca de elementos de tipo \verb|TimeSignature|, que contienen la información relativa a la métrica escrita en la partitura. Dado que una obra puede incluir múltiples indicaciones de compás a lo largo de su desarrollo, el algoritmo selecciona la primera ocurrencia válida encontrada en el recorrido jerárquico de la estructura musical.
+El \textbf{compás} \citep{grove1900dictionary} se define como el grupo de pulsos o tiempos comprendido entre dos barras de compás, que actúa como una unidad temporal básica para organizar y regular el ritmo de una obra musical.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/compas.cropped.pdf}
+    \caption{Ejemplo de indicación de compás (6/8)}
+    \label{fig:compas}
+\end{figure}
+
+El procedimiento recorre la representación interna del objeto musical en busca de elementos que contienen la información relativa a la métrica escrita en la partitura. Dado que una obra puede incluir múltiples indicaciones de compás a lo largo de su desarrollo, el algoritmo selecciona la primera ocurrencia válida encontrada en el recorrido jerárquico de la estructura musical.
 
 Una vez identificada una indicación métrica válida, el sistema extrae su representación en forma de ratio (por ejemplo, 3/4, 6/8 o 4/4), la cual describe la relación entre pulsos y unidad de tiempo dentro del compás. Esta información se considera representativa de la métrica inicial o predominante de la obra.
 
@@ -89,14 +98,35 @@ En caso de no encontrarse ninguna indicación de compás válida, el procedimien
 
 El resultado final consiste en una cadena de texto que representa el compás de la obra.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Compás} \\
+Los nidos & 6/8 \\
+Al entrar a la escuela & 2/4 \\
+Himno del agricultor & 2/4 \\
+Himno del árbol & 2/4 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su compás}
+\end{table}
+
 \subsection{Extracción híbrida de la tonalidad}
 Con el objetivo de determinar la tonalidad de las obras del corpus, se implementaron dos sistemas complementarios de inferencia tonal: un método basado en análisis armónico automático y otro basado en heurísticas estructurales que combinan información de armadura y distribución de alturas.
+
+La \textbf{tonalidad} \citep{grove1900dictionary} es la organización de los materiales melódicos y armónicos en torno a un centro tonal reconocible, cuya identidad se mantiene mediante relaciones funcionales que confieren coherencia y dirección al discurso musical.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/tonalidad.cropped.pdf}
+    \caption{Ejemplo de indicación de tonalidad (D mayor) en el que se muestra la armadura de la tonalidad y la última nota de la obra (normalmente utilizada para identificar la tonalidad)}
+    \label{fig:tonalidad}
+\end{figure}
 
 Este sistema emplea las capacidades de análisis tonal integradas en la librería music21. A partir de la partitura completa, se ejecuta un algoritmo de estimación de tonalidad que identifica la relación más probable entre la tónica y el modo (mayor o menor) en función del contenido armónico global de la obra. El resultado se expresa como una combinación de nota fundamental y modalidad.
 
 En caso de que el análisis no sea posible o no se disponga de información suficiente, el método devuelve un valor nulo, garantizando así la robustez del proceso ante entradas incompletas o mal formateadas.
 
-De forma complementaria, se implementó un segundo método denominado \verb|_infer_tonality_custom|, diseñado para reforzar o sustituir la estimación automática en aquellos casos en los que la información tonal es ambigua o incompleta.
+Se implementó además un segundo método diseñado para reforzar o sustituir la estimación automática en aquellos casos en los que la información tonal es ambigua o incompleta.
 
 Este método parte de la armadura de clave expresada en número de alteraciones (sostenidos o bemoles), la cual se extrae directamente de la partitura. A partir de este valor se establece un conjunto de tonalidades candidatas, que incluye tanto la tonalidad mayor como su relativa menor correspondiente. Esta relación sigue el sistema tonal clásico basado en armaduras.
 
@@ -104,10 +134,29 @@ Posteriormente, el algoritmo analiza la última nota de la obra como posible ind
 
 En los casos en los que la última nota no coincide claramente con ninguna de las tónicas posibles, se recurre a un criterio estadístico basado en la frecuencia de aparición de las alturas. Concretamente, se contabiliza la ocurrencia de las notas correspondientes a las tónicas mayor y menor, seleccionando aquella que presenta una mayor presencia relativa dentro de la obra.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Tonalidad} \\
+Arrullo mexicano & F major \\
+A la rurru, niño & D major \\
+Arestín de plata & C major \\
+Este niño lindo & F major \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su tonalidad}
+\end{table}
+
 \subsection{Extracción de título y autor}
 Con el objetivo de normalizar la información descriptiva asociada a cada obra del corpus, se implementó un procedimiento de extracción automática del título y del compositor o autor de la pieza.
 
-El procedimiento toma como entrada un objeto estructurado de tipo Score junto con la ruta original del archivo. En primer lugar, se accede a los metadatos internos del objeto musical. A partir de dicha información se extraen el título de la obra (o el nombre del movimiento) y el compositor o entidad responsable de la composición.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=3cm]{Scores/titleauthor.cropped.pdf}
+    \caption{Ejemplo de obra con su título y autor}
+    \label{fig:tituloautor}
+\end{figure}
+
+El procedimiento toma como entrada la partitura como un objeto estructurado junto con la ruta original del archivo. En primer lugar, se accede a los metadatos internos del objeto musical. A partir de dicha información se extraen el título de la obra (o el nombre del movimiento) y el compositor o entidad responsable de la composición.
 
 Dado que los metadatos en colecciones musicales digitalizadas pueden contener inconsistencias o valores generados automáticamente durante procesos de conversión, el algoritmo incorpora un conjunto de reglas de filtrado y depuración. En particular, se consideran inválidos aquellos títulos que corresponden a valores temporales o de sistema, tales como cadenas prefijadas con “tmp”, así como aquellos derivados directamente del nombre del archivo original. Estos últimos casos se descartan.
 
@@ -115,8 +164,29 @@ En los casos en los que el título no está disponible o ha sido descartado por 
 
 El resultado final del procedimiento consiste en un par de valores normalizados: el título de la obra y el nombre del autor o compositor, cuando este último está disponible.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Autor} \\
+Las abejas & José Miguel Hernández Jaramillo \\
+Arrullo mexicano & Mora Reguera, Guillermo \\
+Faixinha Verde & Anonymous \\
+4. Doble Romance de Durandarte & Luis Milán \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos con su título y autor}
+\end{table}
+
 \subsection{Inferencia del modo de la obra}
 Con el objetivo de caracterizar la organización modal de las piezas del corpus, se implementó un sistema de inferencia automática de modo musical basado en la distribución temporal de las alturas. Esta metodología permite estimar tanto la tónica de referencia como el modo predominante de una obra a partir de la duración acumulada de los distintos grados.
+
+El \textbf{modo} \citep{grove1900dictionary} es un marco de organización melódica definido por una distribución particular de intervalos dentro de la escala, una nota final que actúa como centro estructural y un conjunto de funciones melódicas características que determinan el comportamiento y las cadencias de una composición.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/tonalidad.cropped.pdf}
+    \caption{Ejemplo de indicación de modo (D jónico (mayor)). La tonalidad base es D mayor y la obra no presenta alteraciones accidentales, lo que la convierte en una obra de modo jónico.}
+    \label{fig:tonalidad}
+\end{figure}
 
 Este método parte de la identificación de todas las notas presentes en la partitura. En ausencia de información explícita sobre la tonalidad o el centro modal, se adopta una estrategia heurística que considera la última nota de la obra como posible candidata a tónica. Esta decisión se fundamenta en prácticas frecuentes en repertorios de tradición modal y en música de transmisión oral, donde la resolución final tiende a coincidir con el centro tonal percibido.
 
@@ -130,8 +200,29 @@ Para cada modo se calcula una puntuación global que suma las duraciones corresp
 
 El modo final se obtiene seleccionando aquel cuya plantilla acumula la mayor cantidad total de duración, interpretándose este valor como el mejor ajuste entre el material musical observado y los modelos modales teóricos considerados.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Modo completo} \\
+Las hormigas & G jónico (mayor) \\
+Voto infantil & G mixolidio \\
+El caballo de cartón & E eólico (menor)\\
+Saludo a la bandera & D lidio \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su modo completo}
+\end{table}
+
 \subsection{Detección de hemiolias verticales}
 Con el objetivo de identificar fenómenos de superposición métrica simultánea dentro de una partitura, se implementó un sistema de detección automática de hemiolias verticales. Esta metodología busca localizar compases en los que diferentes voces presentan organizaciones rítmicas incompatibles, generando una coexistencia de agrupaciones binarias y ternarias dentro de una misma estructura métrica.
+
+La \textbf{hemiolia vertical} \citep{grove1900dictionary} es una configuración rítmica basada en la proporción 3:2, en la que tres pulsos o subdivisiones se superponen simultáneamente a dos pulsos de igual duración total, generando una percepción polimétrica o de tensión métrica.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/hemioliav.cropped.pdf}
+    \caption{Ejemplo de hemiolia vertical}
+    \label{fig:hemioliav}
+\end{figure}
 
 La detección se centra en los compases de 3/4 y 6/8, ya que constituyen los contextos métricos más habituales para la aparición de este tipo de hemiolias. Ambos compases poseen una duración temporal equivalente, pero difieren en la organización de sus pulsos principales. Mientras que el compás de 3/4 se articula mediante tres pulsos regulares, el compás de 6/8 suele estructurarse como dos pulsos principales con subdivisión ternaria. La interacción simultánea entre ambas formas de organización constituye el fundamento de la hemiolia vertical.
 
@@ -149,8 +240,29 @@ Cuando se identifica al menos una combinación de voces que satisface esta condi
 
 Finalmente, el método devuelve una lista ordenada con los números de los compases donde se ha detectado este fenómeno.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Tiene hemiolia vertical} \\
+Garryowen & 1 \\
+Kissing and drinking & 1 \\
+Regalado y Tolentino & 0 \\
+El sitio de Querétaro & 0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia vertical (1) o no (0)}
+\end{table}
+
 \subsection{Detección de hemiolias horizontales}
 Con el objetivo de identificar fenómenos de reinterpretación métrica sucesiva dentro de una partitura, se implementó un sistema de detección automática de hemiolias horizontales. Esta metodología busca localizar compases en los que, manteniéndose constante la indicación de compás escrita, se produce un cambio significativo en el patrón interno de acentuación rítmica, generando una percepción métrica diferente a la esperada.
+
+La \textbf{hemiolia horizontal} \citep{grove1900dictionary} es un recurso métrico basado en la proporción 3:2 mediante el cual una secuencia rítmica inicialmente organizada en grupos ternarios pasa a percibirse como agrupaciones binarias equivalentes (o viceversa), produciendo un desplazamiento de los acentos sin alterar necesariamente la duración total del pasaje.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/hemioliah.cropped.pdf}
+    \caption{Ejemplo de hemiolia horizontal}
+    \label{fig:hemioliah}
+\end{figure}
 
 La detección se centra en la relación tradicional entre los compases de 6/8 y 3/4, dos estructuras métricas que poseen la misma duración total pero distribuyen los acentos de manera diferente. Mientras que el compás de 6/8 suele organizarse como dos pulsos principales subdivididos ternariamente, el compás de 3/4 se articula como tres pulsos regulares de subdivisión binaria. La alternancia perceptiva entre ambas organizaciones constituye una de las manifestaciones más características de la hemiolia.
 
@@ -164,8 +276,22 @@ A partir de esta información, el algoritmo asigna a cada compás una categoría
 
 Los compases que satisfacen estos criterios se registran como casos de hemiolia horizontal y se incorporan al conjunto de resultados. Finalmente, el método devuelve una lista ordenada con los números de los compases donde se ha detectado este fenómeno.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Tiene hemiolia horizontal} \\
+20. SOLDADITOS & 1 \\
+30. EL RATÓN Y EL GATO & 1 \\
+87.  Miss Corbett’s — Reel & 0 \\
+871.  Steamboat — Hornpipe & 0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia horizontal (1) o no (0)}
+\end{table}
+
 \subsection{Detección de síncopas}
 Con el objetivo de identificar fenómenos de desplazamiento acentual dentro de una partitura, se implementó un sistema de detección automática de síncopas. Esta metodología busca localizar compases en los que una nota o acorde comienza en una posición métricamente débil y prolonga su duración atravesando una posición de mayor jerarquía métrica, generando una suspensión temporal del acento esperado.
+
+La \textbf{síncopa} \citep{grove1900dictionary} es un recurso rítmico que desplaza o anticipa el acento respecto de su posición métrica habitual, de modo que una nota situada en un tiempo débil se prolonga o adquiere el énfasis que normalmente correspondería a un tiempo fuerte.
 
 Como paso inicial, la partitura se carga y procesa para obtener una representación estructurada de sus elementos musicales. Posteriormente, el algoritmo recorre todas las partes instrumentales y analiza cada compás de forma independiente.
 
@@ -220,6 +346,8 @@ En caso de producirse errores durante la comunicación con el modelo, fallos de 
 \subsection{Detección de cambio de resolución rítmica}
 Con el objetivo de evaluar la consistencia de la representación temporal interna de las partituras codificadas en formato MEI, se implementó un sistema para detectar cambios de resolución rítmica durante el transcurso de una obra. Esta metodología permite identificar modificaciones en la relación entre las figuras musicales y los pulsos utilizados para representar su duración.
 
+La \textbf{resolución rítmica} es el proceso por el cual una desviación del patrón métrico regular retorna a una coincidencia estable con el pulso o los acentos estructurales del compás.
+
 La métrica se basa en el concepto de resolución temporal expresada mediante PPQ (\textit{Pulses Per Quarter Note}), un parámetro que define el número de pulsos internos que corresponden a una negra. Cuando la resolución permanece estable, una misma figura musical mantiene siempre la misma equivalencia en pulsos. Por el contrario, si esta relación cambia dentro de una misma sección de la obra, pueden aparecer inconsistencias que afecten a la interpretación temporal de los datos.
 
 Como paso inicial, el algoritmo verifica que el archivo analizado corresponda al formato MEI y procesa su estructura XML. Posteriormente, la obra se divide en sus distintas secciones musicales (\verb|section|) que se analizan de forma independiente.
@@ -255,6 +383,8 @@ Finalmente, el método devuelve un indicador binario que señala la presencia o 
 \subsection{Detección de valores irregulares ocultos (grupillos)}
 Con el objetivo de evaluar la calidad y consistencia de la codificación rítmica de las partituras, se implementó un procedimiento para la detección de valores irregulares ocultos. Estos casos corresponden a eventos musicales cuyas duraciones representan subdivisiones no convencionales (como tresillos, quintillos o septillos) pero que no han sido declaradas explícitamente mediante los mecanismos estándar de notación.
 
+Los \textbf{grupillos} \citep{grove1900dictionary} son agrupaciones rítmicas irregulares que sustituyen la subdivisión métrica habitual por otra proporcionalmente equivalente (como tres notas en el tiempo de dos).
+
 Tras cargar la partitura, el método recorre todas las partes instrumentales y examina cada uno de sus compases. Para cada compás se inspeccionan las notas y acordes presentes, ignorando aquellos elementos que no representan eventos sonoros válidos o cuya duración sea nula.
 
 El análisis se centra en la duración de cada evento musical, expresada en unidades de negra. Con el fin de minimizar posibles errores derivados de la representación en coma flotante, cada duración se transforma en una fracción cuyo denominador queda limitado a un valor máximo predefinido.
@@ -278,8 +408,10 @@ Una vez obtenidos el número total de eventos y el número de compases, se calcu
 
 Finalmente, el método devuelve tres valores: el número total de eventos musicales detectados, el número total de compases únicos presentes en la obra y la densidad media calculada.
 
-\subsection{Detección automática de polirritmias verticales}
+\subsection{Detección automática de polirritmias}
 Con el objetivo de identificar fenómenos de superposición rítmica compleja dentro de una partitura, se implementó un sistema de detección automática de polirritmias verticales. Esta metodología busca localizar compases en los que coexisten simultáneamente subdivisiones rítmicas incompatibles entre distintas voces o partes instrumentales, tales como tresillos frente a subdivisiones binarias regulares o combinaciones más complejas como 3:4, 3:5 o 5:7.
+
+La \textbf{polirritmia} \citep{grove1900dictionary} es la superposición o articulación simultánea de distintos esquemas rítmicos dentro de un mismo compás, fundamentados en relaciones proporcionales entre subdivisiones del pulso.
 
 Este método recibe como entrada un apartitura y la procesa para facilitar su análisis. Posteriormente, todas las medidas de la obra se agrupan según su número de compás, permitiendo examinar conjuntamente el contenido rítmico que ocurre de manera simultánea en cada instante de la obra.
 
@@ -295,6 +427,8 @@ Los compases que satisfacen alguno de estos criterios se registran como polirrit
 
 \subsection{Extracción de la tesitura de la obra}
 Con el objetivo de identificar el registro de la composición, se implementó un sistema destinado a determinar la tesitura de una partitura. En este caso la tesitura se define como el rango comprendido entre la altura más grave y la altura más aguda registradas en la obra.
+
+La \textbf{tesitura} \citep{grove1900dictionary} es el ámbito del registro vocal o instrumental en el que una voz o instrumento se desenvuelve con mayor naturalidad dentro de su extensión total. La tesitura queda comprendida entre su sonido más grave y su sonido más agudo.
 
 Este método recibe como entrada una partitura representada mediante la estructura Score de Music21 y realiza un recorrido recursivo sobre todos los eventos musicales que contienen información de altura. El análisis considera tanto notas individuales como acordes, garantizando que todas las alturas presentes en la obra participen en el cálculo de los límites de la tesitura.
 
@@ -357,6 +491,8 @@ El resultado final es una secuencia cronológicamente ordenada de alturas musica
 \subsection{Análisis de la dirección de los intervalos melódicos}
 Con el objetivo de examinar el comportamiento direccional de una melodía, se implementó un procedimiento destinado a analizar la orientación de los intervalos entre alturas consecutivas. Este enfoque permite describir el perfil general del movimiento melódico mediante la cuantificación de ascensos, descensos y repeticiones de altura, independientemente de la magnitud exacta de los intervalos involucrados.
 
+El \textbf{intervalo} \citep{grove1900dictionary} es la distancia entre dos sonidos musicales, definida por el número de grados que los separan en la escala y por su cualidad específica dentro del sistema tonal.
+
 Este método recibe como entrada una secuencia ordenada de alturas musicales (pitches). A partir de esta secuencia se examinan todos los pares de notas consecutivas presentes en la línea melódica. Cuando la secuencia contiene menos de dos eventos, el procedimiento concluye inmediatamente, ya que no existen intervalos a analizar.
 
 Para cada par de alturas consecutivas, la comparación se realiza utilizando la representación numérica Pitch Space (ps), que asigna un valor continuo a cada altura musical. Esta representación permite efectuar comparaciones directas entre notas.
@@ -367,6 +503,8 @@ A lo largo del recorrido, el sistema mantiene contadores independientes para cad
 
 \subsection{Clasificación de la tendencia melódica predominante}
 Con el fin de caracterizar el comportamiento global del movimiento melódico, se implementó un sistema de clasificación basado en la distribución relativa de intervalos ascendentes y descendentes. Este método permite resumir el perfil direccional de una obra mediante una única etiqueta descriptiva acompañada de indicadores cuantitativos.
+
+La \textbf{tendencia melódica} es la orientación direccional del movimiento de una melodía hacia determinados grados o puntos de reposo dentro del sistema tonal.
 
 El procedimiento recibe como entrada los conteos previamente obtenidos para las tres categorías fundamentales de movimiento melódico: intervalos ascendentes, intervalos descendentes y repeticiones de altura. A diferencia de enfoques que consideran todas las transiciones por igual, el método se centra exclusivamente en los movimientos que implican un cambio efectivo de altura, excluyendo las repeticiones del cálculo.
 
@@ -396,11 +534,11 @@ Finalmente, la estructura se codifica en formato JSON utilizando una configuraci
 \subsection{Extracción y conteo de alteraciones accidentales}
 Con el objetivo de caracterizar el uso de alteraciones accidentales dentro de una partitura, se desarrolló un método de detección y agregación de alteraciones basado en la estructura jerárquica de la representación musical. Esta metodología permite identificar aquellas alteraciones que constituyen modificaciones explícitas en la obra musical, diferenciándolas de las alteraciones implícitas derivadas de la armadura de clave.
 
-Los métodos utilizados para detectar estas anomalías son \verb|_extract_accidental_events| y \verb|_format_accidentals_report|.
+La \textbf{alteración accidental} \citep{grove1900dictionary} es la modificación puntual de la altura de una nota mediante signos como el sostenido, bemol o becuadro, con efecto limitado al contexto inmediato.
 
 \begin{itemize}
-\item \textbf{Extractor de alteraciones accidentales \texttt{\_extract\_accidental\_events}.} Recorre la partitura por compases, identificando la armadura recuperándola de la correspondiente estructura KeySignature. Esta información se utiliza posteriormente para distinguir entre alteraciones originales de la tonalidad y alteraciones introducidas explícitamente por el compositor o editor. A continuación, se inspeccionan todos los eventos musicales contenidos en cada compás, incluyendo tanto notas individuales como acordes. En el caso de los acordes, el análisis se realiza sobre cada una de las alturas que los componen, garantizando así la detección de alteraciones presentes en estructuras polifónicas. Para cada altura musical se verifica la existencia de una alteración asociada. El procedimiento se centra exclusivamente en sostenidos, bemoles y becuadros, ignorando las alteraciones naturales de acuerdo con los criterios establecidos para el análisis. Una vez identificada una posible alteración, se determina si esta corresponde realmente a una modificación accidental o si forma parte de la armadura de clave vigente. Cuando la alteración observada coincide exactamente con la definida por la tonalidad, el evento se considera parte de la armadura y se excluye del análisis. Por el contrario, cuando existe una discrepancia o no se encuentra una alteración equivalente en la armadura, el evento se clasifica como una alteración accidental explícita y se registra junto con el número de compás en el que aparece. Cada evento almacena la nota alterada, incluyendo su octava y su localización.
-\item \textbf{Contador de alteraciones accidentales \texttt{\_format\_accidentals\_report}.} Almacena inicialmente los compases por conjuntos para que la representación resultante refleje únicamente la presencia de la alteración en cada compás independientemente de cuántas veces aparezca dentro de este. Posteriormente, los conjuntos de compases se convierten en listas ordenadas para garantizar la compatibilidad con formatos como JSON. Esto produce una estructura indexada en la que cada nota alterada se asocia explícitamente con los compases donde aparece, facilitando consultas posteriores y análisis automatizado. Además de la representación estructurada, el procedimiento genera un resumen textual orientado a la visualización inmediata de los resultados. Para cada nota alterada se construye una expresión legible que incluye la identificación de la nota y la relación de compases correspondientes. Cuando la alteración aparece en un único compás se utiliza una referencia singular, mientras que las apariciones múltiples se representan mediante una enumeración ordenada de compases. El resultado final consiste en una cadena de texto que sintetiza toda la información detectada. Finalmente, el método devuelve tres elementos complementarios: una representación JSON de las alteraciones agrupadas por nota, adecuada para almacenamiento en la base de datos; un resumen textual diseñado para la inspección directa; y un indicador que indica el número total de eventos detectados durante el análisis.
+\item \textbf{Extractor de alteraciones accidentales.} Se recorre la partitura por compases, identificando la armadura recuperándola de la correspondiente estructura KeySignature. Esta información se utiliza posteriormente para distinguir entre alteraciones originales de la tonalidad y alteraciones introducidas explícitamente por el compositor o editor. A continuación, se inspeccionan todos los eventos musicales contenidos en cada compás, incluyendo tanto notas individuales como acordes. En el caso de los acordes, el análisis se realiza sobre cada una de las alturas que los componen, garantizando así la detección de alteraciones presentes en estructuras polifónicas. Para cada altura musical se verifica la existencia de una alteración asociada. El procedimiento se centra exclusivamente en sostenidos, bemoles y becuadros, ignorando las alteraciones naturales de acuerdo con los criterios establecidos para el análisis. Una vez identificada una posible alteración, se determina si esta corresponde realmente a una modificación accidental o si forma parte de la armadura de clave vigente. Cuando la alteración observada coincide exactamente con la definida por la tonalidad, el evento se considera parte de la armadura y se excluye del análisis. Por el contrario, cuando existe una discrepancia o no se encuentra una alteración equivalente en la armadura, el evento se clasifica como una alteración accidental explícita y se registra junto con el número de compás en el que aparece. Cada evento almacena la nota alterada, incluyendo su octava y su localización.
+\item \textbf{Contador de alteraciones accidentales.} Se almacena inicialmente los compases por conjuntos para que la representación resultante refleje únicamente la presencia de la alteración en cada compás independientemente de cuántas veces aparezca dentro de este. Posteriormente, los conjuntos de compases se convierten en listas ordenadas para garantizar la compatibilidad con formatos como JSON. Esto produce una estructura indexada en la que cada nota alterada se asocia explícitamente con los compases donde aparece, facilitando consultas posteriores y análisis automatizado. Además de la representación estructurada, el procedimiento genera un resumen textual orientado a la visualización inmediata de los resultados. Para cada nota alterada se construye una expresión legible que incluye la identificación de la nota y la relación de compases correspondientes. Cuando la alteración aparece en un único compás se utiliza una referencia singular, mientras que las apariciones múltiples se representan mediante una enumeración ordenada de compases. El resultado final consiste en una cadena de texto que sintetiza toda la información detectada. Finalmente, el método devuelve tres elementos complementarios: una representación JSON de las alteraciones agrupadas por nota, adecuada para almacenamiento en la base de datos; un resumen textual diseñado para la inspección directa; y un indicador que indica el número total de eventos detectados durante el análisis.
 \end{itemize}
 
 \subsection{Extracción de metadatos de transcripción y procedencia digital}
@@ -443,6 +581,8 @@ Una vez obtenida la secuencia de alturas, se calculan los intervalos melódicos 
 \subsection{Detección y conteo de leitmotivs recurrentes}
 Con el objetivo de identificar patrones melódicos recurrentes dentro de una partitura, se implementó un procedimiento basado en el análisis de n-gramas sobre secuencias de intervalos melódicos. Este enfoque permite detectar fragmentos musicales que reaparecen a lo largo de una obra independientemente de su altura absoluta, favoreciendo la identificación de motivos característicos y posibles estructuras temáticas recurrentes.
 
+El \textbf{leitmotiv} \citep{grove1900dictionary} es un motivo musical recurrente asociado a un elemento extramusical (personaje, idea o situación) que reaparece y se transforma a lo largo de una obra para reforzar su unidad dramática y simbólica.
+
 Este método toma como punto de partida la secuencia de intervalos melódicos obtenida a partir de la sucesión lineal de eventos musicales. Dado que los intervalos representan relaciones entre alturas consecutivas y no alturas absolutas, la representación resultante es invariante frente a transposiciones, lo que facilita la detección de patrones equivalentes en diferentes contextos.
 
 A continuación, se aplica una estrategia de ventana deslizante sobre la secuencia de intervalos para generar todos los n-gramas posibles de longitud fija. El tamaño de cada n-grama se determina a partir del número de notas que se desea considerar en el motivo.
@@ -458,7 +598,7 @@ Finalmente, los resultados se devuelven en formato JSON, permitiendo su almacena
 \subsection{Detección de plicas anómalas}
 Con el propósito de evaluar la coherencia gráfica de la notación musical, se implementó un sistema de detección automática de anomalías en la dirección de las plicas de las notas. El método se basa en las convenciones tradicionales de escritura musical, según las cuales las notas situadas por debajo de la tercera línea del pentagrama suelen representarse con la plica orientada hacia arriba, mientras que las notas situadas por encima de dicha línea se representan habitualmente con la plica orientada hacia abajo. Las desviaciones respecto a esta convención se consideran potenciales anomalías de notación.
 
-Los métodos utilizados para detectar estas anomalías son \verb|_detect_stem_direction_anomalies| y \verb|_get_middle_line_midi|.
+La \textbf{plica} \citep{grove1900dictionary} es el trazo vertical asociado a la cabeza de la nota que contribuye a definir su valor rítmico y su organización dentro del compás en la notación musical moderna.
 
 El algoritmo recibe como entrada una partitura representada mediante la estructura Score de Music21 y recorre de forma exhaustiva todas las notas individuales presentes en la obra. Para cada nota se recupera la dirección de la plica almacenada en el documento original. Únicamente se consideran aquellas notas cuya dirección ha sido especificada explícitamente (up o down), excluyéndose las plicas automáticas o ausentes, ya que en estos casos no es posible determinar una decisión editorial concreta.
 
@@ -496,11 +636,9 @@ Otra característica útil a identificar recoge los intervalos entre compases, l
 
 Con esta implementación no se pretende sólo identificar el salto melódico entre compases, sino también poder identificar las ligaduras que unen notas pertenecientes a distintos compases. En este caso, no existe un salto melódico ni un nuevo ataque en el compás posterior, sino una extensión rítmica. Esta herramienta filtra también esos casos.
 
-Los métodos utilizados para hacer esta identificación de intervalos son \verb|_extract_measure_boundary_intervals| y \verb|_calculate_most_frequent_boundary_interval|.
-
 \begin{itemize}
-\item \textbf{Extractor de intervalos frontera \texttt{\_extract\_measure\_boundary\_intervals}.} Recorre secuencialmente la obra y extrae los intervalos melódicos que conectan el último evento sonoro de un compás con el primer evento sonoro del compás siguiente. Para evitar ambigüedades derivadas de la escritura polifónica, el análisis se realiza sobre las partes o voces disponibles de manera independiente. En cada cambio de compás sólo se analizan las notas y acordes presentes; los silencios se excluyen. Con el fin de identificar únicamente movimientos melódicos reales, la función ignora aquellos casos en los que la primera nota del compás siguiente constituye la continuación de una ligadura de prolongación. En tales situaciones no existe un nuevo ataque sonoro y, por tanto, no puede considerarse que se produzca un nuevo intervalo melódico. Cuando la frontera es válida para el análisis, se calcula la distancia en semitonos entre la última nota del compás precedente y la primera del compás siguiente. En el caso de los acordes, se toma como referencia la nota más aguda de cada uno. Los intervalos obtenidos se almacenan como valores enteros con signo, donde los valores positivos indican movimiento ascendente, los negativos movimiento descendente y el valor cero la repetición de la misma altura.
-\item \textbf{Contador de intervalos frontera \texttt{\_calculate\_most\_frequent\_boundary\_interval}.} Recibe la colección de intervalos obtenidos y determina cuál de ellos aparece con mayor frecuencia a lo largo de la obra. Para facilitar la interpretación de los resultados, los intervalos se representan mediante una notación con signo explícito (por ejemplo, «+2», «-5» o «0»). Posteriormente se contabiliza la frecuencia de aparición de cada intervalo y se identifica el más común junto con el número de veces que ocurre.
+\item \textbf{Extractor de intervalos frontera.} Recorre secuencialmente la obra y extrae los intervalos melódicos que conectan el último evento sonoro de un compás con el primer evento sonoro del compás siguiente. Para evitar ambigüedades derivadas de la escritura polifónica, el análisis se realiza sobre las partes o voces disponibles de manera independiente. En cada cambio de compás sólo se analizan las notas y acordes presentes; los silencios se excluyen. Con el fin de identificar únicamente movimientos melódicos reales, la función ignora aquellos casos en los que la primera nota del compás siguiente constituye la continuación de una ligadura de prolongación. En tales situaciones no existe un nuevo ataque sonoro y, por tanto, no puede considerarse que se produzca un nuevo intervalo melódico. Cuando la frontera es válida para el análisis, se calcula la distancia en semitonos entre la última nota del compás precedente y la primera del compás siguiente. En el caso de los acordes, se toma como referencia la nota más aguda de cada uno. Los intervalos obtenidos se almacenan como valores enteros con signo, donde los valores positivos indican movimiento ascendente, los negativos movimiento descendente y el valor cero la repetición de la misma altura.
+\item \textbf{Contador de intervalos frontera.} Recibe la colección de intervalos obtenidos y determina cuál de ellos aparece con mayor frecuencia a lo largo de la obra. Para facilitar la interpretación de los resultados, los intervalos se representan mediante una notación con signo explícito (por ejemplo, «+2», «-5» o «0»). Posteriormente se contabiliza la frecuencia de aparición de cada intervalo y se identifica el más común junto con el número de veces que ocurre.
 \end{itemize}
 
 \subsection{Identificación del uso de la etiqueta <sb /> (system break) en archivos MEI}

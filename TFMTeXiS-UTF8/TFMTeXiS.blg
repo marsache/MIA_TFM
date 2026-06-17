@@ -43,46 +43,48 @@ A level-1 auxiliary file: Apendices/appendixA.aux
 Reallocating 'name_of_file' (item size: 1) to 17 items.
 A level-1 auxiliary file: Cascaras/fin.aux
 Database file #1: biblio.bib
+Warning--empty journal in good2011lessons
+Warning--missing publisher in jurafsky2000speech
 Warning--empty journal in vaswani2017attention
-You've used 13 entries,
+You've used 30 entries,
             2962 wiz_defined-function locations,
-            1158 strings with 14795 characters,
-and the built_in function-call counts, 6961 in all, are:
-= -- 516
-> -- 283
-< -- 12
-+ -- 117
-- -- 96
-* -- 484
-:= -- 1078
-add.period$ -- 41
-call.type$ -- 13
-change.case$ -- 98
-chr.to.int$ -- 13
-cite$ -- 14
-duplicate$ -- 579
-empty$ -- 525
-format.name$ -- 131
-if$ -- 1345
+            1246 strings with 17473 characters,
+and the built_in function-call counts, 17524 in all, are:
+= -- 1280
+> -- 821
+< -- 30
++ -- 331
+- -- 285
+* -- 1347
+:= -- 2673
+add.period$ -- 92
+call.type$ -- 30
+change.case$ -- 243
+chr.to.int$ -- 30
+cite$ -- 33
+duplicate$ -- 1398
+empty$ -- 1238
+format.name$ -- 379
+if$ -- 3369
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 120
-newline$ -- 70
-num.names$ -- 53
-pop$ -- 291
+missing$ -- 299
+newline$ -- 155
+num.names$ -- 121
+pop$ -- 703
 preamble$ -- 1
-purify$ -- 84
+purify$ -- 215
 quote$ -- 0
-skip$ -- 215
+skip$ -- 497
 stack$ -- 0
-substring$ -- 193
-swap$ -- 258
-text.length$ -- 2
+substring$ -- 487
+swap$ -- 704
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 124
-warning$ -- 1
-while$ -- 42
+type$ -- 282
+warning$ -- 3
+while$ -- 100
 width$ -- 0
-write$ -- 160
-(There was 1 warning)
+write$ -- 364
+(There were 3 warnings)

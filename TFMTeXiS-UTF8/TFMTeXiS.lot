@@ -6,39 +6,39 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su BPM}}{30}{table.caption.49}%
-\contentsline {table}{\numberline {5.2}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su compás}}{31}{table.caption.52}%
-\contentsline {table}{\numberline {5.3}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su tonalidad}}{32}{table.caption.55}%
-\contentsline {table}{\numberline {5.4}{\ignorespaces Ejemplos de obras almacenadas en la base de datos con su título y autor}}{33}{table.caption.58}%
-\contentsline {table}{\numberline {5.5}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su modo completo}}{34}{table.caption.61}%
-\contentsline {table}{\numberline {5.6}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia vertical (1) o no (0)}}{36}{table.caption.64}%
-\contentsline {table}{\numberline {5.7}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia horizontal (1) o no (0)}}{37}{table.caption.67}%
-\contentsline {table}{\numberline {5.8}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la cantidad de síncopas que tienen}}{38}{table.caption.70}%
-\contentsline {table}{\numberline {5.9}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su letra}}{39}{table.caption.73}%
-\contentsline {table}{\numberline {5.10}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y los temas que se tratan en sus letras}}{40}{table.caption.75}%
-\contentsline {table}{\numberline {5.11}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen un cambio de resolución rítmica (1) o no (0)}}{41}{table.caption.77}%
-\contentsline {table}{\numberline {5.12}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen un desajuste en la duración de las notas (1) o no (0)}}{42}{table.caption.79}%
-\contentsline {table}{\numberline {5.13}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen valores irregulares ocultos (1) o no (0)}}{43}{table.caption.82}%
-\contentsline {table}{\numberline {5.14}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su densidad de notas por compás}}{44}{table.caption.84}%
-\contentsline {table}{\numberline {5.15}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen polirritmia (1) o no (0)}}{45}{table.caption.87}%
-\contentsline {table}{\numberline {5.16}{\ignorespaces Ejemplos de obras almacenadas en la base de datos, su nota más grave y su nota más aguda}}{46}{table.caption.89}%
-\contentsline {table}{\numberline {5.17}{\ignorespaces Ejemplos de obras almacenadas en la base de datos, su letra y el género inferido del narrador}}{47}{table.caption.92}%
-\contentsline {table}{\numberline {5.18}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y sus secuencias de notas y silencios}}{48}{table.caption.94}%
-\contentsline {table}{\numberline {5.19}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su porcentaje de intervalos ascendentes y descendentes}}{49}{table.caption.97}%
-\contentsline {table}{\numberline {5.20}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su tendencia melódica}}{50}{table.caption.99}%
-\contentsline {table}{\numberline {5.21}{\ignorespaces Ejemplos de obras almacenadas en la base de datos con su software y fecha codificación}}{53}{table.caption.104}%
-\contentsline {table}{\numberline {5.22}{\ignorespaces Ejemplos de obras almacenadas en la base de datos con información sobre la integridad de las piezas}}{54}{table.caption.106}%
-\contentsline {table}{\numberline {5.23}{\ignorespaces Ejemplos de obras almacenadas en la base de datos, sus leitmotivs y cuántas veces aparecen}}{55}{table.caption.109}%
-\contentsline {table}{\numberline {5.24}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen plicas anómalas (1) o no (0)}}{56}{table.caption.112}%
-\contentsline {table}{\numberline {5.25}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su volumen MIDI}}{57}{table.caption.114}%
-\contentsline {table}{\numberline {5.26}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y los sustantivos comunes y propios que contienen sus letras}}{58}{table.caption.116}%
-\contentsline {table}{\numberline {5.27}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la información sobre su intervalo frontera más frecuente}}{59}{table.caption.118}%
-\contentsline {table}{\numberline {5.28}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la información sobre el uso de etiquetas sb en su estructura}}{59}{table.caption.120}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su BPM}}{31}{table.caption.50}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su compás}}{32}{table.caption.53}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su tonalidad}}{33}{table.caption.56}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Ejemplos de obras almacenadas en la base de datos con su título y autor}}{33}{table.caption.59}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su modo completo}}{35}{table.caption.62}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia vertical (1) o no (0)}}{36}{table.caption.65}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen hemiolia horizontal (1) o no (0)}}{37}{table.caption.68}%
+\contentsline {table}{\numberline {5.8}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la cantidad de síncopas que tienen}}{38}{table.caption.71}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su letra}}{40}{table.caption.74}%
+\contentsline {table}{\numberline {5.10}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y los temas que se tratan en sus letras}}{40}{table.caption.76}%
+\contentsline {table}{\numberline {5.11}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen un cambio de resolución rítmica (1) o no (0)}}{42}{table.caption.78}%
+\contentsline {table}{\numberline {5.12}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen un desajuste en la duración de las notas (1) o no (0)}}{43}{table.caption.80}%
+\contentsline {table}{\numberline {5.13}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen valores irregulares ocultos (1) o no (0)}}{44}{table.caption.83}%
+\contentsline {table}{\numberline {5.14}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su densidad de notas por compás}}{45}{table.caption.85}%
+\contentsline {table}{\numberline {5.15}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen polirritmia (1) o no (0)}}{46}{table.caption.88}%
+\contentsline {table}{\numberline {5.16}{\ignorespaces Ejemplos de obras almacenadas en la base de datos, su nota más grave y su nota más aguda}}{47}{table.caption.90}%
+\contentsline {table}{\numberline {5.17}{\ignorespaces Ejemplos de obras almacenadas en la base de datos, su letra y el género inferido del narrador}}{48}{table.caption.93}%
+\contentsline {table}{\numberline {5.18}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y sus secuencias de notas y silencios}}{49}{table.caption.95}%
+\contentsline {table}{\numberline {5.19}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su porcentaje de intervalos ascendentes y descendentes}}{50}{table.caption.98}%
+\contentsline {table}{\numberline {5.20}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su tendencia melódica}}{51}{table.caption.100}%
+\contentsline {table}{\numberline {5.21}{\ignorespaces Ejemplos de obras almacenadas en la base de datos con su software y fecha codificación}}{53}{table.caption.105}%
+\contentsline {table}{\numberline {5.22}{\ignorespaces Ejemplos de obras almacenadas en la base de datos con información sobre la integridad de las piezas}}{54}{table.caption.107}%
+\contentsline {table}{\numberline {5.23}{\ignorespaces Ejemplos de obras almacenadas en la base de datos, sus leitmotivs y cuántas veces aparecen}}{56}{table.caption.110}%
+\contentsline {table}{\numberline {5.24}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y si tienen plicas anómalas (1) o no (0)}}{57}{table.caption.113}%
+\contentsline {table}{\numberline {5.25}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y su volumen MIDI}}{57}{table.caption.115}%
+\contentsline {table}{\numberline {5.26}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y los sustantivos comunes y propios que contienen sus letras}}{58}{table.caption.117}%
+\contentsline {table}{\numberline {5.27}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la información sobre su intervalo frontera más frecuente}}{59}{table.caption.119}%
+\contentsline {table}{\numberline {5.28}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la información sobre el uso de etiquetas sb en su estructura}}{60}{table.caption.121}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Fragmento de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}}{106}{table.caption.165}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Fragmento de la tabla de relaciones entre temas y tendencia melódica en piezas del dataset}}{110}{table.caption.169}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces Fragmento de la tabla de relaciones entre BPM y número aproximado de sílabas}}{115}{table.caption.175}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces Fragmento de la tabla de ejemplos de piezas en métrica ternaria que contienen silencios.}}{118}{table.caption.178}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Fragmento de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}}{106}{table.caption.166}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Fragmento de la tabla de relaciones entre temas y tendencia melódica en piezas del dataset}}{110}{table.caption.170}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Fragmento de la tabla de relaciones entre BPM y número aproximado de sílabas}}{115}{table.caption.176}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Fragmento de la tabla de ejemplos de piezas en métrica ternaria que contienen silencios.}}{118}{table.caption.179}%
 \contentsline {table}{\numberline {6.5}{\ignorespaces Resumen de resultados obtenidos para las consultas de evaluación.}}{119}{table.6.5}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

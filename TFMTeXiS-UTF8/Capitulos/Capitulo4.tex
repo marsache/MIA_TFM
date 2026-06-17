@@ -977,11 +977,11 @@ La aplicación web actúa como una capa extra que encapsula la lógica interna d
 
 Esta interfaz contiene un chat con el que se establece la conexión con el LLM local, permitiendo enviar preguntas desde la barra de búsqueda.
 
-La interfaz web se sustenta sobre una arquitectura de microservicios desacoplada, diseñada específicamente para gestionar operaciones asíncronas de entrada/salida sin bloquear el hilo principal de ejecución del sistema. El núcleo operativo de este módulo se implementa mediante el \textit{framework} de alto rendimiento \textit{FastAPI}, aprovechando el estándar ASGI (\textit{Asynchronous Server Gateway Interface}) para orquestar la comunicación concurrente entre el cliente web, el modelo de lenguaje de pequeña escala y la base de datos a través de la API intermedia.
+La interfaz web se sustenta sobre una arquitectura de microservicios desacoplada, diseñada específicamente para gestionar operaciones asíncronas de entrada/salida sin bloquear el hilo principal de ejecución del sistema. El núcleo operativo de este módulo se implementa mediante el \textit{framework} de alto rendimiento \textit{FastAPI}, orquestando la comunicación concurrente entre el cliente web, el modelo de lenguaje de pequeña escala y la base de datos a través de la API intermedia.
 
 El servidor web (\texttt{web\_frontend.py}) actúa como una pasarela API y un servidor de archivos estáticos centralizado. 
 
-El núcelo arquitectónico de la interfaz reside en el \textit{endpoint} conversacional asíncrono expuesto en la ruta de tipo \texttt{POST} \texttt{"/api/chat"}. Cuando una investigadora introduce una consulta musicológica en lenguaje natural desde la interfaz gráfica, se desencadena una secuencia de operaciones distribuidas en tres planos de ejecución:
+El núcelo arquitectónico de la interfaz reside en el \textit{endpoint} conversacional asíncrono expuesto en la ruta de tipo \texttt{POST} \texttt{"/api/chat"}. Cuando una investigadora introduce una consulta musicológica en lenguaje natural desde la interfaz gráfica, se desencadena una secuencia de operaciones distribuidas en distintos planos de ejecución:
 
 \begin{figure}[H]
     \centering
@@ -1016,6 +1016,18 @@ El núcelo arquitectónico de la interfaz reside en el \textit{endpoint} convers
     \caption{Flujo de interacción con la interfaz web y su conexión con el LLM local y la base de datos SQLite.}
     \label{fig:arquitectura_llm}
 \end{figure}
+
+En primer lugar, la petición HTTP generada por el navegador es recibida por el servidor FastAPI, que valida la estructura de la consulta y la encapsula en un formato compatible con la API de inferencia. A continuación, el servidor establece una comunicación asíncrona con el modelo de lenguaje local, responsable de interpretar la intención de la consulta y determinar si es necesario acceder a la información musicológica almacenada en la base de datos.
+
+Durante este proceso, el modelo puede invocar las herramientas expuestas mediante el protocolo MCP, permitiendo la ejecución de consultas estructuradas sobre la base de datos relacional sin que el usuario deba conocer la sintaxis SQL ni la organización interna de los datos. Esta capa de abstracción constituye uno de los elementos clave del sistema, ya que transforma peticiones formuladas en lenguaje natural en operaciones de recuperación de información precisas y reproducibles.
+
+Una vez obtenidos los resultados, estos son procesados y contextualizados por el modelo de lenguaje, que genera una respuesta adaptada al dominio musicológico. El servidor recibe la respuesta final y la devuelve al cliente web mediante un objeto JSON, minimizando la latencia percibida por el usuario y favoreciendo una interacción fluida incluso en consultas complejas que requieren múltiples accesos a la base de datos.
+
+Desde la perspectiva de la experiencia de usuario, la interfaz se ha diseñado siguiendo principios de simplicidad y reducción de carga cognitiva. El usuario únicamente interactúa con un cuadro de texto conversacional similar al de los asistentes virtuales modernos, eliminando la necesidad de aprender comandos específicos o procedimientos técnicos. Este enfoque permite centrar la atención en la formulación de preguntas de investigación y no en los mecanismos computacionales.
+
+Adicionalmente, la arquitectura desacoplada adoptada facilita la mantenibilidad y escalabilidad del sistema. La separación entre la interfaz web, el servidor de aplicación, el modelo de lenguaje y la capa de acceso a datos permite modificar o sustituir cualquiera de estos componentes sin afectar significativamente al resto de la infraestructura. Esta característica resulta especialmente relevante en el contexto actual de rápida evolución de los modelos de lenguaje, donde futuras versiones podrán integrarse manteniendo inalterada la experiencia de uso de las investigadoras.
+
+La incorporación de esta aplicación web transforma una herramienta inicialmente orientada a usuarios con conocimientos técnicos en una plataforma accesible para perfiles propios de las humanidades digitales. De este modo se favorece la democratización del acceso a los recursos computacionales desarrollados en el proyecto y se facilita su adopción en entornos de investigación musicológica, docencia y divulgación científica.
 
 \section{Inconvenientes encontrados durante el desarrollo del sistema}
 \begin{itemize}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  17 JUN 2026 23:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  18 JUN 2026 00:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1434,55 +1434,63 @@ File: Imagenes/Bitmap/UITool.png Graphic file (type png)
 <use Imagenes/Bitmap/UITool.png>
 Package pdftex.def Info: Imagenes/Bitmap/UITool.png  used on input line 973.
 (pdftex.def)             Requested size: 341.43437pt x 234.91927pt.
+
+Underfull \vbox (badness 2894) has occurred while \output is active []
+
 LaTeX Info: Redefining \. on input line 1019.
 LaTeX Info: Redefining \% on input line 1019.
  [60 <./Imagenes/Bitmap/UITool.png>]
-LaTeX Info: Redefining \. on input line 1025.
-LaTeX Info: Redefining \% on input line 1025.
- [61])
-LaTeX Info: Redefining \. on input line 146.
-LaTeX Info: Redefining \% on input line 146.
- [62]
-\openout2 = `Capitulos/EvaluacionPruebas.aux'.
-
- (Capitulos/EvaluacionPruebas.tex
-Cap\'itulo 6.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [63
+LaTeX Info: Redefining \. on input line 1025.
+LaTeX Info: Redefining \% on input line 1025.
+ [61]
+LaTeX Info: Redefining \. on input line 1038.
+LaTeX Info: Redefining \% on input line 1038.
+ [62])
+LaTeX Info: Redefining \. on input line 146.
+LaTeX Info: Redefining \% on input line 146.
+ [63]
+\openout2 = `Capitulos/EvaluacionPruebas.aux'.
+
+ (Capitulos/EvaluacionPruebas.tex [64
 
 
 
 
 ]
+Cap\'itulo 6.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [65]
 LaTeX Info: Redefining \. on input line 39.
 LaTeX Info: Redefining \% on input line 39.
- [64]
+ [66]
 LaTeX Info: Redefining \. on input line 71.
 LaTeX Info: Redefining \% on input line 71.
- [65]
+ [67]
 LaTeX Info: Redefining \. on input line 102.
 LaTeX Info: Redefining \% on input line 102.
- [66]
+ [68]
 LaTeX Info: Redefining \. on input line 125.
 LaTeX Info: Redefining \% on input line 125.
- [67]
+ [69]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
- [68]
+ [70]
 LaTeX Info: Redefining \. on input line 197.
 LaTeX Info: Redefining \% on input line 197.
- [69]
+ [71]
 LaTeX Info: Redefining \. on input line 232.
 LaTeX Info: Redefining \% on input line 232.
- [70]
+ [72]
 LaTeX Info: Redefining \. on input line 268.
 LaTeX Info: Redefining \% on input line 268.
- [71]
+ [73]
 LaTeX Info: Redefining \. on input line 299.
 LaTeX Info: Redefining \% on input line 299.
- [72]
+ [74]
 Underfull \hbox (badness 10000) in paragraph at lines 332--338
 []\T1/cmr/m/n/10.95 Los ar-chi-vos que con-tie-nen la no-ta G5 in-clu-yen: * `MX-1952-00-CR-
  []
@@ -1494,43 +1502,43 @@ Underfull \hbox (badness 3291) in paragraph at lines 332--338
 
 LaTeX Info: Redefining \. on input line 340.
 LaTeX Info: Redefining \% on input line 340.
-[73]
+[75]
 LaTeX Info: Redefining \. on input line 366.
 LaTeX Info: Redefining \% on input line 366.
- [74]
+ [76]
 LaTeX Info: Redefining \. on input line 407.
 LaTeX Info: Redefining \% on input line 407.
- [75]
+ [77]
 LaTeX Info: Redefining \. on input line 439.
 LaTeX Info: Redefining \% on input line 439.
- [76]
+ [78]
 LaTeX Info: Redefining \. on input line 478.
 LaTeX Info: Redefining \% on input line 478.
- [77]
+ [79]
 LaTeX Info: Redefining \. on input line 517.
 LaTeX Info: Redefining \% on input line 517.
- [78]
+ [80]
 LaTeX Info: Redefining \. on input line 556.
 LaTeX Info: Redefining \% on input line 556.
- [79]
+ [81]
 LaTeX Info: Redefining \. on input line 588.
 LaTeX Info: Redefining \% on input line 588.
- [80]
+ [82]
 LaTeX Info: Redefining \. on input line 624.
 LaTeX Info: Redefining \% on input line 624.
- [81]
+ [83]
 LaTeX Info: Redefining \. on input line 662.
 LaTeX Info: Redefining \% on input line 662.
- [82]
+ [84]
 LaTeX Info: Redefining \. on input line 693.
 LaTeX Info: Redefining \% on input line 693.
- [83]
+ [85]
 LaTeX Info: Redefining \. on input line 731.
 LaTeX Info: Redefining \% on input line 731.
- [84]
+ [86]
 LaTeX Info: Redefining \. on input line 759.
 LaTeX Info: Redefining \% on input line 759.
- [85]
+ [87]
 Underfull \hbox (badness 10000) in paragraph at lines 785--786
 []\T1/cmr/m/n/10.95 Unfortunately, I can-not di-rectly -ead.[]r ïn-ter-pret"the mu-si-cal con-tent
  []
@@ -1552,46 +1560,46 @@ Underfull \hbox (badness 2564) in paragraph at lines 785--786
 
 LaTeX Info: Redefining \. on input line 786.
 LaTeX Info: Redefining \% on input line 786.
-[86]
+[88]
 LaTeX Info: Redefining \. on input line 816.
 LaTeX Info: Redefining \% on input line 816.
- [87]
+ [89]
 Overfull \hbox (13.64479pt too wide) in paragraph at lines 838--838
  []        \T1/cmtt/m/n/10.95 LENGTH(a.compases_sincopas) - LENGTH(REPLACE(a.compases_sincopas,[] 
  []
 
 LaTeX Info: Redefining \. on input line 845.
 LaTeX Info: Redefining \% on input line 845.
-[88]
+[90]
 LaTeX Info: Redefining \. on input line 866.
 LaTeX Info: Redefining \% on input line 866.
- [89]
+ [91]
 LaTeX Info: Redefining \. on input line 891.
 LaTeX Info: Redefining \% on input line 891.
- [90]
+ [92]
 Overfull \hbox (13.64479pt too wide) in paragraph at lines 907--907
  []  \T1/cmtt/m/n/10.95 AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);[] 
  []
 
 LaTeX Info: Redefining \. on input line 926.
 LaTeX Info: Redefining \% on input line 926.
-[91]
+[93]
 LaTeX Info: Redefining \. on input line 951.
 LaTeX Info: Redefining \% on input line 951.
- [92]
+ [94]
 LaTeX Info: Redefining \. on input line 978.
 LaTeX Info: Redefining \% on input line 978.
- [93]
+ [95]
 LaTeX Info: Redefining \. on input line 1002.
 LaTeX Info: Redefining \% on input line 1002.
- [94]
+ [96]
 Underfull \hbox (badness 1867) in paragraph at lines 1011--1015
 []\T1/cmr/m/n/10.95 * **Sig-na-tu-ra de com-pás de-cla-ra-da:** `<sco-re-Def xml:id=sg2v8p><me-ter-Sig
  []
 
 LaTeX Info: Redefining \. on input line 1056.
 LaTeX Info: Redefining \% on input line 1056.
-[95]
+[97]
 Underfull \hbox (badness 2707) in paragraph at lines 1064--1073
 []\T1/cmr/m/n/10.95 Por ejem-plo, es-tas pie-zas in-clu-yen el si-guien-te ti-po de de-cla-ra-ción: ```xml
  []
@@ -1608,72 +1616,72 @@ Underfull \hbox (badness 2635) in paragraph at lines 1064--1073
 
 LaTeX Info: Redefining \. on input line 1086.
 LaTeX Info: Redefining \% on input line 1086.
-[96]
+[98]
 LaTeX Info: Redefining \. on input line 1105.
 LaTeX Info: Redefining \% on input line 1105.
- [97]
+ [99]
 LaTeX Info: Redefining \. on input line 1138.
 LaTeX Info: Redefining \% on input line 1138.
- [98]
+ [100]
 LaTeX Info: Redefining \. on input line 1171.
 LaTeX Info: Redefining \% on input line 1171.
- [99]
+ [101]
 LaTeX Info: Redefining \. on input line 1199.
 LaTeX Info: Redefining \% on input line 1199.
- [100]
+ [102]
 LaTeX Info: Redefining \. on input line 1238.
 LaTeX Info: Redefining \% on input line 1238.
- [101]
+ [103]
 LaTeX Info: Redefining \. on input line 1259.
 LaTeX Info: Redefining \% on input line 1259.
- [102]
+ [104]
 LaTeX Info: Redefining \. on input line 1305.
 LaTeX Info: Redefining \% on input line 1305.
- [103]
+ [105]
 Overfull \hbox (28.2355pt too wide) in paragraph at lines 1331--1341
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 1350.
 LaTeX Info: Redefining \% on input line 1350.
-[104]
+[106]
 LaTeX Info: Redefining \. on input line 1372.
 LaTeX Info: Redefining \% on input line 1372.
- [105]
+ [107]
 LaTeX Info: Redefining \. on input line 1407.
 LaTeX Info: Redefining \% on input line 1407.
- [106]
+ [108]
 LaTeX Info: Redefining \. on input line 1442.
 LaTeX Info: Redefining \% on input line 1442.
- [107]
+ [109]
 Overfull \hbox (31.16087pt too wide) in paragraph at lines 1450--1461
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 1482.
 LaTeX Info: Redefining \% on input line 1482.
-[108]
+[110]
 LaTeX Info: Redefining \. on input line 1509.
 LaTeX Info: Redefining \% on input line 1509.
- [109]
+ [111]
 LaTeX Info: Redefining \. on input line 1532.
 LaTeX Info: Redefining \% on input line 1532.
- [110]
+ [112]
 LaTeX Info: Redefining \. on input line 1561.
 LaTeX Info: Redefining \% on input line 1561.
- [111]
+ [113]
 LaTeX Info: Redefining \. on input line 1588.
 LaTeX Info: Redefining \% on input line 1588.
- [112]
+ [114]
 LaTeX Info: Redefining \. on input line 1627.
 LaTeX Info: Redefining \% on input line 1627.
- [113]
+ [115]
 LaTeX Info: Redefining \. on input line 1667.
 LaTeX Info: Redefining \% on input line 1667.
- [114]
+ [116]
 LaTeX Info: Redefining \. on input line 1723.
 LaTeX Info: Redefining \% on input line 1723.
- [115]
+ [117]
 Underfull \hbox (badness 10000) in paragraph at lines 1751--1751
 []|\T1/cmr/bx/n/10.95 Gemini 2.5
  []
@@ -1755,21 +1763,21 @@ Overfull \hbox (9.14719pt too wide) in alignment at lines 1754--2052
 
 LaTeX Info: Redefining \. on input line 2052.
 LaTeX Info: Redefining \% on input line 2052.
-[116]
+[118]
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 2052.
 LaTeX Info: Redefining \% on input line 2052.
- [117]
+ [119]
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 2052.
 LaTeX Info: Redefining \% on input line 2052.
- [118])
+ [120])
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
- [119]
+ [121]
 \openout2 = `Capitulos/DiscusionAnalisis.aux'.
 
- (Capitulos/DiscusionAnalisis.tex [120
+ (Capitulos/DiscusionAnalisis.tex [122
 
 
 
@@ -1779,15 +1787,15 @@ Cap\'itulo 7.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [121])
+ [123])
 LaTeX Info: Redefining \. on input line 148.
 LaTeX Info: Redefining \% on input line 148.
- [122]
+ [124]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
  (Capitulos/ConclusionesTrabajoFuturo.tex
 Cap\'itulo 8.
-[123
+[125
 
 
 
@@ -1795,13 +1803,13 @@ Cap\'itulo 8.
 ]
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
- [124])
+ [126])
 LaTeX Info: Redefining \. on input line 149.
 LaTeX Info: Redefining \% on input line 149.
- [125]
+ [127]
 \openout2 = `Capitulos/Introduction.aux'.
 
- (Capitulos/Introduction.tex [126
+ (Capitulos/Introduction.tex [128
 
 
 
@@ -1811,54 +1819,54 @@ Chapter 9.
 
 Underfull \vbox (badness 1005) has occurred while \output is active []
 
- [127] [128] [129]
+ [129] [130] [131]
 Overfull \hbox (71.1506pt too wide) in paragraph at lines 59--100
 []|  []  
  []
 
-[130] [131] [132] [133]) [134]
+[132] [133] [134] [135]) [136]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
  (Capitulos/ConclusionsFutureWork.tex
 Chapter 10.
-[135
+[137
 
 
 
 
-] [136]) [137]
+] [138]) [139]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
 \openout2 = `Cascaras/bibliografia.aux'.
 
- (Cascaras/bibliografia.tex (TFMTeXiS.bbl [138
+ (Cascaras/bibliografia.tex (TFMTeXiS.bbl [140
 
 
 
 
-] [139]))
+] [141]))
 LaTeX Info: Redefining \. on input line 168.
 LaTeX Info: Redefining \% on input line 168.
- [140]
+ [142]
 \openout2 = `Apendices/appendixA.aux'.
 
  (Apendices/appendixA.tex
 Ap\'{e}ndice A.
-) [141
+) [143
 
 
 
 
-] [142
+] [144
 
 
 
 ]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [143
+ (Cascaras/fin.tex [145
 
-] [144]) (TFMTeXiS.aux (Cascaras/cover.aux)
+] [146]) (TFMTeXiS.aux (Cascaras/cover.aux)
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
  (Cascaras/dedicatoria.aux) (Cascaras/agradecimientos.aux) (Cascaras/resumen.aux) (Cascaras/abstract.aux) (TeXiS/TeXiS_toc.aux)
@@ -1880,17 +1888,17 @@ Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
 (rerunfilecheck)             Checksum: 90B83FC116BF5790F3D1FC0944B1B8F7;51601.
  ) 
 Here is how much of TeX's memory you used:
- 32092 strings out of 467691
- 617997 string characters out of 5414987
- 1090406 words of memory out of 5000000
+ 32094 strings out of 467691
+ 618013 string characters out of 5414987
+ 1090404 words of memory out of 5000000
  59830 multiletter control sequences out of 15000+600000
  649211 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  121i,12n,127p,2104b,1270s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (166 pages, 1595014 bytes).
+Output written on TFMTeXiS.pdf (168 pages, 1598479 bytes).
 PDF statistics:
- 2770 PDF objects out of 2984 (max. 8388607)
- 403 named destinations out of 1000 (max. 500000)
+ 2778 PDF objects out of 2984 (max. 8388607)
+ 405 named destinations out of 1000 (max. 500000)
  1254 words of extra memory for PDF output out of 10000 (max. 10000000)
 

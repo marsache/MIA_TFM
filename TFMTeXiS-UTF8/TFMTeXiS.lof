@@ -18,13 +18,15 @@
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Ejemplo de obra con letra}}{38}{figure.caption.72}%
 \contentsline {figure}{\numberline {5.10}{\ignorespaces Ejemplo de obra con dos tresillos}}{42}{figure.caption.81}%
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Ejemplo de polirritmia}}{44}{figure.caption.86}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Interfaz de la aplicación web desarrollada para interactuar con la herramienta.}}{58}{figure.caption.107}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Flujo de interacción con la interfaz web y su conexión con el LLM local y la base de datos SQLite.}}{59}{figure.caption.108}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Ejemplo de obra con alteración accidental}}{51}{figure.caption.102}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Ejemplo de obra con una plica anómala}}{55}{figure.caption.108}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Interfaz de la aplicación web desarrollada para interactuar con la herramienta.}}{59}{figure.caption.114}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Flujo de interacción con la interfaz web y su conexión con el LLM local y la base de datos SQLite.}}{60}{figure.caption.115}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Gantt chart of the work plan (October - June).}}{129}{figure.caption.176}%
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Gantt chart of the work plan (October - June).}}{131}{figure.caption.183}%
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
 \babel@toc {spanish}{}\relax 

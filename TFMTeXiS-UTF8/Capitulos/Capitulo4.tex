@@ -562,6 +562,18 @@ El resultado final consiste en un par de valores que describen los límites infe
 
 En aquellos casos en los que la partitura no contiene eventos con altura definida, el procedimiento devuelve valores nulos simbólicos que indican la imposibilidad de calcular la tesitura.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\textbf{Título} & \textbf{Nota más grave} & \textbf{Nota más aguda} \\
+La señora luna & B\#3 & D5 \\
+Dulzura & E4 & C\#5 \\
+The Miners of Wicklow & D4 & A5 \\
+Repique el pandero & D4 & C5 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos, su nota más grave y su nota más aguda}
+\end{table}
+
 \subsection{Inferencia del género del autor a partir del nombre}
 Con el objetivo de incorporar información descriptiva adicional sobre los autores presentes en el corpus musical, se implementó un sistema muy básico de inferencia del gémerp asociado al nombre del autor.
 
@@ -586,6 +598,16 @@ Con el fin de garantizar la operatividad del sistema se incorpora un mecanismo d
 
 El resultado final consiste en una etiqueta categórica que resume la perspectiva narrativa inferida a partir de la letra.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{9cm} c}
+\textbf{Título} & \textbf{Texto letras extraídos} & \textbf{Lírica voz} \\
+De ``Unión'' & Los campesinos y obreros juntos vamos a luchar por vencer la burguesía y su organismo fatal & masculino \\
+Allegro Moderato & Soy la reina de los mares y tuya lo vuelvo a ser; tiro el pañuelo al suelo y lo vuelvo a recoger & femenino \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos, su letra y el género inferido del narrador}
+\end{table}
+
 \subsection{Extracción de notas y silencios}
 Con el propósito de obtener una representación textual compacta de la estructura musical de una partitura, se implementó un sistema de extracción secuencial de eventos sonoros y silencios. El método transforma la información simbólica contenida en la partitura en una cadena de texto lineal que preserva el orden cronológico de aparición de los eventos musicales, facilitando su inspección visual, almacenamiento y análisis.
 
@@ -600,6 +622,16 @@ Los silencios se codifican mediante una etiqueta textual explícita que indica l
 En el caso de los acordes, el procedimiento conserva la información de simultaneidad agrupando todas las alturas que componen el evento armónico. Las notas se representan de manera conjunta y se conectan mediante un separador. Esta codificación permite diferenciar los eventos polifónicos de las sucesiones melódicas ordinarias sin perder la información relativa a las alturas que participan en el evento.
 
 Una vez procesados todos los eventos, los elementos obtenidos se concatenan siguiendo el orden temporal original de la obra para generar una única cadena textual. El resultado constituye una representación simbólica simplificada de la partitura que mantiene la secuencia de notas, silencios y acordes, preservando las relaciones cronológicas entre ellos.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{9.5cm}}
+\textbf{Título} & \textbf{Secuencia notas silencios} \\
+La mano de la negra & G4 - G4 - G4 - C5 - C5 - G4 - G4 - G4 - A4 - G4 - G4 - G4 - G4 - B4 - B4 - G4 - G4 - G4 - A4 - G4 \\
+Arrullo mestizo de Chavinda & A4 - A4 - G4 - A4 - A4 - F4 - F4 - E4 - F4 - G4 - G4 - Bb4 - A4 - Bb4 - A4 - G4 - F4 - G4 - A4 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y sus secuencias de notas y silencios}
+\end{table}
 
 \subsection{Extracción de la secuencia melódica de la obra}
 Con el objetivo de obtener una representación lineal de la melodía principal de una partitura, se implementó un sistema de extracción cronológica de alturas musicales basado en la secuencia de eventos sonoros presentes en la obra.
@@ -623,6 +655,18 @@ La dirección de cada intervalo se determina comparando el valor de la segunda n
 
 A lo largo del recorrido, el sistema mantiene contadores independientes para cada una de las tres categorías. El resultado final consiste en un conjunto de frecuencias que resume la distribución de movimientos melódicos observados en la obra.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{4cm} p{4cm}}
+\textbf{Título} & \textbf{Porcentaje intervalos ascendentes} & \textbf{Porcentaje intervalos descendentes} \\
+322.  Greeting to Ireland — Reel & 49.14 & 50.86 \\
+Arestín de plata & 33.33 & 66.67 \\
+Bendita sea tu pureza & 46.15 & 53.85 \\
+The Black Bird & 45.63 & 54.37 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su porcentaje de intervalos ascendentes y descendentes}
+\end{table}
+
 \subsection{Clasificación de la tendencia melódica predominante}
 Con el fin de caracterizar el comportamiento global del movimiento melódico, se implementó un sistema de clasificación basado en la distribución relativa de intervalos ascendentes y descendentes. Este método permite resumir el perfil direccional de una obra mediante una única etiqueta descriptiva acompañada de indicadores cuantitativos.
 
@@ -637,6 +681,17 @@ En caso contrario se calcula la proporción relativa de movimientos ascendentes 
 Cuando la diferencia entre ambas proporciones excede dicho umbral, la obra se clasifica según la dirección predominante observada. Si el porcentaje de movimientos ascendentes es superior al de movimientos descendentes, la melodía se considera predominantemente ascendente. En caso contrario, se clasifica como predominantemente descendente.
 
 El resultado final consiste en un conjunto de indicadores compuesto por la categoría descriptiva asignada y los porcentajes correspondientes a cada dirección de movimiento.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Tendencia melódica} \\
+Un hombre a caballo & Equilibrada \\
+LOS BURROS DE SAN MIGUEL. & Predominantemente descendente \\
+A mí me gusta lo blanco & Predominantemente ascendente \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su tendencia melódica}
+\end{table}
 
 \subsection{Extracción de correspondencias entre sílabas y duraciones musicales}
 Con el objetivo de analizar la relación entre el texto cantado y su realización rítmica, se implementó un método destinado a extraer las correspondencias entre las sílabas presentes en una partitura vocal y las duraciones musicales asociadas a cada una de ellas. Este enfoque permite identificar patrones de asignación temporal del texto.
@@ -658,10 +713,16 @@ Con el objetivo de caracterizar el uso de alteraciones accidentales dentro de un
 
 La \textbf{alteración accidental} \citep{grove1900dictionary} es la modificación puntual de la altura de una nota mediante signos como el sostenido, bemol o becuadro, con efecto limitado al contexto inmediato.
 
-\begin{itemize}
-\item \textbf{Extractor de alteraciones accidentales.} Se recorre la partitura por compases, identificando la armadura recuperándola de la correspondiente estructura KeySignature. Esta información se utiliza posteriormente para distinguir entre alteraciones originales de la tonalidad y alteraciones introducidas explícitamente por el compositor o editor. A continuación, se inspeccionan todos los eventos musicales contenidos en cada compás, incluyendo tanto notas individuales como acordes. En el caso de los acordes, el análisis se realiza sobre cada una de las alturas que los componen, garantizando así la detección de alteraciones presentes en estructuras polifónicas. Para cada altura musical se verifica la existencia de una alteración asociada. El procedimiento se centra exclusivamente en sostenidos, bemoles y becuadros, ignorando las alteraciones naturales de acuerdo con los criterios establecidos para el análisis. Una vez identificada una posible alteración, se determina si esta corresponde realmente a una modificación accidental o si forma parte de la armadura de clave vigente. Cuando la alteración observada coincide exactamente con la definida por la tonalidad, el evento se considera parte de la armadura y se excluye del análisis. Por el contrario, cuando existe una discrepancia o no se encuentra una alteración equivalente en la armadura, el evento se clasifica como una alteración accidental explícita y se registra junto con el número de compás en el que aparece. Cada evento almacena la nota alterada, incluyendo su octava y su localización.
-\item \textbf{Contador de alteraciones accidentales.} Se almacenan inicialmente los compases por conjuntos para que la representación resultante refleje únicamente la presencia de la alteración en cada compás independientemente de cuántas veces aparezca dentro de este. Posteriormente, los conjuntos de compases se convierten en listas ordenadas para garantizar la compatibilidad con formatos como JSON. Esto produce una estructura indexada en la que cada nota alterada se asocia explícitamente con los compases donde aparece, facilitando consultas posteriores y análisis automatizado. Además de la representación estructurada, el procedimiento genera un resumen textual orientado a la visualización inmediata de los resultados. Para cada nota alterada se construye una expresión legible que incluye la identificación de la nota y la relación de compases correspondientes. Cuando la alteración aparece en un único compás se utiliza una referencia singular, mientras que las apariciones múltiples se representan mediante una enumeración ordenada de compases. El resultado final consiste en una cadena de texto que sintetiza toda la información detectada. Finalmente, el método devuelve tres elementos complementarios: una representación JSON de las alteraciones agrupadas por nota, adecuada para almacenamiento en la base de datos; un resumen textual diseñado para la inspección directa; y un indicador que indica el número total de eventos detectados durante el análisis.
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/alteracion.cropped.pdf}
+    \caption{Ejemplo de obra con alteración accidental}
+    \label{fig:alteracion}
+\end{figure}
+
+Primero se recorre la partitura por compases, identificando la armadura recuperándola de la correspondiente estructura KeySignature. Esta información se utiliza posteriormente para distinguir entre alteraciones originales de la tonalidad y alteraciones introducidas explícitamente por el compositor o editor. A continuación, se inspeccionan todos los eventos musicales contenidos en cada compás, incluyendo tanto notas individuales como acordes. En el caso de los acordes, el análisis se realiza sobre cada una de las alturas que los componen, garantizando así la detección de alteraciones presentes en estructuras polifónicas. Para cada altura musical se verifica la existencia de una alteración asociada. El procedimiento se centra exclusivamente en sostenidos, bemoles y becuadros, ignorando las alteraciones naturales de acuerdo con los criterios establecidos para el análisis. Una vez identificada una posible alteración, se determina si esta corresponde realmente a una modificación accidental o si forma parte de la armadura de clave vigente. Cuando la alteración observada coincide exactamente con la definida por la tonalidad, el evento se considera parte de la armadura y se excluye del análisis. Por el contrario, cuando existe una discrepancia o no se encuentra una alteración equivalente en la armadura, el evento se clasifica como una alteración accidental explícita y se registra junto con el número de compás en el que aparece. Cada evento almacena la nota alterada, incluyendo su octava y su localización.
+
+Más tarde se almacenan inicialmente los compases por conjuntos para que la representación resultante refleje únicamente la presencia de la alteración en cada compás independientemente de cuántas veces aparezca dentro de este. Posteriormente, los conjuntos de compases se convierten en listas ordenadas para garantizar la compatibilidad con formatos como JSON. Esto produce una estructura indexada en la que cada nota alterada se asocia explícitamente con los compases donde aparece, facilitando consultas posteriores y análisis automatizado. Además de la representación estructurada, el procedimiento genera un resumen textual orientado a la visualización inmediata de los resultados. Para cada nota alterada se construye una expresión legible que incluye la identificación de la nota y la relación de compases correspondientes. Cuando la alteración aparece en un único compás se utiliza una referencia singular, mientras que las apariciones múltiples se representan mediante una enumeración ordenada de compases. El resultado final consiste en una cadena de texto que sintetiza toda la información detectada. Finalmente, el método devuelve tres elementos complementarios: una representación JSON de las alteraciones agrupadas por nota, adecuada para almacenamiento en la base de datos; un resumen textual diseñado para la inspección directa; y un indicador que indica el número total de eventos detectados durante el análisis.
 
 \subsection{Extracción de metadatos de transcripción y procedencia digital}
 Con el objetivo de reconstruir información relativa al proceso de codificación y transformación de las partituras digitales, se desarrolló un procedimiento de extracción automática de metadatos de transcripción. Este método permite identificar el software empleado durante la generación o conversión del documento, recuperar información temporal asociada a su codificación y determinar el formato de origen del archivo analizado.
@@ -721,6 +782,13 @@ Finalmente, los resultados se devuelven en formato JSON, permitiendo su almacena
 Con el propósito de evaluar la coherencia gráfica de la notación musical, se implementó un sistema de detección automática de anomalías en la dirección de las plicas de las notas. El método se basa en las convenciones tradicionales de escritura musical, según las cuales las notas situadas por debajo de la tercera línea del pentagrama suelen representarse con la plica orientada hacia arriba, mientras que las notas situadas por encima de dicha línea se representan habitualmente con la plica orientada hacia abajo. Las desviaciones respecto a esta convención se consideran potenciales anomalías de notación.
 
 La \textbf{plica} \citep{grove1900dictionary} es el trazo vertical asociado a la cabeza de la nota que contribuye a definir su valor rítmico y su organización dentro del compás en la notación musical moderna.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=2cm]{Scores/plica.cropped.pdf}
+    \caption{Ejemplo de obra con una plica anómala}
+    \label{fig:plica}
+\end{figure}
 
 El algoritmo recibe como entrada una partitura y recorre de forma exhaustiva todas las notas individuales presentes en la obra. Para cada nota se recupera la dirección de la plica almacenada en el documento original. Únicamente se consideran aquellas notas cuya dirección ha sido especificada explícitamente (up o down), excluyéndose las plicas automáticas o ausentes, ya que en estos casos no es posible determinar una decisión editorial concreta.
 

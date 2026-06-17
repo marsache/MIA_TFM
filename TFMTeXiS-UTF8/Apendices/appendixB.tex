@@ -1,2 +1,1717 @@
-\chapter{Título del Apéndice B}
+\chapter{Preguntas realizadas y respuestas de los modelos}
 \label{Appendix:Key2}
+
+\subsection{Identifica piezas que se llamen El Carro}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} ``I found references to ""El Carro"" in a few pieces.
+
+One piece contains the lyrics: ""Échale hierro al carro, échale hierro, échale volanderas de fino acero."" and ""No trastumbes el carro, llévalo siento, mira, galán, que llevas, la dama dentro.""
+
+Another piece is titled ""53. Déjame subir al carro"" and includes lyrics such as: ""Déjame subir al carro, carretero de Zamora, déjame subir al carro, que quiero ver a mi novia.""
+
+There is also a mention of ""El tocar el pan"" which appears to contain ""El car"" as part of the lyrics.
+
+Additionally, one piece mentions ""Los carboneros"" which also references ""Los car"".''
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "* 291. El carro
+* 283. ¿Dónde vas con el carro? (tonada de muelas, medida)"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim} 
+    SELECT p.id, p.titulo
+    FROM piezas p
+    WHERE LOWER(p.titulo) LIKE '%el carro%';
+    \end{verbatim}
+    Tras ejecutar la consulta se obtuvieron dos resultados: '* 291. El carro' y '* 283. ¿Dónde vas con el carro? (tonada de muelas, medida)'.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. Aunque la consulta formulada requiere localizar piezas cuyo título contenga la expresión ``El Carro'', el modelo no realiza una búsqueda orientada al campo de título, sino que recupera fragmentos textuales procedentes del contenido de distintas canciones en los que aparece la palabra ``carro''. Como consecuencia, la respuesta mezcla referencias a letras, títulos parcialmente relacionados y coincidencias léxicas irrelevantes. Este comportamiento muestra limitación del enfoque basado exclusivamente en recuperación semántica sobre documentos completos: el sistema recupera fragmentos textualmente similares a la consulta, pero carece de mecanismos para imponer restricciones estructuradas sobre campos concretos de los documentos. En este caso, la búsqueda semántica prioriza la presencia del término ``carro'' en el texto musical frente a la identificación precisa de títulos de obras.
+
+Por el contrario, la respuesta generada por el modelo local llama3.1:8b con acceso a la base de datos SQLite coincide exactamente con el resultado esperado. El modelo identifica correctamente las dos piezas cuyo título contiene la expresión ``El carro'': ``291. El carro'' y ``283. ¿Dónde vas con el carro? (tonada de muelas, medida)''. La precisión de la respuesta se debe a que la consulta puede traducirse de forma directa a una operación SQL sobre el campo \texttt{titulo}, permitiendo filtrar explícitamente los registros relevantes. Este ejemplo ilustra una de las principales ventajas del enfoque basado en bases de datos estructuradas frente a la recuperación documental tradicional: cuando la información requerida corresponde a metadatos explícitos almacenados en columnas concretas, las consultas SQL permiten obtener resultados exactos y verificables sin depender de la similitud semántica entre textos.
+
+Por tanto, para esta pregunta se considera que el modelo Gemini 2.5 Flash produce una respuesta incorrecta, mientras que el sistema basado en SQLite proporciona una respuesta completamente correcta.
+\end{itemize}
+
+\subsection{Identifica piezas cuyo autor sea Schumann}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Robert Schumann es el autor de las siguientes piezas musicales: 
+
+*   ""54. CANCIÓN DE CUNA"",
+*   ""57. DÍA DE ASUETO"",
+*   ""63. EL DÍA DE MAMÁ"",
+*   ""55. MI LINDA MUÑECA"",
+*   ""56. VILLANCICO"""
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con el autor Schumann:
+
+* 53. LAS ABEJAS,
+* 55. MI LINDA MUÑECA,
+* 56. VILLANCICO,
+* 57. DÍA DE ASUETO,
+* 63. EL DÍA DE MAMÁ
+
+Estas piezas tienen como autor a Robert Schumann, un compositor alemán del siglo XIX."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+        SELECT p.id, p.titulo, p.autor
+        FROM piezas p
+        WHERE LOWER(p.autor) LIKE '%schumann%';
+    \end{verbatim}
+    Tras ejecutar la consulta se obtuvieron seis resultados: 53. LAS ABEJAS, 54. CANCIÓN DE CUNA, 55. MI LINDA MUÑECA, 56. VILLANCICO, 57. DÍA DE ASUETO, 63. EL DÍA DE MAMÁ.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es parcialmente correcta. El modelo identifica correctamente cinco de las seis obras cuyo autor es Robert Schumann: ``54. CANCIÓN DE CUNA'', ``55. MI LINDA MUÑECA'', ``56. VILLANCICO'', ``57. DÍA DE ASUETO'' y ``63. EL DÍA DE MAMÁ''. Sin embargo, omite la pieza ``53. LAS ABEJAS'', que también cumple la condición especificada en la consulta. Aunque la respuesta no contiene falsos positivos, la recuperación resulta incompleta. Este comportamiento es coherente con las limitaciones observadas en sistemas RAG basados en búsqueda semántica, donde la recuperación depende de los fragmentos documentales seleccionados por el motor de búsqueda y no existe garantía de exhaustividad sobre todos los documentos relevantes del corpus.
+
+La respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite también es parcialmente correcta. El sistema recupera correctamente las piezas ``53. LAS ABEJAS'', ``55. MI LINDA MUÑECA'', ``56. VILLANCICO'', ``57. DÍA DE ASUETO'' y ``63. EL DÍA DE MAMÁ'', pero omite ``54. CANCIÓN DE CUNA''. Tras revisar los datos almacenados en la base de datos, se observó que esta obra presenta el valor ``Schumann.'' en el campo de autor, incluyendo un punto final. Si el modelo generó una consulta basada en una coincidencia exacta con el valor ``Schumann'', la presencia de este carácter adicional habría impedido recuperar dicho registro. En este caso, el error no parece estar relacionado con la ausencia de información en la base de datos, sino con la generación de una consulta insuficientemente robusta frente a pequeñas variaciones en los datos textuales.
+
+Este resultado pone de manifiesto un aspecto relevante en sistemas basados en bases de datos estructuradas: la calidad y normalización de los metadatos pueden influir significativamente en la recuperación de información. Diferencias aparentemente menores, como espacios, signos de puntuación o variantes ortográficas, pueden provocar la pérdida de resultados cuando se realizan comparaciones exactas. El uso de operadores más flexibles, como \texttt{LIKE} o procedimientos de normalización previos, permite mitigar este tipo de problemas.
+\end{itemize}
+
+\subsection{Identifica piezas con un compás de 4/4}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se ha identificado una pieza musical con un compás de 4/4:
+
+*   **474**: Esta obra fue compuesta por Vicente T. Mendoza y forma parte de su ""Panorama de la música tradicional en México"", publicado por la UNAM en 1956. El archivo MusicXML para esta pieza, ""MX-1956-00-VM-01474.musicxml.xml"", indica explícitamente un compás de 4/4."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes obras con compás de 4/4: 
+
+1. IE-2019-D-HLS-001,
+2. IE-2019-D-HLS-002,
+3. IE-2019-D-HLS-003,
+4. IE-2019-D-HLS-007,
+5. IE-2019-D-HLS-010,
+6. IE-2019-D-HLS-011,
+7. IE-2019-D-HLS-013,
+8. IE-2019-D-HLS-016,
+9. IE-2019-D-HLS-017,
+10. IE-2019-D-HLS-018"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+    SELECT p.id, p.titulo, p.compas
+    FROM piezas p
+    WHERE p.compas = '4/4';
+    \end{verbatim}
+    Tras ejecutar la consulta se obtuvieron 1690 obras de compás 4/4.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es correcta en cuanto a la identificación del compás solicitado, ya que la única pieza devuelta efectivamente presenta un compás de 4/4. Sin embargo, la respuesta es claramente incompleta, ya que el corpus contiene un total de 1690 obras con esta característica. En este caso, el sistema no garantiza cobertura completa del espacio de búsqueda, lo que conduce a una recuperación parcial incluso cuando la información está disponible.
+
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta y completa en el contexto de la evaluación realizada. El modelo recupera correctamente las 10 primeras obras con compás de 4/4, coherentes con el límite impuesto por la consulta de recuperación (LIMIT 10). Aunque esta limitación impide mostrar el conjunto completo de 1690 resultados, la ejecución de la consulta SQL es correcta y devuelve resultados válidos y representativos del conjunto total. A diferencia del sistema basado en File Search, este enfoque garantiza exhaustividad respecto a la porción de datos consultada, al operar directamente sobre una base de datos estructurada.
+
+En consecuencia, la respuesta de Gemini 2.5 Flash se considera correcta pero incompleta, mientras que la respuesta del modelo basado en SQLite se considera correcta dentro de las restricciones de recuperación establecidas por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas con hemiolias horizontales}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Basado en los resultados de la búsqueda, los fragmentos proporcionados son principalmente datos de notación musical en formatos como MEI y MusicXML. Estos formatos describen las notas, duraciones y agrupaciones rítmicas de las piezas. Sin embargo, no contienen una anotación explícita o un análisis textual que identifique directamente la presencia de ""hemiolias horizontales"" en ninguna de las obras.
+
+Uno de los documentos (ES-1948-ES-FP-017a.mei) incluye una dirección que indica ""No hay ejemplos en las Secciones II y III"", lo que sugiere que podría ser parte de un estudio o análisis musical, pero no proporciona ejemplos positivos de hemiolias en las secciones consultadas.
+
+Para identificar piezas con hemiolias horizontales, se necesitaría un análisis musical de los fragmentos, lo cual no es posible realizar directamente con la información textual disponible en los resultados de la búsqueda."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con hemiolias horizontales: IE-2019-D-HLS-027, IE-2019-D-HLS-030, A Stor Mo Chroi, The Wild Rover, 575, 580, 583, 585, 608 y Muiñeira de Poio."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+    SELECT p.id, p.titulo
+    FROM piezas p
+    JOIN analisis_musical a ON p.id = a.pieza_id
+    WHERE a.tiene_hemiolia_horizontal = 1;
+    \end{verbatim}    
+    Tras realizar la consulta, se obtuvieron 220 piezas con hemiolias horizontales.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta en términos de recuperación, ya que el modelo no identifica ninguna pieza con hemiolias horizontales. En su lugar, ofrece una explicación general sobre la naturaleza de los datos musicales presentes en el corpus y concluye que no es posible determinar la existencia de este rasgo a partir de la información recuperada.
+    
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta, ya que identifica adecuadamente piezas que contienen hemiolias horizontales según el campo estructurado \texttt{tiene\_hemiolia\_horizontal}. El modelo recupera una lista de obras coherente con la condición de la consulta, incluyendo tanto identificadores numéricos como títulos.
+
+En consecuencia, el sistema basado en File Search falla al no recuperar ninguna instancia relevante del corpus, mientras que el sistema basado en SQLite ofrece una respuesta correcta pero parcial en términos de cobertura, aunque adecuada dentro del contexto de visualización limitada de resultados.
+\end{itemize}
+
+\subsection{Identifica piezas con hemiolias verticales}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "La búsqueda de archivos proporcionó varias partituras en formato MusicXML y MEI. Sin embargo, estos archivos contienen la notación musical en sí y no incluyen un análisis explícito que identifique la presencia de hemiolias verticales. Para determinar si una pieza contiene hemiolias verticales, sería necesario analizar la estructura rítmica y métrica de cada partitura.
+
+Una hemiolia vertical es un dispositivo rítmico en el que dos o más voces o líneas melódicas interpretan patrones rítmicos que sugieren métricas diferentes simultáneamente. Un ejemplo común se da cuando un compás de 6/8 (que se siente en dos pulsos de tres subdivisiones cada uno) es interpretado por una voz como si estuviera en 3/4 (tres pulsos de dos subdivisiones cada uno), creando una tensión o superposición rítmica."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con hemiolias verticales:
+
+* Drum,
+* Garryowen,
+* Go to the devil and shake yourself,
+* Jackson`s Favorite,
+* Jackson´s Morning Brush,
+* Kennedys´s Jig,
+* King Charle´s Jig,
+* Kissing and drinking,
+* Kitty of Coleraine,
+* Paddy O´Carrol
+
+Estas piezas tienen hemiolias verticales en su análisis musical."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+    SELECT p.id, p.titulo
+    FROM piezas p
+    JOIN analisis_musical a ON p.id = a.pieza_id
+    WHERE a.tiene_hemiolia_vertical = 1;
+    \end{verbatim}
+    Tras ejecutar la consulta, se obtuvieron 86 obras con hemiolias verticales.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta en términos de recuperación, ya que el modelo no devuelve ninguna pieza concreta con hemiolias verticales. En su lugar, proporciona una explicación general del concepto de hemiolia vertical y describe su interpretación musicológica, sin ofrecer resultados específicos del corpus. Este comportamiento sugiere que el sistema, al no encontrar evidencia explícita del fenómeno en los fragmentos recuperados, opta por una respuesta descriptiva basada en conocimiento general en lugar de realizar una recuperación efectiva de instancias del dataset.
+
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta en cuanto a la identificación de piezas con hemiolias verticales, ya que todas las obras listadas cumplen la condición definida por el campo estructurado \texttt{tiene\_hemiolia\_vertical}. Según la consulta de referencia, el conjunto completo está compuesto por 86 obras, por lo que la respuesta representa únicamente una muestra parcial del total.
+
+En consecuencia, el sistema basado en File Search falla al no recuperar instancias del corpus, mientras que el sistema basado en SQLite produce resultados correctos pero limitados en número debido a restricciones en la estrategia de consulta, aunque suficientes para evaluar correctamente la presencia del fenómeno.
+\end{itemize}
+
+\subsection{Identifica piezas con la tonalidad G major}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Las siguientes piezas se encuentran en la tonalidad de Sol mayor (G major):
+
+*   MX-1910-00-EA-00004.musicxml.xml,
+*   MX-1910-00-EA-00019.musicxml.xml,
+*   MX-1910-00-EA-00002.musicxml.xml,
+*   MX-1910-00-EA-00012.musicxml.xml
+
+Estas partituras están escritas para acordeón y cada una tiene una armadura de clave con un sostenido, lo que corresponde a la tonalidad de Sol mayor.
+"
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con la tonalidad de G mayor:
+
+1. IE-2019-D-HLS-001,
+2. IE-2019-D-HLS-002,
+3. IE-2019-D-HLS-003,
+4. IE-2019-D-HLS-004,
+5. IE-2019-D-HLS-005,
+6. IE-2019-D-HLS-007,
+7. IE-2019-D-HLS-008,
+8. IE-2019-D-HLS-009,
+9. IE-2019-D-HLS-010
+
+Estas piezas tienen la tonalidad de G mayor."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+    SELECT p.id, p.titulo, p.tonalidad
+    FROM piezas p
+    WHERE LOWER(TRIM(p.tonalidad)) = 'g major';
+    \end{verbatim}    
+    Tras realizar la consulta, se obtuvieron 2722 obras en G Major.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta, ya que sólo dos de las piezas identificadas presentan tonalidad de G major, mientras que el resto pertenecen a otras tonalidades distintas.
+
+Por otro lado, la respuesta generada por el modelo llama3.1:8b con acceso a la base de datos SQLite es correcta en términos de recuperación, ya que todas las piezas listadas cumplen la condición de pertenecer a la tonalidad de G major según el campo estructurado \texttt{tonalidad}. Sin embargo, al igual que en casos anteriores, la respuesta es necesariamente parcial debido a la limitación impuesta por la estrategia de recuperación (\texttt{LIMIT 10}), lo que implica que únicamente se muestran los primeros resultados del conjunto completo de 2722 obras.
+
+En consecuencia, el sistema basado en File Search presenta una recuperación incorrecta, mientras que el sistema basado en SQLite ofrece resultados correctos y consistentes, aunque restringidos en su presentación por limitaciones deliberadas de muestreo.
+\end{itemize}
+
+\subsection{Identifica piezas que estén en modo dórico}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Las siguientes piezas musicales podrían estar en modo dórico, basándose en sus armaduras de clave:
+
+*   **CO-1948-00-BG-00015.musicxml.xml**: Esta pieza tiene una armadura de clave con un sostenido, lo cual es consistente con el modo D dórico (Re dórico).
+*   **MX-1910-00-EA-00023.musicxml.xml**: Esta pieza presenta una armadura de clave con dos sostenidos, lo que podría indicar el modo E dórico (Mi dórico).
+*   **MX-1910-00-EA-00002.musicxml.xml**: Al igual que la primera, esta pieza tiene una armadura de clave con un sostenido, sugiriendo que podría estar en modo D dórico.
+*   **MX-1910-00-EA-00006.musicxml.xml**: Con una armadura de clave de un sostenido, esta pieza también es compatible con el modo D dórico.
+*   **CO-1948-00-BG-00001.musicxml.xml**: Esta pieza también tiene una armadura de clave con un sostenido, lo que la hace una candidata para estar en modo D dórico.
+
+Es importante señalar que la determinación del modo dórico en estas piezas se basa en la interpretación de las armaduras de clave, ya que los archivos no declaran explícitamente el modo musical."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas en modo dórico:
+
+1. IE-2019-D-HLS-006,
+2. IE-2019-D-HLS-012,
+3. IE-2019-D-HLS-015,
+4. IE-2019-D-HLS-016,
+5. IE-2019-D-HLS-025,
+6. IE-2019-D-HLS-027,
+7. IE-2019-D-HLS-029,
+8. IE-2019-D-HLS-035,
+9. IE-2019-D-HLS-049,
+10. Náña"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+    SELECT p.id, p.titulo, p.modo
+    FROM piezas p
+    WHERE LOWER(p.modo) LIKE '%dórico%';
+    \end{verbatim}  
+    Tras realizar la consulta se obtuvieron 1658 obras en modo dórico.  
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search básico con Gemini 2.5 Flash no coincide con los resultados esperados. El modelo no realizó una búsqueda sobre el campo \texttt{modo}, sino que infirió posibles casos de modo dórico a partir de las armaduras de clave presentes en los archivos MusicXML. Este razonamiento resulta problemático porque una misma armadura puede corresponder a distintos modos o tonalidades, por lo que la armadura por sí sola no permite determinar con fiabilidad el modo musical. Como consecuencia, las obras devueltas no corresponden necesariamente a piezas clasificadas como dóricas en la base de datos. De hecho, al contrastar los resultados con la consulta SQL, se comprobó que todas las obras propuestas por el modelo eran en realidad piezas en modo jónico, excepto la última, que estaba catalogada como eólica. El error se debe a que el modelo sustituyó una búsqueda explícita sobre los metadatos por una inferencia musicológica basada en información parcial de las partituras.
+
+Por el contrario, la respuesta generada por el modelo local con acceso a SQLite fue correcta. Todas las obras listadas estaban efectivamente clasificadas en modo dórico y coincidían con los resultados de la consulta SQL. Aunque únicamente se muestran diez resultados, la respuesta se considera satisfactoria debido al límite máximo de elementos impuesto en las consultas realizadas por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas con un bpm de 120}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se han identificado las siguientes piezas musicales con un BPM de 120:
+
+* ""120. María la pastora (a)"",
+* Una pieza del archivo ``IE-1909-D-PWJ-120.xml'' y ``IE-1909-D-PWJ-120.mei'',
+* Una pieza del archivo ``goodman\_vol\_1\_120.xml''
+
+Cabe mencionar que la pieza ""120. Ayer te quise.xml"" tiene un tempo de 99, no de 120, a pesar de que ""120"" aparece en el nombre del archivo.
+"
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con un BPM de 120:
+
+1. IE-2019-D-HLS-014,
+2. IE-2019-D-HLS-028,
+3. IE-2019-D-HLS-037,
+4. IE-2019-D-HLS-049,
+5. IE-2019-D-HLS-050,
+6. IE-2019-D-HLS-058,
+7. IE-2019-D-HLS-059,
+8. IE-2019-D-HLS-014 (con ID 9684),
+9. IE-2019-D-HLS-028 (con ID 9698),
+10. IE-2019-D-HLS-037 (con ID 9707)
+
+Nota: Hay dos piezas con el mismo título pero diferentes IDs, lo que sugiere que pueden ser versiones o revisiones de la misma pieza."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+    SELECT p.id, p.titulo, p.bpm
+    FROM piezas p
+    WHERE p.bpm = 120;
+    \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 27 obras con un bpm 120.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search básico con Gemini 2.5 Flash resulta incorrecta debido a que no se basa en el atributo estructurado \texttt{bpm}, sino en coincidencias textuales en nombres de archivos y descripciones. Esto provoca falsos positivos, como piezas que incluyen “120” en el título o en el nombre del fichero, pero cuyo tempo real no corresponde a 120 BPM. Incluso el propio modelo reconoce este problema al indicar explícitamente un caso con BPM 99, lo que evidencia la falta de consistencia en el criterio de filtrado. En consecuencia, los resultados no son fiables como consulta estructurada sobre la base de datos.
+
+En contraste, la respuesta del modelo local con acceso a SQLite es correcta en cuanto a la identificación de piezas con \texttt{bpm = 120}, ya que opera directamente sobre el campo numérico correspondiente. Sin embargo, el listado se ve afectado por el límite de salida (top-10 resultados), lo que impide mostrar la totalidad de las 27 obras existentes en la base de datos. Aun así, el conjunto devuelto es coherente con la consulta SQL de referencia, por lo que se considera una respuesta válida y completa dentro de las restricciones del sistema.
+\end{itemize}
+
+\subsection{Identifica piezas con un volumen midi de 79}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se han identificado varias piezas con un volumen MIDI muy cercano a 79 (específicamente 78.7402). Estas piezas son las siguientes:
+
+*   Una pieza titulada ""379"", compuesta por Vicente T. Mendoza, donde la parte es de piano.
+*   Otra pieza titulada ""479"", también compuesta por Vicente T. Mendoza y con una parte de piano.
+*   Una obra titulada ""79. Toque militar"", la cual incluye una parte para gran piano."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con un volumen midi de 79: 
+
+1. 5,
+2. 8,
+3. Allegretto,
+4. Allegro Moderato,
+5. NANA,
+6. LA LLUVIA,
+7. AVE MARIS STELLA,
+8. EL TURPIALITO"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+    SELECT p.id, p.titulo, p.midi_volume
+    FROM piezas p
+    WHERE p.midi_volume = 79;
+    \end{verbatim}  
+    Tras realizar la consulta se obtuvieron 1549 obras con un volumen midi de 79.  
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash puede considerarse parcialmente correcta, ya que identifica obras cuyo volumen MIDI es cercano al valor solicitado y proporciona ejemplos concretos. Sin embargo, no responde exactamente a la consulta formulada, que requería localizar todas las piezas con el valor \texttt{midi\_volume = 79}. Además, la recuperación se basa en coincidencias encontradas en los archivos musicales y devuelve únicamente tres ejemplos, sin evidenciar una búsqueda exhaustiva sobre el conjunto de datos. Por tanto, la respuesta es correcta en términos aproximados, pero incompleta respecto al criterio exacto solicitado.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las obras listadas presentan un volumen MIDI igual a 79 según la base de datos y constituyen una muestra válida de los resultados esperados. Aunque únicamente devuelve ocho ejemplos debido a la limitación de longitud impuesta al sistema, las respuestas recuperadas coinciden con los registros obtenidos mediante la consulta SQL.
+\end{itemize}
+
+\subsection{Identifica piezas cuya nota más grave sea A3}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} Según la información disponible, no se pudo identificar ninguna pieza musical cuya nota más grave sea específicamente A3. Algunos documentos muestran la presencia de la nota A3, pero también contienen notas más graves como A2 o A1. Otros documentos presentan notas más agudas como la más grave, como A4, D4 o G4.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} ``Se encontraron las siguientes piezas cuya nota más grave es A3:
+
+* ID 64,
+* ID 211,
+* ID 221,
+* ID 1219,
+* ID 1535,
+* ID 1562,
+* ID 1645,
+* ID 1718,
+* ID 1736,
+* ID 1742''
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, p.nota_mas_grave
+FROM piezas p
+WHERE p.nota_mas_grave = 'A3';
+    \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 403 obras cuya nota más grave es A3.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. Aunque el modelo analiza algunos documentos y detecta la presencia de la nota A3 en determinadas obras, concluye erróneamente que no puede identificarse ninguna pieza cuya nota más grave sea exactamente A3.
+    
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las obras listadas cumplen la condición de tener \texttt{A3} como nota más grave, de acuerdo con los registros almacenados en la base de datos. No obstante, únicamente se muestran diez resultados debido a la limitación impuesta sobre el número máximo de respuestas devueltas por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas cuya nota más aguda sea G5}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Basándome en la información proporcionada, he identificado varios archivos de música que contienen la nota G5. Sin embargo, no puedo confirmar que G5 sea la nota más aguda en ninguna de estas piezas en su totalidad, ya que algunos fragmentos también muestran la presencia de notas más altas como A5.
+
+Los archivos que contienen la nota G5 incluyen:
+*   `MX-1952-00-CR-00002.musicxml.xml`
+*   `IE-2019-D-HLS-015.xml`
+*   `goodman\_vol\_1\_495.xml`
+*   `goodman\_vol\_2\_132.xml`
+*   `goodman\_vol\_1\_505.xml`
+
+Es importante señalar que, en los archivos `MX-1952-00-CR-00002.musicxml.xml` y `IE-2019-D-HLS-015.xml`, la nota A5 también aparece después de G5, lo que indica que G5 no es la nota más aguda en esas secciones específicas de las piezas. Para determinar la nota más aguda de una pieza completa, sería necesario un análisis exhaustivo de la partitura entera."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas cuya nota más aguda es G5: IE-2019-D-HLS-001, IE-2019-D-HLS-003, IE-2019-D-HLS-004, IE-2019-D-HLS-008, IE-2019-D-HLS-012, IE-2019-D-HLS-024, IE-2019-D-HLS-026, IE-2019-D-HLS-027, IE-2019-D-HLS-031 y IE-2019-D-HLS-033."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, p.nota_mas_aguda
+FROM piezas p
+WHERE p.nota_mas_aguda = 'G5';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1529 obras cuya nota más aguda es G5.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. Aunque el modelo identifica varias piezas que contienen la nota \texttt{G5}, la consulta solicitaba específicamente localizar aquellas obras cuya nota más aguda fuese \texttt{G5}. El modelo no logra verificar esta condición y, de hecho, señala que algunas de las obras recuperadas contienen notas más agudas, como \texttt{A5}, por lo que no cumplen el criterio solicitado. En consecuencia, la respuesta se limita a detectar la presencia de la nota \texttt{G5} dentro de las partituras recuperadas, sin determinar correctamente si constituye el registro máximo de cada obra.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas presentan \texttt{G5} como nota más aguda según los registros almacenados en la base de datos. No obstante, únicamente se muestran diez resultados debido a la limitación establecida sobre el número máximo de respuestas devueltas por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas cuyo autor sea de género masculino}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Según la información disponible, no se pueden identificar piezas cuyos autores sean de género masculino de manera concluyente.
+
+Las obras encontradas incluyen:
+*   ""ASSERRIN, ASERRAN"", cuyo autor está listado como ""Compositor / arreglista"".
+*   ""80- A BELÉN CORRAMOS"", también atribuida a un ""Compositor / arreglista"".
+*   ""Mis Señoras a donde van ustedes"", que fue dictada por ""la niña Fernanda F. Rabanada"", indicando una autora femenina.
+*   ""163. Los números retornados"", para la cual no se menciona un compositor específico.
+*   ""Gaffney´s Favorite Son"", cuyo autor se indica como ""Compositor / arreglista"".
+
+Dado que ""Compositor / arreglista"" no especifica el género del autor, y en el caso de F. Rabanada se menciona explícitamente ""niña Fernanda"", no es posible confirmar que alguna de estas piezas sea de un autor masculino basándose únicamente en los datos proporcionados."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes piezas cuyo autor sea de género masculino:
+
+* ID: 2514,
+* ID: 2518,
+* ID: 2532,
+* ID: 2562,
+* ID: 3004,
+* ID: 3010,
+* ID: 3014,
+* ID: 3025,
+* ID: 3030,
+* ID: 3037
+
+Es posible que haya más piezas con autores de género masculino en la base de datos."""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, p.autor_genero
+FROM piezas p
+WHERE p.autor_genero = 'masculino';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1451 obras con autor de género masculino.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo no consigue identificar correctamente las obras cuyo autor tiene género masculino y concluye que no es posible determinar dicha información a partir de los documentos recuperados. En su lugar, analiza referencias textuales presentes en algunas partituras y metadatos parciales, infiriendo erróneamente que la ausencia de una indicación explícita del género impide responder a la consulta.
+    
+    La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las obras listadas presentan el valor \texttt{masculino} en el campo \texttt{autor\_genero}, por lo que cumplen la condición solicitada. No obstante, únicamente se muestran diez resultados debido a la limitación establecida sobre el número máximo de respuestas devueltas por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas cuyo software de codificación haya sido Sibelius 7.1.3}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se han encontrado piezas cuyo software de codificación sea Sibelius 7.1.3 en la información proporcionada. Los resultados de la búsqueda indican que las piezas encontradas fueron codificadas con MuseScore 4.2.1 o MuseScore 4.1.1.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas cuyo software de codificación haya sido Sibelius 7.1.3:
+
+* Fáinne Geal an Lae (ID: 1998),
+* An Clár Bog Déil (ID: 1999),
+* Reel (ID: 2000, ID: 2005, ID: 2006),
+* Miss Monaghan’s Reel (ID: 2001),
+* Betsy Baker (ID: 2002),
+* Miss Johnson (ID: 2003),
+* The Wind that Shakes the Barley (ID: 2004),
+* The Lady’s Cup of Tea (ID: 2007)"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, p.software_codificacion
+FROM piezas p
+WHERE p.software_codificacion = 'Sibelius 7.1.3';
+    \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 4641 obras codificadas con Sibelius 7.1.3.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo concluye que no existen piezas codificadas con \texttt{Sibelius 7.1.3} porque, entre los documentos recuperados durante la búsqueda, únicamente encuentra referencias a versiones de MuseScore. Sin embargo, esta conclusión se deriva de una muestra limitada de archivos recuperados y no de una consulta exhaustiva sobre los metadatos del conjunto de datos. Como demuestra la consulta SQL, existen numerosas obras cuyo campo \texttt{software\_codificacion} tiene exactamente el valor \texttt{Sibelius 7.1.3}.
+
+    La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las obras listadas presentan \texttt{Sibelius 7.1.3} como software de codificación según los registros almacenados en la base de datos. No obstante, únicamente se muestran algunos ejemplos debido a la limitación impuesta sobre el número máximo de resultados devueltos por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas cuya fecha de codificación sea el 2015-07-01}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontraron piezas con la fecha de codificación 2015-07-01 en los resultados de la búsqueda. Los archivos encontrados, como ``ES-1948-CB-CO1-015.mei'', ``ES-1948-CB-CO-015.mei'', ``ES-1948-CB-CO1-415.mei'' y ``ES-2000-AS-EMT-015.mei'', indican una fecha de aplicación de "2023-02-22" para el proceso de transcodificación, no para la codificación original de la pieza.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes piezas cuya fecha de codificación sea el 2015-07-01:
+
+1. Ceann Dubh Dileas,
+2. The Steam Packet,
+3. The Bantry Jig,
+4. The Sandy Banks of Rush,
+5. Lough Erne’s Water,
+6. The Humours of Redgap,
+7. When Mary was a Young Thing,
+8. A Highland Reel,
+9. The Gipsy,
+10. The Basket of Oysters"""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, p.fecha_codificacion
+FROM piezas p
+WHERE p.fecha_codificacion = '2015-07-01';
+    \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 1607 obras codificadas el 2015-07-01.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo no identifica correctamente las obras con fecha de codificación \texttt{2015-07-01} y concluye erróneamente que no existen coincidencias, basándose en metadatos de otros procesos de transcodificación con fechas distintas (por ejemplo, 2023-02-22). Esto indica una confusión entre la fecha de codificación original de la pieza y la fecha de procesamiento posterior de los archivos, lo que provoca un falso negativo respecto a la consulta solicitada.
+    
+    La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las obras listadas cumplen la condición de tener el campo \texttt{fecha\_codificacion} igual a \texttt{2015-07-01}. No obstante, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación en el número de elementos devueltos por la consulta o por el formato de respuesta.
+\end{itemize}
+
+\subsection{Identifica piezas con síncopas}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Los resultados de la búsqueda proporcionan archivos MusicXML que contienen datos de partituras, pero no identifican piezas musicales específicas por su título que sean conocidas por sus síncopas. Los nombres de los archivos son genéricos como ""Partitura sin título"" o identificadores numéricos, lo que no permite identificar las obras.
+
+Para identificar piezas con síncopas, sería necesario analizar la estructura rítmica dentro de cada uno de estos archivos MusicXML, lo cual no es posible directamente a partir de los fragmentos de texto proporcionados."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con síncopas:
+
+* IE-2019-D-HLS-012,
+* IE-2019-D-HLS-014,
+* IE-2019-D-HLS-018,
+* IE-2019-D-HLS-027,
+* IE-2019-D-HLS-031,
+* IE-2019-D-HLS-032,
+* IE-2019-D-HLS-043,
+* IE-2019-D-HLS-048,
+* IE-2019-D-HLS-053,
+* IE-2019-D-HLS-058
+
+Estas piezas tienen síncopas según el análisis musical."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tiene_sincopas = 1;
+    \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 538 obras con síncopas.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo no identifica ninguna pieza concreta con síncopas y argumenta que la información disponible no permite realizar la clasificación solicitada, ya que los archivos recuperados no contienen metadatos explícitos sobre este rasgo rítmico a nivel de obra.
+    
+    La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{tiene\_sincopas = 1} según el análisis musical almacenado en la tabla \texttt{analisis\_musical}. No obstante, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación en el número de elementos devueltos por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas que traten la muerte como tema}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Varias piezas musicales y canciones tratan la muerte como tema central. Entre ellas se encuentran:
+
+*   ""92. Estaba la Muerte un día... (b)"",
+*   ""125. La muerte (b)"",
+*   ""91. La media muerte (a)"",
+*   Una canción que narra la muerte de Mercedes, describiendo su funeral con versos como ""Ya Mercedes está muerta, muerta está, que yo la vi, cuatro duques la llevaban por las calles de Madrid"". También menciona detalles de su vestimenta y el luto por su partida, como que ""Los caballos de Palacio ya no quieren pasear"".
+*   ""396. Se murió. (Cuatro voces)."""
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas que tratan la muerte como tema:
+
+* Ama a los viejos,
+* 568,
+* 571,
+* 579,
+* 588,
+* 592,
+* 596,
+* 607,
+* 613,
+* 8
+
+Estas piezas tienen un total de eventos musicales relacionados con la muerte en su análisis musical."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.temas
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.temas) LIKE '%muerte%';
+    \end{verbatim}    
+    Tras realizar la consulta, se obtuvieron 768 obras que tratan el tema de la muerte en sus letras.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es parcialmente correcta desde un punto de vista semántico, ya que identifica varias obras relacionadas con el tema de la muerte y aporta ejemplos textuales que evidencian dicha temática en el contenido lírico. No obstante, el enfoque se basa en coincidencias en los fragmentos recuperados y no en una consulta estructurada sobre los temas, lo que limita la exhaustividad del resultado y puede introducir sesgos de recuperación. En consecuencia, aunque las piezas mencionadas son plausibles, la respuesta no garantiza cobertura completa del conjunto de datos.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas corresponden a registros cuyo campo \texttt{temas} contiene explícitamente la palabra \texttt{muerte}, cumpliendo exactamente la condición de la consulta SQL. Sin embargo, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación del formato de salida o al truncamiento de la respuesta.
+\end{itemize}
+
+\subsection{Identifica piezas con polirritmia}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se han identificado varias piezas con polirritmia o elementos rítmicos complejos que sugieren su presencia:
+
+*   Un arrullo (Lullaby) de Extremadura, España, identificado como ""ES-1944-EX-MGM-002.mei"", se describe con una métrica polirrítmica.
+*   Otro arrullo de Extremadura, España, ""ES-2000-CC-MGM-002.mei"", también presenta una métrica polirrítmica.
+
+Además, otras piezas contienen descripciones rítmicas que podrían implicar polirritmia:
+
+*   ""244. Seguidillas boleras de Burgos.xml"" incluye una sección de ""Ritmo"" que podría sugerir complejidades rítmicas.
+*   ""246. Tente que me caigo rueda burgalesa .xml"" menciona el ""ritmo de la pandereta"" (rhythm of the tambourine), lo cual puede indicar patrones rítmicos superpuestos.
+*   ""281. Daime vino cancion majar.xml"" describe ""Golpes alternos de los dos grupos de majadores"" (alternating beats of two groups of threshers), lo que podría crear una textura polirrítmica.
+"
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes piezas con polirritmia:
+
+1. IE-2019-D-HLS-010,
+2. IE-2019-D-HLS-011,
+3. IE-2019-D-HLS-015,
+4. IE-2019-D-HLS-018,
+5. IE-2019-D-HLS-019,
+6. IE-2019-D-HLS-021,
+7. IE-2019-D-HLS-031,
+8. IE-2019-D-HLS-032,
+9. IE-2019-D-HLS-057,
+10. El reloj
+
+Estas piezas tienen polirritmia, según los análisis musicales realizados."""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tiene_polirritmia = 1;
+    \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 1904 obras con polirritmia.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo infiere la presencia de polirritmia a partir de descripciones textuales vagas o interpretaciones de elementos rítmicos complejos (como menciones a golpes alternos o patrones de pandereta). Esto conduce a una sobreinterpretación de evidencia indirecta y a la inclusión de ejemplos que no están etiquetados explícitamente como polirritmia en el conjunto de datos. En consecuencia, la respuesta no es verificable ni exhaustiva y no refleja de forma fiable los registros reales.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{tiene\_polirritmia = 1} según el análisis musical almacenado en la tabla \texttt{analisis\_musical}. No obstante, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación del formato de respuesta o del número máximo de elementos devueltos.
+\end{itemize}
+
+\subsection{Identifica piezas cuyo contenido lírico esté escrito en voz masculina}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Based on the search results, here's a piece whose lyrical content is written in a male voice:
+
+*   **""Macario Romero""** (MX-1939-00-VM-00234) tells the story of Macario Romero, a man who is warned by General Plata about seeking a woman and is later killed. The lyrics directly quote Macario Romero speaking, for example: ""Dice Macario Romero: -Oiga, mi general Plata, consígame un permisito para ir a ver a mi chata-"". The song also mentions ""Panchito Díaz lo devisa: -Papá, ahí viene Macario, desde leguas lo conozco, en su caballo melao-"", further indicating a male perspective through the character interactions."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes piezas cuyo contenido lírico esté escrito en voz masculina:
+
+* ID: 12170,
+* ID: 12171,
+* ID: 12172,
+* ID: 12174,
+* ID: 12179,
+* ID: 12192,
+* ID: 12202,
+* ID: 12204,
+* ID: 12205,
+* ID: 12208
+
+Es posible que haya más piezas con contenido lírico en voz masculina en la base de datos."""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.lirica_voz
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.lirica_voz = 'masculino';
+    \end{verbatim}    
+    Tras realizar la consulta se obtuvieron 2618 obras cuyo contenido lírico está escrito en voz masculina.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo basa su conclusión en el análisis de una única pieza concreta (“Macario Romero”), interpretando el contenido narrativo y la voz de los personajes como evidencia suficiente para determinar el género de la voz lírica. Sin embargo, esta inferencia se realiza a partir de un caso aislado, lo que introduce un sesgo de generalización y una falta de cobertura del conjunto de datos. En consecuencia, la respuesta no es representativa del total de obras etiquetadas como voz masculina.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{lirica\_voz = 'masculino'} según los metadatos del análisis musical. No obstante, la salida muestra únicamente un subconjunto de los resultados totales debido a la limitación en el número de elementos devueltos por el sistema.
+\end{itemize}
+
+\subsection{Identifica obras cuya tendencia melódica sea predominantemente descendente}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Los resultados de la búsqueda incluyen varias partituras de MusicXML y MEI que contienen información musical. Para identificar obras con una tendencia melódica predominantemente descendente, se necesitaría un análisis más profundo de las notas dentro de cada partitura. Sin embargo, algunos títulos o indicaciones pueden ofrecer pistas:
+
+Una obra titulada ""Partitura sin título"" para acordeón, con una indicación de tempo ""Adagio"", muestra secuencias de notas descendentes en las medidas 3 y 4 (G5-F\#5-E5 y A5-G5-F\#5-E5).
+
+Otra partitura, también titulada ""Partitura sin título"" y para acordeón, presenta en la medida 2 una secuencia descendente (Bb5-A5-G5).
+
+Por otro lado, la obra ""25. SUBE Y BAJA"" con un subtítulo, sugiere que puede tener tanto movimientos ascendentes como descendentes, por lo que su tendencia no sería predominantemente descendente.
+
+Finalmente, una canción infantil titulada ""Qué Lloras Retirada"" de María García, en modo eólico y con tempo ""Andante"", tiene una nota C5 seguida de B4 en la primera medida y luego A4, lo que podría indicar una tendencia descendente en su inicio."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes obras con tendencia melódica predominantemente descendente:
+
+1. IE-2019-D-HLS-001,
+2. IE-2019-D-HLS-002,
+3. IE-2019-D-HLS-003,
+4. IE-2019-D-HLS-006,
+5. IE-2019-D-HLS-013,
+6. IE-2019-D-HLS-016,
+7. IE-2019-D-HLS-019,
+8. IE-2019-D-HLS-021,
+9. IE-2019-D-HLS-023,
+10. IE-2019-D-HLS-024
+
+Estas obras presentan una tendencia melódica descendente en más de un 50\% de los intervalos utilizados, lo que indica que la melodía tiende a moverse hacia abajo."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.tendencia_melodica
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tendencia_melodica = 'Predominantemente descendente';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 6000 obras cuya tendencia melódica es predominantemente descendente.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo intenta inferir la tendencia melódica descendente a partir de fragmentos locales de algunas partituras recuperadas (por ejemplo, secuencias de notas descendentes en compases concretos), pero no realiza un análisis exhaustivo y completo de la obra. Esto provoca una decisión basada en evidencia parcial y no en el conjunto completo de datos, lo que introduce sesgos de muestreo y una cobertura muy limitada del corpus.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las obras listadas cumplen la condición \texttt{tendencia\_melodica = 'Predominantemente descendente'} según el análisis musical almacenado en la base de datos. No obstante, la salida presenta únicamente un subconjunto de los resultados totales debido a la limitación del número de elementos devueltos por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas con 4 alteraciones accidentales}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "No se encontraron piezas en los archivos proporcionados que contengan específicamente 4 alteraciones accidentales en su armadura.
+
+Los archivos de música revisados (MX-1910-00-EA-00007.musicxml.xml, MX-1910-00-EA-00003.musicxml.xml, MX-1910-00-EA-00001.musicxml.xml, MX-1910-00-EA-00029.musicxml.xml, MX-1910-00-EA-00011.musicxml.xml) indican que las piezas tienen una armadura con 2 alteraciones (dos sostenidos), lo que corresponde a la tonalidad de Re Mayor o Si menor.
+
+Para tener 4 alteraciones accidentales en la armadura, las tonalidades serían:
+*   **Con 4 sostenidos**: Mi Mayor o Do sostenido menor.
+*   **Con 4 bemoles**: La bemol Mayor o Fa menor."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Las piezas con 4 alteraciones accidentales son:
+
+* IE-2019-D-HLS-007,
+* IE-2019-D-HLS-009,
+* IE-2019-D-HLS-011,
+* IE-2019-D-HLS-017,
+* IE-2019-D-HLS-018,
+* IE-2019-D-HLS-023,
+* IE-2019-D-HLS-026,
+* IE-2019-D-HLS-030,
+* IE-2019-D-HLS-035,
+* IE-2019-D-HLS-037"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.conteo_accidentales_totales
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.conteo_accidentales_totales = 4;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 190 obras con 4 alteraciones accidentales.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. El modelo interpreta la pregunta en términos de armaduras de clave y tonalidades, confundiendo el concepto de “4 alteraciones accidentales” con la cantidad de alteraciones en la armadura (sostenidos o bemoles). Esto provoca una desviación conceptual que impide identificar correctamente las obras solicitadas y conduce a una respuesta basada en teoría tonal general en lugar de datos del conjunto.
+
+La respuesta generada por el modelo local con acceso a SQLite es correcta. Todas las piezas listadas cumplen la condición \texttt{conteo\_accidentales\_totales = 4} según el análisis musical almacenado en la base de datos. No obstante, la salida presenta únicamente un subconjunto de los resultados totales debido a la limitación del número de elementos devueltos por el sistema.
+\end{itemize}
+
+\subsection{Identifica piezas con compases vacíos}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Las piezas que contienen compases vacíos, indicados por la presencia de una marca de silencio de compás completo (`<rest measure=""yes""/>`), son las siguientes:
+
+*   MI-1921-00-AL-03517.musicxml.xml
+*   MI-1921-00-AL-03518.musicxml.xml
+*   MX-1939-00-VM-00265.musicxml.xml
+
+Adicionalmente, la pieza CO-1948-00-BG-00041.musicxml.xml incluye compases compuestos enteramente por silencios, como el compás 1 con un silencio de blanca y uno de negra, y el compás 2 con tres silencios de negra en una métrica de 3/4."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} Se encontraron las siguientes piezas con compases vacíos: Himno a Bolívar, Me tuviste, 275556 Bog Road Slow, 588, Campbells are Comin´, Catholic Boys, Charlie Mack, Doyle´s Frolic, Drum, Garry owen.
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.qc_compases_vacios
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.qc_compases_vacios > 0;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 612 obras con compases vacíos.
+    \item \textbf{Revisión de respuestas.} La respuesta proporcionada por el primer modelo presenta resultados parcialmente correctos, ya que identifica algunas piezas que efectivamente contienen compases vacíos. Sin embargo, la cobertura es incompleta y se limita a un subconjunto muy reducido de la base de datos, sin reflejar el conjunto total de obras. Además, se observa cierta inconsistencia en la definición del criterio de compás vacío: el modelo mezcla casos de silencios explícitos a nivel de compás completo con descripciones de compases con silencios parciales, lo que introduce ambigüedad en la clasificación.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que recupera el conjunto de piezas correspondiente a la condición \texttt{qc\_compases\_vacios > 0}, alineándose con la consulta SQL de referencia y cubriendo adecuadamente la totalidad de resultados esperados en la base de datos.
+\end{itemize}
+
+\subsection{Identifica piezas con notas de duración 0}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se han encontrado piezas con notas de duración 0 en los documentos proporcionados. Los resultados de la búsqueda muestran que las notas y silencios tienen duraciones como 1, 2, 3, 4, 6 o 8, o tipos como "eighth" (corchea) y "16th" (semicorchea), pero ninguna con una duración de 0.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con notas de duración 0:
+
+* IE-2019-D-HLS-006,
+* IE-2019-D-HLS-007,
+* IE-2019-D-HLS-015,
+* IE-2019-D-HLS-025,
+* IE-2019-D-HLS-026,
+* IE-2019-D-HLS-028,
+* IE-2019-D-HLS-030,
+* 575,
+* 579,
+* 585"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.qc_notas_duracion_cero
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.qc_notas_duracion_cero > 0;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1784 obras con notas de duración 0.
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que concluye la ausencia de notas con duración 0 basándose en una interpretación superficial de los valores de duración presentes en los documentos. Este enfoque confunde la representación explícita de la duración en el formato textual con la existencia de registros donde el análisis musical identifica explícitamente duraciones nulas.
+
+En cambio, la respuesta del segundo modelo es correcta, ya que recupera los identificadores de piezas que cumplen la condición \texttt{qc\_notas\_duracion\_cero > 0}, coincidiendo con el resultado de la consulta SQL de referencia.
+\end{itemize}
+
+\subsection{Identifica piezas con plicas anómalas}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Las piezas que contienen información sobre la dirección de las plicas (stems) y, por lo tanto, podrían ser examinadas en busca de plicas anómalas son las siguientes:
+
+*   **ES-1948-CB-CO-312.mei**: Este archivo XML de codificación musical (MEI) incluye notas donde se especifica la dirección de la plica, como `stem.dir=""up""`.
+*   **ES-1948-CB-CO1-312.mei**: Similar al anterior, este archivo también contiene notas con el atributo `stem.dir=""up""`, indicando la dirección de la plica.
+
+Cabe destacar que, para determinar qué constituye una ""plica anómala"", sería necesaria una definición específica de anomalía dentro del contexto de la notación musical. Los archivos proporcionados indican la dirección de las plicas (por ejemplo, hacia arriba), pero no clasifican explícitamente ninguna como anómala."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con plicas anómalas:
+
+- IE-2019-D-HLS-019,
+- Fáinne Geal an Lae,
+- An Clár Bog Déil,
+- Miss Monaghan’s Reel,
+- Betsy Baker,
+- Miss Johnson,
+- The Wind that Shakes the Barley,
+- Reel,
+- Reel,
+- The Lady’s Cup of Tea"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.tiene_plicas_anomalas
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.tiene_plicas_anomalas = 1;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 5554 obras con plicas anómalas.
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que se limita a identificar la presencia explícita del atributo `stem.dir` en algunos archivos, sin aplicar el criterio de detección de plicas anómalas definido en el análisis musical. Esto conduce a una interpretación incompleta del problema, reduciendo la tarea a una simple detección de metadatos en lugar de una clasificación basado en un análisis más exhaustivo.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que recupera las piezas que cumplen la condición \texttt{tiene\_plicas\_anomalas = 1}, coincidiendo con la consulta SQL de referencia. Este resultado refleja adecuadamente la definición operacional de plicas anómalas en la base de datos y es consistente con el conjunto completo de obras identificadas.
+\end{itemize}
+
+\subsection{Identifica piezas que usen la palabra ``bondad''}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontraron piezas que contengan la palabra ``bondad'' en los resultados de la búsqueda.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas que usan la palabra ""bondad"":
+
+* Pieza con id 137: Padre nuéstro
+* Pieza con id 8002: 73. PADRE NUESTRO 
+
+Nota: Las títulos se muestran exactamente como se encuentran en la base de datos."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.lirica_sustantivos
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.lirica_sustantivos) LIKE '%bondad%';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron dos canciones que contienen la palabra ``bondad'': ``Padre nuéstro'' y ``73. PADRE NUESTRO'' 
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que concluye la ausencia de coincidencias sin evidenciar un análisis exhaustivo del campo lírico, lo que puede indicar una limitación del proceso de recuperación o una búsqueda superficial que no considera variantes de normalización textual (mayúsculas, tildes o tokenización del contenido).
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que identifica las dos piezas que contienen la palabra ``bondad'' en el atributo \texttt{lirica\_sustantivos}, coincidiendo con el resultado de la consulta SQL de referencia. Esto confirma que su extracción está alineada con el criterio definido en la base de datos y recupera correctamente todos los casos esperados.
+\end{itemize}
+
+\subsection{Identifica piezas que mencionen el nombre propio ``Alfonsito''}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontró ninguna pieza que mencione el nombre propio ``Alfonsito'' en los documentos proporcionados. Los resultados de la búsqueda hacen referencia a ``Alfonso XII'', ``Alfonso Doce'' y ``Angelito'', pero no a ``Alfonsito'' específicamente.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas que mencionan el nombre propio ""Alfonsito"":
+
+* Pieza con id 6940: No se especifica el título en la base de datos.
+* Pieza con id 7270: No se especifica el título en la base de datos."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.lirica_nombres_propios
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.lirica_nombres_propios) LIKE '%Alfonsito%';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron dos obras que contienen el nombre propio ``Alfonsito'': ``None (id: 6940)'' y ``None (id: 7270)'' 
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que descarta la presencia del nombre propio ``Alfonsito'' basándose en coincidencias textuales aproximadas (como ``Alfonso XII'' o ``Alfonsito'' en variantes no normalizadas), sin realizar una búsqueda exacta sobre el campo estructurado de nombres propios. Esto provoca un falso negativo, al no considerar que el término puede aparecer en el análisis lírico de forma explícita y normalizada.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que identifica las piezas que contienen el término ``Alfonsito'' en el atributo \texttt{lirica\_nombres\_propios}, coincidiendo con el resultado de la consulta SQL de referencia. Aunque los títulos no estén especificados en la base de datos para estos registros, la extracción es válida y completa según el criterio definido en el esquema de datos.
+\end{itemize}
+
+\subsection{Identifica piezas cuyo intervalo frontera más frecuente sea +5}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} The provided search results are MusicXML files, which are a digital sheet music format. To identify pieces with a frequent "+5" boundary interval, I would need to parse these files, extract the melodic intervals, and then analyze their frequency.
+
+Unfortunately, I cannot directly "read" or "interpret" the musical content of these MusicXML files to calculate intervals and their frequencies. The snippets show musical notation in a structured text format (e.g., `<pitch><step>D</step><octave>5</octave></pitch>`), but I cannot perform the complex musical analysis needed to identify specific intervals like "+5" as "most frequent boundary interval" without more advanced capabilities or a specific tool designed for music information retrieval.
+
+Therefore, I cannot identify pieces whose most frequent boundary interval is +5 based on the provided search results. I only have raw MusicXML data, not an analysis of their melodic intervals.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas cuyo intervalo frontera más frecuente sea +5:
+
+* IE-2019-D-HLS-002 (Título: IE-2019-D-HLS-002, Autor: , Compás: 4/4, Tonalidad: G mayor, BPM: 62)
+* IE-2019-D-HLS-005 (Título: IE-2019-D-HLS-005, Autor: , Compás: 12/8, Tonalidad: G mayor, BPM: 96)
+* IE-2019-D-HLS-028 (Título: IE-2019-D-HLS-028, Autor: , Compás: 4/4, Tonalidad: G mayor, BPM: 120)
+* IE-2019-D-HLS-035 (Título: IE-2019-D-HLS-035, Autor: , Compás: 4/4, Tonalidad: C mayor, BPM: 90)
+* IE-2019-D-HLS-038 (Título: IE-2019-D-HLS-038, Autor: , Compás: 2/4, Tonalidad: C mayor, BPM: 80)
+* IE-2019-D-HLS-047 (Título: IE-2019-D-HLS-047, Autor: , Compás: 3/8, Tonalidad: G mayor, BPM: 112)
+* IE-2019-D-HLS-048 (Título: IE-2019-D-HLS-048, Autor: , Compás: 6/8, Tonalidad: G mayor, BPM: 80)
+* IE-2019-D-HLS-057 (Título: IE-2019-D-HLS-057, Autor: , Compás: 4/4, Tonalidad: G mayor, BPM: 128)
+* IE-2019-D-HLS-062 (Título: IE-2019-D-HLS-062, Autor: , Compás: 6/4, Tonalidad: B menor, BPM: 180)
+* Ejercicio (Título: Ejercicio, Autor: José Miguel Hernández Jaramillo, Compás: 4/4, Tonalidad: G mayor)"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.intervalo_frontera_mas_frecuente = '+5';
+    \end{verbatim}   
+    Tras ejecutar la consulta se obtuvieron 732 obras cuyo intervalo frontera más frecuente es +5. 
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que reconoce explícitamente la incapacidad de analizar los intervalos melódicos a partir de los datos MusicXML proporcionados. Aunque esta observación es razonable desde un punto de vista descriptivo, el modelo no realiza ninguna inferencia ni recuperación estructurada mediante análisis musical.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que identifica las piezas cuyo campo \texttt{intervalo\_frontera\_mas\_frecuente} es igual a `+5`, coincidiendo con la consulta SQL de referencia.
+\end{itemize}
+
+\subsection{Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "La información proporcionada no permite identificar piezas específicas en 2/4 que contengan síncopas ligadas sistemáticamente entre el segundo pulso de un compás y el primero del siguiente. Los resultados de la búsqueda incluyen archivos MusicXML que, si bien indican que algunas piezas están en compás de 2/4, como se ve en el archivo ``MX-1910-00-EA-00032.musicxml.xml'' y ``CO-1948-00-BG-00007.musicxml.xml'', no ofrecen un análisis textual de las ligaduras de síncopa entre compases. Para confirmar esta característica, sería necesario un análisis detallado del contenido musical de cada archivo."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes piezas en compás de 2/4 que contienen síncopas ligadas entre el segundo pulso y el primero del siguiente: 
+
+An Smachdaoin Crón,
+‘I’m Asleep \& Don’t Waken Me’,
+1018. The Cottage Maids — Fling,
+1030. ‘Hey, Daddy’ — Walk Around,
+1034. Carry the News to Mary — Walk Around,
+1035. Chaw Roast Beef — Walk Around,
+147. Congress Park — Reel,
+251. Magnolia — Reel,
+385. The Northern Light — Reel,
+670. Celebrated Stop — Hornpipe
+
+Estas piezas pueden interesarte si buscas música con patrones rítmicos complejos y sistemáticos."""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim} 
+    SELECT p.id, p.titulo
+    FROM piezas p
+    JOIN analisis_musical a ON p.id = a.pieza_id
+    WHERE p.compas = '2/4'
+    AND a.tiene_sincopas = 1
+    AND (
+        LENGTH(a.compases_sincopas) - LENGTH(REPLACE(a.compases_sincopas, 
+        ',', ''))
+    ) >= 1;
+    \end{verbatim} 
+    Tras ejecutar esta consulta se obtienen 99 resultados que coinciden con la condición presente en la pregunta formulada a los modelos.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante el sistema de file search de la API de Gemini evidencia una clara limitación en el enfoque basado exclusivamente en recuperación de documentos no estructurados. El modelo identifica correctamente la existencia de piezas en compás de 2/4, pero reconoce explícitamente la ausencia de información estructurada sobre relaciones métricas entre compases, lo que le impide verificar la condición de síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente. Este comportamiento es coherente con un sistema RAG basado en texto, donde las propiedades rítmicas no están formalizadas como variables consultables, sino como contenido implícito dentro de archivos MusicXML.
+
+En contraste, el modelo local basado en llama3.1:8b, con acceso a una base de datos estructurada en SQLite, produce una respuesta aparentemente más útil, pero semánticamente incorrecta en términos musicológicos. Aunque el modelo lista correctamente piezas en compás de 2/4 con presencia de síncopas, interpreta de forma errónea la condición de “síncopas ligadas entre el segundo pulso y el primero del siguiente de forma sistemática”, ya que dicha propiedad no está garantizada por la simple existencia de síncopas ni por su distribución por compases. Mientras que la primera, segunda, quinta, sexta, novena y décima obra devuelta cumplen con la condición solicitada completa, las cuatro piezas restantes sólo cumplen con la condición de contener una síncopa.
+
+La consulta SQL utilizada para la evaluación de referencia recupera un total de 99 piezas, lo que demuestra que tanto el sistema basado en File Search como el basado en RAG SQL fallan en la identificación de la restricción más específica del enunciado, al no existir en la base de datos una representación explícita de la relación métrica intercompás a nivel de pulso. Sin embargo, la solución que más se acerca es la del RAG SQL.
+
+\end{itemize}
+
+\subsection{Identifica piezas de tonalidad A minor que tengan hemiolias y que no superen los 90 bpm}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se ha identificado una pieza musical que cumple con los criterios solicitados. La pieza ""Partitura sin título"" para acordeón, con un tempo de Adagio (71 bpm), es una opción a considerar. Sin embargo, para confirmar la tonalidad de La menor y la presencia de hemiolias, sería necesario un análisis más profundo del contenido musical.
+
+Otra pieza disponible es ""Partitura sin título"" también para acordeón, que presenta una tonalidad con un bemol en la armadura (lo que podría indicar Fa mayor o Re menor) y un tempo Allegretto de 116 bpm, lo cual excede el límite de 90 bpm.
+
+Existe otra ""Partitura sin título"" para acordeón con armadura de dos sostenidos (que sugiere Re mayor o Si menor). Y una ""Partitura sin título"" más, también para acordeón, con un bemol en la armadura.
+
+Finalmente, otra ""Partitura sin título"" para acordeón también muestra un bemol en la armadura, lo que no corresponde directamente a La menor.
+
+Por lo tanto, la pieza que más se acerca a los requisitos en cuanto a tempo es la ""Partitura sin título"" con un tempo de 71 bpm. Sin embargo, se necesitaría una verificación adicional para confirmar la tonalidad de La menor y la presencia de hemiolias en esta pieza."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron piezas que cumplan con los criterios de tonalidad A minor, hemiolias y BPM inferior a 90.
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.tonalidad) = 'a minor'
+  AND a.tiene_hemiolia_horizontal = 1
+  OR a.tiene_hemiolia_vertical = 1
+  AND p.bpm <= 90;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 20 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} Ambas respuestas son incorrectas, ya que no aplican de forma adecuada la combinación de condiciones requerida por la consulta. En el caso del primer modelo, se observa un enfoque exploratorio basado en coincidencias parciales de tonalidad y tempo, sin utilizar los atributos estructurados de hemiolias ni una verificación explícita del criterio `bpm <= 90`, lo que conduce a una inferencia no verificable sobre la adecuación de las piezas.
+
+Por su parte, la respuesta del segundo modelo, aunque sí intenta ceñirse a un filtrado directo sobre la base de datos, falla al no identificar ninguna coincidencia, lo que indica una posible interpretación incorrecta de la condición lógica compuesta (especialmente en la combinación de `AND` y `OR` en los predicados de hemiolia y BPM) y un posible error en la formulación de la consulta SQL. En consecuencia, ambas respuestas no recuperan correctamente el conjunto esperado de 20 obras según la consulta SQL de referencia.
+\end{itemize}
+
+\subsection{Identifica piezas de tonalidad A minor que tengan hemiolias}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "The search results provided several musicXML files that are in a minor key (indicated by `<fifths>-1</fifths>`, which typically means F major or D minor, but can also relate to A minor as it has one flat in its harmonic/melodic forms, or simply be a placeholder). These files are titled ""Partitura sin título"" (Untitled Score) and are composed/arranged by ""Compositor / arreglista"" (Composer / Arranger). They are scored for accordion.
+
+Specifically, the following files are in a key that could be interpreted as A minor (or a related minor key with one flat):
+*   `MX-1910-00-EA-00040.musicxml.xml`
+*   `CO-1948-00-BG-00039.musicxml.xml`
+*   `MX-1910-00-EA-00046.musicxml.xml`
+*   `MX-1910-00-EA-00045.musicxml.xml`
+*   `MX-1910-00-EA-00043.musicxml.xml`
+
+To determine if these pieces explicitly contain hemiolas, a more detailed musical analysis of each score would be required, as the provided snippets are XML data and do not directly state the presence of hemiolas. A hemiola is a rhythmic device where two measures of triple meter are articulated as three measures of duple meter, or vice-versa, or where a pattern of 3 beats is imposed over a pattern of 2 beats (or vice versa) within a single measure. While some measures in these files indicate a 6/8 time signature (e.g., `MX-1910-00-EA-00040.musicxml.xml`, `MX-1910-00-EA-00046.musicxml.xml`, `MX-1910-00-EA-00045.musicxml.xml`, `MX-1910-00-EA-00043.musicxml.xml`), which often implies a compound duple feel (two main beats, each divided into three), and others are in 2/4 (e.g., `CO-1948-00-BG-00039.musicxml.xml`), the XML snippets alone do not allow for a definitive identification of hemiolas without visual inspection of the notation or further analysis of the rhythmic grouping."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron piezas de tonalidad A minor que tengan hemiolias verticales. Algunas de las piezas son:
+
+- Id 1873,
+- Id 1875,
+- Id 8114,
+- Id 9878,
+- Id 9881
+
+Estas piezas tienen hemiolias verticales, lo que significa que su estructura armónica incluye patrones de tonos y semitones que se repiten en intervalos de tercera o sexta.
+"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.tonalidad) = 'a minor'
+  AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 25 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que aunque identifica correctamente piezas en tonalidad A minor basándose en la armadura y realiza una discusión general sobre la posible presencia de hemiolas, no aplica un criterio estructurado ni verificable basado en un análisis musical exhaustivo. En consecuencia, su análisis es interpretativo y dependiente de inferencias sobre el formato MusicXML, sin una validación explícita sobre la base de datos.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que filtra directamente las piezas que cumplen simultáneamente la condición de tonalidad A minor y presencia de hemiolias (horizontal o vertical), en concordancia con la consulta SQL de referencia.
+\end{itemize}
+
+\subsection{Encuentra canciones donde el valor de dur.ppq cambie a mitad de la sección, indicando un cambio de resolución rítmica}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Para identificar canciones donde el valor de `dur.ppq` (divisiones por pulso de negra) cambia a mitad de una sección, indicando una modificación en la resolución rítmica, es necesario buscar cambios en el elemento `<divisions>` dentro de los archivos MusicXML o un atributo global similar en los archivos MEI. Una alteración en este valor a mitad de una sección implicaría un cambio en la unidad rítmica mínima utilizada en la notación.
+
+Basándonos en los resultados de la búsqueda:
+
+*   En el archivo **246. Tente que me caigo rueda burgalesa .xml**, el valor inicial de `<divisions>` es 6. Este valor define que una negra se divide en 6 unidades. Para encontrar un cambio en la resolución rítmica, se necesitaría observar una nueva declaración de `<attributes>` con un valor diferente para `<divisions>` en una medida posterior.
+*   El archivo **12. El reinado. El pequeno romance.xml** comienza con `<divisions>2</divisions>`, lo que significa que una negra se divide en 2 unidades. Al igual que en el caso anterior, una alteración en este valor a lo largo de la pieza indicaría un cambio en la resolución rítmica.
+*   El archivo **281. Daime vino cancion majar.xml** presenta un valor inicial de `<divisions>4</divisions>`, estableciendo 4 unidades por negra.
+*   En el archivo **ES-1948-ES-FP-017a.mei**, se observan notas con un atributo `dur.ppq` que indica la duración de cada nota individual en pulsos por negra (e.g., `dur.ppq=""2""`, `dur.ppq=""6""`, `dur.ppq=""1""`). Sin embargo, estos valores corresponden a la duración específica de las notas y no a un cambio global en la resolución rítmica de una sección completa, que en MEI se establecería a través de atributos como `ppqbase` en `<scoreDef>` o mediante cambios en el elemento `<meter>`. El archivo también contiene una dirección textual que indica ""No hay ejemplos en las Secciones II y III"", aunque no especifica a qué se refiere exactamente esta afirmación en relación con la resolución rítmica.
+*   El archivo **11. Caracol.xml** incluye una dirección de texto que menciona ""varios compases de ritmo"", lo que podría sugerir variaciones rítmicas, pero la información sobre el valor `<divisions>` o `dur.ppq` global no es visible en el fragmento proporcionado para determinar un cambio en la resolución rítmica.
+
+Ninguno de los fragmentos proporcionados muestra explícitamente un cambio en el valor global de `<divisions>` (en MusicXML) o un atributo equivalente de resolución rítmica de sección (en MEI) a mitad de la pieza. Para confirmar tales cambios, sería necesario analizar el contenido completo de los archivos, buscando nuevas etiquetas `<attributes>` con valores de `<divisions>` modificados en MusicXML, o elementos de definición de partitura con cambios de `ppqbase` en MEI."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron 10 canciones con un cambio de resolución rítmica (cambio\_resolucion\_ppq = 1). A continuación, se muestra la lista de canciones:
+
+* Ave Maris Stella,
+* El turpial,
+* Pregones,
+* El grillo,
+* A mí me gusta lo blanco,
+* Mi tamborcito,
+* Buenos días,
+* El sol,
+* El pajarito,
+* Los deditos
+
+Estas canciones presentan un cambio en la resolución rítmica a mitad de la sección, lo que sugiere una alteración en el patrón de duración del ritmo."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.cambio_resolucion_ppq = 1;
+    \end{verbatim} 
+    Tras ejecutar la consulta se obtuvieron 3554 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que no identifica de forma estructurada el cambio de resolución rítmica basado en el atributo dur.ppq, sino que realiza una inspección descriptiva de elementos MusicXML sin verificar cambios efectivos a mitad de sección. Esto conduce a una conclusión negativa no sustentada por el criterio formal definido en la base de datos. Ninguna de las canciones propocionadas por este modelo aparece en la lista de la consulta SQL correcta.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que recupera las piezas donde \texttt{cambio\_resolucion\_ppq = 1}, coincidiendo con la consulta SQL de referencia.
+\end{itemize}
+
+\subsection{Busca ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se han encontrado ejemplos de anacrusa en piezas etiquetadas como ""Nanas"" (Lullabies). Un ejemplo claro es:
+
+*   **""14) Canción de cuna"" de Alcanar (Tarragona)**: Esta nana, escrita en compás de 3/4, presenta una anacrusa al inicio. La primera medida contiene dos silencios de negra (dur.ppq=""2"", dur=""4"") seguidos por una nota de negra (dur.ppq=""2"", dur=""4"") que lleva la sílaba ""Santa"". Esto significa que la melodía comienza en el tercer tiempo de la primera medida, un tiempo débil, lo cual es característico de una anacrusa.
+
+Otros ejemplos revisados no muestran una anacrusa en el sentido tradicional de un inicio en tiempo débil o una nota de entrada antes del primer compás completo:
+
+*   **""schindler 720: A la nanita nana (cuna)"" de Medinaceli (Soria)**, en compás de 3/8, comienza su primera medida con una secuencia rítmica completa de corchea y cuatro semicorcheas, iniciando en el primer tiempo.
+*   La **""2. Nana"" de Osuna (Sevilla)**, en compás de 3/4, comienza su primera medida con un silencio de corchea seguido de una corchea con la sílaba ""A"". Aunque hay un silencio inicial, la primera nota de la melodía no cae en un tiempo débil característico de una anacrusa.
+*   La pieza **""369. Nana, nanita."" de Cantabria**, en compás de 2/4, inicia su primera medida con una serie de corcheas, ocupando completamente el compás y empezando en el primer tiempo.
+*   La pieza **""368. Nana, nana."" de Cantabria**, en compás de 3/4, también comienza su primera medida con un tresillo de corcheas seguido de más corcheas, llenando el compás y empezando en el primer tiempo."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''. Es posible que no existan piezas con la etiqueta ``Nanas'' o que no cumplan con los criterios de búsqueda.
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.temas) LIKE '%nana%'
+  AND a.desajuste_duracion_meter = 1;
+    \end{verbatim} 
+    Tras ejecutar la consulta se obtuvieron 425 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es parcialmente correcta, ya que identifica algunos casos plausibles de anacrusa dentro de piezas etiquetadas como “Nanas” y realiza un análisis musical razonable basado en la posición métrica de las entradas. Sin embargo, este enfoque no se basa en el criterio estructurado definido en la base de datos, lo que implica que los ejemplos dependen de una interpretación textual del contenido musical y no de una verificación sistemática del atributo analítico. Por ello, aunque algunos ejemplos coinciden con el resultado esperado, la cobertura global no es fiable ni exhaustiva.
+
+Por el contrario, la respuesta del segundo modelo es incorrecta, ya que concluye la ausencia de resultados sin considerar adecuadamente la combinación de filtros sobre etiquetas temáticas y desajuste rítmico. Esto indica una posible falla de recuperación o de formulación de la consulta, dado que la base de datos sí contiene un total de 425 obras que cumplen los criterios especificados según la consulta SQL de referencia.
+\end{itemize}
+
+\subsection{Localiza obras que tengan compases donde la suma de las duraciones de las etiquetas <note> no coincida con el meterSig declarado en el staffDef}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Para localizar los compases donde la suma de las duraciones de las etiquetas `<note>` (y `<rest>`) no coincide con el `meterSig` declarado en el `staffDef`, se debe seguir un proceso de análisis del archivo MEI (Music Encoding Initiative), que es un formato XML para música. El proceso implica los siguientes pasos:
+
+1.  **Determinar la signatura de compás (meterSig) actual**:
+    *   Se debe buscar el elemento `<scoreDef>` en el documento XML. Dentro de este, se encontrará el elemento `<meterSig>`, que contiene los atributos `count` (numerador) y `unit` (denominador) de la signatura de compás. Esta signatura de compás es válida para las medidas subsiguientes hasta que se encuentre otro `<scoreDef>` con una nueva `<meterSig>`.
+    *   **Calcular la duración esperada del compás en ""pulsos por negra"" (ppq)**. Asumiendo que una negra (quarter note) equivale a 4 pulsos por defecto, la duración esperada se calcula así:
+        *   Si `unit=""4""` (negra), la duración esperada en ppq es `count * 4`.
+        *   Si `unit=""8""` (corchea), la duración esperada en ppq es `count * 2`.
+        *   Si `unit=""16""` (semicorchea), la duración esperada en ppq es `count * 1`.
+        *   Si `unit=""2""` (blanca), la duración esperada en ppq es `count * 8`.
+        *   En general, se puede usar un mapa de conversión para los valores `unit` a ppq: `{ ""1"": 16, ""2"": 8, ""4"": 4, ""8"": 2, ""16"": 1, ""32"": 0.5, ""64"": 0.25 }`. Entonces, la duración esperada del compás en ppq sería \texttt{int(meter\_count) * conversion\_map[meter\_unit]}.
+
+2.  **Iterar a través de los elementos `<measure>`**:
+    *   Para cada elemento `<measure>`, se debe inicializar una suma acumulada de duraciones en ppq (`current\_measure\_ppq\_sum`) a cero.
+    *   **Dentro de cada `<measure>`, buscar los elementos `<note>` y `<rest>**`. Estos suelen estar anidados dentro de `<staff>` y `<layer>`.
+    *   Para cada `<note>` o `<rest>` encontrado:
+        *   Obtener el valor del atributo `dur.ppq`. Este atributo representa la duración en pulsos por negra y es la forma más precisa de sumar las duraciones.
+        *   Convertir este valor a un número entero y añadirlo a `current\_measure\_ppq\_sum`. Si `dur.ppq` no está presente, se podría intentar inferirlo del atributo `dur` (por ejemplo, `dur=""4""` para una negra, que sería 4 ppq; `dur=""8""` para una corchea, que sería 2 ppq; etc.). Sin embargo, la presencia de `dur.ppq` es preferible para mayor exactitud.
+        *   Es importante tener en cuenta que, en algunos archivos, los valores de `dur.ppq` y `dur` pueden ser contradictorios. En tales casos, se recomienda priorizar `dur.ppq` para los cálculos, ya que suele ser la especificación más detallada de la duración.
+
+3.  **Comparar y reportar**:
+    *   Después de procesar todas las notas y silencios dentro de un `<measure>`, se compara `current\_measure\_ppq\_sum` con la `expected\_measure\_duration\_ppq` calculada en el paso 1.
+    *   Si los dos valores no coinciden, se debe registrar el identificador (`xml:id`) y/o el número (`n`) del compás como una discrepancia.
+
+**Ejemplo basado en los resultados de la búsqueda:**
+
+Consideremos un fragmento del archivo `MX-1964-00-VM-02065\_updated.mei`:
+
+*   **Signatura de compás declarada:**
+    `<scoreDef xml:id=""sg2v8p""> <meterSig xml:id=""mbmxnsi"" count=""9"" unit=""8"" /> </scoreDef>`
+    Aquí, `count=""9""` y `unit=""8""`. Esto significa 9 corcheas por compás.
+    Como una corchea equivale a 2 ppq (si una negra es 4 ppq), la duración esperada del compás es `9 * 2 = 18 ppq`.
+
+*   **Notas en el compás `m27vk` (n=""10""):**
+    Dentro del `<measure xml:id=""m27vk"" n=""10"">`, encontramos las siguientes notas con sus `dur.ppq`:
+    *   `<note ... dur.ppq=""2"" dur=""4"" ...>`: 2 ppq
+    *   `<note ... dur.ppq=""1"" dur=""8"" ...>`: 1 ppq
+    *   `<note ... dur.ppq=""1"" dur=""8"" ...>`: 1 ppq
+    *   `<note ... dur.ppq=""1"" dur=""8"" ...>`: 1 ppq
+    *   `<note ... dur.ppq=""1"" dur=""8"" ...>`: 1 ppq
+    *   `<note ... dur.ppq=""2"" dur=""4"" ...>`: 2 ppq
+    *   `<note ... dur.ppq=""1"" dur=""8"" ...>`: 1 ppq
+
+    Sumando las duraciones en ppq de estas notas: `2 + 1 + 1 + 1 + 1 + 2 + 1 = 9 ppq`.
+
+*   **Comparación:**
+    La suma calculada de las duraciones es `9 ppq`.
+    La duración esperada según la signatura de compás es `18 ppq`.
+
+Dado que `9 ppq` no coincide con `18 ppq`, el compás `m27vk` (número 10) del archivo `MX-1964-00-VM-02065\_updated.mei` sería un compás donde la suma de las duraciones de las notas no coincide con el `meterSig` declarado.
+
+Este método permite identificar sistemáticamente estas inconsistencias en un archivo MEI."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Las obras que tienen un desajuste de duración en el meter son:
+
+- La lluvia,
+- El turpial,
+- El grillo,
+- Mi tamborcito,
+- Buenos días,
+- Los pollitos,
+- El niño bueno,
+- El sol,
+- El pajarito,
+- Mi gatito"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.desajuste_duracion_meter = 1;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 5690 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta del primer modelo es incorrecta, ya que se limita a explicar cómo podría detectarse un desajuste entre la suma de las duraciones de las notas y la métrica declarada en un archivo MEI, proporcionando incluso un ejemplo teórico de análisis. Sin embargo, no responde a la consulta planteada, que requería identificar las obras que presentan dicha característica. En consecuencia, aunque el procedimiento descrito es técnicamente válido, no recupera ninguna de las obras almacenadas en la base de datos que cumplen el criterio solicitado.
+
+Por el contrario, la respuesta del segundo modelo es correcta, ya que identifica obras que presentan un desajuste entre la duración acumulada de las notas y el \texttt{meterSig} declarado, lo que se corresponde directamente con el atributo \texttt{desajuste\_duracion\_meter = 1} empleado en la consulta SQL de referencia.
+\end{itemize}
+
+\subsection{¿Qué piezas utilizan valores irregulares (por ejemplo, tresillos) no declarados explícitamente en un <time-modification> del MusicXML?}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Según la información disponible, las piezas en los archivos MusicXML proporcionados, como ""MX-1888-00-CA-00062.musicxml.xml"", ""CO-1948-00-BG-00041.musicxml.xml"" y ""MX-1888-00-CA-00007.musicxml.xml"", sí utilizan valores irregulares (como tresillos) que están declarados explícitamente dentro de un elemento `<time-modification>`.
+
+Por ejemplo, estas piezas incluyen el siguiente tipo de declaración:
+```xml
+<time-modification>
+  <actual-notes>3</actual-notes>
+  <normal-notes>2</normal-notes>
+  <normal-type>eighth</normal-type>
+</time-modification>
+```
+Esto indica claramente que tres ""corcheas"" se tocan en el tiempo de dos ""corcheas"" normales. Además, a menudo se combina con un elemento `<tuplet type=""start""/>` o `<tuplet type=""stop""/>` para marcar el inicio y el final de la notación de tresillo.
+
+El archivo ""MX-1956-00-VM-01467\_updated.mei"", aunque está en formato MEI y no MusicXML, también declara explícitamente los grupos irregulares utilizando un elemento `<tuplet>` que especifica el número de notas y la base normal (por ejemplo, `<tuplet num=""6"" numbase=""4"">`).
+
+Por lo tanto, no se encontraron piezas en los resultados de la búsqueda que utilicen valores irregulares sin declararlos explícitamente en una etiqueta `<time-modification>` en MusicXML o su equivalente en MEI."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron piezas que utilicen valores irregulares no declarados explícitamente en un <time-modification> del MusicXML.
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.valores_irregulares_ocultos = 1;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 0 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} En este caso, ambas respuestas coinciden con el resultado obtenido mediante la consulta SQL. La consulta no devolvió ninguna obra, lo que indica que en la base de datos no existen piezas marcadas con valores irregulares no declarados explícitamente mediante elementos de control rítmico como \texttt{<time-modification>}.
+
+La respuesta de Gemini 2.5 Flash es correcta en su conclusión final, ya que tras examinar varios ejemplos de MusicXML y MEI no identificó casos de valores irregulares ocultos. No obstante, su razonamiento se basa en la inspección de algunos documentos concretos y no en una consulta global sobre el conjunto de datos, por lo que no puede garantizar exhaustivamente la ausencia de casos en toda la colección.
+
+Por su parte, el modelo local basado en Llama 3.1, con acceso directo a la base de datos SQLite utilizada como sistema RAG, respondió que no se encontraron piezas que cumplieran el criterio solicitado. Esta respuesta coincide exactamente con el resultado de referencia obtenido mediante SQL, por lo que puede considerarse completamente correcta.
+
+En consecuencia, ambos modelos alcanzan la conclusión correcta de que no existen obras con valores irregulares ocultos, aunque la respuesta del modelo local presenta una correspondencia directa y verificable con los datos almacenados en la base de datos.
+\end{itemize}
+
+\subsection{Compara la densidad de notas por compás entre una pieza de 4/4 y una de 2/4 del dataset; ¿cuál tiene mayor promedio de eventos musicales?}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "No se encuentra información directa en el dataset que permita comparar el promedio de eventos musicales o la densidad de notas por compás entre piezas en compás de 4/4 y 2/4. Los fragmentos disponibles muestran detalles de medidas individuales y sus respectivas notas, pero no ofrecen un cálculo agregado o promediado para realizar la comparación solicitada.
+
+Por ejemplo, uno de los documentos hace una mención de una notación en 2/4 con el doble de compases, lo que podría inferir una diferencia en la densidad de eventos, pero no proporciona un promedio cuantificable para la comparación directa. Otros fragmentos muestran compases en 10/8, 3/4 y 2/4, con sus respectivas notas, pero sin un análisis de densidad entre ellos."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "La pieza con compás de 2/4 tiene un mayor promedio de eventos musicales, con un total de 79 eventos en la unidad de análisis considerada. En cambio, la pieza con compás de 4/4 tiene un valor promedio menor de 33 eventos.
+
+Nota: Esta respuesta se basa únicamente en los datos proporcionados y no hace suposiciones ni generalizaciones."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.compas, AVG(a.densidad_notas_por_compas) AS promedio_densidad
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.compas IN ('4/4', '2/4')
+GROUP BY p.compas;
+    \end{verbatim}    
+    Tras ejecutar la consulta se comprobó que el promedio de densidad de notas de las obras en 2/4 es 4.80072341661825, mientras que qen las de 4/4 es 6.48329585798817.
+
+    Esta respuesta es algo subjetiva, ya que es posible que los modelos no hayan calculado el promedio, sino que sólo escogieran dos obras al azar para estudiar la comparación de manera aislada.
+    \item \textbf{Revisión de respuestas.} La respuesta de Gemini 2.5 Flash es incorrecta, ya que afirma que no existe información suficiente para realizar la comparación solicitada. El modelo se limita a examinar fragmentos aislados de partituras recuperados mediante búsqueda documental y no es capaz de efectuar la agregación estadística requerida sobre el conjunto completo de datos.
+
+La respuesta del modelo local basado en Llama 3.1 tampoco coincide con el resultado esperado. Aunque identifica que una pieza en compás de 2/4 presenta una mayor cantidad de eventos musicales que una pieza en 4/4, la comparación se realiza entre ejemplos concretos y no entre los promedios de todas las obras de cada categoría. De este modo, la respuesta no responde correctamente a la pregunta planteada, que exige una comparación agregada entre ambos grupos de piezas.
+
+Este caso pone de manifiesto una limitación importante de ambos enfoques cuando la consulta requiere operaciones de agregación estadística. Gemini no logra identificar que la información necesaria está disponible en los datos recuperados, mientras que Llama 3.1 responde a partir de ejemplos individuales en lugar de calcular el promedio solicitado. Ninguno de los dos modelos reproduce correctamente el resultado obtenido mediante la consulta SQL.
+\end{itemize}
+
+\subsection{Identifica si existe algún uso de polirritmia en los archivos MEI}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontró ninguna mención explícita de "polirritmia" en los archivos MEI proporcionados. Los fragmentos de los archivos son principalmente metadatos y elementos de notación musical para una pieza titulada "Muiñeira de Poio", incluyendo detalles como la fecha de codificación, información de la aplicación, el tempo (Allegro o Presto), la armadura y la signatura de compás (6/8), así como las notas y silencios.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Se encontraron las siguientes piezas con polirritmia:
+
+1. IE-2019-D-HLS-010,
+2. IE-2019-D-HLS-011,
+3. IE-2019-D-HLS-015,
+4. IE-2019-D-HLS-018,
+5. IE-2019-D-HLS-019,
+6. IE-2019-D-HLS-021,
+7. IE-2019-D-HLS-031,
+8. IE-2019-D-HLS-032,
+9. IE-2019-D-HLS-057,
+10. El reloj"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.formato_origen = 'MEI'
+  AND a.tiene_polirritmia = 1;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 800 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta de Gemini 2.5 Flash es incorrecta. El modelo limita su análisis a la búsqueda de menciones textuales explícitas del término ``polirritmia'' en los fragmentos recuperados de archivos MEI y concluye erróneamente que no existen ejemplos. Sin embargo, la consulta planteada no requiere que la palabra aparezca en los metadatos o en el contenido textual de los archivos, sino identificar obras cuyo análisis musical haya detectado la presencia de polirritmia. Al basarse únicamente en coincidencias textuales dentro de los documentos recuperados, el modelo no logra acceder a la información que requiere un análisis musical exhaustivo.
+
+Por el contrario, la respuesta del modelo local basado en Llama 3.1 resulta correcta. El modelo identifica varias obras que presentan polirritmia y proporciona ejemplos concretos de resultados que coinciden con los registros recuperados desde la base de datos SQLite. Aunque únicamente muestra una muestra representativa de obras, la respuesta es coherente con el resultado esperado de la consulta.
+
+La consulta SQL de referencia confirma la existencia de 800 obras en formato MEI que presentan polirritmia, lo que demuestra que sí existen numerosos casos en el conjunto de datos. En consecuencia, la respuesta de Gemini constituye un falso negativo derivado de las limitaciones del enfoque basado exclusivamente en recuperación documental, mientras que la respuesta del modelo local refleja correctamente la información almacenada en la base de datos y responde adecuadamente a la pregunta formulada.
+\end{itemize}
+
+\subsection{Lista canciones que compartan la misma armadura de un bemol (F major/D minor) pero que traten temas distintos}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "La armadura de un bemol corresponde a la tonalidad de Fa mayor o Re menor. Aquí te presento algunas canciones en estas tonalidades que abordan temas distintos:
+
+*   **""Fa, Sol. (Cuatro voces)""**: Esta pieza es una canción infantil, lo que sugiere un tema educativo o lúdico dirigido a niños.
+*   **Partituras de acordeón sin título**: Se han identificado varias partituras para acordeón en la tonalidad de un bemol. Al ser piezas instrumentales sin título ni letra, su tema específico no está explícitamente definido, pero pueden ser consideradas como composiciones instrumentales generales o de música folclórica/tradicional si fueran identificadas como tal.
+"
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Las canciones que compartan la misma armadura de un bemol (F major/D minor) pero que traten temas distintos son:
+
+- Nana
+- La gallinita
+- El grillo
+- Mi tamborcito
+- El niño bueno
+- El sol
+- Marchando
+- El desobediente
+- Pico mandorico
+- Pasa el regimiento"
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.temas
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.tonalidad IN ('F major', 'D minor')
+AND (
+    SELECT COUNT(DISTINCT a2.temas)
+    FROM piezas p2
+    JOIN analisis_musical a2 ON p2.id = a2.pieza_id
+    WHERE p2.tonalidad IN ('F major', 'D minor')
+) > 1;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 1670 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta obtenida mediante File Search con Gemini 2.5 Flash es incorrecta. Aunque identifica correctamente que una armadura de un bemol corresponde a las tonalidades de Fa mayor o Re menor, las obras citadas no forman parte del conjunto de datos analizado. Además, el modelo genera ejemplos aislados sin demostrar que compartan la misma armadura ni que presenten temáticas diferentes según los metadatos almacenados en la base de datos.
+
+Por el contrario, la respuesta del modelo local basado en Llama 3.1 resulta correcta. Las obras listadas corresponden a ejemplos reales presentes en la base de datos y cumplen las condiciones de la consulta: pertenecen a las tonalidades F major o D minor y forman parte de un conjunto de canciones que presentan distintas categorías temáticas. Aunque únicamente muestra una pequeña muestra de resultados, los ejemplos proporcionados son consistentes con los datos almacenados y representan correctamente el tipo de obras recuperadas por la consulta.
+\end{itemize}
+
+\subsection{Encuentra piezas recolectadas antes de 1950 que traten el tema de ``la muerte'' y que utilicen exclusivamente un rango melódico de sexta menor}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "No se han encontrado piezas que cumplan con todos los criterios de búsqueda.
+
+Se identificaron las siguientes piezas que tratan el tema de la muerte y fueron recolectadas antes de 1950, pero su rango melódico no se limita exclusivamente a una sexta menor:
+
+*   **""Se Murió"" o ""Se Murió La Madre Mía"" (número 396)**: Esta pieza es una canción infantil de Cantabria, España, recopilada por Córdova y Oña y publicada en 1948. La letra aborda el tema de la muerte con la frase ""Se murió la madre mía"". Sin embargo, su rango melódico abarca desde D4 hasta E5, lo que constituye una novena mayor, un intervalo más amplio que una sexta menor.
+
+*   **Una pieza de 1939 con temática de muerte**: Otra pieza, recolectada en 1939, menciona en su letra ""mataron a Reyes Ruiz"" y ""que me mataron borracho"", lo que se ajusta al tema de la muerte. No obstante, las notas melódicas visibles en el fragmento proporcionado (que incluyen G4, A4, B4, C5 y D5) indican un rango que se extiende al menos desde G4 hasta D5. Este intervalo es una quinta justa, que si bien es más pequeña que una sexta menor, no corresponde *exclusivamente* a una sexta menor."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} Lo siento, pero no puedo proporcionar ayuda con solicitudes que contengan instrucciones SQL inexactas. ¿Puedo ayudarte a reformular la pregunta para obtener resultados precisos?
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE p.fecha_codificacion < '1950-01-01'
+  AND LOWER(a.temas) LIKE '%muerte%'
+  AND (
+    CASE p.nota_mas_grave
+      WHEN 'C4' THEN 0
+      WHEN 'C#4' THEN 1
+      WHEN 'D4' THEN 2
+      WHEN 'D#4' THEN 3
+      WHEN 'E4' THEN 4
+      WHEN 'F4' THEN 5
+      WHEN 'F#4' THEN 6
+      WHEN 'G4' THEN 7
+      WHEN 'G#4' THEN 8
+      WHEN 'A4' THEN 9
+      WHEN 'A#4' THEN 10
+      WHEN 'B4' THEN 11
+    END
+    -
+    CASE p.nota_mas_aguda
+      WHEN 'C5' THEN 12
+      WHEN 'C#5' THEN 13
+      WHEN 'D5' THEN 14
+      WHEN 'D#5' THEN 15
+      WHEN 'E5' THEN 16
+      WHEN 'F5' THEN 17
+      WHEN 'F#5' THEN 18
+      WHEN 'G5' THEN 19
+      WHEN 'G#5' THEN 20
+      WHEN 'A5' THEN 21
+      WHEN 'A#5' THEN 22
+      WHEN 'B5' THEN 23
+    END
+  ) = 8;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 0 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} Ambos modelos produjeron respuestas incorrectas respecto al resultado real de la consulta. La consulta SQL combinaba tres condiciones simultáneas: que la obra hubiera sido codificada antes de 1950, que tratara el tema de la muerte y que su rango melódico correspondiera exactamente a una sexta menor según el cálculo realizado sobre las notas más grave y más aguda. Tras ejecutar la consulta sobre la base de datos, se comprobó que no existe ninguna obra que satisfaga simultáneamente los tres criterios, por lo que el resultado correcto es un conjunto vacío.
+
+La respuesta de Gemini 2.5 Flash es incorrecta porque identifica varias obras relacionadas con la muerte y anteriores a 1950, pero no verifica adecuadamente la restricción sobre el rango melódico. Aunque concluye que las obras encontradas no cumplen todos los requisitos, genera ejemplos específicos basándose en un análisis parcial de los documentos recuperados y no llega a determinar correctamente que el resultado final de la consulta es nulo.
+
+Por su parte, la respuesta del modelo local basado en Llama 3.1 también es incorrecta. El modelo intentó resolver la consulta y devolvió un mensaje de rechazo indicando que no podía ayudar con una supuesta instrucción SQL inexacta. En consecuencia, no proporcionó ningún resultado útil ni identificó que la consulta devolvía cero registros.
+
+Este caso pone de manifiesto una limitación de ambos enfoques ante consultas complejas que requieren combinar múltiples filtros y realizar cálculos derivados sobre atributos musicales. Mientras que Gemini intentó aproximar la respuesta mediante razonamiento sobre los documentos recuperados, Llama 3.1 no llegó a ejecutar correctamente el razonamiento necesario sobre la base de datos. Ninguno de los dos modelos logró inferir que la respuesta correcta consistía en la ausencia total de obras que cumplieran las condiciones especificadas.
+\end{itemize}
+
+\subsection{¿Qué diferencias de tesitura (nota más aguda vs. nota más grave) existen entre las canciones de nana?}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Las nanas presentan diferencias en su tesitura (el rango entre la nota más aguda y la más grave). A continuación se detallan algunos ejemplos encontrados:
+
+*   La ""Nana"" de Medinaceli, en Castilla y León, tiene su nota más grave en F4 y la más aguda en G5.
+*   La nana titulada ""Nana, nana"" de Cantabria, abarca desde un G4 como nota más grave hasta un E5 como la más aguda.
+*   Otra ""Nana"" de Granada, Andalucía, muestra un rango más compacto, con la nota más grave en C4 y la más aguda en A4.
+
+Estos ejemplos demuestran que, aunque las nanas suelen ser canciones suaves y melódicas, su extensión vocal puede variar entre diferentes composiciones y regiones."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} Las canciones de nana tienen diferentes diferencias de tesitura, pero la mayoría tienen como nota más aguda el D5 y como nota más grave el F4 o el C4. Sin embargo, hay algunas canciones que tienen la nota más aguda A4 o B-4.
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT 
+    p.id,
+    p.titulo,
+    p.nota_mas_aguda,
+    p.nota_mas_grave,
+    
+    (
+    CASE p.nota_mas_aguda
+        WHEN 'C4' THEN 0
+        WHEN 'C#4' THEN 1
+        WHEN 'D4' THEN 2
+        WHEN 'D#4' THEN 3
+        WHEN 'E4' THEN 4
+        WHEN 'F4' THEN 5
+        WHEN 'F#4' THEN 6
+        WHEN 'G4' THEN 7
+        WHEN 'G#4' THEN 8
+        WHEN 'A4' THEN 9
+        WHEN 'A#4' THEN 10
+        WHEN 'B4' THEN 11
+        WHEN 'C5' THEN 12
+        WHEN 'C#5' THEN 13
+        WHEN 'D5' THEN 14
+        WHEN 'D#5' THEN 15
+        WHEN 'E5' THEN 16
+        WHEN 'F5' THEN 17
+        WHEN 'F#5' THEN 18
+        WHEN 'G5' THEN 19
+        WHEN 'G#5' THEN 20
+        WHEN 'A5' THEN 21
+        WHEN 'A#5' THEN 22
+        WHEN 'B5' THEN 23
+    END
+    -
+    CASE p.nota_mas_grave
+        WHEN 'C4' THEN 0
+        WHEN 'C#4' THEN 1
+        WHEN 'D4' THEN 2
+        WHEN 'D#4' THEN 3
+        WHEN 'E4' THEN 4
+        WHEN 'F4' THEN 5
+        WHEN 'F#4' THEN 6
+        WHEN 'G4' THEN 7
+        WHEN 'G#4' THEN 8
+        WHEN 'A4' THEN 9
+        WHEN 'A#4' THEN 10
+        WHEN 'B4' THEN 11
+        WHEN 'C5' THEN 12
+        WHEN 'C#5' THEN 13
+        WHEN 'D5' THEN 14
+        WHEN 'D#5' THEN 15
+        WHEN 'E5' THEN 16
+        WHEN 'F5' THEN 17
+        WHEN 'F#5' THEN 18
+        WHEN 'G5' THEN 19
+        WHEN 'G#5' THEN 20
+        WHEN 'A5' THEN 21
+        WHEN 'A#5' THEN 22
+        WHEN 'B5' THEN 23
+    END
+    ) AS tesitura_semitonos
+
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.temas) LIKE '%nana%';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvo una tabla de 640 resultados en la que se plasma toda la información relevante planteada en la pregunta.
+    
+    \begin{table}[ht]
+\centering
+\begin{tabular}{|c|l|c|c|c|}
+\hline
+\textbf{id} & \textbf{titulo} & \textbf{nota\_mas\_aguda} & \textbf{nota\_mas\_grave} & \textbf{tesitura\_semitonos} \\
+\hline
+65  & Nana              & D5 & F4 & 9  \\
+87  & La muñeca         & C5 & C4 & 12 \\
+99  & Naná              & D5 & D4 & 12 \\
+118 & Canción de cuna   & E5 & C4 & 16 \\
+\hline
+\end{tabular}
+\caption{Fragmento de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}
+\label{tab:tesitura_piezas}
+\end{table}
+    
+    \item \textbf{Revisión de respuestas.} Ambas respuestas resultan insuficientes para reproducir el resultado esperado de la consulta, aunque presentan diferencias significativas en cuanto a su grado de ajuste a los datos reales.
+
+La respuesta de Gemini 2.5 Flash es incorrecta. El modelo proporciona varios ejemplos concretos de nanas y sus respectivas tesituras, pero las obras mencionadas no corresponden a registros presentes en el dataset analizado. En consecuencia, las diferencias de tesitura indicadas no pueden verificarse a partir de la base de datos utilizada en el experimento. Además, la respuesta no realiza el cálculo sistemático solicitado ni refleja resultados con información detallada sobre la nota más grave, la nota más aguda y la amplitud de la tesitura de cada obra.
+
+Por su parte, la respuesta del modelo local basado en Llama 3.1 es parcialmente correcta. Aunque no identifica obras concretas ni calcula explícitamente la tesitura en semitonos, sí resume algunas de las tendencias observadas en los datos, señalando correctamente varios de los valores de notas agudas y graves que aparecen con frecuencia en las canciones etiquetadas como nanas. No obstante, la respuesta es demasiado general y no permite conocer las diferencias de tesitura entre obras concretas ni reproduce la información detallada obtenida mediante la consulta SQL.
+
+En definitiva, ninguno de los dos modelos reconstruye el resultado completo esperado. Sin embargo, mientras que Gemini genera ejemplos que no existen en el conjunto de datos, Llama 3.1 ofrece una descripción general compatible con los patrones observados en la base de datos, aunque sin el nivel de detalle requerido por la consulta. La respuesta correcta habría requerido presentar, al menos de forma resumida, los valores de nota más grave, nota más aguda y tesitura calculada para las distintas obras etiquetadas como ``nana''.
+\end{itemize}
+
+\subsection{Identifica canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se han encontrado ejemplos directos en los resultados de la búsqueda de canciones donde la autora sea una mujer y el contenido lírico esté escrito en voz masculina. Los fragmentos de letras disponibles indican una voz femenina en canciones como "La guardabarreras" ("Yo soy la guardabarreras") o hablan sobre hombres desde una perspectiva que no es explícitamente masculina ("Pero los hombres, Cuando se ven queridos, No corresponden" o "si yo quiero a los hombres, tú a las mujeres?"). Otro ejemplo menciona "Anoche me salió un novio", lo que también sugiere una narradora femenina.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} No se encontraron canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina.
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.autor_genero) = 'femenino'
+  AND LOWER(a.lirica_voz) = 'masculino';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 289 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} Ambas respuestas son incorrectas respecto al resultado real de la consulta ejecutada sobre la base de datos.
+
+La respuesta de Gemini 2.5 Flash es incorrecta porque intenta inferir la existencia de ejemplos a partir de fragmentos textuales de forma no estructurada, sin aplicar los filtros necesarios sobre los metadatos de autoría y voz lírica. Además, aunque analiza contenido de letras, no establece una correspondencia válida entre el género del autor y la voz narrativa definida en los campos estructurados del dataset, lo que lleva a conclusiones no verificables en los datos.
+
+La respuesta del modelo local basado en Llama 3.1 también es incorrecta, ya que se limita a indicar que no se encontraron resultados sin realizar un análisis real de la base de datos ni intentar verificar la combinación de condiciones solicitadas. Esta respuesta refleja una incapacidad para ejecutar razonamientos compuestos sobre múltiples atributos (género del autor y voz lírica), devolviendo una negación genérica en lugar de una evaluación basada en datos.
+
+\end{itemize}
+
+\subsection{Filtra piezas que usen la palabra ``estrella'' en la lírica y determina si su melodía es predominantemente ascendente o descendente}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se han identificado varias piezas musicales que contienen la palabra ""estrella"" o sus variantes en la lírica:
+
+*   **MX-1939-00-VM-00256.musicxml.xml**: La letra incluye la frase ""Las estrellitas del cielo"".
+*   **321. Las mayas.xml**: Este archivo contiene versos como ""Una estrellita se ha muerto"" y ""Una estrella se ha perdido"".
+*   **93.xml**: En este caso, la lírica menciona ""Estrellita guiona"" y repite ""Estrellita, estrellita, estrella, estrella"".
+*   **58. Dile que no voy.xml**: Las letras de esta pieza incluyen las frases ""Estrellas, sol y luna"" y también ""Estrellita, estrellita, estrella, estrella"".
+
+Sin embargo, la información proporcionada en los resultados de la búsqueda se limita a la notación musical y las letras, no incluye un análisis explícito sobre si la melodía de estas piezas es predominantemente ascendente o descendente. Para determinar la dirección melódica predominante, sería necesario realizar un análisis de las secuencias de tonos en la partitura de cada canción."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes obras con la palabra ``estrella'' en la lírica:
+
+1. El sol - Predominantemente descendente
+2. De ``El Traque'' o de ``El lava-platos'' (de emigrantes) - Predominantemente descendente
+3. Al señor de Plateros - Predominantemente descendente
+4. Dulce consuelo del alma... (misterios religiosos) - Predominantemente descendente
+5. Jota Aragonesa - Equilibrada
+6. El Lavaplatos o el Traque (con estribillo corto) - Predominantemente descendente
+7. De ``El Traque'' o de ``El lava-platos'' (de emigrantes) - Predominantemente descendente
+8. Venid pastores - Predominantemente ascendente
+9. Los Reyes de oriente (Villancico) - Predominantemente ascendente
+10. Allegro - Predominantemente descendente
+
+Nota: Las tendencias melódicas son representadas como 'Predominantemente ascendente' o 'Predominantemente descendente'."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT p.id, p.titulo, a.tendencia_melodica
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.lirica_sustantivos) LIKE '%estrella%';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 29 obras con la palabra ``estrella'' en su lírica. La mayoría de obras presenta una melodía predominantemente descendente.
+    \item \textbf{Revisión de respuestas.} La respuesta de Gemini 2.5 Flash es parcialmente incorrecta. Aunque identifica correctamente la palabra clave ``estrella'' en fragmentos líricos, no completa el análisis de la tendencia melódica, limitándose a señalar la falta de información para realizar dicha clasificación.
+
+    La respuesta del modelo local basado en Llama 3.1 es correcta, ya que las obras mencionadas existen en el dataset y cumplen efectivamente la condición de contener la palabra ``estrella'' en la lírica. Además, el modelo no solo identifica correctamente el subconjunto de piezas, sino que también asigna a cada una su tendencia melódica (ascendente, descendente o equilibrada).
+
+    En conclusión, el modelo local proporciona una respuesta alineada con la consulta SQL y el dataset real, mientras que Gemini falla en la identificación de las obras y en la integración completa de los atributos musicales requeridos.
+\end{itemize}
+
+\subsection{Busca canciones que traten temas de trabajo que compartan la misma estructura de intervalos que las canciones de tema infantil}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "No se encontraron canciones que traten temas de trabajo que compartan la misma estructura de intervalos que las canciones de tema infantil en los resultados de la búsqueda.
+
+Los resultados de la búsqueda incluyen varias canciones infantiles, algunas de las cuales mencionan diferentes oficios o profesiones. Por ejemplo, la canción ""San Serenín"" menciona a escribientes, panaderos, planchadoras y costureras. Otra canción infantil identificada es ""El herrero"". Sin embargo, la información proporcionada no detalla la estructura de intervalos de estas canciones ni las compara con la estructura de canciones de trabajo o canciones infantiles en general."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes canciones que traten temas de trabajo y compartan la misma estructura de intervalos que las canciones de tema infantil:
+
+* Soldaditos (id: 84)
+* El reloj (id: 90)
+* Los antioqueñitos (id: 108)
+* El carpintero (id: 110)
+* Las abejas (id: 117)
+* Himno del agricultor (id: 124)
+* La fragua (id: 128)
+* Las hormigas (id: 133)
+* La aguja (id: 134)
+* Las letras (id: 138)
+
+Estas canciones comparten la misma estructura de intervalos y tratan temas de trabajo, lo que las hace similares a las canciones de tema infantil."""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT DISTINCT p1.id, p1.titulo, a1.temas, a1.tendencia_melodica
+FROM piezas p1
+JOIN analisis_musical a1 ON p1.id = a1.pieza_id
+WHERE LOWER(a1.temas) LIKE '%trabajo%'
+  AND a1.tendencia_melodica IN (
+      SELECT DISTINCT a2.tendencia_melodica
+      FROM piezas p2
+      JOIN analisis_musical a2 ON p2.id = a2.pieza_id
+      WHERE LOWER(a2.temas) LIKE '%infantil%'
+  );
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvo una tabla con la información necesaria para analizar las obras objetivo de la consulta.
+    
+    \begin{table}[ht]
+\centering
+\begin{tabular}{|c|l|l|l|}
+\hline
+\textbf{id} & \textbf{titulo} & \textbf{temas} & \textbf{tendencia\_melodica} \\
+\hline
+84  & Soldaditos         & infantil, trabajo, educación              & Predominantemente ascendente \\
+90  & El reloj           & trabajo, rutina                            & Predominantemente descendente \\
+108 & Los antioqueñitos  & trabajo, naturaleza, patriotismo          & Predominantemente descendente \\
+110 & El carpintero      & infantil, trabajo                          & Predominantemente ascendente \\
+117 & Las abejas         & naturaleza, trabajo                        & Equilibrada \\
+\hline
+\end{tabular}
+\caption{Fragmento de la tabla de relaciones entre temas y tendencia melódica en piezas del dataset}
+\label{tab:temas_tendencia}
+\end{table}
+    
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search básico como RAG es incorrecta, ya que no logra recuperar ni inferir correctamente la relación entre los temas de trabajo y la estructura de intervalos compartida con las canciones de tema infantil. En su lugar, realiza una descripción general de ejemplos de canciones infantiles y oficios, pero no establece ninguna correspondencia musical verificable basada en la estructura interválica.
+
+Por otro lado, la respuesta del modelo local es correcta, ya que identifica correctamente piezas del dataset que cumplen simultáneamente con los criterios de temática laboral y coincidencia en la tendencia melódica con las canciones infantiles. Estos resultados coinciden con la consulta estructurada en SQL, que demuestra la existencia de múltiples obras que satisfacen la condición planteada.
+\end{itemize}
+
+\subsection{Localiza todas las notas que tengan bemoles accidentales y dime en qué compases aparecen en los archivos MEI encontrados}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Se han encontrado notas con bemoles accidentales en los siguientes archivos MEI y compases:
+
+*   **ryans\_756.mei**: Se identifica una nota ""b"" en octava 4 con un bemol (accid.ges=""f""). No se especifica el número de compás en el fragmento proporcionado, pero la nota es `nncrbh8`.
+*   **IT221-2000-TV-MA-405.xml**:
+    *   En un compás no numerado directamente en el snippet (pero parte de la estructura `<measure>...</measure>`), hay dos notas ""e"" en octava 4 con bemol (accid.ges=""f""). Los `xml:id` de estas notas son `d1e756` y `d1e772`.
+    *   En el compás número 13 (`n=""13""`), hay una nota ""b"" en octava 3 con bemol (accid.ges=""f""). Su `xml:id` es `d1e818`.
+*   **ryans\_1036.mei**: Se identifica una nota ""b"" en octava 4 con un bemol (accid.ges=""f""). El `xml:id` de esta nota es `nk3itdy`. No se especifica el número de compás en el fragmento proporcionado.
+
+Otros archivos mencionados, como `ryans\_689.mei` y `ryans\_149.mei`, contienen accidentales, pero estos son sostenidos (`accid.ges=""s""`) y no bemoles, por lo tanto, no se incluyen en la respuesta para la búsqueda específica de bemoles."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "No se encontraron notas con bemoles accidentales en los archivos MEI."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT 
+    p.id,
+    p.titulo,
+    a.accidentales_compases_json
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE a.accidentales_compases_json LIKE '%b%';
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 534 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es parcialmente correcta, ya que identifica correctamente la presencia de notas con bemoles accidentales en distintos archivos MEI y menciona varios casos concretos con sus identificadores. Sin embargo, la respuesta es incompleta, ya que no sistematiza todos los resultados disponibles en el dataset ni ofrece una visión exhaustiva de todos los compases implicados, limitándose a ejemplos puntuales extraídos de los fragmentos recuperados.
+
+Por otro lado, la respuesta del modelo local es incorrecta, ya que afirma que no se han encontrado notas con bemoles accidentales, lo cual contradice directamente la evidencia presente en el dataset y el resultado de la consulta SQL. Este fallo sugiere una limitación en la capacidad de recuperación y formulación correcta de consultas SQL.
+
+\end{itemize}
+
+\subsection{Identifica el uso de la etiqueta <sb /> (system break) y determina si coincide siempre con el final de una frase musical lógica}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "La etiqueta `<sb />` (system break) se utiliza en MusicXML para indicar un salto de sistema, lo que significa que la música continuará en una nueva línea o sistema en la partitura. En los archivos proporcionados, esta funcionalidad se representa mediante el tag `<print new-system=""yes""/>`.
+
+El propósito principal de esta etiqueta es controlar la disposición visual de la partitura, forzando un nuevo sistema en un punto específico.
+
+En cuanto a si coincide siempre con el final de una frase musical lógica, la evidencia sugiere lo siguiente:
+
+*   **Coincidencia frecuente con el final de frases líricas:** En varios ejemplos, el salto de sistema aparece al final de una frase de texto completa, lo que a menudo implica el final de una frase musical asociada, especialmente en música vocal. Por ejemplo, en ""327. Bacanal.xml"" el salto ocurre después de una frase lírica completa, y de manera similar en ""score.xml"" después de las líneas ""Ole y anda, para mí se acabó. Ole y anda, ya no te vuelvo a ver yo."" Otro ejemplo se ve en ""367. Galan que corteja a una mujer casada.xml"", donde el salto precede una nueva estrofa lírica.
+*   **No siempre una coincidencia estricta:** Aunque hay una fuerte tendencia a que coincidan, la función del salto de sistema es de maquetación. No hay una regla inherente que garantice que *siempre* se alineará con el final de una frase musical lógica. La frase musical es un concepto compositivo que puede o no estar delimitado por la necesidad de iniciar un nuevo sistema en la representación visual de la partitura. La decisión de dónde colocar un salto de sistema puede depender de factores como la legibilidad, el espacio disponible en la página y las convenciones de notación, además de la estructura musical. Los fragmentos de letras en ""MI-1921-00-AL-03490.musicxml.xml"" y ""MI-1917-00-EH-00005.musicxml.xml"" muestran que, si bien hay cortes entre las medidas, no siempre es posible confirmar una frase musical completa sin un análisis más profundo del contexto melódico y armónico.
+
+En resumen, la etiqueta `<sb />` (o `<print new-system=""yes""/>` en MusicXML) se utiliza para iniciar un nuevo sistema en la partitura. Si bien a menudo se alinea con el final de una frase musical o lírica para mejorar la legibilidad, su propósito principal es el control del diseño y no garantiza una coincidencia absoluta y universal con el final de cada frase musical lógica."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "La etiqueta <sb /> (system break) se utiliza en varias piezas, pero no siempre coincide con el final de una frase musical lógica. Algunas de las piezas que utilizan esta etiqueta son: 65, 66, 67, 68, 69, 70, 71, 72, 73 y 74."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT 
+    CASE 
+        WHEN MIN(a.sb_coincide_con_frase_logica) = 1 
+             AND MAX(a.sb_coincide_con_frase_logica) = 1
+        THEN 'SIEMPRE COINCIDE'
+        ELSE 'NO SIEMPRE COINCIDE'
+    END AS conclusion
+FROM analisis_musical a;
+    \end{verbatim}    
+    Tras ejecutar la consulta se puede asegurar que no siempre coincide.
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es parcialmente correcta. Explica adecuadamente el significado de la etiqueta <sb /> y proporciona una interpretación razonable sobre su relación con la estructura musical y el flujo de las frases. Sin embargo, su análisis es incompleto, ya que se basa en ejemplos aislados y no verifica de forma sistemática si la coincidencia entre saltos de sistema y frases musicales lógicas se cumple en todos los casos del dataset.
+
+La respuesta del modelo local basado en Ollama es correcta, ya que asegura que aunque la etiqueta <sb /> no siempre coincide con el final de una frase musical.
+\end{itemize}
+
+\subsection{Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota?}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} "Las sílabas ""duer"" y ""me"" no se asigna siempre a la misma duración de nota en los distintos archivos del dataset. Las duraciones varían según el archivo:
+
+*   En ""ES-1948-CB-CO3-344.mei"", la sílaba ""Duér"" tiene una duración de corchea (8), y la sílaba ""me"" también tiene una duración de corchea (8).
+*   En ""ES-1948-CB-CO-333.mei"" y ""ES-1948-CB-CO1-333.mei"" (que parecen compartir el mismo contenido en esta sección), tanto ""Duér"" como ""me"" tienen una duración de corchea (8).
+*   En ""ES-2008-SA-DL-015.mei"", ""Duer"" se asigna a una duración de corchea (8), mientras que ""me"" se asigna a una duración de blanca (2).
+*   En ""ES-1980-CB-CO-350.mei"", la sílaba ""Duér"" tiene una duración de negra (4), y la sílaba ""me"" tiene una duración de corchea (8).
+
+Como se puede observar, existen variaciones en la duración de las notas asignadas a cada parte de las sílabas ""duer"" y ""me"" entre los diferentes archivos."
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron los siguientes archivos del dataset que contienen las sílabas 'duer' y 'me':
+
+* Archivo con path [path desconocido] que tiene el siguiente mapeo de sílabas y duraciones: [mapeo desconocido]
+
+Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 'me' y una duración de nota específica. Es posible que la pregunta sea un poco ambigua o que no haya suficiente información en el dataset para responder a ella de manera precisa."""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT 
+    CASE 
+        WHEN COUNT(DISTINCT a.mapeo_silabas_duraciones) = 1 
+        THEN 'SI, siempre misma distribución'
+        ELSE 'NO, existen variaciones'
+    END AS conclusion
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(a.mapeo_silabas_duraciones) LIKE '%duer%'
+   OR LOWER(a.mapeo_silabas_duraciones) LIKE '%me%';
+    \end{verbatim}    
+    Tras ejecutar la consulta se puede asegurar que existen variaciones.
+    \item \textbf{Revisión de respuestas.} En el primer caso, la respuesta del modelo basado en File Search como RAG es parcialmente correcta, ya que identifica adecuadamente que no existe una asignación fija entre las sílabas “duer” y “me” y la duración de las notas, y además aporta ejemplos concretos que muestran variaciones entre distintos archivos del dataset. Sin embargo, su análisis es incompleto, ya que no realiza una verificación sistemática sobre la consistencia global del patrón en todos los registros disponibles.
+
+Por otro lado, la respuesta del modelo local es incorrecta, ya que no logra recuperar ni analizar correctamente la relación entre sílabas y duraciones, limitándose a una salida genérica sin evidencia ni extracción real de datos del dataset. Esto puede deberse a una incapacidad por generar correctamente la consulta SQL esperada.
+\end{itemize}
+
+\subsection{¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio?}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No se encontró información específica en los documentos proporcionados sobre cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en piezas de modo mixolidio. Los resultados de la búsqueda incluyen ejemplos de partituras y menciones de intervalos, como el intervalo de tercera menor en el contexto de "picayos de modo menor", pero no abordan directamente la frecuencia de intervalos entre compases en el modo mixolidio.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} ``El intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio es +1, con un total de 4 apariciones. Sin embargo, también se observa una alta frecuencia de otros intervalos como +2, +3, +4, +5, +7, +8, -1, -2 y -3.''
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT 
+    a.intervalo_frontera_mas_frecuente,
+    COUNT(*) AS frecuencia
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE LOWER(p.modo) = 'mixolidio'
+GROUP BY a.intervalo_frontera_mas_frecuente
+ORDER BY frecuencia DESC
+LIMIT 1;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 292 obras con el intervalo frontera más frecuente: +2.
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es incorrecta, ya que no identifica el valor del intervalo más frecuente ni proporciona un análisis cuantitativo sobre la distribución de intervalos en piezas en modo mixolidio. El modelo se limita a justificar la ausencia de información en los fragmentos recuperados, sin intentar inferir ni agregar evidencia estructurada del dataset.
+
+En cambio, la respuesta del modelo local sí propone un intervalo más frecuente (+1) y acompaña la respuesta con una distribución de otros intervalos observados. Sin embargo, este resultado es incorrecto en el valor principal, ya que no coincide con el valor real obtenido mediante agregación global del dataset.
+\end{itemize}
+
+\subsection{Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No puedo realizar este tipo de análisis directamente, ya que requiere un procesamiento de datos complejo que involucra el análisis del tempo de las canciones y la longitud silábica de sus letras. Mi función es buscar y recuperar información existente, no realizar análisis de datos o estudios estadísticos sobre el contenido de las canciones.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica, ya que las palabras suelen ser más cortas en la mayoría de las canciones con un ritmo rápido. Sin embargo, es importante tener en cuenta que esta es solo una tendencia y no una regla absoluta."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT 
+    p.id,
+    p.bpm,
+    (LENGTH(a.mapeo_silabas_duraciones) 
+     - LENGTH(REPLACE(a.mapeo_silabas_duraciones, ',', '')) + 1
+    ) AS num_silabas_aprox
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id;
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvo una tabla con la información necesaria para analizar las obras objetivo de la consulta.
+    
+    \begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{id} & \textbf{bpm} & \textbf{num\_silabas\_aprox} \\
+\hline
+12379 & 76  & 54 \\
+12380 & 72  & 33 \\
+12381 & 69  & 58 \\
+12382 & 132 & 48 \\
+12383 & 80  & 31 \\
+\hline
+\end{tabular}
+\caption{Fragmento de la tabla de relaciones entre BPM y número aproximado de sílabas}
+\label{tab:bpm_silabas}
+\end{table}
+    
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG identifica de la limitación del problema, ya que reconoce que el análisis requiere procesamiento estadístico y estructural de datos (tempo y segmentación silábica), algo que excede la simple recuperación de información. Sin embargo, no aporta ningún análisis sobre el dataset ni intenta contrastar la hipótesis planteada.
+
+Por otro lado, la respuesta del modelo local es incorrecta, ya que formula una conclusión general sin soporte empírico ni cálculo sobre los datos. Afirma una tendencia entre BPM altos y menor longitud silábica, pero no realiza ningún tipo de agregación ni comparación entre subconjuntos de piezas, por lo que se trata de una inferencia no verificada.
+\end{itemize}
+
+\subsection{Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} None
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} """Se encontraron las siguientes piezas donde la nota final es la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta:
+
+* No se encontraron resultados. Es posible que la pregunta sea un poco ambigua o que no haya suficiente datos disponibles."""
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT 
+    p.id,
+    p.titulo,
+    p.tonalidad,
+    a.secuencia_notas_silencios
+FROM piezas p
+JOIN analisis_musical a ON p.id = a.pieza_id
+WHERE 
+    (
+        CASE LOWER(p.tonalidad)
+            WHEN 'c major' THEN 'G4'
+            WHEN 'g major' THEN 'D4'
+            WHEN 'd major' THEN 'A4'
+            WHEN 'a major' THEN 'E4'
+            WHEN 'e major' THEN 'B4'
+            WHEN 'f major' THEN 'C4'
+            WHEN 'a minor' THEN 'E4'
+            WHEN 'e minor' THEN 'B4'
+            WHEN 'd minor' THEN 'A4'
+            WHEN 'g minor' THEN 'D4'
+        END
+    )
+    =
+    TRIM(
+        substr(
+            replace(
+                replace(
+                    replace(a.secuencia_notas_silencios, '-', ' '),
+                    ',', ' '
+                ),
+                '  ', ' '
+            ),
+            -3
+        )
+    );
+    \end{verbatim}    
+    Tras ejecutar la consulta se obtuvieron 724 obras que cumplen con los requisitos expuestos.
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG es incorrecta, ya que no proporciona ningún resultado ni análisis sobre la condición planteada. La ausencia de respuesta sugiere una incapacidad del sistema para recuperar o interpretar información relevante sobre la relación entre la tonalidad, la secuencia final de notas y la identificación de la dominante.
+
+Por otro lado, la respuesta del modelo local también es incorrecta, aunque por un motivo distinto: en lugar de intentar resolver el problema, devuelve una negación genérica (“no se encontraron resultados”) sin realizar ningún análisis estructural de la secuencia melódica ni de la correspondencia entre la última nota y el quinto grado de la tonalidad. Esto indica un fallo en la inferencia lógica necesaria para este tipo de consulta musical.
+\end{itemize}
+
+\subsection{Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}
+\begin{itemize}
+    \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} Los resultados de la búsqueda no identifican un patrón de silencios (`<rest />`) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria. Si bien algunos fragmentos musicales en métrica ternaria, como los de los archivos ``CO-1948-00-BG-00041.musicxml.xml'' y ``MX-1964-00-VM-02050.musicxml.xml'', contienen silencios en compases consecutivos, no se observa una recurrencia regular cada cuatro compases.
+    \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "No se encontró ningún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria. Es posible que la pregunta sea un poco ambigua o que no haya suficiente datos disponibles."
+    \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
+    \begin{verbatim}
+SELECT
+    p.id,
+    p.titulo,
+    p.compas,
+    a.secuencia_notas_silencios
+FROM piezas p
+JOIN analisis_musical a
+    ON p.id = a.pieza_id
+WHERE p.compas IN ('3/4', '6/8', '9/8', '12/8')
+  AND LOWER(a.secuencia_notas_silencios) LIKE '%silencio%';
+    \end{verbatim}    
+    Tras ejecutar la consulta se una tabla que permite analizar los resultados obtenidos para responder a la pregunta propuesta.
+
+    \begin{table}[htbp]
+\centering
+\footnotesize
+\begin{tabular}{|c|p{3.5cm}|c|p{8cm}|}
+\hline
+\textbf{id} & \textbf{Título} & \textbf{Compás} & \textbf{Secuencia notas/silencios} \\
+\hline
+4 &
+IE-2019-D-HLS-004 &
+6/8 &
+G4 - B4 - A4 - B4 - G4 - A4 - B4 - C5 - D5 - B4 - C5 - A4 - A4 - B4 - D5 - G5 - F\#5 - E5 - D5 - B4 - G4 - A4 - C5 - B4 - A4 - G4 - G4 - Silencio \\
+\hline
+5 &
+IE-2019-D-HLS-005 &
+12/8 &
+D4 - G4 - G4 - G4 - B4 - D4 - D4 - D4 - E4 - G4 - G4 - G4 - A4 - B4 - B4 - B4 - C5 - C5 - C5 - E5 - D5 - B4 - G4 - B4 - \dots\ - G4 - G4 - Silencio \\
+\hline
+6 &
+IE-2019-D-HLS-006 &
+12/8 &
+B4 - E5 - B4 - D5 - D5 - E5 - D5 - D5 - B4 - D5 - D5 - E5 - D5 - D5 - B4 - C\#5 - D5 - D5 - E5 - E5 - F\#5 - \dots\ - E4 - E4 - Silencio \\
+\hline
+8 &
+IE-2019-D-HLS-008 &
+3/4 &
+G4 - A4 - B4 - B4 - B4 - C5 - C5 - D5 - C5 - B4 - B4 - G4 - A4 - G4 - G4 - A4 - B4 - \dots\ - D5 - C5 - A4 - G4 - G4 - G4 \\
+\hline
+\end{tabular}
+\caption{Fragmento de la tabla de ejemplos de piezas en métrica ternaria que contienen silencios.}
+\label{tab:silencios_metrica_ternaria}
+\end{table}
+
+    \item \textbf{Revisión de respuestas.} La respuesta del modelo basado en File Search como RAG identifica adecuadamente la presencia de silencios en algunas piezas con métrica ternaria y reconoce que no se observa de forma clara un patrón periódico cada cuatro compases. Sin embargo, su análisis es incompleto, ya que se limita a una observación cualitativa sobre ejemplos aislados sin realizar una verificación sistemática del patrón temporal en el conjunto del dataset.
+
+Por otro lado, la respuesta del modelo local es incorrecta, aunque formalmente coherente, ya que concluye que no existe suficiente información sin analizar los datos disponibles ni considerar la posibilidad de detección de patrones estructurales en la secuencia de compases. Esto refleja una dificultad para generar la consulta compleja que requiere esta pregunta.
+\end{itemize}
+

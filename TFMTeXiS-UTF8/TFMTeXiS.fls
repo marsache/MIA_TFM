@@ -416,6 +416,9 @@ INPUT Cascaras\bibliografia.aux
 INPUT .\Apendices\appendixA.aux
 INPUT .\Apendices\appendixA.aux
 INPUT Apendices\appendixA.aux
+INPUT .\Apendices\appendixB.aux
+INPUT .\Apendices\appendixB.aux
+INPUT Apendices\appendixB.aux
 INPUT .\Cascaras\fin.aux
 INPUT .\Cascaras\fin.aux
 INPUT Cascaras\fin.aux
@@ -663,7 +666,6 @@ OUTPUT Capitulos\EvaluacionPruebas.aux
 INPUT .\Capitulos\EvaluacionPruebas.tex
 INPUT .\Capitulos\EvaluacionPruebas.tex
 INPUT Capitulos\EvaluacionPruebas.tex
-INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx0900.tfm
 INPUT .\Capitulos\DiscusionAnalisis.tex
 INPUT .\Capitulos\DiscusionAnalisis.tex
 OUTPUT Capitulos\DiscusionAnalisis.aux
@@ -703,6 +705,13 @@ OUTPUT Apendices\appendixA.aux
 INPUT .\Apendices\appendixA.tex
 INPUT .\Apendices\appendixA.tex
 INPUT Apendices\appendixA.tex
+INPUT .\Apendices\appendixB.tex
+INPUT .\Apendices\appendixB.tex
+OUTPUT Apendices\appendixB.aux
+INPUT .\Apendices\appendixB.tex
+INPUT .\Apendices\appendixB.tex
+INPUT Apendices\appendixB.tex
+INPUT C:\Users\maria\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecbx0900.tfm
 INPUT .\Cascaras\fin.tex
 INPUT .\Cascaras\fin.tex
 OUTPUT Cascaras\fin.aux
@@ -765,6 +774,9 @@ INPUT Cascaras\bibliografia.aux
 INPUT .\Apendices\appendixA.aux
 INPUT .\Apendices\appendixA.aux
 INPUT Apendices\appendixA.aux
+INPUT .\Apendices\appendixB.aux
+INPUT .\Apendices\appendixB.aux
+INPUT Apendices\appendixB.aux
 INPUT .\Cascaras\fin.aux
 INPUT .\Cascaras\fin.aux
 INPUT Cascaras\fin.aux

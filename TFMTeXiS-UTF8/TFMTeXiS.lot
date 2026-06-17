@@ -35,11 +35,7 @@
 \contentsline {table}{\numberline {5.27}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la información sobre su intervalo frontera más frecuente}}{59}{table.caption.119}%
 \contentsline {table}{\numberline {5.28}{\ignorespaces Ejemplos de obras almacenadas en la base de datos y la información sobre el uso de etiquetas sb en su estructura}}{60}{table.caption.121}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Fragmento de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}}{106}{table.caption.166}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Fragmento de la tabla de relaciones entre temas y tendencia melódica en piezas del dataset}}{110}{table.caption.170}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces Fragmento de la tabla de relaciones entre BPM y número aproximado de sílabas}}{115}{table.caption.176}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces Fragmento de la tabla de ejemplos de piezas en métrica ternaria que contienen silencios.}}{118}{table.caption.179}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces Resumen de resultados obtenidos para las consultas de evaluación.}}{119}{table.6.5}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces Resumen de resultados obtenidos para las consultas de evaluación.}}{66}{table.6.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
@@ -47,3 +43,8 @@
 \addvspace {10\p@ }
 \babel@toc {spanish}{}\relax 
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {B.1}{\ignorespaces Fragmento de la tabla devuelta tras consultar la tesitura en semitonos de distintas piezas del dataset}}{131}{table.caption.187}%
+\contentsline {table}{\numberline {B.2}{\ignorespaces Fragmento de la tabla de relaciones entre temas y tendencia melódica en piezas del dataset}}{135}{table.caption.191}%
+\contentsline {table}{\numberline {B.3}{\ignorespaces Fragmento de la tabla de relaciones entre BPM y número aproximado de sílabas}}{141}{table.caption.197}%
+\contentsline {table}{\numberline {B.4}{\ignorespaces Fragmento de la tabla de ejemplos de piezas en métrica ternaria que contienen silencios.}}{143}{table.caption.200}%

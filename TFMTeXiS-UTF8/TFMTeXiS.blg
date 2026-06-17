@@ -40,6 +40,8 @@ The style file: TeXiS/TeXiS.bst
 Reallocating 'name_of_file' (item size: 1) to 7 items.
 Reallocating 'name_of_file' (item size: 1) to 24 items.
 A level-1 auxiliary file: Apendices/appendixA.aux
+Reallocating 'name_of_file' (item size: 1) to 24 items.
+A level-1 auxiliary file: Apendices/appendixB.aux
 Reallocating 'name_of_file' (item size: 1) to 17 items.
 A level-1 auxiliary file: Cascaras/fin.aux
 Database file #1: biblio.bib
@@ -48,7 +50,7 @@ Warning--missing publisher in jurafsky2000speech
 Warning--empty journal in vaswani2017attention
 You've used 30 entries,
             2962 wiz_defined-function locations,
-            1246 strings with 17473 characters,
+            1247 strings with 17496 characters,
 and the built_in function-call counts, 17524 in all, are:
 = -- 1280
 > -- 821

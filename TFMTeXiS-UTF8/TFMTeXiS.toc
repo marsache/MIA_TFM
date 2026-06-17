@@ -75,73 +75,73 @@
 \contentsline {section}{\numberline {5.4}Desarrollo de aplicación web para facilitar el acceso a la herramienta}{60}{section.122}%
 \contentsline {section}{\numberline {5.5}Inconvenientes encontrados durante el desarrollo del sistema}{63}{section.125}%
 \contentsline {chapter}{\numberline {6}Evaluación y pruebas}{65}{chapter.126}%
-\contentsline {section}{\numberline {6.1}Preguntas realizadas y respuestas de los modelos}{66}{section.127}%
-\contentsline {subsection}{\numberline {6.1.1}Identifica piezas que se llamen El Carro}{66}{subsection.128}%
-\contentsline {subsection}{\numberline {6.1.2}Identifica piezas cuyo autor sea Schumann}{67}{subsection.129}%
-\contentsline {subsection}{\numberline {6.1.3}Identifica piezas con un compás de 4/4}{68}{subsection.130}%
-\contentsline {subsection}{\numberline {6.1.4}Identifica piezas con hemiolias horizontales}{69}{subsection.131}%
-\contentsline {subsection}{\numberline {6.1.5}Identifica piezas con hemiolias verticales}{70}{subsection.132}%
-\contentsline {subsection}{\numberline {6.1.6}Identifica piezas con la tonalidad G major}{71}{subsection.133}%
-\contentsline {subsection}{\numberline {6.1.7}Identifica piezas que estén en modo dórico}{72}{subsection.134}%
-\contentsline {subsection}{\numberline {6.1.8}Identifica piezas con un bpm de 120}{73}{subsection.135}%
-\contentsline {subsection}{\numberline {6.1.9}Identifica piezas con un volumen midi de 79}{74}{subsection.136}%
-\contentsline {subsection}{\numberline {6.1.10}Identifica piezas cuya nota más grave sea A3}{75}{subsection.137}%
-\contentsline {subsection}{\numberline {6.1.11}Identifica piezas cuya nota más aguda sea G5}{75}{subsection.138}%
-\contentsline {subsection}{\numberline {6.1.12}Identifica piezas cuyo autor sea de género masculino}{76}{subsection.139}%
-\contentsline {subsection}{\numberline {6.1.13}Identifica piezas cuyo software de codificación haya sido Sibelius 7.1.3}{77}{subsection.140}%
-\contentsline {subsection}{\numberline {6.1.14}Identifica piezas cuya fecha de codificación sea el 2015-07-01}{78}{subsection.141}%
-\contentsline {subsection}{\numberline {6.1.15}Identifica piezas con síncopas}{79}{subsection.142}%
-\contentsline {subsection}{\numberline {6.1.16}Identifica piezas que traten la muerte como tema}{80}{subsection.143}%
-\contentsline {subsection}{\numberline {6.1.17}Identifica piezas con polirritmia}{80}{subsection.144}%
-\contentsline {subsection}{\numberline {6.1.18}Identifica piezas cuyo contenido lírico esté escrito en voz masculina}{81}{subsection.145}%
-\contentsline {subsection}{\numberline {6.1.19}Identifica obras cuya tendencia melódica sea predominantemente descendente}{82}{subsection.146}%
-\contentsline {subsection}{\numberline {6.1.20}Identifica piezas con 4 alteraciones accidentales}{84}{subsection.147}%
-\contentsline {subsection}{\numberline {6.1.21}Identifica piezas con compases vacíos}{84}{subsection.148}%
-\contentsline {subsection}{\numberline {6.1.22}Identifica piezas con notas de duración 0}{85}{subsection.149}%
-\contentsline {subsection}{\numberline {6.1.23}Identifica piezas con plicas anómalas}{86}{subsection.150}%
-\contentsline {subsection}{\numberline {6.1.24}Identifica piezas que usen la palabra ``bondad''}{87}{subsection.151}%
-\contentsline {subsection}{\numberline {6.1.25}Identifica piezas que mencionen el nombre propio ``Alfonsito''}{88}{subsection.152}%
-\contentsline {subsection}{\numberline {6.1.26}Identifica piezas cuyo intervalo frontera más frecuente sea +5}{88}{subsection.153}%
-\contentsline {subsection}{\numberline {6.1.27}Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}{90}{subsection.154}%
-\contentsline {subsection}{\numberline {6.1.28}Identifica piezas de tonalidad A minor que tengan hemiolias y que no superen los 90 bpm}{91}{subsection.155}%
-\contentsline {subsection}{\numberline {6.1.29}Identifica piezas de tonalidad A minor que tengan hemiolias}{92}{subsection.156}%
-\contentsline {subsection}{\numberline {6.1.30}Encuentra canciones donde el valor de dur.ppq cambie a mitad de la sección, indicando un cambio de resolución rítmica}{93}{subsection.157}%
-\contentsline {subsection}{\numberline {6.1.31}Busca ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''}{95}{subsection.158}%
-\contentsline {subsection}{\numberline {6.1.32}Localiza obras que tengan compases donde la suma de las duraciones de las etiquetas <note> no coincida con el meterSig declarado en el staffDef}{96}{subsection.159}%
-\contentsline {subsection}{\numberline {6.1.33}¿Qué piezas utilizan valores irregulares (por ejemplo, tresillos) no declarados explícitamente en un <time-modification> del MusicXML?}{98}{subsection.160}%
-\contentsline {subsection}{\numberline {6.1.34}Compara la densidad de notas por compás entre una pieza de 4/4 y una de 2/4 del dataset; ¿cuál tiene mayor promedio de eventos musicales?}{99}{subsection.161}%
-\contentsline {subsection}{\numberline {6.1.35}Identifica si existe algún uso de polirritmia en los archivos MEI}{100}{subsection.162}%
-\contentsline {subsection}{\numberline {6.1.36}Lista canciones que compartan la misma armadura de un bemol (F major/D minor) pero que traten temas distintos}{101}{subsection.163}%
-\contentsline {subsection}{\numberline {6.1.37}Encuentra piezas recolectadas antes de 1950 que traten el tema de ``la muerte'' y que utilicen exclusivamente un rango melódico de sexta menor}{102}{subsection.164}%
-\contentsline {subsection}{\numberline {6.1.38}¿Qué diferencias de tesitura (nota más aguda vs. nota más grave) existen entre las canciones de nana?}{104}{subsection.165}%
-\contentsline {subsection}{\numberline {6.1.39}Identifica canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina}{107}{subsection.167}%
-\contentsline {subsection}{\numberline {6.1.40}Filtra piezas que usen la palabra ``estrella'' en la lírica y determina si su melodía es predominantemente ascendente o descendente}{108}{subsection.168}%
-\contentsline {subsection}{\numberline {6.1.41}Busca canciones que traten temas de trabajo que compartan la misma estructura de intervalos que las canciones de tema infantil}{109}{subsection.169}%
-\contentsline {subsection}{\numberline {6.1.42}Localiza todas las notas que tengan bemoles accidentales y dime en qué compases aparecen en los archivos MEI encontrados}{110}{subsection.171}%
-\contentsline {subsection}{\numberline {6.1.43}Identifica el uso de la etiqueta <sb /> (system break) y determina si coincide siempre con el final de una frase musical lógica}{111}{subsection.172}%
-\contentsline {subsection}{\numberline {6.1.44}Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota?}{113}{subsection.173}%
-\contentsline {subsection}{\numberline {6.1.45}¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio?}{114}{subsection.174}%
-\contentsline {subsection}{\numberline {6.1.46}Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica}{115}{subsection.175}%
-\contentsline {subsection}{\numberline {6.1.47}Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}{116}{subsection.177}%
-\contentsline {subsection}{\numberline {6.1.48}Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}{117}{subsection.178}%
-\contentsline {section}{\numberline {6.2}Resumen de preguntas formuladas y respuestas de los modelos}{118}{section.180}%
-\contentsline {chapter}{\numberline {7}Discusión y análisis de limitaciones}{123}{chapter.181}%
-\contentsline {chapter}{\numberline {8}Conclusiones y Trabajo Futuro}{125}{chapter.182}%
-\contentsline {section}{\numberline {8.1}Conclusiones}{125}{section.183}%
-\contentsline {section}{\numberline {8.2}Trabajo futuro}{126}{section.184}%
-\contentsline {chapter}{\numberline {9}Introduction}{129}{chapter.185}%
-\contentsline {section}{\numberline {9.1}Motivation}{130}{section.187}%
-\contentsline {section}{\numberline {9.2}Objectives}{131}{section.188}%
-\contentsline {subsection}{\numberline {9.2.1}General Objectives}{131}{subsection.189}%
-\contentsline {subsection}{\numberline {9.2.2}Specific Objectives}{131}{subsection.190}%
-\contentsline {section}{\numberline {9.3}Work Plan}{132}{section.191}%
-\contentsline {section}{\numberline {9.4}Methodology and Technology}{134}{section.193}%
-\contentsline {section}{\numberline {9.5}Structure of the Rest of the Document}{135}{section.194}%
-\contentsline {section}{\numberline {9.6}Use of Artificial Intelligence}{136}{section.195}%
+\contentsline {section}{\numberline {6.1}Resumen de preguntas formuladas y respuestas de los modelos}{66}{section.127}%
+\contentsline {chapter}{\numberline {7}Discusión y análisis de limitaciones}{69}{chapter.128}%
+\contentsline {chapter}{\numberline {8}Conclusiones y Trabajo Futuro}{71}{chapter.129}%
+\contentsline {section}{\numberline {8.1}Conclusiones}{71}{section.130}%
+\contentsline {section}{\numberline {8.2}Trabajo futuro}{72}{section.131}%
+\contentsline {chapter}{\numberline {9}Introduction}{75}{chapter.132}%
+\contentsline {section}{\numberline {9.1}Motivation}{76}{section.134}%
+\contentsline {section}{\numberline {9.2}Objectives}{77}{section.135}%
+\contentsline {subsection}{\numberline {9.2.1}General Objectives}{77}{subsection.136}%
+\contentsline {subsection}{\numberline {9.2.2}Specific Objectives}{77}{subsection.137}%
+\contentsline {section}{\numberline {9.3}Work Plan}{78}{section.138}%
+\contentsline {section}{\numberline {9.4}Methodology and Technology}{80}{section.140}%
+\contentsline {section}{\numberline {9.5}Structure of the Rest of the Document}{81}{section.141}%
+\contentsline {section}{\numberline {9.6}Use of Artificial Intelligence}{82}{section.142}%
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{\numberline {10}Conclusions and Future Work}{137}{chapter.196}%
-\contentsline {section}{\numberline {10.1}Conclusions}{137}{section.197}%
-\contentsline {section}{\numberline {10.2}Future Work}{138}{section.198}%
-\contentsline {chapter}{Bibliograf\'{\i }a}{141}{chapter*.199}%
+\contentsline {chapter}{\numberline {10}Conclusions and Future Work}{83}{chapter.143}%
+\contentsline {section}{\numberline {10.1}Conclusions}{83}{section.144}%
+\contentsline {section}{\numberline {10.2}Future Work}{84}{section.145}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{87}{chapter*.146}%
 \babel@toc {spanish}{}\relax 
-\contentsline {chapter}{\numberline {A}Presentación del proyecto en congresos y seminarios}{143}{appendix.200}%
+\contentsline {chapter}{\numberline {A}Presentación del proyecto en congresos y seminarios}{89}{appendix.147}%
+\contentsline {chapter}{\numberline {B}Preguntas realizadas y respuestas de los modelos}{91}{appendix.148}%
+\contentsline {subsection}{\numberline {B.0.1}Identifica piezas que se llamen El Carro}{91}{subsection.149}%
+\contentsline {subsection}{\numberline {B.0.2}Identifica piezas cuyo autor sea Schumann}{92}{subsection.150}%
+\contentsline {subsection}{\numberline {B.0.3}Identifica piezas con un compás de 4/4}{93}{subsection.151}%
+\contentsline {subsection}{\numberline {B.0.4}Identifica piezas con hemiolias horizontales}{94}{subsection.152}%
+\contentsline {subsection}{\numberline {B.0.5}Identifica piezas con hemiolias verticales}{95}{subsection.153}%
+\contentsline {subsection}{\numberline {B.0.6}Identifica piezas con la tonalidad G major}{96}{subsection.154}%
+\contentsline {subsection}{\numberline {B.0.7}Identifica piezas que estén en modo dórico}{97}{subsection.155}%
+\contentsline {subsection}{\numberline {B.0.8}Identifica piezas con un bpm de 120}{98}{subsection.156}%
+\contentsline {subsection}{\numberline {B.0.9}Identifica piezas con un volumen midi de 79}{99}{subsection.157}%
+\contentsline {subsection}{\numberline {B.0.10}Identifica piezas cuya nota más grave sea A3}{100}{subsection.158}%
+\contentsline {subsection}{\numberline {B.0.11}Identifica piezas cuya nota más aguda sea G5}{101}{subsection.159}%
+\contentsline {subsection}{\numberline {B.0.12}Identifica piezas cuyo autor sea de género masculino}{101}{subsection.160}%
+\contentsline {subsection}{\numberline {B.0.13}Identifica piezas cuyo software de codificación haya sido Sibelius 7.1.3}{102}{subsection.161}%
+\contentsline {subsection}{\numberline {B.0.14}Identifica piezas cuya fecha de codificación sea el 2015-07-01}{103}{subsection.162}%
+\contentsline {subsection}{\numberline {B.0.15}Identifica piezas con síncopas}{104}{subsection.163}%
+\contentsline {subsection}{\numberline {B.0.16}Identifica piezas que traten la muerte como tema}{105}{subsection.164}%
+\contentsline {subsection}{\numberline {B.0.17}Identifica piezas con polirritmia}{106}{subsection.165}%
+\contentsline {subsection}{\numberline {B.0.18}Identifica piezas cuyo contenido lírico esté escrito en voz masculina}{107}{subsection.166}%
+\contentsline {subsection}{\numberline {B.0.19}Identifica obras cuya tendencia melódica sea predominantemente descendente}{108}{subsection.167}%
+\contentsline {subsection}{\numberline {B.0.20}Identifica piezas con 4 alteraciones accidentales}{109}{subsection.168}%
+\contentsline {subsection}{\numberline {B.0.21}Identifica piezas con compases vacíos}{110}{subsection.169}%
+\contentsline {subsection}{\numberline {B.0.22}Identifica piezas con notas de duración 0}{111}{subsection.170}%
+\contentsline {subsection}{\numberline {B.0.23}Identifica piezas con plicas anómalas}{111}{subsection.171}%
+\contentsline {subsection}{\numberline {B.0.24}Identifica piezas que usen la palabra ``bondad''}{112}{subsection.172}%
+\contentsline {subsection}{\numberline {B.0.25}Identifica piezas que mencionen el nombre propio ``Alfonsito''}{113}{subsection.173}%
+\contentsline {subsection}{\numberline {B.0.26}Identifica piezas cuyo intervalo frontera más frecuente sea +5}{114}{subsection.174}%
+\contentsline {subsection}{\numberline {B.0.27}Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}{115}{subsection.175}%
+\contentsline {subsection}{\numberline {B.0.28}Identifica piezas de tonalidad A minor que tengan hemiolias y que no superen los 90 bpm}{116}{subsection.176}%
+\contentsline {subsection}{\numberline {B.0.29}Identifica piezas de tonalidad A minor que tengan hemiolias}{117}{subsection.177}%
+\contentsline {subsection}{\numberline {B.0.30}Encuentra canciones donde el valor de dur.ppq cambie a mitad de la sección, indicando un cambio de resolución rítmica}{118}{subsection.178}%
+\contentsline {subsection}{\numberline {B.0.31}Busca ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''}{120}{subsection.179}%
+\contentsline {subsection}{\numberline {B.0.32}Localiza obras que tengan compases donde la suma de las duraciones de las etiquetas <note> no coincida con el meterSig declarado en el staffDef}{121}{subsection.180}%
+\contentsline {subsection}{\numberline {B.0.33}¿Qué piezas utilizan valores irregulares (por ejemplo, tresillos) no declarados explícitamente en un <time-modification> del MusicXML?}{123}{subsection.181}%
+\contentsline {subsection}{\numberline {B.0.34}Compara la densidad de notas por compás entre una pieza de 4/4 y una de 2/4 del dataset; ¿cuál tiene mayor promedio de eventos musicales?}{124}{subsection.182}%
+\contentsline {subsection}{\numberline {B.0.35}Identifica si existe algún uso de polirritmia en los archivos MEI}{125}{subsection.183}%
+\contentsline {subsection}{\numberline {B.0.36}Lista canciones que compartan la misma armadura de un bemol (F major/D minor) pero que traten temas distintos}{126}{subsection.184}%
+\contentsline {subsection}{\numberline {B.0.37}Encuentra piezas recolectadas antes de 1950 que traten el tema de ``la muerte'' y que utilicen exclusivamente un rango melódico de sexta menor}{127}{subsection.185}%
+\contentsline {subsection}{\numberline {B.0.38}¿Qué diferencias de tesitura (nota más aguda vs. nota más grave) existen entre las canciones de nana?}{129}{subsection.186}%
+\contentsline {subsection}{\numberline {B.0.39}Identifica canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina}{132}{subsection.188}%
+\contentsline {subsection}{\numberline {B.0.40}Filtra piezas que usen la palabra ``estrella'' en la lírica y determina si su melodía es predominantemente ascendente o descendente}{133}{subsection.189}%
+\contentsline {subsection}{\numberline {B.0.41}Busca canciones que traten temas de trabajo que compartan la misma estructura de intervalos que las canciones de tema infantil}{134}{subsection.190}%
+\contentsline {subsection}{\numberline {B.0.42}Localiza todas las notas que tengan bemoles accidentales y dime en qué compases aparecen en los archivos MEI encontrados}{135}{subsection.192}%
+\contentsline {subsection}{\numberline {B.0.43}Identifica el uso de la etiqueta <sb /> (system break) y determina si coincide siempre con el final de una frase musical lógica}{136}{subsection.193}%
+\contentsline {subsection}{\numberline {B.0.44}Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota?}{138}{subsection.194}%
+\contentsline {subsection}{\numberline {B.0.45}¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio?}{139}{subsection.195}%
+\contentsline {subsection}{\numberline {B.0.46}Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica}{140}{subsection.196}%
+\contentsline {subsection}{\numberline {B.0.47}Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}{141}{subsection.198}%
+\contentsline {subsection}{\numberline {B.0.48}Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}{142}{subsection.199}%

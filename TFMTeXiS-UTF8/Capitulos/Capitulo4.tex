@@ -739,6 +739,17 @@ Además del análisis estructurado de metadatos, se realiza una búsqueda textua
 
 Este método genera un conjunto normalizado de metadatos que incluye el software de codificación identificado, un indicador binario de conversión mediante Verovio, la fecha de codificación cuando está disponible y el formato de origen del documento. En ausencia de información explícita, se asignan valores por defecto que garantizan la consistencia de la salida y permiten continuar el procesamiento sin interrupciones.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\textbf{Título} & \textbf{Software codificación} & \textbf{Fecha codificación} \\
+Andrew’s Farewell to Ireland & Sibelius 7.1.3 & 2015-07-01 \\
+49. EL NIÑO Y LA MARIPOSA & MuseScore 4.2.1 & 2024-02-14 \\
+LA MUÑECA & MuseScore 4.5.1 & 2025-04-01 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos con su software y fecha codificación}
+\end{table}
+
 \subsection{Auditoría automatizada de control de calidad estructural}
 Con el fin de evaluar la integridad estructural de las partituras digitales y detectar posibles errores derivados de procesos de transcripción, digitalización o conversión entre formatos, se implementó un procedimiento automatizado de control de calidad. Este procedimiento genera un conjunto de indicadores para medir la consistencia básica de la representación musical y a señalar posibles anomalías que puedan comprometer análisis posteriores.
 
@@ -751,6 +762,17 @@ La segunda comprobación busca notas con duración nula o negativa. Este tipo de
 A partir de los resultados obtenidos, el procedimiento calcula una puntuación global de integridad inicializada en un valor máximo de 100 puntos. Las anomalías detectadas generan penalizaciones acumulativas que dependen de la naturaleza y frecuencia de los problemas encontrados. Los compases vacíos producen una reducción progresiva de la puntuación hasta un límite máximo predefinido, mientras que las notas con duración nula generan una penalización independiente. Este mecanismo permite sintetizar múltiples indicadores de calidad en una única métrica.
 
 Finalmente, la puntuación resultante se utiliza para asignar una clasificación cualitativa del estado de la partitura. Los documentos con puntuaciones elevadas se consideran estructuralmente consistentes, mientras que puntuaciones intermedias generan advertencias preventivas sobre posibles desajustes. Cuando la puntuación desciende por debajo de un umbral crítico, el sistema recomienda una revisión manual debido a la posible existencia de errores graves o información incompleta.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{5cm} p{3cm}}
+\textbf{Título} & \textbf{QC advertencias críticas} & \textbf{QC puntuación integridad} \\
+De conejo & Advertencia: Pequeños desajustes o silencios faltantes detectados & 65.0 \\
+Hilitos, hilitos de oro (b) & Ninguna & 100.0 \\
+Go to the devil and shake yourself & Revisión Manual Urgente: Estructura corrupta o incompleta & 35.0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos con información sobre la integridad de las piezas}
+\end{table}
 
 \subsection{Extracción de intervalos melódicos}
 Con el objetivo de obtener una representación de la estructura melódica de una partitura, se implementó un procedimiento de extracción de intervalos melódicos basado en las distancias en semitonos entre eventos musicales consecutivos. Este enfoque permite describir el movimiento de la melodía independientemente de su altura absoluta, facilitando la comparación entre fragmentos musicales transpuestos a diferentes tonalidades.
@@ -778,6 +800,16 @@ Los patrones identificados se representan mediante una notación textual basada 
 
 Finalmente, los resultados se devuelven en formato JSON, permitiendo su almacenamiento directo en la base de datos. La estructura generada contiene los motivos detectados y el número de veces que cada uno aparece en la partitura.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{9.5cm}}
+\textbf{Título} & \textbf{Patrones leitmotivs JSON} \\
+IE-2019-D-HLS-039 & {"+5 -> -5 -> -3": 2, "-5 -> -3 -> +1": 2, "+5 -> -5 -> -3 -> +1": 2} \\
+Táim Sínte air do Thuamba & {"-5 -> -2 -> +2": 2, "-2 -> +2 -> -2": 2, "-4 -> -5 -> -2": 2, "-2 -> 0 -> 0": 2} \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos, sus leitmotivs y cuántas veces aparecen}
+\end{table}
+
 \subsection{Detección de plicas anómalas}
 Con el propósito de evaluar la coherencia gráfica de la notación musical, se implementó un sistema de detección automática de anomalías en la dirección de las plicas de las notas. El método se basa en las convenciones tradicionales de escritura musical, según las cuales las notas situadas por debajo de la tercera línea del pentagrama suelen representarse con la plica orientada hacia arriba, mientras que las notas situadas por encima de dicha línea se representan habitualmente con la plica orientada hacia abajo. Las desviaciones respecto a esta convención se consideran potenciales anomalías de notación.
 
@@ -798,6 +830,18 @@ Una vez establecida esta referencia, se verifica la correspondencia entre la alt
 
 Como resultado, este procedimiento genera un conjunto de indicadores descriptivos que incluyen la presencia o ausencia de anomalías, el número total de casos detectados y la identificación de los compases en los que se producen.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{Tiene plicas anómalas} \\
+42.  Salamanca — Reel & 1 \\
+426.  Katy’s Rambles — Jig & 1 \\
+206.  Cale Smith’s Pastime — Reel & 0 \\
+390.  Flowers of Michigan — Reel & 0 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y si tienen plicas anómalas (1) o no (0)}
+\end{table}
+
 \subsection{Extracción del volumen MIDI de la obra}
 Con el fin de obtener información sobre la dinámica de reproducción de las partituras analizadas, se desarrolló un procedimiento de extracción automática del volumen MIDI a partir de distintos formatos de representación musical digital.
 Ya que los tres formatos procesados en este corpus (MEI, XML y MSCZ) representan de distinta manera la información relativa a la partitura, el método diseñado se adapta a cada tipo de documento, proporcionando una interfaz unificada para la recuperación de este parámetro independientemente de la estructura interna de la obra.
@@ -805,6 +849,18 @@ Ya que los tres formatos procesados en este corpus (MEI, XML y MSCZ) representan
 El algoritmo recibe como entrada la ruta del archivo a analizar y verifica inicialmente que su extensión se corresponda con alguno de los formatos soportados. En el caso de archivos MSCZ, el procedimiento accede al contenedor comprimido y localiza el archivo de configuración de audio (audiosettings.json). A continuación, analiza su contenido en formato JSON y extrae el valor asociado al atributo volumeDb dentro de la configuración maestra de audio. Este valor representa el nivel global de volumen definido para la reproducción de la partitura.
 
 Para los formatos basados en XML (MEI y MusicXML), el documento se procesa mediante un analizador sintáctico XML y se recorre de forma exhaustiva la estructura jerárquica de elementos. En los documentos MEI, el volumen MIDI se identifica a través del atributo midi.volume, presente en elementos instrDef, mientras que en MusicXML se localiza en elementos volume contenidos dentro de estructuras midi-instrument. Una vez recuperado el valor, se eliminan posibles caracteres de formato (como símbolos de porcentaje) y se realiza una conversión a representación numérica. Finalmente, el valor se redondea y almacena como un entero para garantizar una representación uniforme entre formatos.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lr}
+\textbf{Título} & \textbf{MIDI volume} \\
+La lluvia & 78 \\
+La Bamba & 79 \\
+Petenera & 80 \\
+La carolina & 77 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y su volumen MIDI}
+\end{table}
 
 \subsection{Extracción de sustantivos y nombres propios (personas, lugares...) de la lírica de la obra}
 Con el objetivo de enriquecer el análisis temático de las obras, se ha implementado una herramienta que recorre la letra de cada canción para identificar y extraer los sustantivos y nombres propios presentes en ella. Esta información puede ser crucial para determinar los temas tratados en la obra, así como para realizar análisis comparativos entre distintas canciones, autores o regiones.
@@ -821,6 +877,16 @@ Los elementos extraídos se almacenan eliminando automáticamente posibles dupli
 
 Adicionalmente, el procedimiento incorpora un mecanismo de respaldo para entornos en los que el modelo lingüístico no se encuentre disponible. En tales situaciones, la identificación de nombres propios se realiza mediante una heurística basada en patrones ortográficos (detección de palabras que comienzan por letra mayúscula). Aunque este enfoque ofrece una aproximación básica para la identificación de entidades nominales, no proporciona la precisión necesaria para la extracción fiable de sustantivos comunes, por lo que dicha funcionalidad queda supeditada a la disponibilidad del modelo de PLN.
 
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3.5cm} p{3.5cm} p{4.5cm}}
+\textbf{Título} & \textbf{Lírica sustantivos} & \textbf{Lírica nombres propios} \\
+Corrido de Manuel Mendoza & agosto, día, señor & Manuel, Manuel Mendoza, Mendoza, Zona \\
+Los niños en España cantan & canción, niño, pajarito & España, Japón \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y los sustantivos comunes y propios que contienen sus letras}
+\end{table}
+
 \subsection{Identificación de saltos melódicos entre barras de compás (intervalos frontera)}
 Otra característica útil a identificar recoge los intervalos entre compases, lo que puede aportar al análisis general de la obra información relativa a los fraseos y las estructuras melódicas de la obra. Esto también puede ayudar a identificar estructuras melódicas características de ciertas culturas y regiones, permitiendo así realizar un análisis comparativo entre distintas músicas tradicionales. Además, para responder a una de las preguntas de test orientadas a probar el sistema, con esta implementación también se pretende identificar cuál es intervalo frontera más frecuente.
 
@@ -830,6 +896,17 @@ Con esta implementación no se pretende sólo identificar el salto melódico ent
 \item \textbf{Extractor de intervalos frontera.} Recorre secuencialmente la obra y extrae los intervalos melódicos que conectan el último evento sonoro de un compás con el primer evento sonoro del compás siguiente. Para evitar ambigüedades derivadas de la escritura polifónica, el análisis se realiza sobre las partes o voces disponibles de manera independiente. En cada cambio de compás sólo se analizan las notas y acordes presentes; los silencios se excluyen. Con el fin de identificar únicamente movimientos melódicos reales, la función ignora aquellos casos en los que la primera nota del compás siguiente constituye la continuación de una ligadura de prolongación. En tales situaciones no existe un nuevo ataque sonoro y, por tanto, no puede considerarse que se produzca un nuevo intervalo melódico. Cuando la frontera es válida para el análisis, se calcula la distancia en semitonos entre la última nota del compás precedente y la primera del compás siguiente. En el caso de los acordes, se toma como referencia la nota más aguda de cada uno. Los intervalos obtenidos se almacenan como valores enteros con signo, donde los valores positivos indican movimiento ascendente, los negativos movimiento descendente y el valor cero la repetición de la misma altura.
 \item \textbf{Contador de intervalos frontera.} Recibe la colección de intervalos obtenidos y determina cuál de ellos aparece con mayor frecuencia a lo largo de la obra. Para facilitar la interpretación de los resultados, los intervalos se representan mediante una notación con signo explícito (por ejemplo, «+2», «-5» o «0»). Posteriormente se contabiliza la frecuencia de aparición de cada intervalo y se identifica el más común junto con el número de veces que ocurre.
 \end{itemize}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{4cm} p{4cm}}
+\textbf{Título} & \textbf{Intervalo frontera más frecuente} & \textbf{Frecuencia intervalo frontera} \\
+Versos del coyote & +2 & 3 \\
+De Refugio Solano & +3 & 5 \\
+El juicio final & +3 & 1 \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y la información sobre su intervalo frontera más frecuente}
+\end{table}
 
 \subsection{Identificación del uso de la etiqueta <sb /> (system break) en archivos MEI}
 Una de las preguntas orientadas a probar el sistema de búsqueda basándose en la estructura interna del archivo de la obra buscaba identificar si, en algunos casos, la aparición de etiqueta <sb /> (system break) en archivos MEI coincide con el final de una frase musical lógica. Para comprobar que esta condición se cumple, se verifica la puntuación de la última sílaba cantada antes del salto.
@@ -842,6 +919,17 @@ Tras procesar inicialmente el archivo XML, se localizan todas las secciones musi
 El procedimiento contabiliza tanto el número total de etiquetas <sb /> presentes en el documento como el número de aquellas que cumplen el criterio anterior. Finalmente, devuelve un resumen indicando si el archivo contiene saltos de sistema, cuántos se han localizado, cuántos coinciden con finales de frase y si la totalidad de ellos cumple esta correspondencia.
 
 La función incluye además mecanismos de validación para asegurar que el archivo analizado posee extensión .mei y para gestionar posibles errores durante la lectura o el procesamiento del XML. En ausencia de etiquetas <sb />, informa explícitamente de esta circunstancia en el resultado devuelto.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l p{4cm} p{4cm}}
+\textbf{Título} & \textbf{sb total system breaks} & \textbf{sb coincide con frase lógica} \\
+Allegro Moderato & 3 & Sí \\
+The Rambling Pitchfork & 3 & No \\
+De lo ambiciosos patones & 0 & No contiene etiquetas <sb/ > \\
+\end{tabular}
+\caption{Ejemplos de obras almacenadas en la base de datos y la información sobre el uso de etiquetas sb en su estructura}
+\end{table}
 
 % \subsection{(TODO: Convertir esta lista de herramientas en subsecciones)}
 

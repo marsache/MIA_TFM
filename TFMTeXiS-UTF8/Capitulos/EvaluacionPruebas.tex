@@ -12,7 +12,7 @@ En el caso particular del modelo basado en consultas a una base de datos SQLite 
 Por este motivo y para este caso en concreto, se estableció una restricción de recuperación mediante LIMIT 10 en las consultas a la base de datos. Esta decisión permite controlar el tamaño del contexto proporcionado al modelo, priorizando los resultados más relevantes según el criterio de ordenación de la consulta, y reduciendo el riesgo de sobrecarga contextual. Aunque el sistema podría recuperar un número significativamente mayor de registros, proporcionar un volumen excesivo de resultados incrementa el tamaño del contexto enviado al modelo, consumiendo más tokens y dificultando la identificación de la información verdaderamente relevante para responder a la consulta del usuario. En estos casos, la presencia de datos redundantes o de baja relevancia puede degradar la calidad de la respuesta generada al dispersar la atención del modelo entre múltiples elementos contextuales. La utilización de \texttt{LIMIT 10} permite seleccionar únicamente los diez registros mejor posicionados según los criterios de filtrado y ordenación definidos en la consulta SQL, garantizando que la información suministrada al modelo sea representativa y manejable. De este modo, se reduce el riesgo de sobrecarga contextual, se optimiza el consumo de recursos computacionales y se mejora la capacidad del modelo para sintetizar y razonar sobre los resultados recuperados.
 
 \section{Resumen de preguntas formuladas y respuestas de los modelos}
-En esta sección se presenta un resumen comparativo de las respuestas obtenidas por los dos enfoques evaluados: el modelo basado en File Search como RAG (Gemini 2.5 Flash) y el modelo local Llama3.1:8B con acceso a una base de datos SQLite. Para cada consulta planteada sobre el dataset musical, se ha clasificado la respuesta de ambos sistemas en términos de su corrección respecto a los resultados esperados obtenidos mediante consultas SQL.
+En esta sección se presenta un resumen comparativo de las respuestas obtenidas por los dos enfoques evaluados en cada uno de los dos modelos: una versión simple de ingesta de las obras mediante RAG básico (con el modelo basado en File Search como RAG (Gemini 2.5 Flash) y el modelo local con Ollama (Llama3.1:8B)) y la arquitectura presentada e implementada en este proyecto, que proporciona a los modelos la información del corpus mediante el uso de una base de datos SQLite (tanto el modelo en remoto (Gemini 2.5 Flash) como el modelo local (Llama3.1:8B)). Para cada consulta planteada sobre el dataset musical, se ha clasificado la respuesta de ambos sistemas en términos de su corrección respecto a los resultados esperados obtenidos mediante consultas SQL.
 
 Dado el elevado número de experimentos realizados y la extensión de la información generada durante el proceso de evaluación, se ha optado por incluir el conjunto completo de pruebas en el Apéndice B. En dicho apéndice se recopilan todas las consultas planteadas, las respuestas obtenidas por los distintos modelos evaluados, las consultas SQL utilizadas como referencia para la obtención del \textit{ground truth} y un análisis detallado de los resultados. Esta organización permite mantener la fluidez expositiva del presente capítulo, centrado en la comparación global de los enfoques. Asimismo, facilita el acceso a la evidencia completa que sustenta las conclusiones extraídas a partir de la evaluación.
 
@@ -31,7 +31,7 @@ A continuación se muestra la tabla resumen con la comparación de ambos modelos
 \setlength\LTleft{-1cm}
 \setlength\LTright{0pt}
 \begin{longtable}{|m{5cm}|m{2.5cm}|m{2.5cm}|m{2.5cm}|m{2.5cm}|}
-% \caption{Resumen de resultados obtenidos para las consultas de evaluación.}
+\caption{Resumen de resultados obtenidos para las consultas de evaluación.}
 \label{tab:evaluacion_modelos} \\
 
 \hline
@@ -435,7 +435,98 @@ Incorrecta \\
 % \label{tab:evaluacion_modelos}
 % \end{table}
 
-\caption{Resumen de resultados obtenidos para las consultas de evaluación.}
+% \caption{Resumen de resultados obtenidos para las consultas de evaluación.}
 
 \end{longtable}
+
+\begin{table}[H]
+\centering
+\label{tab:resumen_evaluacion_respuestas_requisitos}
+
+\makebox[\textwidth][c]{
+    \begin{tabular}{>{\raggedright\arraybackslash}m{3.5cm}
+                    >{\raggedright\arraybackslash}m{2.5cm}
+                    >{\raggedright\arraybackslash}m{2.5cm}
+                    >{\raggedright\arraybackslash}m{2.5cm}
+                    >{\raggedright\arraybackslash}m{2.5cm}
+                    >{\raggedright\arraybackslash}m{2.5cm}}
+        \hline
+        \textbf{Respuesta} &
+        \textbf{Gemini 2.5 Flash (File Search RAG sin SQLite)} &
+        \textbf{Llama3.1:8B (RAG con SQLite)} &
+        \textbf{Gemini 2.5 Flash (RAG con SQLite)} &
+        \textbf{Llama3.1:8B (RAG simple sin SQLite)} &
+        \textbf{Preguntas totales por requisito} \\
+        \hline
+        
+        R1 & 0 & 9 (90\%) & COMPLETAR & 0 & 10 \\
+        R2 & 0 & 8 (57.14\%) & COMPLETAR & 0 & 14 \\
+        R3 & 0 & 4 (57.14\%) & COMPLETAR & 0 & 7 \\
+        R4 & 0 & 3 (42.86\%) & COMPLETAR & 0 & 7 \\
+        R5 & 1 (10\%) & 4 (40\%) & COMPLETAR & 0 & 10 \\
+        \hline
+        
+    \end{tabular}
+    } 
+    
+    \caption{Resumen de evaluación de respuestas por implementación - Conteo de respuestas correctas de cada requisito.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\label{tab:resumen_evaluacion_respuestas_modelos}
+
+\makebox[\textwidth][c]{
+    \begin{tabular}{>{\raggedright\arraybackslash}m{4cm}
+        >{\raggedright\arraybackslash}m{3cm}
+        >{\raggedright\arraybackslash}m{3cm}
+        >{\raggedright\arraybackslash}m{3cm}
+        >{\raggedright\arraybackslash}m{3cm}}
+        \hline
+        \textbf{Respuesta} &
+        \textbf{Gemini 2.5 Flash (File Search RAG sin SQLite)} &
+        \textbf{Llama3.1:8B (RAG con SQLite)} &
+        \textbf{Gemini 2.5 Flash (RAG con SQLite)} &
+        \textbf{Llama3.1:8B (RAG simple sin SQLite)} \\
+        \hline
+        
+        Correcta & 1 (2.08\%) & 34 (70.83\%) & COMPLETAR & 0 \\
+        Parcialmente correcta & 7 (14.58\%) & 3 (6.25\%) & COMPLETAR & 0 \\
+        Incorrecta & 40 (83.33\%) & 11 (22.92\%) & COMPLETAR & 48 (100\%) \\
+        \hline
+        
+    \end{tabular}
+    } 
+    
+    \caption{Resumen de evaluación de respuestas por modelo - Conteo de respuestas de cada tipo.}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\label{tab:resumen_evaluacion_respuestas_implementaciones}
+
+\makebox[\textwidth][c]{
+    \begin{tabular}{>{\raggedright\arraybackslash}m{4cm}
+        >{\raggedright\arraybackslash}m{3cm}
+        >{\raggedright\arraybackslash}m{3cm}
+        >{\raggedright\arraybackslash}m{3cm}
+        >{\raggedright\arraybackslash}m{3cm}}
+        \hline
+        \textbf{Respuesta} &
+        \textbf{Sin base de datos SQLite } &
+        \textbf{Con base de datos SQLite } \\
+        \hline
+        
+        Correcta & 35 (36.45\%) & COMPLETAR \\
+        Parcialmente correcta & 10 (10.41\%) & COMPLETAR \\
+        Incorrecta & 51 (54.84\%) & COMPLETAR \\
+        \hline
+        
+    \end{tabular}
+    } 
+    
+    \caption{Resumen de evaluación de respuestas por implementación - Conteo de respuestas de cada tipo.}
+\end{table}
 

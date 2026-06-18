@@ -164,6 +164,69 @@ El servidor expone tres herramientas principales:
 \end{itemize}
 
 \subsection{Recuperación semántica de columnas relevantes}
+Uno de los principales problemas de los sistemas \textit{Text-to-SQL} consiste en la dificultad que tienen los modelos de lenguaje para identificar correctamente qué tablas y columnas del esquema relacional son relevantes para responder una consulta determinada. A medida que aumenta el número de variables disponibles, también crece la probabilidad de que el modelo seleccione atributos incorrectos, genere consultas SQL inválidas o utilice columnas que no guardan relación con la pregunta formulada por el usuario.
+
+Con el objetivo de reducir este problema, se diseñó un mecanismo de recuperación semántica previo a la generación de consultas SQL. Este subsistema actúa como una fase intermedia entre la pregunta formulada por la investigadora y el modelo de lenguaje, permitiendo identificar automáticamente las variables del esquema que presentan una mayor relación conceptual con la consulta recibida.
+
+Durante la inicialización del servidor MCP se genera una representación enriquecida para cada columna de la base de datos. En lugar de utilizar únicamente el nombre técnico de la variable, cada columna se transforma en un documento descriptivo que incorpora información adicional destinada a facilitar su comprensión semántica.
+
+Para cada atributo se incluyen los siguientes elementos:
+
+\begin{itemize}
+\item Tabla a la que pertenece.
+\item Nombre de la columna.
+\item Descripción funcional y musicológica.
+\item Palabras clave y sinónimos asociados.
+\item Ejemplos de valores representativos.
+\item Tipo de dato almacenado.
+\item Valores válidos cuando existen restricciones semánticas conocidas.
+\end{itemize}
+
+De este modo, una columna como \texttt{tiene\_hemiolia\_horizontal} no queda representada únicamente por su identificador técnico, sino también por conceptos relacionados con hemiolias, patrones rítmicos, desplazamientos métricos y otros términos musicológicos susceptibles de aparecer en preguntas formuladas en lenguaje natural.
+
+Una vez construidos estos documentos descriptivos, se generan sus representaciones vectoriales mediante el modelo multilingüe \textit{paraphrase-multilingual-MiniLM-L12-v2} de la biblioteca \textit{Sentence Transformers}. Este modelo transforma cada descripción en un vector numérico de alta dimensionalidad capaz de capturar relaciones semánticas entre conceptos expresados en distintos idiomas.
+
+Los vectores generados se calculan una única vez durante el arranque del servidor MCP y permanecen almacenados en memoria para evitar costes computacionales adicionales durante las consultas posteriores.
+
+Cuando una usuaria formula una pregunta, el texto se normaliza eliminando diferencias de capitalización y acentuación. Posteriormente, la consulta se transforma en un vector semántico utilizando el mismo modelo de \textit{embeddings} empleado durante la indexación del esquema.
+
+A continuación se calcula la similitud del coseno entre el vector de la pregunta y cada uno de los vectores asociados a las columnas de la base de datos. Este valor proporciona una estimación cuantitativa del grado de relación semántica existente entre la consulta y cada atributo del esquema.
+
+Sin embargo, la similitud vectorial por sí sola puede resultar insuficiente en dominios altamente especializados como la musicología. Por este motivo se implementó un mecanismo híbrido de puntuación que combina recuperación semántica y coincidencias léxicas explícitas.
+
+La puntuación final asignada a cada columna se calcula como:
+
+[
+Score\_{final} =
+Score\_{embedding}
++
+Bonus\_{columna}
++
+Bonus\_{keywords}
+]
+
+donde:
+
+\begin{itemize}
+\item $Score\_{embedding}$ representa la similitud semántica obtenida mediante el cálculo del coseno entre embeddings.
+\item $Bonus\_{columna}$ añade una ponderación adicional cuando el nombre exacto de la columna aparece en la consulta.
+\item $Bonus\_{keywords}$ incrementa la puntuación cuando se detectan sinónimos o términos relevantes definidos manualmente para esa variable.
+\end{itemize}
+
+Tras calcular las puntuaciones de relevancia, el sistema selecciona únicamente las columnas con mayor puntuación (\textit{Top-K}) y genera un esquema reducido que contiene exclusivamente la información potencialmente necesaria para resolver la consulta.
+
+Este esquema reducido incluye:
+
+\begin{itemize}
+\item Las tablas implicadas.
+\item Las columnas relevantes.
+\item Los tipos de datos asociados.
+\item Las relaciones de unión (\textit{JOIN}) existentes entre tablas.
+\end{itemize}
+
+El resultado se incorpora posteriormente al contexto enviado al modelo de lenguaje local. De esta forma, el LLM no necesita razonar sobre la totalidad de la base de datos, sino únicamente sobre una representación condensada y específica para la consulta actual.
+
+Esta estrategia reduce la complejidad del problema \textit{Text-to-SQL}, disminuye la longitud del contexto suministrado al modelo y mejora significativamente la precisión de las consultas generadas. Además, contribuye a minimizar la aparición de alucinaciones estructurales, ya que el modelo opera únicamente sobre columnas verificadas por el mecanismo de recuperación semántica.
 
 \subsection{Generación dinámica de contexto estructurado}
 

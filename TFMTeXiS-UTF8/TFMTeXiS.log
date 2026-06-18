@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  18 JUN 2026 22:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  18 JUN 2026 23:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -950,7 +950,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 \evensidemarginOriginal=\skip96
 \oddsidemarginOriginal=\skip97
 \longTitulo=\skip98
-<Imagenes/Bitmap/escudoUCMcolor.png, id=650, 600.3228pt x 678.3744pt>
+<Imagenes/Bitmap/escudoUCMcolor.png, id=646, 600.3228pt x 678.3744pt>
 File: Imagenes/Bitmap/escudoUCMcolor.png Graphic file (type png)
 <use Imagenes/Bitmap/escudoUCMcolor.png>
 Package pdftex.def Info: Imagenes/Bitmap/escudoUCMcolor.png  used on input line 189.
@@ -1018,12 +1018,9 @@ LaTeX Info: Redefining \% on input line 3.
 Underfull \vbox (badness 2452) has occurred while \output is active []
 
  [13] [14]
-LaTeX Info: Redefining \. on input line 110.
-LaTeX Info: Redefining \% on input line 110.
- [15]
-Underfull \vbox (badness 1097) has occurred while \output is active []
-
- [16])
+LaTeX Info: Redefining \. on input line 109.
+LaTeX Info: Redefining \% on input line 109.
+ [15] [16])
 \tf@toc=\write7
 \openout7 = `TFMTeXiS.toc'.
 
@@ -1253,274 +1250,270 @@ LaTeX Info: Redefining \% on input line 168.
 LaTeX Info: Redefining \. on input line 196.
 LaTeX Info: Redefining \% on input line 196.
  [41]
-LaTeX Info: Redefining \. on input line 241.
-LaTeX Info: Redefining \% on input line 241.
+LaTeX Info: Redefining \. on input line 237.
+LaTeX Info: Redefining \% on input line 237.
  [42]
-LaTeX Info: Redefining \. on input line 250.
-LaTeX Info: Redefining \% on input line 250.
+LaTeX Info: Redefining \. on input line 267.
+LaTeX Info: Redefining \% on input line 267.
  [43]
-<Scores/tempo.cropped.pdf, id=1506, 127.47626pt x 49.18375pt>
+LaTeX Info: Redefining \. on input line 292.
+LaTeX Info: Redefining \% on input line 292.
+ [44]
+LaTeX Info: Redefining \. on input line 303.
+LaTeX Info: Redefining \% on input line 303.
+ [45]
+Underfull \vbox (badness 2012) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 313.
+LaTeX Info: Redefining \% on input line 313.
+ [46]
+<Scores/tempo.cropped.pdf, id=1523, 127.47626pt x 49.18375pt>
 File: Scores/tempo.cropped.pdf Graphic file (type pdf)
 <use Scores/tempo.cropped.pdf>
-Package pdftex.def Info: Scores/tempo.cropped.pdf  used on input line 263.
+Package pdftex.def Info: Scores/tempo.cropped.pdf  used on input line 321.
 (pdftex.def)             Requested size: 147.48935pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 274.
-LaTeX Info: Redefining \% on input line 274.
- [44 <./Scores/tempo.cropped.pdf>]
-<Scores/compas.cropped.pdf, id=1527, 163.61125pt x 38.1425pt>
+LaTeX Info: Redefining \. on input line 350.
+LaTeX Info: Redefining \% on input line 350.
+ [47 <./Scores/tempo.cropped.pdf>]
+<Scores/compas.cropped.pdf, id=1544, 163.61125pt x 38.1425pt>
 File: Scores/compas.cropped.pdf Graphic file (type pdf)
 <use Scores/compas.cropped.pdf>
-Package pdftex.def Info: Scores/compas.cropped.pdf  used on input line 295.
+Package pdftex.def Info: Scores/compas.cropped.pdf  used on input line 353.
 (pdftex.def)             Requested size: 244.10559pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 322.
-LaTeX Info: Redefining \% on input line 322.
- [45 <./Scores/compas.cropped.pdf>]
-<Scores/tonalidad.cropped.pdf, id=1541, 247.92625pt x 52.195pt>
+<Scores/tonalidad.cropped.pdf, id=1547, 247.92625pt x 52.195pt>
 File: Scores/tonalidad.cropped.pdf Graphic file (type pdf)
 <use Scores/tonalidad.cropped.pdf>
-Package pdftex.def Info: Scores/tonalidad.cropped.pdf  used on input line 327.
+Package pdftex.def Info: Scores/tonalidad.cropped.pdf  used on input line 385.
 (pdftex.def)             Requested size: 270.31747pt x 56.9055pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 355.
-LaTeX Info: Redefining \% on input line 355.
- [46 <./Scores/tonalidad.cropped.pdf>]
-<Scores/titleauthor.cropped.pdf, id=1556, 285.065pt x 81.30376pt>
+LaTeX Info: Redefining \. on input line 389.
+LaTeX Info: Redefining \% on input line 389.
+ [48 <./Scores/compas.cropped.pdf>]
+<Scores/titleauthor.cropped.pdf, id=1558, 285.065pt x 81.30376pt>
 File: Scores/titleauthor.cropped.pdf Graphic file (type pdf)
 <use Scores/titleauthor.cropped.pdf>
-Package pdftex.def Info: Scores/titleauthor.cropped.pdf  used on input line 361.
+Package pdftex.def Info: Scores/titleauthor.cropped.pdf  used on input line 419.
 (pdftex.def)             Requested size: 299.30533pt x 85.35826pt.
 
-Underfull \vbox (badness 3872) has occurred while \output is active []
+Underfull \vbox (badness 6526) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 388.
-LaTeX Info: Redefining \% on input line 388.
- [47 <./Scores/titleauthor.cropped.pdf>]
+LaTeX Info: Redefining \. on input line 423.
+LaTeX Info: Redefining \% on input line 423.
+ [49 <./Scores/tonalidad.cropped.pdf>]
 File: Scores/tonalidad.cropped.pdf Graphic file (type pdf)
 <use Scores/tonalidad.cropped.pdf>
-Package pdftex.def Info: Scores/tonalidad.cropped.pdf  used on input line 393.
+Package pdftex.def Info: Scores/tonalidad.cropped.pdf  used on input line 451.
 (pdftex.def)             Requested size: 270.31747pt x 56.9055pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 421.
-LaTeX Info: Redefining \% on input line 421.
- [48]
-<Scores/hemioliav.cropped.pdf, id=1585, 138.5175pt x 48.18pt>
+LaTeX Info: Redefining \. on input line 455.
+LaTeX Info: Redefining \% on input line 455.
+ [50 <./Scores/titleauthor.cropped.pdf>]
+LaTeX Info: Redefining \. on input line 482.
+LaTeX Info: Redefining \% on input line 482.
+ [51]
+<Scores/hemioliav.cropped.pdf, id=1602, 138.5175pt x 48.18pt>
 File: Scores/hemioliav.cropped.pdf Graphic file (type pdf)
 <use Scores/hemioliav.cropped.pdf>
-Package pdftex.def Info: Scores/hemioliav.cropped.pdf  used on input line 429.
+Package pdftex.def Info: Scores/hemioliav.cropped.pdf  used on input line 487.
 (pdftex.def)             Requested size: 163.60352pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 445.
-LaTeX Info: Redefining \% on input line 445.
- [49 <./Scores/hemioliav.cropped.pdf>]
-<Scores/hemioliah.cropped.pdf, id=1598, 181.67876pt x 38.1425pt>
+
+Underfull \vbox (badness 7415) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 519.
+LaTeX Info: Redefining \% on input line 519.
+ [52 <./Scores/hemioliav.cropped.pdf>]
+<Scores/hemioliah.cropped.pdf, id=1615, 181.67876pt x 38.1425pt>
 File: Scores/hemioliah.cropped.pdf Graphic file (type pdf)
 <use Scores/hemioliah.cropped.pdf>
-Package pdftex.def Info: Scores/hemioliah.cropped.pdf  used on input line 469.
+Package pdftex.def Info: Scores/hemioliah.cropped.pdf  used on input line 527.
 (pdftex.def)             Requested size: 271.06204pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 479.
-LaTeX Info: Redefining \% on input line 479.
- [50 <./Scores/hemioliah.cropped.pdf>]
-<Scores/sincopa.cropped.pdf, id=1611, 137.51375pt x 38.1425pt>
+LaTeX Info: Redefining \. on input line 541.
+LaTeX Info: Redefining \% on input line 541.
+ [53 <./Scores/hemioliah.cropped.pdf>]
+<Scores/sincopa.cropped.pdf, id=1628, 137.51375pt x 38.1425pt>
 File: Scores/sincopa.cropped.pdf Graphic file (type pdf)
 <use Scores/sincopa.cropped.pdf>
-Package pdftex.def Info: Scores/sincopa.cropped.pdf  used on input line 505.
+Package pdftex.def Info: Scores/sincopa.cropped.pdf  used on input line 563.
 (pdftex.def)             Requested size: 205.1685pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 514.
-LaTeX Info: Redefining \% on input line 514.
- [51 <./Scores/sincopa.cropped.pdf>]
-<Scores/letra.cropped.pdf, id=1623, 512.91624pt x 101.37875pt>
+LaTeX Info: Redefining \. on input line 577.
+LaTeX Info: Redefining \% on input line 577.
+ [54 <./Scores/sincopa.cropped.pdf>]
+<Scores/letra.cropped.pdf, id=1639, 512.91624pt x 101.37875pt>
 File: Scores/letra.cropped.pdf Graphic file (type pdf)
 <use Scores/letra.cropped.pdf>
-Package pdftex.def Info: Scores/letra.cropped.pdf  used on input line 541.
+Package pdftex.def Info: Scores/letra.cropped.pdf  used on input line 599.
 (pdftex.def)             Requested size: 431.87198pt x 85.35826pt.
 
-Overfull \hbox (5.08063pt too wide) in paragraph at lines 541--542
+Overfull \hbox (5.08063pt too wide) in paragraph at lines 599--600
  [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 545.
-LaTeX Info: Redefining \% on input line 545.
- [52]
-Overfull \hbox (2.4077pt too wide) in paragraph at lines 566--571
+LaTeX Info: Redefining \. on input line 609.
+LaTeX Info: Redefining \% on input line 609.
+[55 <./Scores/letra.cropped.pdf>]
+Overfull \hbox (2.4077pt too wide) in paragraph at lines 624--629
  [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 573.
-LaTeX Info: Redefining \% on input line 573.
- [53 <./Scores/letra.cropped.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 603.
-LaTeX Info: Redefining \% on input line 603.
- [54]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 632.
-LaTeX Info: Redefining \% on input line 632.
- [55]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 661.
-LaTeX Info: Redefining \% on input line 661.
- [56]
-<Scores/tresillo.cropped.pdf, id=1658, 244.915pt x 41.15375pt>
+LaTeX Info: Redefining \. on input line 638.
+LaTeX Info: Redefining \% on input line 638.
+[56]
+LaTeX Info: Redefining \. on input line 669.
+LaTeX Info: Redefining \% on input line 669.
+ [57]
+LaTeX Info: Redefining \. on input line 698.
+LaTeX Info: Redefining \% on input line 698.
+ [58]
+<Scores/tresillo.cropped.pdf, id=1671, 244.915pt x 41.15375pt>
 File: Scores/tresillo.cropped.pdf Graphic file (type pdf)
 <use Scores/tresillo.cropped.pdf>
-Package pdftex.def Info: Scores/tresillo.cropped.pdf  used on input line 669.
+Package pdftex.def Info: Scores/tresillo.cropped.pdf  used on input line 727.
 (pdftex.def)             Requested size: 338.66693pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 683.
-LaTeX Info: Redefining \% on input line 683.
- [57 <./Scores/tresillo.cropped.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 720.
-LaTeX Info: Redefining \% on input line 720.
- [58]
+LaTeX Info: Redefining \. on input line 735.
+LaTeX Info: Redefining \% on input line 735.
+ [59 <./Scores/tresillo.cropped.pdf>]
+LaTeX Info: Redefining \. on input line 762.
+LaTeX Info: Redefining \% on input line 762.
+ [60]
 File: Scores/hemioliav.cropped.pdf Graphic file (type pdf)
 <use Scores/hemioliav.cropped.pdf>
-Package pdftex.def Info: Scores/hemioliav.cropped.pdf  used on input line 728.
+Package pdftex.def Info: Scores/hemioliav.cropped.pdf  used on input line 786.
 (pdftex.def)             Requested size: 163.60352pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 741.
-LaTeX Info: Redefining \% on input line 741.
- [59]
-Underfull \vbox (badness 2111) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 783.
-LaTeX Info: Redefining \% on input line 783.
- [60]
-LaTeX Info: Redefining \. on input line 801.
-LaTeX Info: Redefining \% on input line 801.
+LaTeX Info: Redefining \. on input line 796.
+LaTeX Info: Redefining \% on input line 796.
  [61]
-Overfull \hbox (2.52692pt too wide) in paragraph at lines 810--815
+LaTeX Info: Redefining \. on input line 823.
+LaTeX Info: Redefining \% on input line 823.
+ [62]
+LaTeX Info: Redefining \. on input line 855.
+LaTeX Info: Redefining \% on input line 855.
+ [63]
+Overfull \hbox (2.52692pt too wide) in paragraph at lines 868--873
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 830.
-LaTeX Info: Redefining \% on input line 830.
-[62]
-Overfull \hbox (4.57991pt too wide) in paragraph at lines 835--840
- [][] 
- []
-
-LaTeX Info: Redefining \. on input line 860.
-LaTeX Info: Redefining \% on input line 860.
-[63]
-Underfull \hbox (badness 8189) in paragraph at lines 868--868
-[]|\T1/cmr/bx/n/10.95 Porcentaje in-ter-va-
- []
-
-
-Underfull \hbox (badness 8189) in paragraph at lines 868--869
-[]|\T1/cmr/bx/n/10.95 Porcentaje in-ter-va-
- []
-
-LaTeX Info: Redefining \. on input line 890.
-LaTeX Info: Redefining \% on input line 890.
+LaTeX Info: Redefining \. on input line 882.
+LaTeX Info: Redefining \% on input line 882.
 [64]
-LaTeX Info: Redefining \. on input line 922.
-LaTeX Info: Redefining \% on input line 922.
+Overfull \hbox (4.57991pt too wide) in paragraph at lines 893--898
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 912.
+LaTeX Info: Redefining \% on input line 912.
  [65]
-<Scores/alteracion.cropped.pdf, id=1714, 215.80624pt x 38.1425pt>
+Underfull \hbox (badness 8189) in paragraph at lines 926--926
+[]|\T1/cmr/bx/n/10.95 Porcentaje in-ter-va-
+ []
+
+
+Underfull \hbox (badness 8189) in paragraph at lines 926--927
+[]|\T1/cmr/bx/n/10.95 Porcentaje in-ter-va-
+ []
+
+LaTeX Info: Redefining \. on input line 943.
+LaTeX Info: Redefining \% on input line 943.
+[66]
+LaTeX Info: Redefining \. on input line 973.
+LaTeX Info: Redefining \% on input line 973.
+ [67]
+<Scores/alteracion.cropped.pdf, id=1726, 215.80624pt x 38.1425pt>
 File: Scores/alteracion.cropped.pdf Graphic file (type pdf)
 <use Scores/alteracion.cropped.pdf>
-Package pdftex.def Info: Scores/alteracion.cropped.pdf  used on input line 925.
+Package pdftex.def Info: Scores/alteracion.cropped.pdf  used on input line 983.
 (pdftex.def)             Requested size: 321.97977pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 936.
-LaTeX Info: Redefining \% on input line 936.
- [66 <./Scores/alteracion.cropped.pdf>]
-LaTeX Info: Redefining \. on input line 963.
-LaTeX Info: Redefining \% on input line 963.
- [67]
-Underfull \hbox (badness 3557) in paragraph at lines 977--977
+LaTeX Info: Redefining \. on input line 991.
+LaTeX Info: Redefining \% on input line 991.
+ [68 <./Scores/alteracion.cropped.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1017.
+LaTeX Info: Redefining \% on input line 1017.
+ [69]
+Underfull \hbox (badness 3557) in paragraph at lines 1035--1035
 []|\T1/cmr/m/n/10.95 Advertencia: Pe-que-ños des-
  []
 
-LaTeX Info: Redefining \. on input line 986.
-LaTeX Info: Redefining \% on input line 986.
-[68]
-LaTeX Info: Redefining \. on input line 1007.
-LaTeX Info: Redefining \% on input line 1007.
- [69]
-Overfull \hbox (0.88806pt too wide) in paragraph at lines 1012--1017
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1041.
+LaTeX Info: Redefining \% on input line 1041.
+ [70]
+LaTeX Info: Redefining \. on input line 1058.
+LaTeX Info: Redefining \% on input line 1058.
+ [71]
+Overfull \hbox (0.88806pt too wide) in paragraph at lines 1070--1075
  [][] 
  []
 
-<Scores/plica.cropped.pdf, id=1742, 174.6525pt x 38.1425pt>
+<Scores/plica.cropped.pdf, id=1754, 174.6525pt x 38.1425pt>
 File: Scores/plica.cropped.pdf Graphic file (type pdf)
 <use Scores/plica.cropped.pdf>
-Package pdftex.def Info: Scores/plica.cropped.pdf  used on input line 1027.
+Package pdftex.def Info: Scores/plica.cropped.pdf  used on input line 1085.
 (pdftex.def)             Requested size: 260.57898pt x 56.9055pt.
-LaTeX Info: Redefining \. on input line 1038.
-LaTeX Info: Redefining \% on input line 1038.
-[70 <./Scores/plica.cropped.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1074.
-LaTeX Info: Redefining \% on input line 1074.
- [71]
-Underfull \hbox (badness 2134) in paragraph at lines 1091--1091
+LaTeX Info: Redefining \. on input line 1091.
+LaTeX Info: Redefining \% on input line 1091.
+[72 <./Scores/plica.cropped.pdf>]
+LaTeX Info: Redefining \. on input line 1117.
+LaTeX Info: Redefining \% on input line 1117.
+ [73]
+LaTeX Info: Redefining \. on input line 1144.
+LaTeX Info: Redefining \% on input line 1144.
+ [74]
+Underfull \hbox (badness 2134) in paragraph at lines 1149--1149
 []|\T1/cmr/m/n/10.95 Corrido de Ma-nuel
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1099.
-LaTeX Info: Redefining \% on input line 1099.
- [72]
-Underfull \hbox (badness 10000) in paragraph at lines 1110--1110
+Underfull \hbox (badness 10000) in paragraph at lines 1168--1168
 []|\T1/cmr/bx/n/10.95 Intervalo fron-te-ra
  []
 
-
-Underfull \vbox (badness 3942) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1120.
-LaTeX Info: Redefining \% on input line 1120.
- [73]
-Underfull \hbox (badness 10000) in paragraph at lines 1133--1133
+LaTeX Info: Redefining \. on input line 1175.
+LaTeX Info: Redefining \% on input line 1175.
+[75]
+Underfull \hbox (badness 10000) in paragraph at lines 1191--1191
 []|\T1/cmr/bx/n/10.95 sb to-tal sys-tem
  []
 
 
-Underfull \hbox (badness 2951) in paragraph at lines 1136--1137
+Underfull \hbox (badness 2951) in paragraph at lines 1194--1195
 []|\T1/cmr/m/n/10.95 No con-tie-ne eti-que-tas
  []
 
-LaTeX Info: Redefining \. on input line 1174.
-LaTeX Info: Redefining \% on input line 1174.
-[74]
-<Imagenes/Bitmap/UITool.png, id=1769, 714.2685pt x 491.436pt>
-File: Imagenes/Bitmap/UITool.png Graphic file (type png)
-<use Imagenes/Bitmap/UITool.png>
-Package pdftex.def Info: Imagenes/Bitmap/UITool.png  used on input line 1180.
-(pdftex.def)             Requested size: 341.43437pt x 234.91927pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1226.
-LaTeX Info: Redefining \% on input line 1226.
- [75 <./Imagenes/Bitmap/UITool.png>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Info: Redefining \. on input line 1232.
 LaTeX Info: Redefining \% on input line 1232.
- [76]
-LaTeX Info: Redefining \. on input line 1245.
-LaTeX Info: Redefining \% on input line 1245.
- [77])
+[76]
+<Imagenes/Bitmap/UITool.png, id=1782, 714.2685pt x 491.436pt>
+File: Imagenes/Bitmap/UITool.png Graphic file (type png)
+<use Imagenes/Bitmap/UITool.png>
+Package pdftex.def Info: Imagenes/Bitmap/UITool.png  used on input line 1238.
+(pdftex.def)             Requested size: 341.43437pt x 234.91927pt.
+
+Underfull \vbox (badness 2894) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1284.
+LaTeX Info: Redefining \% on input line 1284.
+ [77 <./Imagenes/Bitmap/UITool.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1290.
+LaTeX Info: Redefining \% on input line 1290.
+ [78]
+LaTeX Info: Redefining \. on input line 1303.
+LaTeX Info: Redefining \% on input line 1303.
+ [79])
 LaTeX Info: Redefining \. on input line 146.
 LaTeX Info: Redefining \% on input line 146.
- [78]
+ [80]
 \openout2 = `Capitulos/EvaluacionPruebas.aux'.
 
  (Capitulos/EvaluacionPruebas.tex
@@ -1528,7 +1521,7 @@ Cap\'itulo 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [79
+ [81
 
 
 
@@ -1677,22 +1670,22 @@ Overfull \hbox (33.94717pt too wide) in alignment at lines 44--440
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 440.
 LaTeX Info: Redefining \% on input line 440.
-[80]
+[82]
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 440.
 LaTeX Info: Redefining \% on input line 440.
- [81]
+ [83]
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 440.
 LaTeX Info: Redefining \% on input line 440.
- [82]
+ [84]
 ignored: Infinite glue shrinkage found in box being split
 LaTeX Info: Redefining \. on input line 440.
 LaTeX Info: Redefining \% on input line 440.
- [83])
+ [85])
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
- [84]
+ [86]
 \openout2 = `Capitulos/DiscusionAnalisis.aux'.
 
  (Capitulos/DiscusionAnalisis.tex
@@ -1700,7 +1693,7 @@ Cap\'itulo 7.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [85
+ [87
 
 
 
@@ -1708,12 +1701,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ])
 LaTeX Info: Redefining \. on input line 148.
 LaTeX Info: Redefining \% on input line 148.
- [86]
+ [88]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
  (Capitulos/ConclusionesTrabajoFuturo.tex
 Cap\'itulo 8.
-[87
+[89
 
 
 
@@ -1721,59 +1714,59 @@ Cap\'itulo 8.
 ]
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
- [88])
+ [90])
 LaTeX Info: Redefining \. on input line 149.
 LaTeX Info: Redefining \% on input line 149.
- [89]
+ [91]
 \openout2 = `Capitulos/Introduction.aux'.
 
- (Capitulos/Introduction.tex [90
+ (Capitulos/Introduction.tex [92
 
 
 
 
 ]
 Chapter 9.
-[91] [92] [93] [94]
+[93] [94] [95] [96]
 Overfull \hbox (71.1506pt too wide) in paragraph at lines 98--139
 []|  []  
  []
 
-[95] [96] [97] [98]) [99]
+[97] [98] [99] [100]) [101]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
- (Capitulos/ConclusionsFutureWork.tex [100
+ (Capitulos/ConclusionsFutureWork.tex [102
 
 
 
 
 ]
 Chapter 10.
-[101] [102]) [103]
+[103] [104]) [105]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
 \openout2 = `Cascaras/bibliografia.aux'.
 
- (Cascaras/bibliografia.tex (TFMTeXiS.bbl [104
+ (Cascaras/bibliografia.tex (TFMTeXiS.bbl [106
 
 
 
 
-] [105]
+] [107]
 LaTeX Info: Redefining \. on input line 203.
 LaTeX Info: Redefining \% on input line 203.
- [106]
+ [108]
 LaTeX Info: Redefining \. on input line 327.
 LaTeX Info: Redefining \% on input line 327.
- [107]))
+ [109]))
 LaTeX Info: Redefining \. on input line 168.
 LaTeX Info: Redefining \% on input line 168.
- [108]
+ [110]
 \openout2 = `Apendices/appendixA.aux'.
 
  (Apendices/appendixA.tex
 Ap\'{e}ndice A.
-) [109
+) [111
 
 
 
@@ -1781,41 +1774,41 @@ Ap\'{e}ndice A.
 ]
 \openout2 = `Apendices/appendixB.aux'.
 
- (Apendices/appendixB.tex [110
+ (Apendices/appendixB.tex [112
 
 
 
 
 ]
 Ap\'{e}ndice B.
-[111]
+[113]
 LaTeX Info: Redefining \. on input line 76.
 LaTeX Info: Redefining \% on input line 76.
- [112]
+ [114]
 LaTeX Info: Redefining \. on input line 133.
 LaTeX Info: Redefining \% on input line 133.
- [113]
+ [115]
 LaTeX Info: Redefining \. on input line 152.
 LaTeX Info: Redefining \% on input line 152.
- [114]
+ [116]
 LaTeX Info: Redefining \. on input line 205.
 LaTeX Info: Redefining \% on input line 205.
- [115]
+ [117]
 LaTeX Info: Redefining \. on input line 259.
 LaTeX Info: Redefining \% on input line 259.
- [116]
+ [118]
 LaTeX Info: Redefining \. on input line 300.
 LaTeX Info: Redefining \% on input line 300.
- [117]
+ [119]
 LaTeX Info: Redefining \. on input line 338.
 LaTeX Info: Redefining \% on input line 338.
- [118]
+ [120]
 LaTeX Info: Redefining \. on input line 395.
 LaTeX Info: Redefining \% on input line 395.
- [119]
+ [121]
 LaTeX Info: Redefining \. on input line 438.
 LaTeX Info: Redefining \% on input line 438.
- [120]
+ [122]
 Underfull \hbox (badness 10000) in paragraph at lines 452--458
 []\T1/cmr/m/n/10.95 Los ar-chi-vos que con-tie-nen la no-ta G5 in-clu-yen: * `MX-1952-00-CR-
  []
@@ -1827,34 +1820,34 @@ Underfull \hbox (badness 3291) in paragraph at lines 452--458
 
 LaTeX Info: Redefining \. on input line 475.
 LaTeX Info: Redefining \% on input line 475.
-[121]
+[123]
 LaTeX Info: Redefining \. on input line 519.
 LaTeX Info: Redefining \% on input line 519.
- [122]
+ [124]
 LaTeX Info: Redefining \. on input line 569.
 LaTeX Info: Redefining \% on input line 569.
- [123]
+ [125]
 LaTeX Info: Redefining \. on input line 604.
 LaTeX Info: Redefining \% on input line 604.
- [124]
+ [126]
 LaTeX Info: Redefining \. on input line 647.
 LaTeX Info: Redefining \% on input line 647.
- [125]
+ [127]
 LaTeX Info: Redefining \. on input line 691.
 LaTeX Info: Redefining \% on input line 691.
- [126]
+ [128]
 LaTeX Info: Redefining \. on input line 741.
 LaTeX Info: Redefining \% on input line 741.
- [127]
+ [129]
 LaTeX Info: Redefining \. on input line 779.
 LaTeX Info: Redefining \% on input line 779.
- [128]
+ [130]
 LaTeX Info: Redefining \. on input line 819.
 LaTeX Info: Redefining \% on input line 819.
- [129]
+ [131]
 LaTeX Info: Redefining \. on input line 851.
 LaTeX Info: Redefining \% on input line 851.
- [130]
+ [132]
 Overfull \hbox (258.63693pt too wide) in paragraph at lines 873--874
 []\T1/cmr/m/n/10.95 `<note><pitch><step>F</step><alter>-1</alter></pitch><duration>2</duration><voice>1</voice><type>16th</type><time-
  []
@@ -1871,19 +1864,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 873--874
 
 LaTeX Info: Redefining \. on input line 893.
 LaTeX Info: Redefining \% on input line 893.
-[131]
+[133]
 LaTeX Info: Redefining \. on input line 925.
 LaTeX Info: Redefining \% on input line 925.
- [132]
+ [134]
 LaTeX Info: Redefining \. on input line 972.
 LaTeX Info: Redefining \% on input line 972.
- [133]
+ [135]
 LaTeX Info: Redefining \. on input line 1006.
 LaTeX Info: Redefining \% on input line 1006.
- [134]
+ [136]
 LaTeX Info: Redefining \. on input line 1045.
 LaTeX Info: Redefining \% on input line 1045.
- [135]
+ [137]
 Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
 []\T1/cmr/m/n/10.95 Unfortunately, I can-not di-rectly -ead.[]r ïn-ter-pret"the mu-si-cal con-tent
  []
@@ -1905,7 +1898,7 @@ Underfull \hbox (badness 2564) in paragraph at lines 1046--1047
 
 LaTeX Info: Redefining \. on input line 1079.
 LaTeX Info: Redefining \% on input line 1079.
-[136]
+[138]
 LaTeX Info: Redefining \. on input line 1113.
 LaTeX Info: Redefining \% on input line 1113.
 
@@ -1916,49 +1909,49 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[137]
+[139]
 Overfull \hbox (13.64479pt too wide) in paragraph at lines 1151--1151
  []        \T1/cmtt/m/n/10.95 LENGTH(a.compases_sincopas) - LENGTH(REPLACE(a.compases_sincopas,[] 
  []
 
 LaTeX Info: Redefining \. on input line 1154.
 LaTeX Info: Redefining \% on input line 1154.
-[138]
+[140]
 LaTeX Info: Redefining \. on input line 1190.
 LaTeX Info: Redefining \% on input line 1190.
- [139]
+ [141]
 LaTeX Info: Redefining \. on input line 1225.
 LaTeX Info: Redefining \% on input line 1225.
- [140]
+ [142]
 Overfull \hbox (13.64479pt too wide) in paragraph at lines 1245--1245
  []  \T1/cmtt/m/n/10.95 AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);[] 
  []
 
 LaTeX Info: Redefining \. on input line 1264.
 LaTeX Info: Redefining \% on input line 1264.
-[141]
+[143]
 LaTeX Info: Redefining \. on input line 1287.
 LaTeX Info: Redefining \% on input line 1287.
- [142]
+ [144]
 LaTeX Info: Redefining \. on input line 1325.
 LaTeX Info: Redefining \% on input line 1325.
- [143]
+ [145]
 LaTeX Info: Redefining \. on input line 1354.
 LaTeX Info: Redefining \% on input line 1354.
- [144]
+ [146]
 LaTeX Info: Redefining \. on input line 1388.
 LaTeX Info: Redefining \% on input line 1388.
- [145]
+ [147]
 Underfull \hbox (badness 1867) in paragraph at lines 1397--1401
 []\T1/cmr/m/n/10.95 * **Sig-na-tu-ra de com-pás de-cla-ra-da:** `<sco-re-Def xml:id=sg2v8p><me-ter-Sig
  []
 
 LaTeX Info: Redefining \. on input line 1441.
 LaTeX Info: Redefining \% on input line 1441.
-[146]
+[148]
 LaTeX Info: Redefining \. on input line 1477.
 LaTeX Info: Redefining \% on input line 1477.
- [147]
+ [149]
 Underfull \hbox (badness 2707) in paragraph at lines 1478--1487
 []\T1/cmr/m/n/10.95 Por ejem-plo, es-tas pie-zas in-clu-yen el si-guien-te ti-po de de-cla-ra-ción: ```xml
  []
@@ -1975,7 +1968,7 @@ Underfull \hbox (badness 2635) in paragraph at lines 1478--1487
 
 LaTeX Info: Redefining \. on input line 1502.
 LaTeX Info: Redefining \% on input line 1502.
-[148]
+[150]
 LaTeX Info: Redefining \. on input line 1535.
 LaTeX Info: Redefining \% on input line 1535.
 
@@ -1986,10 +1979,10 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[149]
+[151]
 LaTeX Info: Redefining \. on input line 1569.
 LaTeX Info: Redefining \% on input line 1569.
- [150]
+ [152]
 Overfull \hbox (21.51035pt too wide) in paragraph at lines 1592--1602
 []\T1/cmr/m/n/10.95 * \T1/cmtt/m/n/10.95 datasets\corpus \media \Ireland \IE -2019-D-HLS-20260315T140410Z-1-001\IE
  []
@@ -2086,10 +2079,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1592--1602
 
 LaTeX Info: Redefining \. on input line 1602.
 LaTeX Info: Redefining \% on input line 1602.
-[151]
+[153]
 LaTeX Info: Redefining \. on input line 1646.
 LaTeX Info: Redefining \% on input line 1646.
- [152]
+ [154]
 LaTeX Info: Redefining \. on input line 1682.
 LaTeX Info: Redefining \% on input line 1682.
 
@@ -2100,16 +2093,16 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[153]
+[155]
 LaTeX Info: Redefining \. on input line 1705.
 LaTeX Info: Redefining \% on input line 1705.
- [154]
+ [156]
 LaTeX Info: Redefining \. on input line 1757.
 LaTeX Info: Redefining \% on input line 1757.
- [155]
+ [157]
 LaTeX Info: Redefining \. on input line 1789.
 LaTeX Info: Redefining \% on input line 1789.
- [156]
+ [158]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 1838.
@@ -2122,36 +2115,36 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[157]
+[159]
 Overfull \hbox (28.2355pt too wide) in paragraph at lines 1859--1869
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 1887.
 LaTeX Info: Redefining \% on input line 1887.
-[158]
+[160]
 LaTeX Info: Redefining \. on input line 1925.
 LaTeX Info: Redefining \% on input line 1925.
- [159]
+ [161]
 LaTeX Info: Redefining \. on input line 1958.
 LaTeX Info: Redefining \% on input line 1958.
- [160]
+ [162]
 LaTeX Info: Redefining \. on input line 2001.
 LaTeX Info: Redefining \% on input line 2001.
- [161]
+ [163]
 Overfull \hbox (31.16087pt too wide) in paragraph at lines 2044--2055
  [][] 
  []
 
 LaTeX Info: Redefining \. on input line 2067.
 LaTeX Info: Redefining \% on input line 2067.
-[162]
+[164]
 LaTeX Info: Redefining \. on input line 2091.
 LaTeX Info: Redefining \% on input line 2091.
- [163]
+ [165]
 LaTeX Info: Redefining \. on input line 2138.
 LaTeX Info: Redefining \% on input line 2138.
- [164]
+ [166]
 LaTeX Info: Redefining \. on input line 2153.
 LaTeX Info: Redefining \% on input line 2153.
 
@@ -2162,22 +2155,22 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[165]
+[167]
 LaTeX Info: Redefining \. on input line 2191.
 LaTeX Info: Redefining \% on input line 2191.
- [166]
+ [168]
 LaTeX Info: Redefining \. on input line 2228.
 LaTeX Info: Redefining \% on input line 2228.
- [167]
+ [169]
 LaTeX Info: Redefining \. on input line 2257.
 LaTeX Info: Redefining \% on input line 2257.
- [168]
+ [170]
 LaTeX Info: Redefining \. on input line 2306.
 LaTeX Info: Redefining \% on input line 2306.
- [169]
+ [171]
 LaTeX Info: Redefining \. on input line 2334.
 LaTeX Info: Redefining \% on input line 2334.
- [170]
+ [172]
 LaTeX Info: Redefining \. on input line 2369.
 LaTeX Info: Redefining \% on input line 2369.
 
@@ -2188,13 +2181,13 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[171])
+[173])
 LaTeX Info: Redefining \. on input line 174.
 LaTeX Info: Redefining \% on input line 174.
- [172]
+ [174]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex) [173
+ (Cascaras/fin.tex) [175
 
 
 
@@ -2218,20 +2211,20 @@ L3 programming layer <2026-03-20>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
-(rerunfilecheck)             Checksum: A6F61FD01524E16452B2BC04E4FBBB0A;56166.
+(rerunfilecheck)             Checksum: 8315080DA0671696655EA4303A06CD46;56002.
  ) 
 Here is how much of TeX's memory you used:
- 32368 strings out of 467691
- 623312 string characters out of 5414987
- 1117781 words of memory out of 5000000
- 60028 multiletter control sequences out of 15000+600000
+ 32379 strings out of 467691
+ 623437 string characters out of 5414987
+ 1118782 words of memory out of 5000000
+ 60029 multiletter control sequences out of 15000+600000
  649211 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  121i,12n,127p,2104b,1265s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (195 pages, 1737594 bytes).
+Output written on TFMTeXiS.pdf (197 pages, 1746465 bytes).
 PDF statistics:
- 3131 PDF objects out of 3580 (max. 8388607)
- 474 named destinations out of 1000 (max. 500000)
- 1366 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3145 PDF objects out of 3580 (max. 8388607)
+ 484 named destinations out of 1000 (max. 500000)
+ 1358 words of extra memory for PDF output out of 10000 (max. 10000000)
 

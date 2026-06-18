@@ -229,12 +229,70 @@ El resultado se incorpora posteriormente al contexto enviado al modelo de lengua
 Esta estrategia reduce la complejidad del problema \textit{Text-to-SQL}, disminuye la longitud del contexto suministrado al modelo y mejora significativamente la precisión de las consultas generadas. Además, contribuye a minimizar la aparición de alucinaciones estructurales, ya que el modelo opera únicamente sobre columnas verificadas por el mecanismo de recuperación semántica.
 
 \subsection{Generación dinámica de contexto estructurado}
+Una vez identificadas las columnas más relevantes mediante el mecanismo de recuperación semántica, el siguiente paso consiste en la construcción de un contexto estructurado reducido, denominado \textit{mini-esquema}. Este componente actúa como puente entre la fase de recuperación y la fase de generación de consultas SQL por parte del modelo de lenguaje.
+
+El objetivo principal del mini-esquema es proporcionar al modelo únicamente la información estrictamente necesaria para resolver la consulta del usuario, evitando la exposición del esquema completo de la base de datos. Esta restricción controlada del contexto permite reducir la complejidad del problema \textit{Text-to-SQL}, disminuye la probabilidad de alucinaciones estructurales y mejora la precisión en la generación de consultas.
+
+El mini-esquema se construye de forma dinámica a partir de los resultados obtenidos por el módulo de recuperación semántica. Para cada consulta, el sistema agrupa las columnas seleccionadas por tabla, generando una representación jerárquica del subconjunto del esquema relevante.
+
+Cada tabla incluida en el mini-esquema contiene:
+
+\begin{itemize}
+\item Nombre de la tabla.
+\item Lista de columnas relevantes asociadas.
+\item Tipo de dato de cada columna.
+\end{itemize}
+
+Este diseño permite al modelo disponer de una visión estructurada del dominio de datos sin necesidad de procesar la totalidad del esquema relacional.
+
+Además de las columnas relevantes, el sistema incorpora de manera dinámica las relaciones existentes entre tablas (\textit{JOINs}) que puedan ser necesarias para resolver la consulta. Estas relaciones no se incluyen de forma estática, sino que se filtran en función de las tablas presentes en el mini-esquema generado en cada interacción.
 
 \subsection{Integración con el modelo local mediante Tool Calling}
+La interacción entre el modelo de lenguaje local y la base de datos musicológica se implementa mediante un mecanismo de \textit{Tool Calling}, que permite al modelo ejecutar funciones externas de forma controlada durante el proceso de razonamiento. Este enfoque transforma al modelo de un sistema puramente generativo a un agente capaz de interactuar con herramientas estructuradas, en este caso el servidor MCP que actúa como intermediario con la base de datos SQLite.
+
+El objetivo de esta integración es permitir que el modelo no dependa exclusivamente de su conocimiento paramétrico para responder preguntas sobre el corpus, sino que pueda consultar información verificada en tiempo real, garantizando la coherencia y exactitud de los resultados obtenidos.
+
+El proceso completo de consulta sigue una secuencia iterativa en la que el modelo alterna entre generación de lenguaje natural y ejecución de herramientas externas. Este flujo puede resumirse en las siguientes etapas:
+
+\begin{enumerate}
+\item El usuario formula una pregunta en lenguaje natural.
+\item El sistema construye un contexto enriquecido mediante el mini-esquema generado a partir de la recuperación semántica de columnas.
+\item El modelo de lenguaje (\textit{Llama 3.1 8B} ejecutado mediante Ollama) recibe la pregunta junto con el esquema reducido.
+\item El modelo determina si necesita acceder a la base de datos para responder la consulta.
+\item En caso afirmativo, genera una llamada a una de las herramientas expuestas por el servidor MCP.
+\item El servidor ejecuta la operación solicitada (consulta SQL o recuperación de esquema) y devuelve los resultados en formato estructurado.
+\item El modelo recibe los resultados y los incorpora al contexto de conversación.
+\item Si es necesario, el modelo puede iterar el proceso realizando nuevas llamadas a herramientas hasta completar la información requerida.
+\item Finalmente, el modelo genera una respuesta en lenguaje natural dirigida al usuario.
+\end{enumerate}
+
+Durante la ejecución, el modelo puede invocar las distintas herramientas mencionadas previamente, expuestas por el servidor MCP. Cada llamada a herramienta se procesa de forma síncrona dentro del ciclo de conversación, y su resultado se reinyecta en el contexto del modelo como parte del historial de interacción.
+
+El sistema implementa un bucle de ejecución (\textit{tool-calling loop}) que continúa mientras el modelo indique la necesidad de realizar nuevas llamadas a herramientas. Este mecanismo permite una interacción progresiva, en la que el modelo puede refinar sus consultas SQL, corregir errores o solicitar información adicional antes de producir una respuesta final.
+
+En la práctica, este comportamiento convierte al modelo en un agente controlado que alterna entre tres fases:
+
+\begin{itemize}
+\item Interpretación de la pregunta del usuario.
+\item Ejecución de herramientas externas para recuperación de datos.
+\item Síntesis final de la respuesta en lenguaje natural.
+\end{itemize}
+
+La restricción del acceso a datos exclusivamente mediante herramientas MCP garantiza que todas las respuestas estén fundamentadas en información previamente procesada y almacenada, lo que refuerza el carácter determinista del sistema y su aplicabilidad en contextos de investigación musicológica.
 
 \subsection{Estrategias de reducción de alucinaciones}
+Uno de los principales objetivos de la arquitectura propuesta es la minimización de alucinaciones factuales en la generación de consultas y en la interpretación de resultados. En el contexto de la musicología computacional, este problema resulta especialmente crítico, ya que una respuesta incorrecta no solo implica un error semántico, sino potencialmente una interpretación errónea de análisis musicales complejos basados en datos estructurados.
 
-\subsection{Ejemplo de ejecución}
+Para abordar este problema, el sistema implementa un conjunto de mecanismos complementarios que actúan en diferentes niveles del flujo de procesamiento.
+
+\begin{itemize}
+    \item El primer mecanismo consiste en la eliminación del acceso directo del modelo a la base de datos. En lugar de permitir que el modelo genere respuestas basadas en conocimiento interno o en información parcialmente observada, toda consulta debe ser ejecutada a través del servidor MCP mediante herramientas controladas.Este diseño obliga al modelo a depender exclusivamente de datos verificados, eliminando la posibilidad de inventar resultados o inferir información no presente en el corpus.
+    \item El segundo mecanismo se basa en la construcción dinámica de un esquema reducido que contiene únicamente las tablas y columnas relevantes para cada consulta. Este enfoque evita que el modelo reciba el esquema completo de la base de datos, reduciendo la complejidad del problema \textit{Text-to-SQL} y minimizando la probabilidad de selección de atributos inexistentes o irrelevantes. Al limitar el contexto estructural disponible, se reduce significativamente la incertidumbre en el espacio de generación del modelo.
+    \item El tercer mecanismo consiste en la utilización de un sistema de recuperación semántica basado en embeddings que guía la selección de columnas relevantes. Este componente introduce una capa intermedia entre la pregunta del usuario y el modelo de lenguaje, asegurando que únicamente las variables con una relación conceptual significativa con la consulta sean expuestas al LLM. La combinación de similitud semántica y refuerzo léxico mediante palabras clave permite aumentar la precisión del filtrado y reducir errores derivados de ambigüedad terminológica en el dominio musicológico.
+    \item El cuarto mecanismo se basa en la naturaleza determinista del motor de base de datos SQLite. Todas las operaciones de consulta se ejecutan de forma estructurada y reproducible, garantizando que los resultados obtenidos no dependen de inferencias probabilísticas del modelo, sino de un proceso de recuperación exacto sobre datos previamente procesados. Este diseño contrasta con enfoques basados en recuperación aumentada (\textit{RAG}), donde los modelos pueden reinterpretar o resumir documentos de forma no controlada.
+    \item Finalmente, la generación de la respuesta en lenguaje natural se realiza únicamente después de la recuperación de datos estructurados desde la base de datos. El modelo actúa como un componente de síntesis lingüística, sin capacidad para modificar ni inventar información, lo que garantiza que la salida final esté estrictamente condicionada por los resultados obtenidos en las etapas anteriores.
+\end{itemize} 
+
 
 \section{Ventajas que ofrece la metodología escogida para la herramienta desarrollada}
 El sistema diseñado e implementado se basa en un proceso de extracción previa de metadatos musicales y textuales a partir de los archivos originales que contienen las partituras y otros detalles sobre las obras, seguido de su almacenamiento estructurado en una base de datos relacional. Este enfoque presenta diversas ventajas frente a sistemas que delegan todo el análisis directamente en modelos de lenguaje durante el momento de la consulta.

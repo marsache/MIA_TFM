@@ -62,72 +62,226 @@ A partir del análisis de las respuestas obtenidas se identificaron cinco grande
 
 Este enfoque permitió establecer una trazabilidad explícita entre las necesidades expresadas por las usuarias y los experimentos realizados posteriormente, reforzando la validez metodológica del proceso de evaluación y facilitando la interpretación de los resultados obtenidos.
 
-\begin{itemize}
-\item \textbf{Ritmo, métrica y tempo.} Preguntas centradas en la acentuación, figuras rítmicas, síncopas, polirritmias, velocidad (BPM) y la relación matemática/temporal de las notas dentro del compás. Preguntas incluidas:
-    \begin{itemize}
-    \item \textit{Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}
-    \item \textit{Compara la densidad de notas por compás entre una pieza de 4/4 y una de 2/4 del dataset; ¿cuál tiene mayor promedio de eventos musicales?}
-    \item \textit{Identifica si existe algún uso de polirritmia en los archivos MEI}
-    \item \textit{Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}
-    \item \textit{Identifica piezas con un compás de 4/4}
-    \item \textit{Identifica piezas con hemiolias horizontales}
-    \item \textit{Identifica piezas con hemiolias verticales}
-    \item \textit{Identifica piezas con un bpm de 120}
-    \item \textit{Identifica piezas con síncopas}
-    \item \textit{Identifica piezas con polirritmia}
-    \end{itemize}
+% \begin{itemize}
+% \item \textbf{Ritmo, métrica y tempo.} Preguntas centradas en la acentuación, figuras rítmicas, síncopas, polirritmias, velocidad (BPM) y la relación matemática/temporal de las notas dentro del compás. Preguntas incluidas:
+%     \begin{itemize}
+%     \item \textit{Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}
+%     \item \textit{Compara la densidad de notas por compás entre una pieza de 4/4 y una de 2/4 del dataset; ¿cuál tiene mayor promedio de eventos musicales?}
+%     \item \textit{Identifica si existe algún uso de polirritmia en los archivos MEI}
+%     \item \textit{Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}
+%     \item \textit{Identifica piezas con un compás de 4/4}
+%     \item \textit{Identifica piezas con hemiolias horizontales}
+%     \item \textit{Identifica piezas con hemiolias verticales}
+%     \item \textit{Identifica piezas con un bpm de 120}
+%     \item \textit{Identifica piezas con síncopas}
+%     \item \textit{Identifica piezas con polirritmia}
+%     \end{itemize}
 
-\item \textbf{Análisis melódico y armónico.} Consultas orientadas a los intervalos musicales, tesituras, movimientos melódicos (ascendentes/descendentes), alteraciones accidentales (sostenidos, bemoles y becuadros), tonalidades y grados de resolución (tónica/dominante). Preguntas incluidas:
+% \item \textbf{Análisis melódico y armónico.} Consultas orientadas a los intervalos musicales, tesituras, movimientos melódicos (ascendentes/descendentes), alteraciones accidentales (sostenidos, bemoles y becuadros), tonalidades y grados de resolución (tónica/dominante). Preguntas incluidas:
+%     \begin{itemize}
+%     \item \textit{Localiza todas las notas que tengan bemoles accidentales y dime en qué compases aparecen en los archivos MEI encontrados}
+%     \item \textit{¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio?}
+%     \item \textit{Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}
+%     \item \textit{Identifica piezas con la tonalidad G major}
+%     \item \textit{Identifica piezas que estén en modo dórico}
+%     \item \textit{Identifica piezas cuya nota más grave sea A3}
+%     \item \textit{Identifica piezas cuya nota más aguda sea G5}
+%     \item \textit{Identifica obras cuya tendencia melódica sea predominantemente descendente}
+%     \item \textit{Identifica piezas con 4 alteraciones accidentales}
+%     \item \textit{Identifica piezas cuyo intervalo frontera más frecuente sea +5}
+%     \end{itemize}
+
+% \item \textbf{Relación métrica, lírica y texto.} Preguntas híbridas que analizan cómo interactúa el texto (la lírica, el número de sílabas, palabras clave) con los aspectos musicales del tempo, la altura de las notas o la duración rítmica. Preguntas incluidas:
+%     \begin{itemize}
+%     \item \textit{Identifica canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina}
+%     \item \textit{Filtra piezas que usen la palabra ``estrella'' en la lírica y determina si su melodía es predominantemente ascendente o descendente}
+%     \item \textit{Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota?}
+%     \item \textit{Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica}
+%     \item \textit{Identifica piezas cuyo contenido lírico esté escrito en voz masculina}
+%     \item \textit{Identifica piezas que usen la palabra ``bondad''}
+%     \item \textit{Identifica piezas que mencionen el nombre propio ``Alfonsito''}
+%     \end{itemize}
+
+% \item \textbf{Contexto sociocultural, temático y geográfico.} Preguntas complejas que cruzan la etnomusicología o el análisis musical comparativo con datos del entorno (temas como ``Nanas'' o ``Trabajo'' o fechas de recolección históricas). Preguntas incluidas:
+%     \begin{itemize}
+%     \item \textit{Busca ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''}
+%     \item \textit{Encuentra piezas recolectadas antes de 1950 que traten el tema de ``la muerte'' y que utilicen exclusivamente un rango melódico de sexta menor}
+%     \item \textit{¿Qué diferencias de tesitura (nota más aguda vs. nota más grave) existen entre las canciones de nana?}
+%     \item \textit{Busca canciones que traten temas de trabajo que compartan la misma estructura de intervalos que las canciones de tema infantil}
+%     \item \textit{Identifica piezas que se llamen El Carro}
+%     \item \textit{Identifica piezas cuyo autor sea Schumann}
+%     \item \textit{Identifica piezas cuyo autor sea de género masculino}
+%     \item \textit{Identifica piezas que traten la muerte como tema}
+%     \item \textit{Identifica piezas de tonalidad A minor que tengan hemiolias y que no superen los 90 bpm}
+%     \item \textit{Identifica piezas de tonalidad A minor que tengan hemiolias}
+%     \item \textit{Lista canciones que compartan la misma armadura de un bemol (F major/D minor) pero que traten temas distintos}
+%     \end{itemize}
+
+% \item \textbf{Estructura analítica de datos y formatos técnicos.} Este bloque engloba las preguntas que se centran puramente en el código o metadatos de los archivos musicales (MEI, MusicXML, XML, MSCZ), discrepancies de sintaxis musical y atributos técnicos de renderizado (como plicas, volúmenes MIDI o transcripciones). Preguntas incluidas:
+%     \begin{itemize}
+%     \item \textit{Encuentra canciones donde el valor de dur.ppq cambie a mitad de la sección, indicando un cambio de resolución rítmica}
+%     \item \textit{Localiza obras que tengan compases donde la suma de las duraciones de las etiquetas <note> no coincida con el meterSig declarado en el staffDef}
+%     \item \textit{¿Qué piezas utilizan valores irregulares (por ejemplo, tresillos) no declarados explícitamente en un <time-modification> del MusicXML?}
+%     \item \textit{Identifica el uso de la etiqueta <sb /> (system break) y determina si coincide siempre con el final de una frase musical lógica}
+%     \item \textit{Identifica piezas con un volumen midi de 79}
+%     \item \textit{Identifica piezas cuyo software de codificación haya sido Sibelius 7.1.3}
+%     \item \textit{Identifica piezas cuya fecha de codificación sea el 2015-07-01}
+%     \item \textit{Identifica piezas con compases vacíos}
+%     \item \textit{Identifica piezas con notas de duración 0}
+%     \item \textit{Identifica piezas con plicas anómalas}
+%     \end{itemize}
+% \end{itemize}
+
+\subsection{Requisito R1. Recuperación de información musical básica}
+Este requisito surge de forma recurrente tanto en las entrevistas como en los formularios. Las participantes manifestaron la necesidad de localizar obras a partir de atributos musicales concretos, tales como tonalidad, compás, tempo, tesitura, autoría o temática.
+
+En las entrevistas se mencionó explícitamente el interés por realizar búsquedas a partir de características musicales específicas, incluyendo tonalidad, tempo, rango vocal e información descriptiva asociada a las obras. Del mismo modo, los formularios reflejaron la necesidad de clasificar repertorios y recuperar obras según criterios concretos de catalogación.
+
+El objetivo de este requisito consiste en comprobar si el modelo es capaz de recuperar correctamente información explícita almacenada en el corpus y combinar filtros sencillos sobre metadatos musicales.
+
+Preguntas asociadas a este requisito:
+\begin{itemize}
+    \item \textbf{Métrica y tempo}
     \begin{itemize}
-    \item \textit{Localiza todas las notas que tengan bemoles accidentales y dime en qué compases aparecen en los archivos MEI encontrados}
-    \item \textit{¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio?}
-    \item \textit{Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}
+    \item \textit{Identifica piezas con un compás de 4/4}
+    \item \textit{Identifica piezas con un bpm de 120}
+    \end{itemize}
+    \item \textbf{Tonalidad y modalidad}
+    \begin{itemize}
     \item \textit{Identifica piezas con la tonalidad G major}
     \item \textit{Identifica piezas que estén en modo dórico}
+    \end{itemize}
+    \item \textbf{Tesitura}
+    \begin{itemize}
     \item \textit{Identifica piezas cuya nota más grave sea A3}
     \item \textit{Identifica piezas cuya nota más aguda sea G5}
+    \end{itemize}
+    \item \textbf{Autoría y metadatos}
+    \begin{itemize}
+    \item \textit{Identifica piezas cuyo autor sea Schumann}
+    \item \textit{Identifica piezas cuyo autor sea de género masculino}
+    \end{itemize}
+    \item \textbf{Temática}
+    \begin{itemize}
+    \item \textit{Identifica piezas que se llamen El Carro}
+    \item \textit{Identifica piezas que traten la muerte como tema}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Requisito R2. Análisis musical avanzado y comparación estructural}
+Las entrevistas mostraron un fuerte interés por el análisis de estructuras melódicas, la comparación de obras y la identificación de patrones musicales recurrentes.
+
+Las participantes señalaron específicamente la importancia de analizar íncipits musicales, comparar melodías, localizar patrones compartidos y estudiar estructuras musicales complejas.
+
+Este requisito pretende evaluar si los modelos pueden ir más allá de la recuperación documental y realizar razonamientos sobre la estructura musical de las partituras.
+
+Preguntas asociadas a este requisito:
+\begin{itemize}
+    \item \textbf{Ritmo y métrica avanzada}
+    \begin{itemize}
+    \item \textit{Identifica piezas con hemiolias horizontales}
+    \item \textit{Identifica piezas con hemiolias verticales}
+    \item \textit{Identifica piezas con síncopas}
+    \item \textit{Identifica piezas con polirritmia}
+    \item \textit{Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}
+    \item \textit{Identifica si existe algún uso de polirritmia en los archivos MEI}
+    \item \textit{Identifica si existe algún patrón de silencios (<rest />) que se repita sistemáticamente cada cuatro compases en las piezas de métrica ternaria}
+    \end{itemize}
+    \item \textbf{Comparación cuantitativa}
+    \begin{itemize}
+    \item \textit{Identifica piezas en 2/4 que contengan síncopas ligadas entre el segundo pulso de un compás y el primero del siguiente de forma sistemática}
+    \end{itemize}
+    \item \textbf{Melodía y armonía}
+    \begin{itemize}
+    \item \textit{¿Cuál es el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente en las piezas de modo mixolidio?}
+    \item \textit{Identifica piezas donde la nota final sea la dominante (quinto grado) en lugar de la tónica, sugiriendo una estructura abierta}
     \item \textit{Identifica obras cuya tendencia melódica sea predominantemente descendente}
     \item \textit{Identifica piezas con 4 alteraciones accidentales}
-    \item \textit{Identifica piezas cuyo intervalo frontera más frecuente sea +5}
+    \item \textit{Localiza todas las notas que tengan bemoles accidentales y dime en qué compases aparecen en los archivos MEI encontrados}
     \end{itemize}
+\end{itemize}
 
-\item \textbf{Relación métrica, lírica y texto.} Preguntas híbridas que analizan cómo interactúa el texto (la lírica, el número de sílabas, palabras clave) con los aspectos musicales del tempo, la altura de las notas o la duración rítmica. Preguntas incluidas:
+\subsection{Requisito R3. Relación entre texto y música}
+Tanto las entrevistas como los formularios mostraron un interés significativo por el estudio conjunto de letras y estructuras musicales.
+
+Las participantes destacaron la necesidad de realizar análisis de contenido temático, búsqueda de palabras clave, estudio de variantes textuales y relación entre características musicales y contenido lírico.
+
+Este requisito evalúa la capacidad del sistema para combinar información textual y musical dentro de una misma consulta.
+
+Preguntas asociadas a este requisito:
+\begin{itemize}
+    \item \textbf{Búsqueda textual simple}
     \begin{itemize}
-    \item \textit{Identifica canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina}
-    \item \textit{Filtra piezas que usen la palabra ``estrella'' en la lírica y determina si su melodía es predominantemente ascendente o descendente}
-    \item \textit{Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota?}
-    \item \textit{Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica}
-    \item \textit{Identifica piezas cuyo contenido lírico esté escrito en voz masculina}
     \item \textit{Identifica piezas que usen la palabra ``bondad''}
     \item \textit{Identifica piezas que mencionen el nombre propio ``Alfonsito''}
     \end{itemize}
+    \item \textbf{Análisis semántico}
+    \begin{itemize}
+    \item \textit{Identifica piezas cuyo contenido lírico esté escrito en voz masculina}
+    \item \textit{Identifica canciones donde el autor sea una mujer, pero el contenido lírico esté escrito en voz masculina}
+    \end{itemize}
+    \item \textbf{Relación texto-música}
+    \begin{itemize}
+    \item \textit{Filtra piezas que usen la palabra ``estrella'' en la lírica y determina si su melodía es predominantemente ascendente o descendente}
+    \item \textit{Compara el uso de las sílabas ``duer'' y ``me'' en los distintos archivos del dataset: ¿se asigna siempre a la misma duración de nota?}
+    \item \textit{Determina si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica}
+    \end{itemize}
+\end{itemize}
 
-\item \textbf{Contexto sociocultural, temático y geográfico.} Preguntas complejas que cruzan la etnomusicología o el análisis musical comparativo con datos del entorno (temas como ``Nanas'' o ``Trabajo'' o fechas de recolección históricas). Preguntas incluidas:
+\subsection{Requisito R4. Contextualización musicológica y etnomusicológica}
+Uno de los hallazgos más relevantes de la captura de requisitos fue la importancia atribuida al contexto cultural, geográfico e histórico de las obras.
+
+Las musicólogas mostraron interés por la preservación de obras de transmisión oral, análisis de variantes regionales, estudio de géneros y repertorios y relación entre características musicales y contexto sociocultural.
+
+Este requisito evalúa la capacidad del sistema para combinar múltiples dimensiones descriptivas y musicológicas.
+
+Preguntas asociadas a este requisito:
+\begin{itemize}
+    \item \textbf{Géneros y temas}
     \begin{itemize}
     \item \textit{Busca ejemplos de anacrusa en piezas que estén etiquetadas como ``Nanas''}
-    \item \textit{Encuentra piezas recolectadas antes de 1950 que traten el tema de ``la muerte'' y que utilicen exclusivamente un rango melódico de sexta menor}
     \item \textit{¿Qué diferencias de tesitura (nota más aguda vs. nota más grave) existen entre las canciones de nana?}
+    \end{itemize}
+    \item \textbf{Contexto histórico}
+    \begin{itemize}
+    \item \textit{Encuentra piezas recolectadas antes de 1950 que traten el tema de ``la muerte'' y que utilicen exclusivamente un rango melódico de sexta menor}
+    \end{itemize}
+    \item \textbf{Comparación entre repertorios}
+    \begin{itemize}
     \item \textit{Busca canciones que traten temas de trabajo que compartan la misma estructura de intervalos que las canciones de tema infantil}
-    \item \textit{Identifica piezas que se llamen El Carro}
-    \item \textit{Identifica piezas cuyo autor sea Schumann}
-    \item \textit{Identifica piezas cuyo autor sea de género masculino}
-    \item \textit{Identifica piezas que traten la muerte como tema}
-    \item \textit{Identifica piezas de tonalidad A minor que tengan hemiolias y que no superen los 90 bpm}
+    \end{itemize}
+    \item \textbf{Consultas multidimensionales}
+    \begin{itemize}
     \item \textit{Identifica piezas de tonalidad A minor que tengan hemiolias}
+    \item \textit{Identifica piezas de tonalidad A minor que tengan hemiolias y que no superen los 90 bpm}
     \item \textit{Lista canciones que compartan la misma armadura de un bemol (F major/D minor) pero que traten temas distintos}
     \end{itemize}
+\end{itemize}
 
-\item \textbf{Estructura analítica de datos y formatos técnicos.} Este bloque engloba las preguntas que se centran puramente en el código o metadatos de los archivos musicales (MEI, MusicXML, XML, MSCZ), discrepancies de sintaxis musical y atributos técnicos de renderizado (como plicas, volúmenes MIDI o transcripciones). Preguntas incluidas:
+\subsection{Requisito R5. Validación técnica y análisis de formatos musicales}
+Aunque este requisito no apareció de forma tan explícita en las entrevistas, surge directamente de los objetivos técnicos del proyecto y de la necesidad de explotar la información contenida en formatos estructurados como MEI, MusicXML y MSCZ.
+
+La inclusión de este bloque permite evaluar una capacidad diferencial del sistema: la posibilidad de interrogar directamente la estructura interna de los archivos musicales digitales.
+
+Preguntas asociadas a este requisito:
+\begin{itemize}
+    \item \textbf{Validación estructural}
+    \begin{itemize}
+    \item \textit{Localiza obras que tengan compases donde la suma de las duraciones de las etiquetas <note> no coincida con el meterSig declarado en el staffDef}
+    \item \textit{Identifica piezas con compases vacíos}
+    \item \textit{Identifica piezas con notas de duración 0}
+    \end{itemize}
+    \item \textbf{Análisis de codificación}
     \begin{itemize}
     \item \textit{Encuentra canciones donde el valor de dur.ppq cambie a mitad de la sección, indicando un cambio de resolución rítmica}
-    \item \textit{Localiza obras que tengan compases donde la suma de las duraciones de las etiquetas <note> no coincida con el meterSig declarado en el staffDef}
     \item \textit{¿Qué piezas utilizan valores irregulares (por ejemplo, tresillos) no declarados explícitamente en un <time-modification> del MusicXML?}
     \item \textit{Identifica el uso de la etiqueta <sb /> (system break) y determina si coincide siempre con el final de una frase musical lógica}
+    \end{itemize}
+    \item \textbf{Metadatos técnicos}
+    \begin{itemize}
     \item \textit{Identifica piezas con un volumen midi de 79}
     \item \textit{Identifica piezas cuyo software de codificación haya sido Sibelius 7.1.3}
     \item \textit{Identifica piezas cuya fecha de codificación sea el 2015-07-01}
-    \item \textit{Identifica piezas con compases vacíos}
-    \item \textit{Identifica piezas con notas de duración 0}
     \item \textit{Identifica piezas con plicas anómalas}
     \end{itemize}
 \end{itemize}

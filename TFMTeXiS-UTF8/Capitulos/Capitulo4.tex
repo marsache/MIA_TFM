@@ -34,6 +34,132 @@ Para procesar y extraer la información musicológica de la obra, se descomprime
 \item \textbf{Fase de consolidación, estructuración y almacenamiento en la base de datos SQLite.} Compilación de los diccionarios que contienen las características mencionadas con anterioridad y su exportación a una base de datos SQLite.
 \end{itemize}
 
+\section{Diseño e implementación de la arquitectura MCP para consultas musicológicas}
+La arquitectura de consulta constituye el componente central que permite transformar preguntas formuladas en lenguaje natural por las investigadoras en consultas estructuradas ejecutables sobre la base de datos musicológica. Para ello se ha desarrollado una infraestructura basada en el estándar Model Context Protocol (MCP), que actúa como intermediario entre el modelo de lenguaje local y la base de datos relacional que almacena los resultados del análisis automático del corpus.
+
+A diferencia de aproximaciones convencionales en las que el modelo recibe directamente el esquema completo de la base de datos, la solución propuesta incorpora un mecanismo previo de recuperación semántica que identifica dinámicamente las variables musicológicas más relevantes para cada consulta. Este enfoque reduce significativamente el espacio de búsqueda del modelo, disminuye el consumo de contexto y minimiza la aparición de alucinaciones relacionadas con la generación de consultas SQL incorrectas.
+
+La arquitectura desarrollada combina técnicas de recuperación semántica mediante embeddings, generación dinámica de esquemas reducidos, ejecución controlada de consultas SQL y síntesis final de respuestas mediante un modelo de lenguaje local ejecutado a través de Ollama. El resultado es un sistema determinista capaz de responder preguntas musicológicas complejas apoyándose exclusivamente en información previamente extraída y validada durante el proceso de análisis del corpus.
+
+\subsection{Arquitectura general del sistema MCP}
+La arquitectura de consulta desarrollada en este trabajo se fundamenta en el estándar \textit{Model Context Protocol} (MCP), utilizado como mecanismo de comunicación entre el modelo de lenguaje local y la base de datos relacional que almacena la información musicológica extraída durante las fases de análisis del corpus. El objetivo principal de esta arquitectura es permitir que las investigadoras interactúen con la colección musical utilizando lenguaje natural, eliminando la necesidad de conocer la estructura interna de la base de datos o de formular consultas SQL manualmente.
+
+Desde un punto de vista funcional, el sistema se compone de cinco elementos principales: la interfaz de usuario, el cliente MCP, el mecanismo de recuperación semántica de columnas, el modelo de lenguaje local ejecutado mediante Ollama y el servidor MCP encargado de proporcionar acceso controlado a la base de datos SQLite. Cada uno de estos componentes desempeña una función específica dentro del proceso de transformación de preguntas en lenguaje natural en consultas estructuradas ejecutables.
+
+El flujo de ejecución comienza cuando la usuaria formula una pregunta musicológica a través de la interfaz web. Esta consulta es recibida por el cliente MCP, que activa un mecanismo de recuperación semántica diseñado específicamente para identificar qué variables del esquema relacional son potencialmente relevantes para responder a la pregunta planteada. Para ello, la consulta se compara con un conjunto de descripciones enriquecidas de las columnas disponibles en la base de datos mediante técnicas de representación vectorial (\textit{embeddings}) y cálculo de similitud semántica.
+
+\begin{table}[H]
+\centering
+\label{tab:ejemplo_metadatos}
+\begin{tabular}{|l|p{6cm}|}
+    \hline
+    \textbf{Campo} & \textbf{Valor} \\
+    \hline
+    Tabla & piezas \\
+    \hline
+    Columna & bpm \\
+    \hline
+    Descripción & Tempo o velocidad de la pieza \\
+    \hline
+    Palabras clave & bpm, tempo, velocidad \\
+    \hline
+    Ejemplos & 78, 120, 140 \\
+    \hline
+    Tipo & INTEGER \\
+    \hline
+\end{tabular}
+\caption{Ejemplo de metadatos asociados a una columna de la base de datos (BPM).}
+\end{table}
+
+A partir de las columnas recuperadas, el sistema construye dinámicamente un esquema reducido (\textit{mini-esquema}), que contiene únicamente las tablas, atributos y relaciones consideradas relevantes para la consulta actual. Este contexto estructurado es posteriormente incorporado al \textit{prompt} enviado al modelo de lenguaje local, reduciendo significativamente el espacio de búsqueda y minimizando la probabilidad de que el modelo genere referencias incorrectas a elementos inexistentes del esquema.
+
+Una vez enriquecido el contexto, el modelo \textit{Llama 3.1 (8B)} ejecutado mediante Ollama interpreta la petición del usuario y determina si necesita acceder a información almacenada en la base de datos. Cuando esto ocurre, el modelo utiliza el mecanismo de \textit{Tool Calling} proporcionado por MCP para invocar las herramientas expuestas por el servidor. Estas herramientas permiten consultar el esquema de datos, ejecutar consultas SQL de lectura y recuperar información estructurada de forma controlada.
+
+El servidor MCP actúa como intermediario entre el modelo y la base de datos SQLite, garantizando que todas las operaciones realizadas sean seguras y consistentes. En lugar de permitir acceso directo al sistema de almacenamiento, el modelo únicamente puede interactuar con las herramientas previamente definidas, lo que limita la superficie de error y evita modificaciones accidentales de los datos. Las consultas SQL generadas son ejecutadas por el servidor y los resultados obtenidos son devueltos nuevamente al modelo en formato estructurado.
+
+Finalmente, el modelo procesa los resultados recuperados, interpreta la información obtenida y genera una respuesta en lenguaje natural orientada a la usuaria final. De este modo, la arquitectura combina la capacidad de razonamiento y generación lingüística de los modelos de lenguaje con la precisión y fiabilidad de una base de datos relacional, constituyendo un sistema híbrido en el que la información musicológica procede exclusivamente de fuentes previamente analizadas y almacenadas durante el proceso de ingestión del corpus.
+
+Esta separación entre generación lingüística y recuperación de conocimiento permite reducir significativamente los problemas de alucinación factual asociados a los modelos generativos convencionales, garantizando que las respuestas producidas estén fundamentadas en información verificable almacenada en el sistema.
+
+\begin{figure}[H]
+    \centering
+
+    \begin{tikzpicture}[
+        node distance=1cm,
+        box/.style={
+            draw,
+            rounded corners,
+            align=center,
+            minimum width=5cm,
+            minimum height=0.9cm
+        },
+        arrow/.style={-Latex, thick}
+    ]
+
+    \shorthandoff{>}
+
+    \node[box] (user) {Consulta de la usuaria};
+
+    \node[box, below=of user] (cliente)
+    {Cliente MCP};
+
+    \node[box, below=of cliente] (columnas)
+    {Recuperación semántica\\de columnas};
+
+    \node[box, below=of columnas] (esquema)
+    {Mini esquema relevante};
+
+    \node[box, below=of esquema] (llm)
+    {Llama 3.1 8B\\(Ollama)};
+
+    \node[box, below=of llm] (tool)
+    {Tool Calling MCP};
+
+    \node[box, below=of tool] (servidor)
+    {Servidor MCP};
+
+    \node[box, below=of servidor] (obtener)
+    {\texttt{obtener\_esquema()}};
+
+    \node[box, below=of obtener] (sql)
+    {\texttt{ejecutar\_consulta\_sql()}};
+
+    \node[box, below=of sql] (buscar)
+    {\texttt{buscar\_columnas\_relevantes()}};
+
+    \node[box, below=of buscar] (sqlite)
+    {SQLite};
+
+    \draw[arrow] (user) -- (cliente);
+    \draw[arrow] (cliente) -- (columnas);
+    \draw[arrow] (columnas) -- (esquema);
+    \draw[arrow] (esquema) -- (llm);
+    \draw[arrow] (llm) -- (tool);
+    \draw[arrow] (tool) -- (servidor);
+    \draw[arrow] (servidor) -- (obtener);
+    \draw[arrow] (obtener) -- (sql);
+    \draw[arrow] (sql) -- (buscar);
+    \draw[arrow] (buscar) -- (sqlite);
+
+    \end{tikzpicture}
+
+    \caption{Flujo de ejecución del sistema basado en MCP, recuperación semántica de columnas, Llama 3.1 8B y SQLite.}
+    \label{fig:flujo_mcp_sqlite}
+
+\end{figure}
+
+\subsection{Implementación del servidor MCP}
+
+\subsection{Recuperación semántica de columnas relevantes}
+
+\subsection{Generación dinámica de contexto estructurado}
+
+\subsection{Integración con el modelo local mediante Tool Calling}
+
+\subsection{Estrategias de reducción de alucinaciones}
+
+\subsection{Ejemplo de ejecución}
+
 \section{Ventajas que ofrece la metodología escogida para la herramienta desarrollada}
 El sistema diseñado e implementado se basa en un proceso de extracción previa de metadatos musicales y textuales a partir de los archivos originales que contienen las partituras y otros detalles sobre las obras, seguido de su almacenamiento estructurado en una base de datos relacional. Este enfoque presenta diversas ventajas frente a sistemas que delegan todo el análisis directamente en modelos de lenguaje durante el momento de la consulta.
 \begin{itemize}

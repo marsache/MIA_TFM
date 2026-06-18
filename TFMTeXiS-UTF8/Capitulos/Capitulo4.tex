@@ -121,13 +121,13 @@ Esta separación entre generación lingüística y recuperación de conocimiento
     \node[box, below=of servidor] (obtener)
     {\texttt{obtener\_esquema()}};
 
-    \node[box, below=of obtener] (sql)
+    \node[box, below=of obtener] (buscar)
+    {\texttt{buscar\_columnas\_relevantes()}};
+    
+    \node[box, below=of buscar] (sql)
     {\texttt{ejecutar\_consulta\_sql()}};
 
-    \node[box, below=of sql] (buscar)
-    {\texttt{buscar\_columnas\_relevantes()}};
-
-    \node[box, below=of buscar] (sqlite)
+    \node[box, below=of sql] (sqlite)
     {SQLite};
 
     \draw[arrow] (user) -- (cliente);
@@ -137,9 +137,9 @@ Esta separación entre generación lingüística y recuperación de conocimiento
     \draw[arrow] (llm) -- (tool);
     \draw[arrow] (tool) -- (servidor);
     \draw[arrow] (servidor) -- (obtener);
-    \draw[arrow] (obtener) -- (sql);
-    \draw[arrow] (sql) -- (buscar);
-    \draw[arrow] (buscar) -- (sqlite);
+    \draw[arrow] (obtener) -- (buscar);
+    \draw[arrow] (buscar) -- (sql);
+    \draw[arrow] (sql) -- (sqlite);
 
     \end{tikzpicture}
 
@@ -149,6 +149,19 @@ Esta separación entre generación lingüística y recuperación de conocimiento
 \end{figure}
 
 \subsection{Implementación del servidor MCP}
+El servidor MCP constituye el núcleo de comunicación entre el modelo de lenguaje y la base de datos musicológica generada durante el proceso de análisis del corpus. Su función principal consiste en abstraer la complejidad interna del sistema de almacenamiento y exponer una serie de herramientas especializadas que pueden ser invocadas dinámicamente por el modelo mediante el mecanismo de \textit{Tool Calling} definido por el estándar \textit{Model Context Protocol} (MCP).
+
+La implementación se ha desarrollado utilizando la biblioteca \textit{FastMCP}, que permite definir herramientas accesibles por cualquier modelo compatible con MCP. Durante la inicialización del servidor se establece una conexión con la base de datos relacional SQLite que contiene toda la información extraída del corpus musical, incluyendo metadatos descriptivos, características musicales, resultados de análisis rítmicos y melódicos, así como información temática derivada del análisis de las letras.
+
+Con el objetivo de mejorar la capacidad del modelo para identificar correctamente los elementos del esquema relacional implicados en cada consulta, el servidor incorpora además un mecanismo de recuperación semántica de columnas. Para ello se emplea el modelo multilingüe \textit{paraphrase-multilingual-MiniLM-L12-v2} de \textit{Sentence Transformers}, encargado de generar representaciones vectoriales (\textit{embeddings}) de todas las columnas de la base de datos junto con sus descripciones, sinónimos y ejemplos de uso. Cuando el usuario formula una pregunta, el sistema calcula la similitud semántica entre dicha consulta y las representaciones almacenadas, identificando las columnas potencialmente más relevantes para responderla. Este proceso permite reducir significativamente el espacio de búsqueda del modelo y disminuye la probabilidad de generar consultas SQL incorrectas.
+
+El servidor expone tres herramientas principales:
+
+\begin{itemize}
+\item \textbf{buscar\_columnas\_relevantes}. Esta herramienta implementa el sistema de recuperación semántica del esquema. A partir de una pregunta formulada en lenguaje natural, calcula la similitud entre la consulta y los embeddings asociados a las columnas de la base de datos, devolviendo las variables con mayor relevancia potencial. Además de la similitud vectorial, se incorporan mecanismos de refuerzo basados en coincidencias exactas de nombres de columnas y palabras clave previamente definidas para cada variable musicológica.
+\item \textbf{obtener\_esquema}. Proporciona una descripción estructurada del esquema relacional disponible. La herramienta devuelve tanto la estructura SQL real de las tablas como un diccionario de datos enriquecido que describe el significado musicológico de cada columna. Esta información actúa como fuente de verdad para el modelo y evita la generación de nombres de tablas o atributos inexistentes.
+\item \textbf{ejecutar\_consulta\_sql}. Constituye la única vía de acceso a los datos almacenados. La herramienta recibe consultas SQL generadas por el modelo y las ejecuta sobre la base de datos SQLite en modo exclusivamente lectura. Para garantizar la seguridad y preservar la integridad del corpus, únicamente se permiten operaciones de tipo \texttt{SELECT}, bloqueando cualquier instrucción que pueda modificar el contenido almacenado. Los resultados se devuelven en formato JSON estructurado para facilitar su posterior interpretación por el modelo de lenguaje.
+\end{itemize}
 
 \subsection{Recuperación semántica de columnas relevantes}
 

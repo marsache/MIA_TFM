@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  18 JUN 2026 11:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  18 JUN 2026 16:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1502,97 +1502,160 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 37--37
+Overfull \hbox (455.2441pt too wide) detected at line 34
+ []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
 []|\T1/cmr/bx/n/10.95 Gemini 2.5
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--37
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
 \T1/cmr/bx/n/10.95 Flash (Fi-le
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
 []|\T1/cmr/bx/n/10.95 Llama3.1:8B
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
 \T1/cmr/bx/n/10.95 (RAG con
  []
 
 
-Overfull \hbox (9.14719pt too wide) in alignment at lines 31--40
- [] [] [] 
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]|\T1/cmr/bx/n/10.95 Gemini 2.5
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 51--51
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 1019) in paragraph at lines 41--41
+\T1/cmr/bx/n/10.95 Flash (RAG
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 52--53
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 10000) in paragraph at lines 42--43
+[]|\T1/cmr/bx/n/10.95 Llama3.1:8B
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 93--93
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Overfull \hbox (33.94717pt too wide) in alignment at lines 33--44
+ [] [] [] [] []
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 135--135
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]|\T1/cmr/m/n/10.95 Parcialmente
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 147--147
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]|\T1/cmr/m/n/10.95 Parcialmente
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 202--203
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+[]|\T1/cmr/m/n/10.95 Parcialmente
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 226--226
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 2435) in paragraph at lines 120--120
+[]|\T1/cmr/m/n/10.95 Identifica pie-zas cu-ya no-ta
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 269--270
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 2435) in paragraph at lines 128--128
+[]|\T1/cmr/m/n/10.95 Identifica pie-zas cu-ya no-ta
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 292--292
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 10000) in paragraph at lines 169--169
+[]|\T1/cmr/m/n/10.95 Parcialmente
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 304--304
-[]|\T1/cmr/m/n/10.95 Parcialmente co-
+Underfull \hbox (badness 10000) in paragraph at lines 185--185
+[]|\T1/cmr/m/n/10.95 Parcialmente
  []
 
 
-Overfull \hbox (9.14719pt too wide) in alignment at lines 40--338
- [] [] [] 
+Underfull \hbox (badness 2401) in paragraph at lines 224--224
+[]|\T1/cmr/m/n/10.95 Identifica pie-zas con pli-cas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 258--258
+[]|\T1/cmr/m/n/10.95 Parcialmente
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--290
+[]|\T1/cmr/m/n/10.95 Parcialmente
+ []
+
+
+Underfull \hbox (badness 3646) in paragraph at lines 297--297
+[]|\T1/cmr/m/n/10.95 Localiza obras que ten-gan
+ []
+
+
+Underfull \hbox (badness 4967) in paragraph at lines 305--305
+[]|\T1/cmr/m/n/10.95 ¾Qué pie-zas uti-li-zan va-lo-
+ []
+
+
+Underfull \hbox (badness 2237) in paragraph at lines 305--305
+\T1/cmr/m/n/10.95 tre-si-llos) no de-cla-ra-dos ex-
+ []
+
+
+Underfull \hbox (badness 2913) in paragraph at lines 305--305
+\T1/cmr/m/n/10.95 plí-ci-ta-men-te en un <time-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
+[]|\T1/cmr/m/n/10.95 Parcialmente
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
+[]|\T1/cmr/m/n/10.95 Parcialmente
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 394--394
+[]|\T1/cmr/m/n/10.95 Parcialmente
+ []
+
+
+Overfull \hbox (33.94717pt too wide) in alignment at lines 44--438
+ [] [] [] [] []
  []
 
 
 ignored: Infinite glue shrinkage found in box being split
-LaTeX Info: Redefining \. on input line 338.
-LaTeX Info: Redefining \% on input line 338.
+LaTeX Info: Redefining \. on input line 438.
+LaTeX Info: Redefining \% on input line 438.
 [74]
 ignored: Infinite glue shrinkage found in box being split
-LaTeX Info: Redefining \. on input line 338.
-LaTeX Info: Redefining \% on input line 338.
- [75])
+LaTeX Info: Redefining \. on input line 438.
+LaTeX Info: Redefining \% on input line 438.
+ [75]
+ignored: Infinite glue shrinkage found in box being split
+LaTeX Info: Redefining \. on input line 438.
+LaTeX Info: Redefining \% on input line 438.
+ [76]
+ignored: Infinite glue shrinkage found in box being split
+LaTeX Info: Redefining \. on input line 438.
+LaTeX Info: Redefining \% on input line 438.
+ [77])
 LaTeX Info: Redefining \. on input line 147.
 LaTeX Info: Redefining \% on input line 147.
- [76]
+ [78]
 \openout2 = `Capitulos/DiscusionAnalisis.aux'.
 
  (Capitulos/DiscusionAnalisis.tex
@@ -1600,7 +1663,7 @@ Cap\'itulo 7.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [77
+ [79
 
 
 
@@ -1608,12 +1671,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ])
 LaTeX Info: Redefining \. on input line 148.
 LaTeX Info: Redefining \% on input line 148.
- [78]
+ [80]
 \openout2 = `Capitulos/ConclusionesTrabajoFuturo.aux'.
 
  (Capitulos/ConclusionesTrabajoFuturo.tex
 Cap\'itulo 8.
-[79
+[81
 
 
 
@@ -1621,13 +1684,13 @@ Cap\'itulo 8.
 ]
 LaTeX Info: Redefining \. on input line 31.
 LaTeX Info: Redefining \% on input line 31.
- [80])
+ [82])
 LaTeX Info: Redefining \. on input line 149.
 LaTeX Info: Redefining \% on input line 149.
- [81]
+ [83]
 \openout2 = `Capitulos/Introduction.aux'.
 
- (Capitulos/Introduction.tex [82
+ (Capitulos/Introduction.tex [84
 
 
 
@@ -1637,46 +1700,46 @@ Chapter 9.
 
 Underfull \vbox (badness 1005) has occurred while \output is active []
 
- [83] [84] [85]
+ [85] [86] [87]
 Overfull \hbox (71.1506pt too wide) in paragraph at lines 59--100
 []|  []  
  []
 
-[86] [87] [88] [89]) [90]
+[88] [89] [90] [91]) [92]
 \openout2 = `Capitulos/ConclusionsFutureWork.aux'.
 
  (Capitulos/ConclusionsFutureWork.tex
 Chapter 10.
-[91
+[93
 
 
 
 
-] [92]) [93]
+] [94]) [95]
 LaTeX Info: Redefining \. on input line 157.
 LaTeX Info: Redefining \% on input line 157.
 \openout2 = `Cascaras/bibliografia.aux'.
 
- (Cascaras/bibliografia.tex (TFMTeXiS.bbl [94
+ (Cascaras/bibliografia.tex (TFMTeXiS.bbl [96
 
 
 
 
-] [95]
+] [97]
 LaTeX Info: Redefining \. on input line 203.
 LaTeX Info: Redefining \% on input line 203.
- [96]
+ [98]
 LaTeX Info: Redefining \. on input line 327.
 LaTeX Info: Redefining \% on input line 327.
- [97]))
+ [99]))
 LaTeX Info: Redefining \. on input line 168.
 LaTeX Info: Redefining \% on input line 168.
- [98]
+ [100]
 \openout2 = `Apendices/appendixA.aux'.
 
  (Apendices/appendixA.tex
 Ap\'{e}ndice A.
-) [99
+) [101
 
 
 
@@ -1684,169 +1747,168 @@ Ap\'{e}ndice A.
 ]
 \openout2 = `Apendices/appendixB.aux'.
 
- (Apendices/appendixB.tex [100
+ (Apendices/appendixB.tex [102
 
 
 
 
 ]
 Ap\'{e}ndice B.
-[101]
+[103]
 LaTeX Info: Redefining \. on input line 52.
 LaTeX Info: Redefining \% on input line 52.
- [102]
+ [104]
 LaTeX Info: Redefining \. on input line 70.
 LaTeX Info: Redefining \% on input line 70.
- [103]
-LaTeX Info: Redefining \. on input line 109.
-LaTeX Info: Redefining \% on input line 109.
- [104]
-LaTeX Info: Redefining \. on input line 132.
-LaTeX Info: Redefining \% on input line 132.
  [105]
-LaTeX Info: Redefining \. on input line 161.
-LaTeX Info: Redefining \% on input line 161.
+LaTeX Info: Redefining \. on input line 106.
+LaTeX Info: Redefining \% on input line 106.
  [106]
-LaTeX Info: Redefining \. on input line 204.
-LaTeX Info: Redefining \% on input line 204.
+LaTeX Info: Redefining \. on input line 126.
+LaTeX Info: Redefining \% on input line 126.
  [107]
-LaTeX Info: Redefining \. on input line 234.
-LaTeX Info: Redefining \% on input line 234.
+LaTeX Info: Redefining \. on input line 157.
+LaTeX Info: Redefining \% on input line 157.
  [108]
-LaTeX Info: Redefining \. on input line 270.
-LaTeX Info: Redefining \% on input line 270.
+LaTeX Info: Redefining \. on input line 197.
+LaTeX Info: Redefining \% on input line 197.
  [109]
-LaTeX Info: Redefining \. on input line 304.
-LaTeX Info: Redefining \% on input line 304.
+LaTeX Info: Redefining \. on input line 223.
+LaTeX Info: Redefining \% on input line 223.
  [110]
-Underfull \hbox (badness 10000) in paragraph at lines 332--338
+LaTeX Info: Redefining \. on input line 259.
+LaTeX Info: Redefining \% on input line 259.
+ [111]
+LaTeX Info: Redefining \. on input line 293.
+LaTeX Info: Redefining \% on input line 293.
+ [112]
+LaTeX Info: Redefining \. on input line 321.
+LaTeX Info: Redefining \% on input line 321.
+ [113]
+Underfull \hbox (badness 10000) in paragraph at lines 350--356
 []\T1/cmr/m/n/10.95 Los ar-chi-vos que con-tie-nen la no-ta G5 in-clu-yen: * `MX-1952-00-CR-
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 332--338
+Underfull \hbox (badness 3291) in paragraph at lines 350--356
 \T1/cmr/m/n/10.95 00002.musicxml.xml` * `IE-2019-D-HLS-015.xml` * `good-man_vol_1_495.xml`
  []
 
-LaTeX Info: Redefining \. on input line 341.
-LaTeX Info: Redefining \% on input line 341.
-[111]
-LaTeX Info: Redefining \. on input line 378.
-LaTeX Info: Redefining \% on input line 378.
- [112]
-LaTeX Info: Redefining \. on input line 409.
-LaTeX Info: Redefining \% on input line 409.
- [113]
-LaTeX Info: Redefining \. on input line 439.
-LaTeX Info: Redefining \% on input line 439.
- [114]
-LaTeX Info: Redefining \. on input line 473.
-LaTeX Info: Redefining \% on input line 473.
+LaTeX Info: Redefining \. on input line 359.
+LaTeX Info: Redefining \% on input line 359.
+[114]
+LaTeX Info: Redefining \. on input line 386.
+LaTeX Info: Redefining \% on input line 386.
  [115]
-LaTeX Info: Redefining \. on input line 514.
-LaTeX Info: Redefining \% on input line 514.
+LaTeX Info: Redefining \. on input line 426.
+LaTeX Info: Redefining \% on input line 426.
  [116]
-LaTeX Info: Redefining \. on input line 554.
-LaTeX Info: Redefining \% on input line 554.
+LaTeX Info: Redefining \. on input line 456.
+LaTeX Info: Redefining \% on input line 456.
  [117]
-LaTeX Info: Redefining \. on input line 586.
-LaTeX Info: Redefining \% on input line 586.
+LaTeX Info: Redefining \. on input line 490.
+LaTeX Info: Redefining \% on input line 490.
  [118]
-LaTeX Info: Redefining \. on input line 619.
-LaTeX Info: Redefining \% on input line 619.
+LaTeX Info: Redefining \. on input line 529.
+LaTeX Info: Redefining \% on input line 529.
  [119]
-LaTeX Info: Redefining \. on input line 658.
-LaTeX Info: Redefining \% on input line 658.
+LaTeX Info: Redefining \. on input line 566.
+LaTeX Info: Redefining \% on input line 566.
  [120]
-LaTeX Info: Redefining \. on input line 682.
-LaTeX Info: Redefining \% on input line 682.
+LaTeX Info: Redefining \. on input line 590.
+LaTeX Info: Redefining \% on input line 590.
  [121]
-LaTeX Info: Redefining \. on input line 727.
-LaTeX Info: Redefining \% on input line 727.
+LaTeX Info: Redefining \. on input line 622.
+LaTeX Info: Redefining \% on input line 622.
  [122]
-LaTeX Info: Redefining \. on input line 759.
-LaTeX Info: Redefining \% on input line 759.
+LaTeX Info: Redefining \. on input line 660.
+LaTeX Info: Redefining \% on input line 660.
  [123]
-LaTeX Info: Redefining \. on input line 784.
-LaTeX Info: Redefining \% on input line 784.
+LaTeX Info: Redefining \. on input line 696.
+LaTeX Info: Redefining \% on input line 696.
  [124]
-Underfull \hbox (badness 10000) in paragraph at lines 785--786
+LaTeX Info: Redefining \. on input line 721.
+LaTeX Info: Redefining \% on input line 721.
+ [125]
+LaTeX Info: Redefining \. on input line 756.
+LaTeX Info: Redefining \% on input line 756.
+ [126]
+LaTeX Info: Redefining \. on input line 793.
+LaTeX Info: Redefining \% on input line 793.
+ [127]
+LaTeX Info: Redefining \. on input line 817.
+LaTeX Info: Redefining \% on input line 817.
+ [128]
+Underfull \hbox (badness 10000) in paragraph at lines 833--834
 []\T1/cmr/m/n/10.95 Unfortunately, I can-not di-rectly -ead.[]r ïn-ter-pret"the mu-si-cal con-tent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 785--786
+Underfull \hbox (badness 10000) in paragraph at lines 833--834
 \T1/cmr/m/n/10.95 of the-se Mu-sicXML fi-les to cal-cu-la-te in-ter-vals and their fre-quen-cies.
  []
 
 
-Underfull \hbox (badness 5388) in paragraph at lines 785--786
+Underfull \hbox (badness 5388) in paragraph at lines 833--834
 \T1/cmr/m/n/10.95 The snip-pets show mu-si-cal no-ta-tion in a struc-tu-red text for-mat (e.g.,
  []
 
 
-Underfull \hbox (badness 2564) in paragraph at lines 785--786
+Underfull \hbox (badness 2564) in paragraph at lines 833--834
 \T1/cmr/m/n/10.95 `<pitch><step>D</step><octave>5</octave></pitch>`), but I can-not per-
  []
 
-LaTeX Info: Redefining \. on input line 809.
-LaTeX Info: Redefining \% on input line 809.
-[125]
-Overfull \hbox (13.64479pt too wide) in paragraph at lines 838--838
+LaTeX Info: Redefining \. on input line 848.
+LaTeX Info: Redefining \% on input line 848.
+[129]
+LaTeX Info: Redefining \. on input line 866.
+LaTeX Info: Redefining \% on input line 866.
+ [130]
+Overfull \hbox (13.64479pt too wide) in paragraph at lines 890--890
  []        \T1/cmtt/m/n/10.95 LENGTH(a.compases_sincopas) - LENGTH(REPLACE(a.compases_sincopas,[] 
  []
 
-LaTeX Info: Redefining \. on input line 844.
-LaTeX Info: Redefining \% on input line 844.
-[126]
-LaTeX Info: Redefining \. on input line 863.
-LaTeX Info: Redefining \% on input line 863.
- [127]
-LaTeX Info: Redefining \. on input line 891.
-LaTeX Info: Redefining \% on input line 891.
- [128]
-Overfull \hbox (13.64479pt too wide) in paragraph at lines 907--907
+LaTeX Info: Redefining \. on input line 898.
+LaTeX Info: Redefining \% on input line 898.
+
+Package fancyhdr Warning: \headheight is too small (25.22652pt): 
+(fancyhdr)                Make it at least 25.89063pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.89063pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
+
+[131]
+LaTeX Info: Redefining \. on input line 919.
+LaTeX Info: Redefining \% on input line 919.
+ [132]
+LaTeX Info: Redefining \. on input line 945.
+LaTeX Info: Redefining \% on input line 945.
+ [133]
+Overfull \hbox (13.64479pt too wide) in paragraph at lines 963--963
  []  \T1/cmtt/m/n/10.95 AND (a.tiene_hemiolia_horizontal = 1 OR a.tiene_hemiolia_vertical = 1);[] 
  []
 
-LaTeX Info: Redefining \. on input line 918.
-LaTeX Info: Redefining \% on input line 918.
-[129]
-LaTeX Info: Redefining \. on input line 946.
-LaTeX Info: Redefining \% on input line 946.
- [130]
-LaTeX Info: Redefining \. on input line 969.
-LaTeX Info: Redefining \% on input line 969.
- [131]
-LaTeX Info: Redefining \. on input line 994.
-LaTeX Info: Redefining \% on input line 994.
- [132]
-Underfull \hbox (badness 1867) in paragraph at lines 1011--1015
+LaTeX Info: Redefining \. on input line 974.
+LaTeX Info: Redefining \% on input line 974.
+[134]
+LaTeX Info: Redefining \. on input line 1001.
+LaTeX Info: Redefining \% on input line 1001.
+ [135]
+LaTeX Info: Redefining \. on input line 1026.
+LaTeX Info: Redefining \% on input line 1026.
+ [136]
+LaTeX Info: Redefining \. on input line 1054.
+LaTeX Info: Redefining \% on input line 1054.
+ [137]
+Underfull \hbox (badness 1867) in paragraph at lines 1071--1075
 []\T1/cmr/m/n/10.95 * **Sig-na-tu-ra de com-pás de-cla-ra-da:** `<sco-re-Def xml:id=sg2v8p><me-ter-Sig
  []
 
-LaTeX Info: Redefining \. on input line 1047.
-LaTeX Info: Redefining \% on input line 1047.
-[133]
-Underfull \hbox (badness 2707) in paragraph at lines 1064--1073
-[]\T1/cmr/m/n/10.95 Por ejem-plo, es-tas pie-zas in-clu-yen el si-guien-te ti-po de de-cla-ra-ción: ```xml
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1064--1073
-\T1/cmr/m/n/10.95 <time-modification><actual-notes>3</actual-notes><normal-notes>2</normal-
- []
-
-
-Underfull \hbox (badness 2635) in paragraph at lines 1064--1073
-\T1/cmr/m/n/10.95 notes><normal-type>eighth</normal-type></time-modification>``` Es-to in-di-ca
- []
-
-LaTeX Info: Redefining \. on input line 1077.
-LaTeX Info: Redefining \% on input line 1077.
-[134]
-LaTeX Info: Redefining \. on input line 1099.
-LaTeX Info: Redefining \% on input line 1099.
+LaTeX Info: Redefining \. on input line 1093.
+LaTeX Info: Redefining \% on input line 1093.
+[138]
+LaTeX Info: Redefining \. on input line 1126.
+LaTeX Info: Redefining \% on input line 1126.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1855,24 +1917,26 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[135]
-LaTeX Info: Redefining \. on input line 1124.
-LaTeX Info: Redefining \% on input line 1124.
- [136]
-LaTeX Info: Redefining \. on input line 1150.
-LaTeX Info: Redefining \% on input line 1150.
- [137]
-LaTeX Info: Redefining \. on input line 1188.
-LaTeX Info: Redefining \% on input line 1188.
- [138]
-LaTeX Info: Redefining \. on input line 1211.
-LaTeX Info: Redefining \% on input line 1211.
- [139]
-LaTeX Info: Redefining \. on input line 1246.
-LaTeX Info: Redefining \% on input line 1246.
- [140]
-LaTeX Info: Redefining \. on input line 1276.
-LaTeX Info: Redefining \% on input line 1276.
+[139]
+Underfull \hbox (badness 2707) in paragraph at lines 1126--1135
+[]\T1/cmr/m/n/10.95 Por ejem-plo, es-tas pie-zas in-clu-yen el si-guien-te ti-po de de-cla-ra-ción: ```xml
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1126--1135
+\T1/cmr/m/n/10.95 <time-modification><actual-notes>3</actual-notes><normal-notes>2</normal-
+ []
+
+
+Underfull \hbox (badness 2635) in paragraph at lines 1126--1135
+\T1/cmr/m/n/10.95 notes><normal-type>eighth</normal-type></time-modification>``` Es-to in-di-ca
+ []
+
+LaTeX Info: Redefining \. on input line 1155.
+LaTeX Info: Redefining \% on input line 1155.
+[140]
+LaTeX Info: Redefining \. on input line 1178.
+LaTeX Info: Redefining \% on input line 1178.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1882,53 +1946,93 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
 [141]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Info: Redefining \. on input line 1206.
+LaTeX Info: Redefining \% on input line 1206.
+ [142]
+LaTeX Info: Redefining \. on input line 1229.
+LaTeX Info: Redefining \% on input line 1229.
+
+
+Package fancyhdr Warning: \headheight is too small (25.22652pt): 
+(fancyhdr)                Make it at least 25.89063pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.89063pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
+
+[143]
+LaTeX Info: Redefining \. on input line 1265.
+LaTeX Info: Redefining \% on input line 1265.
+ [144]
+LaTeX Info: Redefining \. on input line 1296.
+LaTeX Info: Redefining \% on input line 1296.
+ [145]
+Underfull \vbox (badness 5231) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 1324.
 LaTeX Info: Redefining \% on input line 1324.
- [142]
-Overfull \hbox (28.2355pt too wide) in paragraph at lines 1331--1341
+ [146]
+LaTeX Info: Redefining \. on input line 1356.
+LaTeX Info: Redefining \% on input line 1356.
+
+
+Package fancyhdr Warning: \headheight is too small (25.22652pt): 
+(fancyhdr)                Make it at least 25.89063pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.89063pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
+
+[147]
+Overfull \hbox (28.2355pt too wide) in paragraph at lines 1405--1415
  [][] 
  []
 
-LaTeX Info: Redefining \. on input line 1357.
-LaTeX Info: Redefining \% on input line 1357.
-[143]
-LaTeX Info: Redefining \. on input line 1383.
-LaTeX Info: Redefining \% on input line 1383.
- [144]
-LaTeX Info: Redefining \. on input line 1417.
-LaTeX Info: Redefining \% on input line 1417.
- [145]
-Overfull \hbox (31.16087pt too wide) in paragraph at lines 1450--1461
- [][] 
- []
-
-LaTeX Info: Redefining \. on input line 1468.
-LaTeX Info: Redefining \% on input line 1468.
-[146]
+LaTeX Info: Redefining \. on input line 1420.
+LaTeX Info: Redefining \% on input line 1420.
+[148]
+LaTeX Info: Redefining \. on input line 1432.
+LaTeX Info: Redefining \% on input line 1432.
+ [149]
+LaTeX Info: Redefining \. on input line 1461.
+LaTeX Info: Redefining \% on input line 1461.
+ [150]
 LaTeX Info: Redefining \. on input line 1490.
 LaTeX Info: Redefining \% on input line 1490.
- [147]
-LaTeX Info: Redefining \. on input line 1509.
-LaTeX Info: Redefining \% on input line 1509.
- [148]
-LaTeX Info: Redefining \. on input line 1537.
-LaTeX Info: Redefining \% on input line 1537.
- [149]
-LaTeX Info: Redefining \. on input line 1566.
-LaTeX Info: Redefining \% on input line 1566.
- [150]
-Underfull \vbox (badness 3098) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1588.
-LaTeX Info: Redefining \% on input line 1588.
  [151]
-LaTeX Info: Redefining \. on input line 1622.
-LaTeX Info: Redefining \% on input line 1622.
+LaTeX Info: Redefining \. on input line 1527.
+LaTeX Info: Redefining \% on input line 1527.
  [152]
+Overfull \hbox (31.16087pt too wide) in paragraph at lines 1530--1541
+ [][] 
+ []
+
+LaTeX Info: Redefining \. on input line 1563.
+LaTeX Info: Redefining \% on input line 1563.
+[153]
+LaTeX Info: Redefining \. on input line 1591.
+LaTeX Info: Redefining \% on input line 1591.
+ [154]
+LaTeX Info: Redefining \. on input line 1609.
+LaTeX Info: Redefining \% on input line 1609.
+
+
+Package fancyhdr Warning: \headheight is too small (25.22652pt): 
+(fancyhdr)                Make it at least 25.89063pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.89063pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
+
+[155]
+LaTeX Info: Redefining \. on input line 1637.
+LaTeX Info: Redefining \% on input line 1637.
+ [156]
 LaTeX Info: Redefining \. on input line 1660.
 LaTeX Info: Redefining \% on input line 1660.
+ [157]
+LaTeX Info: Redefining \. on input line 1683.
+LaTeX Info: Redefining \% on input line 1683.
+ [158]
+LaTeX Info: Redefining \. on input line 1722.
+LaTeX Info: Redefining \% on input line 1722.
 
 
 Package fancyhdr Warning: \headheight is too small (25.22652pt): 
@@ -1937,30 +2041,32 @@ Package fancyhdr Warning: \headheight is too small (25.22652pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
 
-[153]
-LaTeX Info: Redefining \. on input line 1685.
-LaTeX Info: Redefining \% on input line 1685.
- [154])
+[159]
+LaTeX Info: Redefining \. on input line 1764.
+LaTeX Info: Redefining \% on input line 1764.
+ [160]
+LaTeX Info: Redefining \. on input line 1820.
+LaTeX Info: Redefining \% on input line 1820.
+
+
+Package fancyhdr Warning: \headheight is too small (25.22652pt): 
+(fancyhdr)                Make it at least 25.89063pt, for example:
+(fancyhdr)                \setlength{\headheight}{25.89063pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
+
+[161])
 LaTeX Info: Redefining \. on input line 174.
 LaTeX Info: Redefining \% on input line 174.
-
-
-Package fancyhdr Warning: \headheight is too small (25.22652pt): 
-(fancyhdr)                Make it at least 25.89063pt, for example:
-(fancyhdr)                \setlength{\headheight}{25.89063pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-0.66411pt}.
-
-[155] [156
-
-
-
-]
+ [162]
 \openout2 = `Cascaras/fin.aux'.
 
- (Cascaras/fin.tex [157
+ (Cascaras/fin.tex [163
 
-] [158]) (TFMTeXiS.aux (Cascaras/cover.aux)
+
+
+
+] [164]) (TFMTeXiS.aux (Cascaras/cover.aux)
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
  (Cascaras/dedicatoria.aux) (Cascaras/agradecimientos.aux) (Cascaras/resumen.aux) (Cascaras/abstract.aux) (TeXiS/TeXiS_toc.aux)
@@ -1982,17 +2088,17 @@ Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
 (rerunfilecheck)             Checksum: 1766974E646D3FC746C71B819B79FD3E;53828.
  ) 
 Here is how much of TeX's memory you used:
- 32252 strings out of 467691
- 621636 string characters out of 5414987
- 1088546 words of memory out of 5000000
+ 32258 strings out of 467691
+ 621684 string characters out of 5414987
+ 1115725 words of memory out of 5000000
  59937 multiletter control sequences out of 15000+600000
  649211 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  121i,12n,127p,2104b,1270s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (180 pages, 1663962 bytes).
+Output written on TFMTeXiS.pdf (186 pages, 1679355 bytes).
 PDF statistics:
- 2991 PDF objects out of 3580 (max. 8388607)
- 449 named destinations out of 1000 (max. 500000)
+ 3015 PDF objects out of 3580 (max. 8388607)
+ 455 named destinations out of 1000 (max. 500000)
  1302 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -8,6 +8,7 @@ embedding_model = SentenceTransformer(
 
 client = chromadb.PersistentClient(path="./db_partituras")
 collection = client.get_collection("partituras")
+print("Collection Count: " + str(collection.count()))
 
 print("Chat RAG iniciado.")
 print("Escribe 'salir' para terminar.\n")
@@ -32,6 +33,10 @@ while True:
     contexto = "\n\n".join(
         resultados["documents"][0]
     )
+
+    print("\nRESULTADOS:")
+    for i, meta in enumerate(resultados["metadatas"][0]):
+        print(i + 1, meta["archivo"])
 
     prompt = f"""
 Usa exclusivamente el contexto proporcionado.

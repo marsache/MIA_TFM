@@ -51,45 +51,45 @@ Warning--empty journal in good2011lessons
 Warning--empty year in sqlite; set to ????
 Warning--missing publisher in jurafsky2000speech
 Warning--empty journal in vaswani2017attention
-You've used 38 entries,
+You've used 45 entries,
             2962 wiz_defined-function locations,
-            1284 strings with 19703 characters,
-and the built_in function-call counts, 24908 in all, are:
-= -- 1713
-> -- 1445
-< -- 33
-+ -- 569
-- -- 513
-* -- 2108
-:= -- 3823
-add.period$ -- 119
-call.type$ -- 38
-change.case$ -- 361
-chr.to.int$ -- 38
-cite$ -- 42
-duplicate$ -- 1896
-empty$ -- 1630
-format.name$ -- 631
-if$ -- 4699
+            1319 strings with 20950 characters,
+and the built_in function-call counts, 29648 in all, are:
+= -- 2038
+> -- 1731
+< -- 41
++ -- 678
+- -- 615
+* -- 2511
+:= -- 4556
+add.period$ -- 143
+call.type$ -- 45
+change.case$ -- 429
+chr.to.int$ -- 45
+cite$ -- 49
+duplicate$ -- 2252
+empty$ -- 1934
+format.name$ -- 750
+if$ -- 5594
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 421
-newline$ -- 197
-num.names$ -- 153
-pop$ -- 977
+missing$ -- 500
+newline$ -- 235
+num.names$ -- 181
+pop$ -- 1144
 preamble$ -- 1
-purify$ -- 323
+purify$ -- 385
 quote$ -- 0
-skip$ -- 598
+skip$ -- 707
 stack$ -- 0
-substring$ -- 577
-swap$ -- 1032
-text.length$ -- 15
+substring$ -- 686
+swap$ -- 1242
+text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 362
+type$ -- 429
 warning$ -- 4
-while$ -- 124
+while$ -- 148
 width$ -- 0
-write$ -- 464
+write$ -- 554
 (There were 5 warnings)

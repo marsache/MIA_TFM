@@ -1,4 +1,4 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{45}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Anthropic PBC}(2024)}]{anthropic2024mcp}
@@ -39,6 +39,11 @@
 {\sc Cook, N.}
 \newblock Computational and comparative musicology.
 \newblock {\em Empirical Musicology: Aims, Methods, Prospects\/}, 2004.
+
+\bibitem[{Crane(2006)}]{crane2006big}
+{\sc Crane, G.}
+\newblock What do you do with a million books?
+\newblock {\em D-Lib Magazine\/}, vol.\ 12, 2006.
 
 \bibitem[{Cuthbert y Ariza(2010)}]{cuthbert2010music21}
 {\sc Cuthbert, M.~S.} y {\sc Ariza, C.}
@@ -95,6 +100,18 @@
 \newblock Long short-term memory.
 \newblock {\em Neural Computation\/}, vol.\ 9, p\'aginas 1735--1780, 1997.
 
+\bibitem[{Hogan et\ al.(2021)Hogan, Blomqvist, Cochez, D’amato, Melo,
+  Gutierrez, Kirrane, Gayo, Navigli, Neumaier, Ngomo, Polleres, Rashid, Rula,
+  Schmelzeisen, Sequeda, Staab y Zimmermann}]{hogan2021knowledge}
+{\sc Hogan, A.}, {\sc Blomqvist, E.}, {\sc Cochez, M.}, {\sc D’amato, C.},
+  {\sc Melo, G.~D.}, {\sc Gutierrez, C.}, {\sc Kirrane, S.}, {\sc Gayo, J.
+  E.~L.}, {\sc Navigli, R.}, {\sc Neumaier, S.}, {\sc Ngomo, A.-C.~N.}, {\sc
+  Polleres, A.}, {\sc Rashid, S.~M.}, {\sc Rula, A.}, {\sc Schmelzeisen, L.},
+  {\sc Sequeda, J.}, {\sc Staab, S.} y {\sc Zimmermann, A.}
+\newblock Knowledge graphs.
+\newblock {\em ACM Computing Surveys\/}, vol.\ 54(4), 2021.
+\newblock ISSN 1557-7341.
+
 \bibitem[{Huang y et~al.(2023)}]{huang2023citation}
 {\sc Huang, L.} y {\sc et~al.}
 \newblock A survey on hallucination in large language models: Principles,
@@ -125,6 +142,13 @@
   large language models, external knowledge sources and discrete reasoning.
 \newblock 2022.
 
+\bibitem[{Karpukhin et\ al.(2020)Karpukhin, Oğuz, Min, Lewis, Wu, Edunov, Chen
+  y tau Yih}]{karpukhin2020dense}
+{\sc Karpukhin, V.}, {\sc Oğuz, B.}, {\sc Min, S.}, {\sc Lewis, P.}, {\sc Wu,
+  L.}, {\sc Edunov, S.}, {\sc Chen, D.} y {\sc tau Yih, W.}
+\newblock Dense passage retrieval for open-domain question answering.
+\newblock 2020.
+
 \bibitem[{Lehmann et\ al.(2022)Lehmann, Gehrig, Holdener, Saladin, Monteiro y
   Stockinger}]{lehman2022building}
 {\sc Lehmann, C.}, {\sc Gehrig, D.}, {\sc Holdener, S.}, {\sc Saladin, C.},
@@ -148,6 +172,13 @@
 \newblock {LSTM} based music generation system.
 \newblock {\em CoRR\/}, vol. abs/1908.01080, 2019.
 
+\bibitem[{Manning et\ al.(2008)Manning, Raghavan y
+  Schütze}]{manning2008introduction}
+{\sc Manning, C.~D.}, {\sc Raghavan, P.} y {\sc Schütze, H.}
+\newblock {\em Introduction to Information Retrieval\/}.
+\newblock Cambridge University Press, Cambridge, UK, 2008.
+\newblock ISBN 978-0-521-86571-5.
+
 \bibitem[{Moretti(2013)}]{moretti2013distant}
 {\sc Moretti, F.}
 \newblock {\em Distant reading\/}.
@@ -158,6 +189,11 @@
 \newblock {\em The Study of Ethnomusicology: Thirty-three Discussions\/}.
 \newblock University of Illinois Press, Urbana, Illinois, USA, 3rd edici\'on,
   2015.
+
+\bibitem[{Nogueira y Cho(2020)}]{nogueira2019passage}
+{\sc Nogueira, R.} y {\sc Cho, K.}
+\newblock Passage re-ranking with bert.
+\newblock 2020.
 
 \bibitem[{Oore et\ al.(2018)Oore, Simon, Dieleman, Eck y
   Simonyan}]{oore2020this}
@@ -186,6 +222,12 @@
 \newblock Toolformer: Language models can teach themselves to use tools.
 \newblock 2023.
 
+\bibitem[{Seeger(1958)}]{seeger1958prescriptive}
+{\sc Seeger, C.}
+\newblock Prescriptive and descriptive music-writing.
+\newblock {\em The Musical Quarterly\/}, vol.\ 44(2), p\'aginas 184--195, 1958.
+\newblock ISSN 00274631, 17418399.
+
 \bibitem[{Sturm et\ al.(2016)Sturm, Santos, Ben-Tal y
   Korshunova}]{sturm2016music}
 {\sc Sturm, B.~L.}, {\sc Santos, J.~F.}, {\sc Ben-Tal, O.} y {\sc Korshunova,
@@ -200,6 +242,11 @@
 \newblock Beir: A heterogenous benchmark for zero-shot evaluation of
   information retrieval models.
 \newblock 2021.
+
+\bibitem[{{UNESCO}(2003)}]{unesco2003charter}
+{\sc {UNESCO}}.
+\newblock Charter on the preservation of digital heritage.
+\newblock 2003.
 
 \bibitem[{Vaswani et\ al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones,
   Gomez, Kaiser y Polosukhin}]{vaswani2017attention}

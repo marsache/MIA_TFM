@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{38}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 
 \bibitem[{{Anthropic PBC}(2024)}]{anthropic2024mcp}
@@ -62,6 +62,13 @@
   summarization.
 \newblock {\em ArXiv\/}, vol. abs/2404.16130, 2024.
 
+\bibitem[{Gao et\ al.(2024)Gao, Xiong, Gao, Jia, Pan, Bi, Dai, Sun, Wang y
+  Wang}]{gao2023ragsurvey}
+{\sc Gao, Y.}, {\sc Xiong, Y.}, {\sc Gao, X.}, {\sc Jia, K.}, {\sc Pan, J.},
+  {\sc Bi, Y.}, {\sc Dai, Y.}, {\sc Sun, J.}, {\sc Wang, M.} y {\sc Wang, H.}
+\newblock Retrieval-augmented generation for large language models: A survey.
+\newblock 2024.
+
 \bibitem[{Good(2001)}]{good2001musicxml}
 {\sc Good, M.}
 \newblock Musicxml: An internet-friendly format for sheet music.
@@ -77,6 +84,11 @@
 \newblock {\em A Dictionary of Music and Musicians\/}.
 \newblock Macmillan and Co., London, 1900.
 \newblock Wikisource edition consulted online.
+
+\bibitem[{Hipp y Team()}]{sqlite}
+{\sc Hipp, D.~R.} y {\sc Team, S.~D.}
+\newblock Sqlite.
+\newblock ????
 
 \bibitem[{Hochreiter y Schmidhuber(1997)}]{hochreiter1997long}
 {\sc Hochreiter, S.} y {\sc Schmidhuber, J.}
@@ -101,11 +113,27 @@
   vol.\ 2.
 \newblock 2008.
 
-\bibitem[{Katsogiannis-Meimarakis y Koutrika(2023)}]{katsogiannis2023text}
-{\sc Katsogiannis-Meimarakis, G.} y {\sc Koutrika, G.}
-\newblock Text-to-sql generation: A survey on systems, datasets, and evaluation
-  metrics.
-\newblock {\em ACM Computing Surveys\/}, 2023.
+\bibitem[{Karpas et\ al.(2022)Karpas, Abend, Belinkov, Lenz, Lieber, Ratner,
+  Shoham, Bata, Levine, Leyton-Brown, Muhlgay, Rozen, Schwartz, Shachaf,
+  Shalev-Shwartz, Shashua y Tenenholtz}]{karpas2022mrkl}
+{\sc Karpas, E.}, {\sc Abend, O.}, {\sc Belinkov, Y.}, {\sc Lenz, B.}, {\sc
+  Lieber, O.}, {\sc Ratner, N.}, {\sc Shoham, Y.}, {\sc Bata, H.}, {\sc Levine,
+  Y.}, {\sc Leyton-Brown, K.}, {\sc Muhlgay, D.}, {\sc Rozen, N.}, {\sc
+  Schwartz, E.}, {\sc Shachaf, G.}, {\sc Shalev-Shwartz, S.}, {\sc Shashua, A.}
+  y {\sc Tenenholtz, M.}
+\newblock Mrkl systems: A modular, neuro-symbolic architecture that combines
+  large language models, external knowledge sources and discrete reasoning.
+\newblock 2022.
+
+\bibitem[{Lehmann et\ al.(2022)Lehmann, Gehrig, Holdener, Saladin, Monteiro y
+  Stockinger}]{lehman2022building}
+{\sc Lehmann, C.}, {\sc Gehrig, D.}, {\sc Holdener, S.}, {\sc Saladin, C.},
+  {\sc Monteiro, J.~a.~P.} y {\sc Stockinger, K.}
+\newblock Building natural language interfaces for databases in practice.
+\newblock En {\em Proceedings of the 34th International Conference on
+  Scientific and Statistical Database Management\/}, SSDBM '22. Association for
+  Computing Machinery, New York, NY, USA, 2022.
+\newblock ISBN 9781450396677.
 
 \bibitem[{Lewis et\ al.(2020)Lewis, Perez, Piktus, Petroni, Lewis, Riedel y
   Kiela}]{lewis2020retrieval}
@@ -150,6 +178,14 @@
 \newblock En {\em Proceedings of the First International Conference on Musical
   Applications Using XML\/}. 2002.
 
+\bibitem[{Schick et\ al.(2023)Schick, Dwivedi-Yu, Dessì, Raileanu, Lomeli,
+  Zettlemoyer, Cancedda y Scialom}]{schick2023toolformer}
+{\sc Schick, T.}, {\sc Dwivedi-Yu, J.}, {\sc Dessì, R.}, {\sc Raileanu, R.},
+  {\sc Lomeli, M.}, {\sc Zettlemoyer, L.}, {\sc Cancedda, N.} y {\sc Scialom,
+  T.}
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock 2023.
+
 \bibitem[{Sturm et\ al.(2016)Sturm, Santos, Ben-Tal y
   Korshunova}]{sturm2016music}
 {\sc Sturm, B.~L.}, {\sc Santos, J.~F.}, {\sc Ben-Tal, O.} y {\sc Korshunova,
@@ -173,6 +209,31 @@
 \newblock Attention is all you need.
 \newblock 2017.
 
+\bibitem[{Wang et\ al.(2024)Wang, Ma, Feng, Zhang, Yang, Zhang, Chen, Tang,
+  Chen, Lin, Zhao, Wei y Wen}]{wang2024surveyagents}
+{\sc Wang, L.}, {\sc Ma, C.}, {\sc Feng, X.}, {\sc Zhang, Z.}, {\sc Yang, H.},
+  {\sc Zhang, J.}, {\sc Chen, Z.}, {\sc Tang, J.}, {\sc Chen, X.}, {\sc Lin,
+  Y.}, {\sc Zhao, W.~X.}, {\sc Wei, Z.} y {\sc Wen, J.}
+\newblock A survey on large language model based autonomous agents.
+\newblock {\em Frontiers of Computer Science\/}, vol.\ 18(6), 2024.
+\newblock ISSN 2095-2236.
+
+\bibitem[{Yao et\ al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan y
+  Cao}]{yao2023react}
+{\sc Yao, S.}, {\sc Zhao, J.}, {\sc Yu, D.}, {\sc Du, N.}, {\sc Shafran, I.},
+  {\sc Narasimhan, K.} y {\sc Cao, Y.}
+\newblock React: Synergizing reasoning and acting in language models.
+\newblock 2023.
+
+\bibitem[{Yu et\ al.(2018)Yu, Zhang, Yang, Yasunaga, Wang, Li, Ma, Li, Yao,
+  Roman, Zhang y Radev}]{yu2018spider}
+{\sc Yu, T.}, {\sc Zhang, R.}, {\sc Yang, K.}, {\sc Yasunaga, M.}, {\sc Wang,
+  D.}, {\sc Li, Z.}, {\sc Ma, J.}, {\sc Li, I.}, {\sc Yao, Q.}, {\sc Roman,
+  S.}, {\sc Zhang, Z.} y {\sc Radev, D.~R.}
+\newblock Spider: {A} large-scale human-labeled dataset for complex and
+  cross-domain semantic parsing and text-to-sql task.
+\newblock {\em CoRR\/}, vol. abs/1809.08887, 2018.
+
 \bibitem[{Zeng et\ al.(2021)Zeng, Tan, Wang, Ju, Qin y Liu}]{zeng2021musicbert}
 {\sc Zeng, M.}, {\sc Tan, X.}, {\sc Wang, R.}, {\sc Ju, Z.}, {\sc Qin, T.} y
   {\sc Liu, T.-Y.}
@@ -187,5 +248,11 @@
 \newblock A comprehensive survey on relation extraction: Recent advances and
   new frontiers.
 \newblock 2024.
+
+\bibitem[{Zhong et\ al.(2017)Zhong, Xiong y Socher}]{zhong2017seq2sql}
+{\sc Zhong, V.}, {\sc Xiong, C.} y {\sc Socher, R.}
+\newblock Seq2sql: Generating structured queries from natural language using
+  reinforcement learning.
+\newblock {\em CoRR\/}, vol. abs/1709.00103, 2017.
 
 \end{thebibliography}

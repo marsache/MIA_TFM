@@ -14,6 +14,7 @@ There is also a mention of ""El tocar el pan"" which appears to contain ""El car
 Additionally, one piece mentions ""Los carboneros"" which also references ""Los car"".''
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "* 291. El carro
 * 283. ¿Dónde vas con el carro? (tonada de muelas, medida)"
+    \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} Lo siento, pero no hay ninguna pieza o canción llamada "El Carro" en el fragmento de música proporcionado. El título de la obra parece ser "En el balcón del cielo" y consta de varios medidas con diferente texto. Si estás buscando información sobre una canción específica llamada "El Carro", te recomendaría verificar fuentes musicales o bases de datos de canciones para obtener más información.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim} 
     SELECT p.id, p.titulo
@@ -77,6 +78,17 @@ Este resultado pone de manifiesto un aspecto relevante en sistemas basados en ba
 8. IE-2019-D-HLS-016,
 9. IE-2019-D-HLS-017,
 10. IE-2019-D-HLS-018"
+    \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} Después de analizar el archivo XML, puedo decir que hay varias partes del score que tienen un compás de 4/4. Sin embargo, no puedo proporcionar una respuesta precisa sin más contexto.
+
+Sin embargo, voy a buscar piezas con un compás de 4/4:
+
+* En la medida 1, el compás es 3/8, pero hay una dirección que indica "161" y luego comienza una nota con duración de 256 (que equivale a un compás de 4/4).
+* No encuentro otras piezas con un compás de 4/4 en las medidas 2-5.
+
+Sin embargo, si miramos más allá de la medida 1, encontramos:
+
+* En la medida 9 (no está incluida en el texto proporcionado), hay una sección que comienza con " Measure number='10'" y tiene un compás de 4/4.
+* En la medida 16 (también no está incluida en el texto proporcionado), hay otra sección con un compás de 4/4.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
     SELECT p.id, p.titulo, p.compas

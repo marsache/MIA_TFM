@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corpus Musical · Chat</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6fb;
+      }
+      .container {
+        max-width: 880px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+      .header {
+        padding: 20px 24px;
+        background: #1f3c88;
+        color: #fff;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      .chat-box {
+        padding: 18px 24px;
+        min-height: 360px;
+        max-height: 58vh;
+        overflow-y: auto;
+        border-bottom: 1px solid #e7ebf3;
+      }
+      .msg {
+        margin: 10px 0;
+        line-height: 1.45;
+        white-space: pre-wrap;
+      }
+      .user {
+        font-weight: 600;
+        color: #1f3c88;
+      }
+      .assistant {
+        color: #1d2636;
+      }
+      .composer {
+        display: flex;
+        gap: 10px;
+        padding: 16px 24px 24px;
+      }
+      textarea {
+        flex: 1;
+        min-height: 72px;
+        border: 1px solid #cfd7e7;
+        border-radius: 10px;
+        padding: 12px;
+        resize: vertical;
+        font: inherit;
+      }
+      button {
+        border: none;
+        background: #1f3c88;
+        color: #fff;
+        border-radius: 10px;
+        padding: 0 20px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <section class="header">
+        <h1>Asistente del Corpus Musical de EA-DIGIFOLK</h1>
+      </section>
+
+      <section id="chat" class="chat-box">
+        <div class="msg assistant">
+          <strong>Asistente:</strong> Hola, pregunta lo que quieras sobre el corpus musical.
+        </div>
+      </section>
+
+      <section class="composer">
+        <textarea id="question" placeholder="Ejemplo: Identifica obras que sean nanas"></textarea>
+        <button id="send-btn">Enviar</button>
+      </section>
+    </main>
+
+    <script>
+      const chat = document.getElementById("chat");
+      const questionInput = document.getElementById("question");
+      const sendBtn = document.getElementById("send-btn");
+
+      function addMessage(role, text) {
+        const div = document.createElement("div");
+        div.className = `msg ${role}`;
+        div.innerHTML = `<strong>${role === "user" ? "Tú" : "Asistente"}:</strong> ${text}`;
+        chat.appendChild(div);
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      async function sendQuestion() {
+        const message = questionInput.value.trim();
+        if (!message) return;
+
+        addMessage("user", message);
+        questionInput.value = "";
+        sendBtn.disabled = true;
+        addMessage("assistant", "Consultando...");
+
+        try {
+          const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message }),
+          });
+          const data = await response.json();
+          chat.lastChild.remove();
+
+          if (!response.ok) {
+            addMessage("assistant", `Error: ${data.detail || "No se pudo procesar la consulta."}`);
+            return;
+          }
+
+          addMessage("assistant", data.answer || "No se recibió respuesta.");
+        } catch (error) {
+          chat.lastChild.remove();
+          addMessage("assistant", `Error de conexión: ${error.message}`);
+        } finally {
+          sendBtn.disabled = false;
+        }
+      }
+
+      sendBtn.addEventListener("click", sendQuestion);
+      questionInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          sendQuestion();
+        }
+      });
+    </script>
+  </body>
+</html>

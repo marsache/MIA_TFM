@@ -47,49 +47,55 @@ A level-1 auxiliary file: Cascaras/fin.aux
 Database file #1: biblio.bib
 Warning--entry type for "sqlite" isn't style-file defined
 --line 939 of file biblio.bib
+Warning--missing publisher in burdick2012digital
 Warning--empty journal in good2011lessons
 Warning--empty year in sqlite; set to ????
+Warning--missing publisher in jockers2013macroanalysis
 Warning--missing publisher in jurafsky2000speech
+Warning--missing publisher in manovich2020cultural
+Warning--missing publisher in ramsay2011reading
+Warning--missing publisher in schreibman2004companion
+Warning--empty journal in selfridge1997humdrum
 Warning--empty journal in vaswani2017attention
-You've used 45 entries,
+You've used 56 entries,
             2962 wiz_defined-function locations,
-            1319 strings with 20950 characters,
-and the built_in function-call counts, 29648 in all, are:
-= -- 2038
-> -- 1731
-< -- 41
-+ -- 678
-- -- 615
-* -- 2511
-:= -- 4556
-add.period$ -- 143
-call.type$ -- 45
-change.case$ -- 429
-chr.to.int$ -- 45
-cite$ -- 49
-duplicate$ -- 2252
-empty$ -- 1934
-format.name$ -- 750
-if$ -- 5594
+            1367 strings with 22570 characters,
+and the built_in function-call counts, 36153 in all, are:
+= -- 2519
+> -- 2002
+< -- 51
++ -- 784
+- -- 708
+* -- 2991
+:= -- 5526
+add.period$ -- 178
+call.type$ -- 56
+change.case$ -- 511
+chr.to.int$ -- 56
+cite$ -- 66
+duplicate$ -- 2772
+empty$ -- 2423
+format.name$ -- 871
+if$ -- 6875
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 500
-newline$ -- 235
-num.names$ -- 181
-pop$ -- 1144
+missing$ -- 611
+newline$ -- 291
+num.names$ -- 226
+pop$ -- 1400
 preamble$ -- 1
-purify$ -- 385
+purify$ -- 459
 quote$ -- 0
-skip$ -- 707
+skip$ -- 919
 stack$ -- 0
-substring$ -- 686
-swap$ -- 1242
-text.length$ -- 19
+substring$ -- 905
+swap$ -- 1519
+text.length$ -- 24
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 429
-warning$ -- 4
-while$ -- 148
+type$ -- 524
+warning$ -- 10
+while$ -- 189
 width$ -- 0
-write$ -- 554
-(There were 5 warnings)
+write$ -- 684
+(There were 11 warnings)

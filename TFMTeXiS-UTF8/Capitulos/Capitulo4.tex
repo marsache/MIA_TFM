@@ -48,28 +48,28 @@ Desde un punto de vista funcional, el sistema se compone de cinco elementos prin
 
 El flujo de ejecución comienza cuando la usuaria formula una pregunta musicológica a través de la interfaz web. Esta consulta es recibida por el cliente MCP, que activa un mecanismo de recuperación semántica diseñado específicamente para identificar qué variables del esquema relacional son potencialmente relevantes para responder a la pregunta planteada. Para ello, la consulta se compara con un conjunto de descripciones enriquecidas de las columnas disponibles en la base de datos mediante técnicas de representación vectorial (\textit{embeddings}) y cálculo de similitud semántica.
 
-\begin{table}[H]
-\centering
-\label{tab:ejemplo_metadatos}
-\begin{tabular}{|l|p{6cm}|}
-    \hline
-    \textbf{Campo} & \textbf{Valor} \\
-    \hline
-    Tabla & piezas \\
-    \hline
-    Columna & bpm \\
-    \hline
-    Descripción & Tempo o velocidad de la pieza \\
-    \hline
-    Palabras clave & bpm, tempo, velocidad \\
-    \hline
-    Ejemplos & 78, 120, 140 \\
-    \hline
-    Tipo & INTEGER \\
-    \hline
-\end{tabular}
-\caption{Ejemplo de metadatos asociados a una columna de la base de datos (BPM).}
-\end{table}
+% \begin{table}[H]
+% \centering
+% \label{tab:ejemplo_metadatos}
+% \begin{tabular}{|l|p{6cm}|}
+%     \hline
+%     \textbf{Campo} & \textbf{Valor} \\
+%     \hline
+%     Tabla & piezas \\
+%     \hline
+%     Columna & bpm \\
+%     \hline
+%     Descripción & Tempo o velocidad de la pieza \\
+%     \hline
+%     Palabras clave & bpm, tempo, velocidad \\
+%     \hline
+%     Ejemplos & 78, 120, 140 \\
+%     \hline
+%     Tipo & INTEGER \\
+%     \hline
+% \end{tabular}
+% \caption{Ejemplo de metadatos asociados a una columna de la base de datos (BPM).}
+% \end{table}
 
 A partir de las columnas recuperadas, el sistema construye dinámicamente un esquema reducido (\textit{mini-esquema}), que contiene únicamente las tablas, atributos y relaciones consideradas relevantes para la consulta actual. Este contexto estructurado es posteriormente incorporado al \textit{prompt} enviado al modelo de lenguaje local, reduciendo significativamente el espacio de búsqueda y minimizando la probabilidad de que el modelo genere referencias incorrectas a elementos inexistentes del esquema.
 
@@ -196,14 +196,7 @@ Sin embargo, la similitud vectorial por sí sola puede resultar insuficiente en 
 
 La puntuación final asignada a cada columna se calcula como:
 
-[
-Score\_{final} =
-Score\_{embedding}
-+
-Bonus\_{columna}
-+
-Bonus\_{keywords}
-]
+\texttt{[Score\_{final} = Score\_{embedding} + Bonus\_{columna} + Bonus\_{keywords}]}
 
 donde:
 

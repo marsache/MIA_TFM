@@ -17,7 +17,10 @@ Additionally, one piece mentions ""Los carboneros"" which also references ""Los 
     \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} "No hay ninguna pieza llamada ""El Carro"" en el texto proporcionado. Sin embargo, si deseas saber cuál es la pieza número 8 del conjunto, la respuesta sería:
 
 Pieza número 8: No fue identificada como ""El Carro"". La pieza número 8 se llama ""Mea..."" y parece que hay un error en el nombre de la pieza."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras que tienen ""El Carro"" en su título:
+
+*   **291. El carro**
+*   **283. ¿Donde vas con el carro? (tonada de muelos medida)**"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim} 
     SELECT p.id, p.titulo
@@ -53,7 +56,15 @@ Estas piezas tienen como autor a Robert Schumann, un compositor alemán del sigl
     \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} "No hay ninguna mención de Robert Schumann en el texto proporcionado. Sin embargo, sí hay un indicio de que el autor podría ser Schubert o incluso Bach. Pero no hay información específica sobre el compositor.
 
 Si quieres saber si puedes identificar piezas cuyo autor sea Schumann, te puedo ayudar a buscar alguna pieza musical asociada con este compositor. ¿Qué tipo de música estás buscando? ¿Son obras para piano, cuartetos de cuerda o algo más?"
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes piezas cuyo autor es Schumann:
+
+*   **53. LAS ABEJAS**
+*   **54. CANCIÓN DE CUNA**
+*   **55. MI LINDA MUÑECA**
+*   **56. VILLANCICO**
+*   **57. DÍA DE ASUETO**
+*   **63. EL DÍA DE MAMÁ**
+"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
         SELECT p.id, p.titulo, p.autor
@@ -147,7 +158,18 @@ Para identificar piezas con hemiolías horizontales, buscaría:
 4. **Análisis del contexto musical**: Considerar el estilo y la estructura general de la pieza puede ayudar a identificar hemolías horizontales, especialmente si el compositor está experimentando con ritmos inusuales.
 
 Si deseas obtener ayuda específica para encontrar hemiolías horizontales en una obra musical o necesitas más detalles sobre cómo reconocerlas, por favor proporciona más información o contexto sobre la pieza que estás buscando analizar."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se han encontrado las siguientes piezas con hemiolias horizontales:
+
+*   **IE-2019-D-HLS-027** (Compás: 3/4, Tonalidad: E minor, BPM: 144)
+*   **IE-2019-D-HLS-030** (Compás: 6/8, Tonalidad: G major, BPM: 83)
+*   **A Stor Mo Chroi** (Compás: 3/4, Tonalidad: A minor)
+*   **The Wild Rover** (Compás: 3/4, Tonalidad: D major)
+*   **575** (Compás: 6/8, Tonalidad: C major)
+*   **580** (Compás: 6/8, Tonalidad: C major)
+*   **583** (Compás: 6/8, Tonalidad: C major)
+*   **585** (Compás: 6/8, Tonalidad: C major)
+*   **608** (Compás: 6/8, Tonalidad: C major)
+*   **Muiñeira de Poio** (Compás: 6/8, Tonalidad: C major)"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
     SELECT p.id, p.titulo
@@ -183,7 +205,18 @@ Una hemiolia vertical es un dispositivo rítmico en el que dos o más voces o l�
 
 Estas piezas tienen hemiolias verticales en su análisis musical."
     \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} La respuesta a esta pregunta es: 3
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras que contienen hemiolias verticales:
+
+*   **Drum**
+*   **Garryowen**
+*   **Go to the devil and shake yourself**
+*   **Jackson`s Favorite**
+*   **Jackson´s Morning Brush**
+*   **Kennedys´s Jig**
+*   **King Charle´s Jig**
+*   **Kissing and drinking**
+*   **Kitty of Coleraine**
+*   **Paddy O´Carrol**"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
     SELECT p.id, p.titulo
@@ -238,7 +271,19 @@ Para identificar si un pedazo de música está en la tonalidad de Sol mayor (G),
 4. **Tonalidad y modulación**: Si la pieza comienza en G y se mantiene en el rango de la escala de Sol mayor, es probable que esté en la tonalidad de G.
 
 **Nota:** Esta respuesta asume que la pregunta está buscando identificar tonalidades en general. Si necesitas ayuda con algo específico, como una canción o pieza de música en particular, por favor proporciona más contexto y información."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras en tonalidad de G major:
+
+*   **Título:** IE-2019-D-HLS-001, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** (no disponible)
+*   **Título:** IE-2019-D-HLS-002, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 62
+*   **Título:** IE-2019-D-HLS-003, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 140
+*   **Título:** IE-2019-D-HLS-004, **Autor:** , **Compás:** 6/8, **Tonalidad:** G major, **BPM:** (no disponible)
+*   **Título:** IE-2019-D-HLS-005, **Autor:** , **Compás:** 12/8, **Tonalidad:** G major, **BPM:** 96
+*   **Título:** IE-2019-D-HLS-007, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** (no disponible)
+*   **Título:** IE-2019-D-HLS-008, **Autor:** , **Compás:** 3/4, **Tonalidad:** G major, **BPM:** (no disponible)
+*   **Título:** IE-2019-D-HLS-009, **Autor:** , **Compás:** 9/8, **Tonalidad:** G major, **BPM:** 51
+*   **Título:** IE-2019-D-HLS-010, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 128
+*   **Título:** IE-2019-D-HLS-011, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 128
+"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
     SELECT p.id, p.titulo, p.tonalidad
@@ -281,7 +326,7 @@ Es importante señalar que la determinación del modo dórico en estas piezas se
 Es posible que la información sobre el modo se encuentre en otro lugar del archivo o que esté codificada de manera diferente. Si tienes más contexto o detalles sobre las piezas musicales, podríamos ayudarte a encontrar la respuesta.
 
 Si deseas, puedo intentar buscar pistas adicionales en el archivo xml para ver si hay alguna indicación de que las piezas tengan un tono dórico."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} Se encontraron las siguientes piezas en modo dórico: 6, 12, 15, 16, 25, 27, 29, 35, 49, 99
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
     SELECT p.id, p.titulo, p.modo
@@ -331,7 +376,19 @@ Aquí hay algunas observaciones generales sobre el ritmo:
 * No hay información específica sobre BPM en las demás medidas.
 
 Es importante tener en cuenta que el BPM no se indica explícitamente en la partitura. Si necesitas saber con precisión cuáles son las piezas con un BPM de 120, te recomendaría verificar la partitura original o consultar con alguien que tenga acceso a ella."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes piezas con un BPM de 120:
+
+*   **Título:** IE-2019-D-HLS-014, **Autor:** , **Compás:** 3/2, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-028, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-037, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-049, **Autor:** , **Compás:** 12/8, **Tonalidad:** C major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-050, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-058, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-059, **Autor:** , **Compás:** 2/4, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-014, **Autor:** , **Compás:** 3/2, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-028, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 120
+*   **Título:** IE-2019-D-HLS-037, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 120
+"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
     SELECT p.id, p.titulo, p.bpm
@@ -389,7 +446,7 @@ O
 * Estaff: 1
 
 Es importante destacar que la relación entre duraciones en tiempo común y valores MIDI no es siempre exacta, y puede variar dependiendo del contexto y de las especificaciones del archivo MIDI."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} Se encontraron las siguientes piezas con un volumen MIDI de 79: 161, 209, 7159, 7160, 7256, 7257, 7930, 7931, 7932, 7933.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
     SELECT p.id, p.titulo, p.midi_volume
@@ -432,7 +489,7 @@ Después de revisar las medidas, encontré algunas piezas que tienen una nota A3
 2. **Measure 6**: En la parte inferior del archivo, hay un comentario que dice ""Part: P1, Measure: 5"". Sin embargo, debemos buscar en el contexto correcto. En **Measure 4**, se encuentra una nota con `<step>A</step>` y `<octave>3</octave>`, lo que satisface la condición.
 
 No encontré más piezas cuya nota más grave sea A3. Si deseas que busque en otras partes del archivo, por favor házmelo saber."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} Se encontraron las siguientes piezas con la nota más grave A3: 64, 211, 221, 1219, 1535, 1562, 1645, 1718, 1736, 1742.  
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, p.nota_mas_grave
@@ -467,7 +524,18 @@ Es importante señalar que, en los archivos `MX-1952-00-CR-00002.musicxml.xml` y
 Además, en la segunda parte de la música proporcionada, puedo identificar las siguientes piezas que tienen una nota más aguda que G5:
 
 * La medida 10 del tercer compás tiene la nota A\#5."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras cuya nota más aguda es G5:
+
+*   **IE-2019-D-HLS-001** (Compás: 4/4, Tonalidad: G major)
+*   **IE-2019-D-HLS-003** (Compás: 4/4, Tonalidad: G major, BPM: 140)
+*   **IE-2019-D-HLS-004** (Compás: 6/8, Tonalidad: G major)
+*   **IE-2019-D-HLS-008** (Compás: 3/4, Tonalidad: G major)
+*   **IE-2019-D-HLS-012** (Compás: 3/2, Tonalidad: G minor, BPM: 60)
+*   **IE-2019-D-HLS-024** (Compás: 4/4, Tonalidad: G major)
+*   **IE-2019-D-HLS-026** (Compás: 4/4, Tonalidad: G major, BPM: 96)
+*   **IE-2019-D-HLS-027** (Compás: 3/4, Tonalidad: E minor, BPM: 144)
+*   **IE-2019-D-HLS-031** (Compás: 4/4, Tonalidad: G major, BPM: 115)
+*   **IE-2019-D-HLS-033** (Compás: 4/4, Tonalidad: G major, BPM: 70)"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, p.nota_mas_aguda
@@ -514,7 +582,18 @@ Después de revisar la documentación proporcionada, puedo identificar dos pieza
 2. **""E""** en la medida 3 (Parte P1): En este caso, la pieza se refiere a un tema musical con una nota ""E"". Aunque no se menciona explícitamente el autor, es posible que sea un hombre, ya que muchos compositores de música clásica y tradicional han sido hombres.
 
 Es importante destacar que no hay información en absoluto sobre los autores de las otras piezas. En algunos casos, la música puede ser anónima o tener múltiples contribuidores."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras de autores masculinos:
+
+*   **The New Honey Moon** (Autor: 4/77e, Compás: 2/2, Tonalidad: D major)
+*   **The Boys of the Lough** (Autor: 4/78e, Compás: 4/4, Tonalidad: D major)
+*   **‘Mount the Baggage’** (Autor: 4/83e, Compás: 2/4, Tonalidad: G major)
+*   **The Tralee Hornpipe** (Autor: 4/158e, Compás: 2/2, Tonalidad: B- major)
+*   **Lord Mayo** (Autor: 4/23e, Compás: 4/4, Tonalidad: D minor)
+*   **A French Dance** (Autor: 4/48e, Compás: 6/8, Tonalidad: D major)
+*   **A Favourite Reel** (Autor: 4/49e, Compás: 4/4, Tonalidad: G major)
+*   **Murphy’s Hornpipe** (Autor: 4/59e, Compás: 4/4, Tonalidad: D major)
+*   **Paddy’s Green Island** (Autor: 4/61e, Compás: 6/8, Tonalidad: B- major)
+*   **Paddys Evermore** (Autor: 4/65e, Compás: 2/4, Tonalidad: D major)"  
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, p.autor_genero
@@ -550,7 +629,18 @@ Sibelius 7.1.3.
 
 La pieza que utiliza este software de codificación es la **Partitura P1** en todo el documento, específicamente en las medidas 1, 2 y 3.
 "
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras codificadas con Sibelius 7.1.3:
+
+*   **Fáinne Geal an Lae** (Autor: 1/1a K, Compás: 2/2, Tonalidad: E minor)
+*   **An Clár Bog Déil** (Autor: 1/4a K, Compás: 3/4, Tonalidad: D major)
+*   **Reel** (Autor: 1/42b K, Compás: 2/2, Tonalidad: G major)
+*   **Miss Monaghan’s Reel** (Autor: 1/42c K, Compás: 2/2, Tonalidad: D major)
+*   **Betsy Baker** (Autor: 1/43a K, Compás: 2/2, Tonalidad: E minor)
+*   **Miss Johnson** (Autor: 1/43b K, Compás: 2/2, Tonalidad: G major)
+*   **The Wind that Shakes the Barley** (Autor: 1/43c K, Compás: 2/2, Tonalidad: D major)
+*   **Reel** (Autor: 1/44a K, Compás: 2/2, Tonalidad: G major)
+*   **Reel** (Autor: 1/44b K, Compás: 2/2, Tonalidad: G major)
+*   **The Lady’s Cup of Tea** (Autor: 1/44c K, Compás: 2/2, Tonalidad: C major)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, p.software_codificacion
@@ -583,7 +673,18 @@ WHERE p.software_codificacion = 'Sibelius 7.1.3';
 Pero si buscamos fechas cercanas a ""2015-07-01"", podemos ver que en el archivo se menciona la fecha ""2015-06-30"" y también hay una modificación posterior al día 14 del mismo mes.
 
 Sin embargo, si buscas específicamente piezas cuya fecha de codificación sea exactamente ""2015-07-01"", no hay ninguna referencia a esta fecha en el archivo."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras con fecha de codificación el 2015-07-01:
+
+*   **Ceann Dubh Dileas** (Compás: 6/8, Tonalidad: D minor)
+*   **The Steam Packet** (Compás: 2/4, Tonalidad: E minor)
+*   **The Bantry Jig** (Compás: 6/8, Tonalidad: D major)
+*   **The Sandy Banks of Rush** (Compás: 4/4, Tonalidad: A major)
+*   **Lough Erne’s Water** (Compás: 2/2, Tonalidad: D major)
+*   **The Humours of Redgap** (Compás: 4/4, Tonalidad: E minor)
+*   **When Mary was a Young Thing** (Compás: 4/4, Tonalidad: E minor)
+*   **A Highland Reel** (Compás: 4/4, Tonalidad: D major)
+*   **The Gipsy** (Compás: 4/4, Tonalidad: G major)
+*   **The Basket of Oysters** (Compás: 6/8, Tonalidad: B minor)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, p.fecha_codificacion
@@ -626,7 +727,18 @@ A continuación, te menciono algunas de las piezas que tienen síncopas:
 3. **Measure 4**: La nota con el id ""A"" en la octava 4 tiene una duración de 128 y está precedida por otra nota con el id ""G"" en la octava 4. Esto también crea un espacio silencioso entre las dos notas, lo que puede considerarse como una síncopa.
 
 Es importante destacar que estas son solo algunas posibles interpretaciones de síncopas, ya que la definición de síncopa puede variar dependiendo del contexto musical y personal. Si necesitas más ayuda o aclaraciones sobre esto, no dudes en preguntar."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras con síncopas:
+
+*   **IE-2019-D-HLS-012** (Compás: 3/2, Tonalidad: G minor, BPM: 60)
+*   **IE-2019-D-HLS-014** (Compás: 3/2, Tonalidad: G major, BPM: 120)
+*   **IE-2019-D-HLS-018** (Compás: 4/4, Tonalidad: G major, BPM: 70)
+*   **IE-2019-D-HLS-027** (Compás: 3/4, Tonalidad: E minor, BPM: 144)
+*   **IE-2019-D-HLS-031** (Compás: 4/4, Tonalidad: G major, BPM: 115)
+*   **IE-2019-D-HLS-032** (Compás: 4/4, Tonalidad: G major, BPM: 54)
+*   **IE-2019-D-HLS-043** (Compás: 4/8, Tonalidad: G major, BPM: 210)
+*   **IE-2019-D-HLS-048** (Compás: 6/8, Tonalidad: G major, BPM: 80)
+*   **IE-2019-D-HLS-053** (Compás: 4/4, Tonalidad: G major, BPM: 93)
+*   **IE-2019-D-HLS-058** (Compás: 4/4, Tonalidad: G major, BPM: 120)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo
@@ -681,7 +793,18 @@ Si quieres, puedo ayudarte a encontrar algunas piezas musicales conocidas que se
 * ""Misa de Réquiem"" de Gabriel Fauré
 
 ¿Te gustaría que te sugiera más opciones?"
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes piezas que tratan la muerte como tema:
+
+*   **Ama a los viejos** (Autor: José Miguel Hernández Jaramillo, Compás: 4/4, Tonalidad: F minor)
+*   **568** (Compás: 6/8, Tonalidad: C major)
+*   **571** (Compás: 6/8, Tonalidad: C major)
+*   **579** (Compás: 6/8, Tonalidad: C major)
+*   **588** (Compás: 6/8, Tonalidad: F major)
+*   **592** (Compás: 6/8, Tonalidad: C major)
+*   **596** (Compás: 6/8, Tonalidad: C major)
+*   **607** (Compás: 6/8, Tonalidad: D minor)
+*   **613** (Compás: 3/8, Tonalidad: F major)
+*   **8** (Compás: 4/4, Tonalidad: F major)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.temas
@@ -740,7 +863,18 @@ En las medidas 3 y 4 del primer compás (P1), se presentan dos casos de polirrit
 Sin embargo, en el resto de la partitura, no he encontrado otras áreas con polirritmia significativas.
 
 Es importante destacar que la polirritmia puede ser una característica consciente o inconsciente de la composición musical. En este caso, es posible que la polirritmia sea un elemento intencional del compositor para crear un efecto musical específico."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes piezas con polirritmia:
+
+*   **IE-2019-D-HLS-010** (Compás: 4/4, Tonalidad: G major, BPM: 128)
+*   **IE-2019-D-HLS-011** (Compás: 4/4, Tonalidad: G major, BPM: 128)
+*   **IE-2019-D-HLS-015** (Compás: 3/4, Tonalidad: A minor)
+*   **IE-2019-D-HLS-018** (Compás: 4/4, Tonalidad: G major, BPM: 70)
+*   **IE-2019-D-HLS-019** (Compás: 3/8, Tonalidad: G major)
+*   **IE-2019-D-HLS-021** (Compás: 4/4, Tonalidad: E minor, BPM: 167)
+*   **IE-2019-D-HLS-031** (Compás: 4/4, Tonalidad: G major, BPM: 115)
+*   **IE-2019-D-HLS-032** (Compás: 4/4, Tonalidad: G major, BPM: 54)
+*   **IE-2019-D-HLS-057** (Compás: 4/4, Tonalidad: G major, BPM: 128)
+*   **El reloj** (Autor: José Miguel Hernández Jaramillo, Compás: 2/4, Tonalidad: G major)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo
@@ -776,7 +910,7 @@ Es posible que haya más piezas con contenido lírico en voz masculina en la bas
 \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} "Lo siento, pero no hay piezas de música en el texto proporcionado que tengan contenido lírico con voz masculina. El texto parece ser un archivo XML que contiene la partitura musical de una canción, pero no incluye textos o letras de canciones con voz masculina.
 
 Si necesitas ayuda para identificar otras características musicales del archivo o si tienes alguna otra pregunta, estaré encantado de ayudarte."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} No se encontraron piezas cuyo contenido lírico esté escrito en voz masculina.  
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.lirica_voz
@@ -831,7 +965,18 @@ Para responder a la pregunta de manera más precisa y relevante, se necesitaría
 4. **""Cuarteto para la Emperatriz"" (Empress Quartet)** de Joseph Haydn - Algunos movimientos de cuartetos de cuerda de Haydn presentan melodías que pueden incluir descensos significativos.
 
 Es importante señalar que estas obras no son exhaustivas y hay muchas otras composiciones que podrían ajustarse a la característica de tener una tendencia melódica predominantemente descendente. Sin embargo, para responder con precisión, se necesitaría información específica sobre las obras en cuestión o un análisis más detallado de sus partituras."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras cuya tendencia melódica es predominantemente descendente:
+
+*   **IE-2019-D-HLS-001** (Compás: 4/4, Tonalidad: G major)
+*   **IE-2019-D-HLS-002** (Compás: 4/4, Tonalidad: G major, BPM: 62)
+*   **IE-2019-D-HLS-003** (Compás: 4/4, Tonalidad: G major, BPM: 140)
+*   **IE-2019-D-HLS-006** (Compás: 12/8, Tonalidad: B minor)
+*   **IE-2019-D-HLS-008** (Compás: 3/4, Tonalidad: G major)
+*   **IE-2019-D-HLS-010** (Compás: 4/4, Tonalidad: G major, BPM: 128)
+*   **IE-2019-D-HLS-012** (Compás: 3/2, Tonalidad: G minor, BPM: 60)
+*   **IE-2019-D-HLS-013** (Compás: 4/4, Tonalidad: G major, BPM: 140)
+*   **IE-2019-D-HLS-016** (Compás: 4/4, Tonalidad: C major)
+*   **IE-2019-D-HLS-019** (Compás: 3/8, Tonalidad: G major)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.tendencia_melodica
@@ -873,7 +1018,18 @@ La pieza es:
  `<note><pitch><step>F</step><alter>-1</alter></pitch><duration>2</duration><voice>1</voice><type>16th</type><time-modification><actual-notes>3</actual-notes><normal-notes>2</normal-notes></time-modification><stem>up</stem><staff>1</staff><beam number=""1"">end</beam><beam number=""2"">end</beam><notations><tuplet type=""stop""/></notations></note>`
 
 Esta pieza se encuentra en la medida 3 del archivo XML."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes piezas con 4 alteraciones accidentales:
+
+*   **The Kerry Lassie** de 1/48b K (Compás: 2/2, Tonalidad: D major)
+*   **Peggy’s Dream** de 1/79a K (Compás: 2/2, Tonalidad: D major)
+*   **Jig (Paddy McFadden Vick Phawdeen)** de 1/101b K (Compás: 6/8, Tonalidad: A minor)
+*   **The Green Fields of Erin** de 1/122c L (K?) (Compás: 2/4, Tonalidad: E minor)
+*   **‘Bh-fuilleann Tú ad Chodladh, aro Mháire?’** de 1/182a K (Compás: 9/8, Tonalidad: D major)
+*   **The Lisburn Lasses. Reel** de 1/37a K (Compás: 2/2, Tonalidad: D major)
+*   **There is Nothing like Pride about Me** de 1/163b (Compás: 9/8, Tonalidad: E minor)
+*   **The Telegraph Reel** de 2/180a Doogan MS (Compás: 4/4, Tonalidad: D major)
+*   **The Man-of-War Hornpipe** de 3/24b (Compás: 4/4, Tonalidad: G major)
+*   **The Lowlands of Scotland** de 3/163b (Compás: 2/2, Tonalidad: E minor)"   
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.conteo_accidentales_totales
@@ -903,7 +1059,18 @@ Adicionalmente, la pieza CO-1948-00-BG-00041.musicxml.xml incluye compases compu
 *   La parte del **compás 2** en la tercera medida no contiene ninguna nota, solo se menciona un compás.
 
 No hay otras partes con compases vacíos."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes obras con compases vacíos:
+
+*   **Himno a Bolívar** (Autor: José Miguel Hernández Jaramillo)
+*   **Me tuviste** (Autor: José Miguel Hernández Jaramillo)
+*   **275556 Bog Road Slow** (Autor: )
+*   **588** (Autor: )
+*   **Campbells are Comin´** (Autor: )
+*   **Catholic Boys** (Autor: )
+*   **Charlie Mack** (Autor: )
+*   **Doyle´s Frolic** (Autor: )
+*   **Drum** (Autor: )
+*   **Garry owen** (Autor: )"
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.qc_compases_vacios
@@ -933,7 +1100,18 @@ WHERE a.qc_compases_vacios > 0;
 * 579,
 * 585"
 \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} No hay ninguna pieza que tenga una nota con duración cero en el código proporcionado. Las duraciones de las notas varían desde 128 hasta 256, pero no se encuentra ninguna nota con duración 0.
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes piezas musicales que contienen notas de duración cero:
+
+*   **IE-2019-D-HLS-006** (12/8, B minor)
+*   **IE-2019-D-HLS-007** (4/4, G major)
+*   **IE-2019-D-HLS-015** (3/4, A minor)
+*   **IE-2019-D-HLS-025** (4/4, G major, 192 BPM)
+*   **IE-2019-D-HLS-026** (4/4, G major, 96 BPM)
+*   **IE-2019-D-HLS-028** (4/4, G major, 120 BPM)
+*   **IE-2019-D-HLS-030** (6/8, G major, 83 BPM)
+*   **575** (6/8, C major)
+*   **579** (6/8, C major)
+*   **585** (6/8, C major)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.qc_notas_duracion_cero
@@ -977,7 +1155,18 @@ Cabe destacar que, para determinar qué constituye una ""plica anómala"", serí
 Es importante tener en cuenta que el análisis de estas piezas podría estar influenciado por mi falta de conocimiento específico sobre la música irlandesa tradicional. Si tienes más información o contexto sobre las piezas musicales, podrías proporcionar más detalles sobre qué esperas encontrar o cómo se supone que deban interpretarse.
 
 Si deseas que revise otras medidas o compases, no dudes en decirlo. Estoy aquí para ayudarte."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Aquí tienes las piezas musicales identificadas con plicas anómalas, junto con el número de anomalías encontradas en cada una:
+
+*   **IE-2019-D-HLS-019** (1 anomalía) - Compás: 3/8, Tonalidad: G major
+*   **Fáinne Geal an Lae** (4 anomalías) - Autor: 1/1a K, Compás: 2/2, Tonalidad: E minor
+*   **An Clár Bog Déil** (12 anomalías) - Autor: 1/4a K, Compás: 3/4, Tonalidad: D major
+*   **Miss Monaghan’s Reel** (5 anomalías) - Autor: 1/42c K, Compás: 2/2, Tonalidad: D major
+*   **Betsy Baker** (6 anomalías) - Autor: 1/43a K, Compás: 2/2, Tonalidad: E minor
+*   **Miss Johnson** (8 anomalías) - Autor: 1/43b K, Compás: 2/2, Tonalidad: G major
+*   **The Wind that Shakes the Barley** (2 anomalías) - Autor: 1/43c K, Compás: 2/2, Tonalidad: D major
+*   **Reel** (10 anomalías) - Autor: 1/44a K, Compás: 2/2, Tonalidad: G major
+*   **Reel** (6 anomalías) - Autor: 1/44b K, Compás: 2/2, Tonalidad: G major
+*   **The Lady’s Cup of Tea** (6 anomalías) - Autor: 1/44c K, Compás: 2/2, Tonalidad: C major"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.tiene_plicas_anomalas
@@ -1001,7 +1190,10 @@ WHERE a.tiene_plicas_anomalas = 1;
 
 Nota: Las títulos se muestran exactamente como se encuentran en la base de datos."
 \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} Desafortunadamente, no hay ninguna pieza en el texto proporcionado que contenga la palabra "bondad". El texto parece ser una parte de una partitura musical con notas y direcciones para instrumentos musicales. Si necesitas ayuda con algo más, ¡por favor házmelo saber!
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se han encontrado las siguientes piezas que usan la palabra ""bondad"":
+
+*   **Padre nuéstro** de José Miguel Hernández Jaramillo (Compás: 2/4, Tonalidad: E- major)
+*   **73. PADRE NUESTRO** de Freixas (Compás: 2/4, Tonalidad: E- major)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.lirica_sustantivos
@@ -1025,7 +1217,10 @@ WHERE LOWER(a.lirica_sustantivos) LIKE '%bondad%';
 \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} "La respuesta es: **Ninguna**
 
 No hay ninguna pieza en los textos proporcionados que mencione el nombre propio ""Alfonsito""."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Las siguientes piezas mencionan el nombre propio ""Alfonsito"":
+
+*   **Sin título** de Anonymous (ID: 6940, Compás: 3/4, Tonalidad: G major)
+*   **Sin título** de Anonymous (ID: 7270, Compás: 3/4, Tonalidad: G major)"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo, a.lirica_nombres_propios
@@ -1076,7 +1271,18 @@ Aquí te presento algunas de ellas:
  * No hay ninguna pieza que cumpla con el criterio en esta medida.
 
 Es importante destacar que estas son solo algunas de las piezas que se encuentran en las primeras tres medidas del archivo XML proporcionado. Si deseas buscar más piezas o profundizar en este análisis, necesitaría revisar todo el archivo y sus diversas partes."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se encontraron las siguientes piezas musicales con un intervalo frontera más frecuente de +5:
+
+*   **Título:** IE-2019-D-HLS-002, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 62, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-005, **Autor:** , **Compás:** 12/8, **Tonalidad:** G major, **BPM:** 96, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-028, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 120, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-035, **Autor:** , **Compás:** 4/4, **Tonalidad:** C major, **BPM:** 90, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-038, **Autor:** , **Compás:** 2/4, **Tonalidad:** C major, **BPM:** 80, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-047, **Autor:** , **Compás:** 3/8, **Tonalidad:** G major, **BPM:** 112, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-048, **Autor:** , **Compás:** 6/8, **Tonalidad:** G major, **BPM:** 80, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-057, **Autor:** , **Compás:** 4/4, **Tonalidad:** G major, **BPM:** 128, **Región:** No especificada
+*   **Título:** IE-2019-D-HLS-062, **Autor:** , **Compás:** 6/4, **Tonalidad:** B minor, **BPM:** 180, **Región:** No especificada
+*   **Título:** Ejercicio, **Autor:** José Miguel Hernández Jaramillo, **Compás:** 4/4, **Tonalidad:** G major, **BPM:** No especificado, **Región:** No especificada"
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT p.id, p.titulo
@@ -2148,7 +2354,20 @@ El uso de la etiqueta `<sb />` no siempre coincide con el final de una frase mus
 
 En resumen, la etiqueta `<sb />` marca un cambio de sistema en una partitura y no siempre coincide con el final de una frase musical lógica. Su uso depende del contexto y la necesidad específica de organización de la música dentro de la partitura.
 "
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "Se han encontrado las siguientes obras que utilizan la etiqueta `<sb />` (system break) y su coincidencia con el final de una frase musical lógica:
+
+*   **Nana** (Autor: José Miguel Hernández Jaramillo): Tiene 1 system break y **no** coincide con una frase lógica.
+*   **La lluvia** (Autor: José Miguel Hernández Jaramillo): Tiene 1 system break y **sí** coincide con una frase lógica.
+*   **Ave Maris Stella** (Autor: José Miguel Hernández Jaramillo): Tiene 2 system breaks y **no** coincide con una frase lógica.
+*   **El turpial** (Autor: José Miguel Hernández Jaramillo): Tiene 1 system break y **no** coincide con una frase lógica.
+*   **¿Qué haces tú?** (Autor: José Miguel Hernández Jaramillo): Tiene 1 system break y **no** coincide con una frase lógica.
+*   **Pregones** (Autor: José Miguel Hernández Jaramillo): Tiene 2 system breaks y **no** coincide con una frase lógica.
+*   **La gallinita** (Autor: José Miguel Hernández Jaramillo): Tiene 1 system break y **no** coincide con una frase lógica.
+*   **El grillo** (Autor: José Miguel Hernández Jaramillo): Tiene 2 system breaks y **no** coincide con una frase lógica.
+*   **A mí me gusta lo blanco** (Autor: José Miguel Hernández Jaramillo): Tiene 2 system breaks y **no** coincide con una frase lógica.
+*   **Mi tamborcito** (Autor: José Miguel Hernández Jaramillo): Tiene 1 system break y **no** coincide con una frase lógica.
+
+En resumen, la mayoría de las obras analizadas utilizan la etiqueta `<sb />`, pero en la mayoría de los casos, estos saltos de sistema no coinciden con el final de una frase musical lógica. Solo en ""La lluvia"" se observa esta coincidencia."
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT 
@@ -2202,7 +2421,15 @@ Sin embargo, no se pudo encontrar ninguna relación entre las sílabas 'duer' y 
 3. **Considera las diferencias entre partituras**: Si hay varias partituras diferentes que contienen estos elementos, verifica si la duración de ""duer"" y ""me"" es consistente a lo largo de todas ellas.
 
 Es importante señalar que esta comparativa podría resultar en una gran cantidad de datos. Asegúrate de planificar cómo manipularás y visualizarás los resultados para sacar conclusiones significativas."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} "No se encontraron registros de la sílaba ""duer"" en los archivos analizados del dataset.
+
+En cuanto a la sílaba ""me"", se observan las siguientes asignaciones de duración en las piezas donde aparece:
+
+*   En ""568.mscz"" y ""582.mscz"", la sílaba ""me"" se asocia con múltiples duraciones de nota (ej. `[0.25, 0.5]` y `[0.5, 1.5]` respectivamente).
+*   En ""570.mscz"", ""571.mscz"", ""573.mscz"", ""576.mscz"", ""578.mscz"" y ""594.mscz"", la sílaba ""me"" se asigna a una duración de `[0.5]`.
+*   En ""590.mscz"", la sílaba ""me"" se asigna a una duración de `[1.0]`.
+
+Por lo tanto, la sílaba ""me"" no se asigna siempre a la misma duración de nota; su duración varía en diferentes archivos del dataset."  
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT 
@@ -2239,7 +2466,7 @@ Sin embargo, sin más contexto sobre las piezas musicales específicas o la estr
 - Cuarta
 
 Sin embargo, sin más información sobre las piezas musicales en cuestión, es difícil determinar cuál de estos o cuales otros intervalos melódicos son los más frecuentes."
-    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+    \item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} No se encontraron piezas en modo mixolidio en la base de datos que contengan información sobre el intervalo melódico más frecuente entre la última nota de un compás y la primera del siguiente.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT 
@@ -2263,7 +2490,7 @@ LIMIT 1;
     \item \textbf{Respuesta con File Search básico como RAG con la API de Gemini (modelo Gemini 2.5 Flash):} No puedo realizar este tipo de análisis directamente, ya que requiere un procesamiento de datos complejo que involucra el análisis del tempo de las canciones y la longitud silábica de sus letras. Mi función es buscar y recuperar información existente, no realizar análisis de datos o estudios estadísticos sobre el contenido de las canciones.
     \item \textbf{Respuesta con modelo local desde Ollama, con acceso a la base de datos SQLite como RAG (modelo llama3.1:8b):} "Las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica, ya que las palabras suelen ser más cortas en la mayoría de las canciones con un ritmo rápido. Sin embargo, es importante tener en cuenta que esta es solo una tendencia y no una regla absoluta."
     \item \textbf{Respuesta con modelo local desde Ollama, con RAG simple no especializado (modelo llama3.1:8b):} Lo siento, pero no puedo analizar los datos proporcionados. ¿Hay algo más en lo que pueda ayudarte?
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} No puedo determinar directamente si las canciones con tempo superior a 120 BPM tienden a tener letras con palabras de menor longitud silábica, ya que la base de datos no contiene una columna que mida la longitud silábica de las palabras en las letras, ni las herramientas disponibles permiten realizar ese tipo de análisis lingüístico o procesamiento de texto.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT 
@@ -2314,7 +2541,7 @@ La nota final es el ""A"" en octava 4, que es la quinta del tónica ""F"", lo qu
 La nota final es nuevamente el ""A"" en octava 4, lo que sugiere una estructura abierta.
 
 En resumen, las medidas 2 y 3 tienen una estructura donde la nota final es la dominante (quinto grado) en lugar de la tónica. Esto puede sugerir una estructura abierta o con un desarrollo más complejo."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)    
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} Lo siento, no puedo identificar piezas donde la nota final sea la dominante. La base de datos no contiene información sobre la nota final de cada pieza, ni herramientas para determinar la relación armónica (tónica/dominante) de una nota específica dentro de la tonalidad de una obra.
 \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT 
@@ -2374,7 +2601,7 @@ Sin embargo, si solo estás buscando identificar patrones simples o superficiale
 3. **Análisis de secuencias**: Busca patrones en las secuencias de silencios (rest/) que se repitan.
 
 Recuerda que estos métodos pueden no ser suficientes para detectar patrones complejos o subyacentes, y es posible que necesites aplicar técnicas más avanzadas de análisis musical para encontrar la respuesta a tu pregunta."
-\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} (TODO: completar)
+\item \textbf{Respuesta con API de Gemini con acceso a la base de datos SQLite como RAG (modelo Gemini 2.5 Flash):} Lo siento, pero no puedo identificar patrones de silencios que se repitan sistemáticamente cada cuatro compases en las piezas de métrica ternaria. La herramienta no tiene la capacidad de analizar y detectar patrones complejos a través de compases específicos dentro de las secuencias de notas y silencios.
     \item \textbf{Resultado esperado.} Se ha ejecutado una consulta SQL para comprobar cuál habría sido el resultado completo correcto.
     \begin{verbatim}
 SELECT

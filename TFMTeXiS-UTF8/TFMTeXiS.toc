@@ -34,7 +34,7 @@
 \contentsline {subsection}{\numberline {3.3.3}Requisito R3. Relación entre texto y música}{30}{subsection.40}%
 \contentsline {subsection}{\numberline {3.3.4}Requisito R4. Contextualización musicológica y etnomusicológica}{30}{subsection.41}%
 \contentsline {subsection}{\numberline {3.3.5}Requisito R5. Validación técnica y análisis de formatos musicales}{31}{subsection.42}%
-\contentsline {chapter}{\numberline {4}Sistemas de indexación y recuperación de información basado en RAG}{33}{chapter.43}%
+\contentsline {chapter}{\numberline {4}Sistemas de indexación y recuperación de información basados en RAG}{33}{chapter.43}%
 \contentsline {section}{\numberline {4.1}Arquitectura general de los sistemas de recuperación}{33}{section.44}%
 \contentsline {section}{\numberline {4.2}Implementación de RAG con Gemini File Search}{34}{section.45}%
 \contentsline {subsection}{\numberline {4.2.1}Creación e indexación del corpus en Gemini File Search}{34}{subsection.46}%
@@ -46,7 +46,7 @@
 \contentsline {subsection}{\numberline {4.3.2}Proceso de recuperación de información}{37}{subsection.52}%
 \contentsline {subsection}{\numberline {4.3.3}Limitaciones observadas}{37}{subsection.53}%
 \contentsline {section}{\numberline {4.4}Comparación conceptual con la arquitectura MCP propuesta}{38}{section.54}%
-\contentsline {chapter}{\numberline {5}Extracción de metadatos del corpus y arquitectura de consulta con un modelo local}{41}{chapter.55}%
+\contentsline {chapter}{\numberline {5}Diseño e implementación de la arquitectura híbrida basada en MCP y SQLite}{41}{chapter.55}%
 \contentsline {section}{\numberline {5.1}Diseño y pipeline del sistema de extracción de información del corpus y la arquitectura de consulta con modelo local}{41}{section.56}%
 \contentsline {section}{\numberline {5.2}Diseño e implementación de la arquitectura MCP para consultas musicológicas}{43}{section.57}%
 \contentsline {subsection}{\numberline {5.2.1}Arquitectura general del sistema MCP}{43}{subsection.58}%

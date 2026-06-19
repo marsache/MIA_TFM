@@ -51,48 +51,48 @@
 \contentsline {section}{\numberline {5.1}Diseño y pipeline del sistema de extracción de información del corpus y la arquitectura de consulta con modelo local}{41}{section.57}%
 \contentsline {section}{\numberline {5.2}Diseño e implementación de la arquitectura MCP para consultas musicológicas}{43}{section.58}%
 \contentsline {subsection}{\numberline {5.2.1}Arquitectura general del sistema MCP}{43}{subsection.59}%
-\contentsline {subsection}{\numberline {5.2.2}Implementación del servidor MCP}{46}{subsection.61}%
-\contentsline {subsection}{\numberline {5.2.3}Recuperación semántica de columnas relevantes}{47}{subsection.62}%
-\contentsline {subsection}{\numberline {5.2.4}Generación dinámica de contexto estructurado}{48}{subsection.63}%
-\contentsline {subsection}{\numberline {5.2.5}Integración con el modelo local mediante Tool Calling}{49}{subsection.64}%
-\contentsline {subsection}{\numberline {5.2.6}Estrategias de reducción de alucinaciones}{50}{subsection.74}%
-\contentsline {section}{\numberline {5.3}Ventajas que ofrece la metodología escogida para la herramienta desarrollada}{51}{section.75}%
-\contentsline {section}{\numberline {5.4}Herramientas desarrolladas para la extracción de información de las obras}{53}{section.76}%
-\contentsline {subsection}{\numberline {5.4.1}Extracción de tempo}{53}{subsection.77}%
-\contentsline {subsection}{\numberline {5.4.2}Extracción de compás}{53}{subsection.80}%
-\contentsline {subsection}{\numberline {5.4.3}Extracción híbrida de la tonalidad}{54}{subsection.83}%
-\contentsline {subsection}{\numberline {5.4.4}Extracción de título y autor}{55}{subsection.86}%
-\contentsline {subsection}{\numberline {5.4.5}Inferencia del modo de la obra}{56}{subsection.89}%
-\contentsline {subsection}{\numberline {5.4.6}Detección de hemiolias verticales}{57}{subsection.92}%
-\contentsline {subsection}{\numberline {5.4.7}Detección de hemiolias horizontales}{59}{subsection.95}%
-\contentsline {subsection}{\numberline {5.4.8}Detección de síncopas}{60}{subsection.98}%
-\contentsline {subsection}{\numberline {5.4.9}Extracción de letras}{61}{subsection.101}%
-\contentsline {subsection}{\numberline {5.4.10}Análisis temático de la lírica de las obras con LLMs}{62}{subsection.104}%
-\contentsline {subsection}{\numberline {5.4.11}Detección de cambio de resolución rítmica}{63}{subsection.106}%
-\contentsline {subsection}{\numberline {5.4.12}Detección de desajustes en duraciones de notas}{64}{subsection.108}%
-\contentsline {subsection}{\numberline {5.4.13}Detección de valores irregulares ocultos (grupillos)}{65}{subsection.110}%
-\contentsline {subsection}{\numberline {5.4.14}Cálculo de densidad de eventos musicales por compás}{66}{subsection.113}%
-\contentsline {subsection}{\numberline {5.4.15}Detección automática de polirritmias}{67}{subsection.115}%
-\contentsline {subsection}{\numberline {5.4.16}Extracción de la tesitura de la obra}{68}{subsection.118}%
-\contentsline {subsection}{\numberline {5.4.17}Inferencia del género del autor a partir del nombre}{69}{subsection.120}%
-\contentsline {subsection}{\numberline {5.4.18}Análisis automático de la perspectiva lírica}{69}{subsection.121}%
-\contentsline {subsection}{\numberline {5.4.19}Extracción de notas y silencios}{70}{subsection.123}%
-\contentsline {subsection}{\numberline {5.4.20}Extracción de la secuencia melódica de la obra}{71}{subsection.125}%
-\contentsline {subsection}{\numberline {5.4.21}Análisis de la dirección de los intervalos melódicos}{72}{subsection.126}%
-\contentsline {subsection}{\numberline {5.4.22}Clasificación de la tendencia melódica predominante}{72}{subsection.128}%
-\contentsline {subsection}{\numberline {5.4.23}Extracción de correspondencias entre sílabas y duraciones musicales}{73}{subsection.130}%
-\contentsline {subsection}{\numberline {5.4.24}Extracción y conteo de alteraciones accidentales}{74}{subsection.131}%
-\contentsline {subsection}{\numberline {5.4.25}Extracción de metadatos de transcripción y procedencia digital}{75}{subsection.133}%
-\contentsline {subsection}{\numberline {5.4.26}Auditoría automatizada de control de calidad estructural}{76}{subsection.135}%
-\contentsline {subsection}{\numberline {5.4.27}Extracción de intervalos melódicos}{77}{subsection.137}%
-\contentsline {subsection}{\numberline {5.4.28}Detección y conteo de leitmotivs recurrentes}{77}{subsection.138}%
-\contentsline {subsection}{\numberline {5.4.29}Detección de plicas anómalas}{78}{subsection.140}%
-\contentsline {subsection}{\numberline {5.4.30}Extracción del volumen MIDI de la obra}{79}{subsection.143}%
-\contentsline {subsection}{\numberline {5.4.31}Extracción de sustantivos y nombres propios (personas, lugares...) de la lírica de la obra}{80}{subsection.145}%
-\contentsline {subsection}{\numberline {5.4.32}Identificación de saltos melódicos entre barras de compás (intervalos frontera)}{81}{subsection.147}%
-\contentsline {subsection}{\numberline {5.4.33}Identificación del uso de la etiqueta <sb /> (system break) en archivos MEI}{82}{subsection.149}%
-\contentsline {section}{\numberline {5.5}Desarrollo de aplicación web para facilitar el acceso a la herramienta}{83}{section.151}%
-\contentsline {section}{\numberline {5.6}Inconvenientes encontrados durante el desarrollo del sistema}{85}{section.154}%
+\contentsline {subsection}{\numberline {5.2.2}Implementación del servidor MCP}{44}{subsection.61}%
+\contentsline {subsection}{\numberline {5.2.3}Recuperación semántica de columnas relevantes}{45}{subsection.62}%
+\contentsline {subsection}{\numberline {5.2.4}Generación dinámica de contexto estructurado}{47}{subsection.63}%
+\contentsline {subsection}{\numberline {5.2.5}Integración con el modelo local mediante Tool Calling}{48}{subsection.64}%
+\contentsline {subsection}{\numberline {5.2.6}Estrategias de reducción de alucinaciones}{49}{subsection.74}%
+\contentsline {section}{\numberline {5.3}Ventajas que ofrece la metodología escogida para la herramienta desarrollada}{50}{section.75}%
+\contentsline {section}{\numberline {5.4}Herramientas desarrolladas para la extracción de información de las obras}{51}{section.76}%
+\contentsline {subsection}{\numberline {5.4.1}Extracción de tempo}{51}{subsection.77}%
+\contentsline {subsection}{\numberline {5.4.2}Extracción de compás}{52}{subsection.80}%
+\contentsline {subsection}{\numberline {5.4.3}Extracción híbrida de la tonalidad}{53}{subsection.83}%
+\contentsline {subsection}{\numberline {5.4.4}Extracción de título y autor}{54}{subsection.86}%
+\contentsline {subsection}{\numberline {5.4.5}Inferencia del modo de la obra}{55}{subsection.89}%
+\contentsline {subsection}{\numberline {5.4.6}Detección de hemiolias verticales}{56}{subsection.92}%
+\contentsline {subsection}{\numberline {5.4.7}Detección de hemiolias horizontales}{57}{subsection.95}%
+\contentsline {subsection}{\numberline {5.4.8}Detección de síncopas}{58}{subsection.98}%
+\contentsline {subsection}{\numberline {5.4.9}Extracción de letras}{60}{subsection.101}%
+\contentsline {subsection}{\numberline {5.4.10}Análisis temático de la lírica de las obras con LLMs}{61}{subsection.104}%
+\contentsline {subsection}{\numberline {5.4.11}Detección de cambio de resolución rítmica}{62}{subsection.106}%
+\contentsline {subsection}{\numberline {5.4.12}Detección de desajustes en duraciones de notas}{63}{subsection.108}%
+\contentsline {subsection}{\numberline {5.4.13}Detección de valores irregulares ocultos (grupillos)}{64}{subsection.110}%
+\contentsline {subsection}{\numberline {5.4.14}Cálculo de densidad de eventos musicales por compás}{65}{subsection.113}%
+\contentsline {subsection}{\numberline {5.4.15}Detección automática de polirritmias}{66}{subsection.115}%
+\contentsline {subsection}{\numberline {5.4.16}Extracción de la tesitura de la obra}{67}{subsection.118}%
+\contentsline {subsection}{\numberline {5.4.17}Inferencia del género del autor a partir del nombre}{68}{subsection.120}%
+\contentsline {subsection}{\numberline {5.4.18}Análisis automático de la perspectiva lírica}{68}{subsection.121}%
+\contentsline {subsection}{\numberline {5.4.19}Extracción de notas y silencios}{69}{subsection.123}%
+\contentsline {subsection}{\numberline {5.4.20}Extracción de la secuencia melódica de la obra}{70}{subsection.125}%
+\contentsline {subsection}{\numberline {5.4.21}Análisis de la dirección de los intervalos melódicos}{70}{subsection.126}%
+\contentsline {subsection}{\numberline {5.4.22}Clasificación de la tendencia melódica predominante}{71}{subsection.128}%
+\contentsline {subsection}{\numberline {5.4.23}Extracción de correspondencias entre sílabas y duraciones musicales}{72}{subsection.130}%
+\contentsline {subsection}{\numberline {5.4.24}Extracción y conteo de alteraciones accidentales}{72}{subsection.131}%
+\contentsline {subsection}{\numberline {5.4.25}Extracción de metadatos de transcripción y procedencia digital}{73}{subsection.133}%
+\contentsline {subsection}{\numberline {5.4.26}Auditoría automatizada de control de calidad estructural}{74}{subsection.135}%
+\contentsline {subsection}{\numberline {5.4.27}Extracción de intervalos melódicos}{75}{subsection.137}%
+\contentsline {subsection}{\numberline {5.4.28}Detección y conteo de leitmotivs recurrentes}{76}{subsection.138}%
+\contentsline {subsection}{\numberline {5.4.29}Detección de plicas anómalas}{77}{subsection.140}%
+\contentsline {subsection}{\numberline {5.4.30}Extracción del volumen MIDI de la obra}{78}{subsection.143}%
+\contentsline {subsection}{\numberline {5.4.31}Extracción de sustantivos y nombres propios (personas, lugares...) de la lírica de la obra}{79}{subsection.145}%
+\contentsline {subsection}{\numberline {5.4.32}Identificación de saltos melódicos entre barras de compás (intervalos frontera)}{80}{subsection.147}%
+\contentsline {subsection}{\numberline {5.4.33}Identificación del uso de la etiqueta <sb /> (system break) en archivos MEI}{81}{subsection.149}%
+\contentsline {section}{\numberline {5.5}Desarrollo de aplicación web para facilitar el acceso a la herramienta}{81}{section.151}%
+\contentsline {section}{\numberline {5.6}Inconvenientes encontrados durante el desarrollo del sistema}{84}{section.154}%
 \contentsline {chapter}{\numberline {6}Evaluación y pruebas}{87}{chapter.155}%
 \contentsline {section}{\numberline {6.1}Resumen de preguntas formuladas y respuestas de los modelos}{88}{section.156}%
 \contentsline {section}{\numberline {6.2}Análisis global de los resultados experimentales}{92}{section.160}%

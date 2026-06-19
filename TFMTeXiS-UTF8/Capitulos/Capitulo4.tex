@@ -82,71 +82,64 @@ Finalmente, el modelo procesa los resultados recuperados, interpreta la informac
 Esta separación entre generación lingüística y recuperación de conocimiento permite reducir significativamente los problemas de alucinación factual asociados a los modelos generativos convencionales, garantizando que las respuestas producidas estén fundamentadas en información verificable almacenada en el sistema.
 
 \begin{figure}[H]
+
     \centering
+\begin{tikzpicture}[
+    node distance=1.2cm and 1.5cm,
+    box/.style={
+        draw,
+        rounded corners,
+        align=center,
+        minimum width=3cm,
+        minimum height=0.9cm
+    },
+    arrow/.style={-Latex, thick}
+]
 
-    \begin{tikzpicture}[
-        node distance=1cm,
-        box/.style={
-            draw,
-            rounded corners,
-            align=center,
-            minimum width=5cm,
-            minimum height=0.9cm
-        },
-        arrow/.style={-Latex, thick}
-    ]
+\shorthandoff{>}
 
-    \shorthandoff{>}
+% Fila 1
+\node[box] (user) {Consulta de la usuaria};
+\node[box, right=of user] (cliente) {Cliente MCP};
+\node[box, right=of cliente] (columnas) {Recuperación semántica\\de columnas};
 
-    \node[box] (user) {Consulta de la usuaria};
+% Fila 2
+\node[box, below=of user] (esquema) {Mini esquema relevante};
+\node[box, right=of esquema] (llm) {Llama 3.1 8B\\(Ollama)};
+\node[box, right=of llm] (tool) {Tool Calling MCP};
 
-    \node[box, below=of user] (cliente)
-    {Cliente MCP};
+% Fila 3
+\node[box, below=of esquema] (servidor) {Servidor MCP};
+\node[box, right=of servidor] (obtener) {\texttt{obtener\_esquema()}};
+\node[box, right=of obtener] (buscar) {\texttt{buscar\_columnas\_relevantes()}};
 
-    \node[box, below=of cliente] (columnas)
-    {Recuperación semántica\\de columnas};
+% Fila 4
+\node[box, below=of servidor] (sql) {\texttt{ejecutar\_consulta\_sql()}};
+\node[box, right=of sql] (sqlite) {SQLite};
 
-    \node[box, below=of columnas] (esquema)
-    {Mini esquema relevante};
+% Flechas principales
+\draw[arrow] (user) -- (cliente);
+\draw[arrow] (cliente) -- (columnas);
 
-    \node[box, below=of esquema] (llm)
-    {Llama 3.1 8B\\(Ollama)};
+\draw[arrow] (columnas) -- (esquema);
+\draw[arrow] (esquema) -- (llm);
+\draw[arrow] (llm) -- (tool);
 
-    \node[box, below=of llm] (tool)
-    {Tool Calling MCP};
+\draw[arrow] (tool) -- (servidor);
+\draw[arrow] (servidor) -- (obtener);
+\draw[arrow] (obtener) -- (buscar);
 
-    \node[box, below=of tool] (servidor)
-    {Servidor MCP};
+\draw[arrow] (buscar) -- (sql);
+\draw[arrow] (sql) -- (sqlite);
 
-    \node[box, below=of servidor] (obtener)
-    {\texttt{obtener\_esquema()}};
+\end{tikzpicture}
 
-    \node[box, below=of obtener] (buscar)
-    {\texttt{buscar\_columnas\_relevantes()}};
-    
-    \node[box, below=of buscar] (sql)
-    {\texttt{ejecutar\_consulta\_sql()}};
+\caption{Flujo de ejecución del sistema basado en MCP, recuperación semántica de columnas, Llama 3.1 8B y SQLite.}
 
-    \node[box, below=of sql] (sqlite)
-    {SQLite};
-
-    \draw[arrow] (user) -- (cliente);
-    \draw[arrow] (cliente) -- (columnas);
-    \draw[arrow] (columnas) -- (esquema);
-    \draw[arrow] (esquema) -- (llm);
-    \draw[arrow] (llm) -- (tool);
-    \draw[arrow] (tool) -- (servidor);
-    \draw[arrow] (servidor) -- (obtener);
-    \draw[arrow] (obtener) -- (buscar);
-    \draw[arrow] (buscar) -- (sql);
-    \draw[arrow] (sql) -- (sqlite);
-
-    \end{tikzpicture}
-
-    \caption{Flujo de ejecución del sistema basado en MCP, recuperación semántica de columnas, Llama 3.1 8B y SQLite.}
     \label{fig:flujo_mcp_sqlite}
 
-\end{figure}
+\end{figure} 
+
 
 \subsection{Implementación del servidor MCP}
 El servidor MCP constituye el núcleo de comunicación entre el modelo de lenguaje y la base de datos musicológica generada durante el proceso de análisis del corpus. Su función principal consiste en abstraer la complejidad interna del sistema de almacenamiento y exponer una serie de herramientas especializadas que pueden ser invocadas dinámicamente por el modelo mediante el mecanismo de \textit{Tool Calling} definido por el estándar \textit{Model Context Protocol} (MCP).

@@ -7,27 +7,27 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Flujo de ejecución del sistema basado en MCP, recuperación semántica de columnas, Llama 3.1 8B y SQLite.}}{39}{figure.caption.54}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Ejemplo de indicación de tempo (negra con puntillo = 62)}}{47}{figure.caption.72}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Ejemplo de indicación de compás (6/8)}}{48}{figure.caption.75}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Ejemplo de indicación de tonalidad (D mayor) en el que se muestra la armadura de la tonalidad y la última nota de la obra (normalmente utilizada para identificar la tonalidad)}}{49}{figure.caption.78}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Ejemplo de obra con su título y autor}}{50}{figure.caption.81}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Ejemplo de indicación de modo (D jónico (mayor)). La tonalidad base es D mayor y la obra no presenta alteraciones accidentales, lo que la convierte en una obra de modo jónico.}}{51}{figure.caption.84}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Ejemplo de hemiolia vertical}}{52}{figure.caption.87}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Ejemplo de hemiolia horizontal}}{53}{figure.caption.90}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Ejemplo de obra con dos síncopas}}{54}{figure.caption.93}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Ejemplo de obra con letra}}{55}{figure.caption.96}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Ejemplo de obra con dos tresillos}}{59}{figure.caption.105}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Ejemplo de polirritmia}}{61}{figure.caption.110}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Ejemplo de obra con alteración accidental}}{68}{figure.caption.126}%
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Ejemplo de obra con una plica anómala}}{72}{figure.caption.135}%
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Interfaz de la aplicación web desarrollada para interactuar con la herramienta.}}{77}{figure.caption.146}%
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Flujo de interacción con la interfaz web y su conexión con el LLM local y la base de datos SQLite.}}{78}{figure.caption.147}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Flujo de ejecución del sistema basado en MCP, recuperación semántica de columnas, Llama 3.1 8B y SQLite.}}{45}{figure.caption.60}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Ejemplo de indicación de tempo (negra con puntillo = 62)}}{53}{figure.caption.78}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Ejemplo de indicación de compás (6/8)}}{54}{figure.caption.81}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Ejemplo de indicación de tonalidad (D mayor) en el que se muestra la armadura de la tonalidad y la última nota de la obra (normalmente utilizada para identificar la tonalidad)}}{55}{figure.caption.84}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Ejemplo de obra con su título y autor}}{56}{figure.caption.87}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Ejemplo de indicación de modo (D jónico (mayor)). La tonalidad base es D mayor y la obra no presenta alteraciones accidentales, lo que la convierte en una obra de modo jónico.}}{57}{figure.caption.90}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Ejemplo de hemiolia vertical}}{58}{figure.caption.93}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Ejemplo de hemiolia horizontal}}{59}{figure.caption.96}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Ejemplo de obra con dos síncopas}}{60}{figure.caption.99}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Ejemplo de obra con letra}}{61}{figure.caption.102}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Ejemplo de obra con dos tresillos}}{65}{figure.caption.111}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Ejemplo de polirritmia}}{67}{figure.caption.116}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Ejemplo de obra con alteración accidental}}{74}{figure.caption.132}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Ejemplo de obra con una plica anómala}}{78}{figure.caption.141}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Interfaz de la aplicación web desarrollada para interactuar con la herramienta.}}{83}{figure.caption.152}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Flujo de interacción con la interfaz web y su conexión con el LLM local y la base de datos SQLite.}}{84}{figure.caption.153}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {9.1}{\ignorespaces Gantt chart of the work plan (October - June).}}{98}{figure.caption.165}%
+\contentsline {figure}{\numberline {9.1}{\ignorespaces Gantt chart of the work plan (October - June).}}{104}{figure.caption.171}%
 \babel@toc {english}{}\relax 
 \addvspace {10\p@ }
 \babel@toc {spanish}{}\relax 

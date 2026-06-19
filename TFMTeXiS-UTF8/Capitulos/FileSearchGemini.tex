@@ -1,34 +1,36 @@
-\chapter{Sistema de indexación y recuperación de información basado en RAG}
+\chapter{Sistemas de indexación y recuperación de información basado en RAG}
 \label{cap:capitulo4}
 
-Con el objetivo de habilitar la consulta semántica del corpus musical heterogéneo utilizado en el proyecto, se desarrolló un sistema de indexación de documentos basado en la infraestructura de búsqueda de archivos proporcionada por Gemini. El sistema permite la incorporación automática de documentos musicales y metadatos asociados, así como su posterior recuperación mediante consultas en lenguaje natural.
+% Con el objetivo de habilitar la consulta semántica del corpus musical heterogéneo utilizado en el proyecto, se desarrolló un sistema de indexación de documentos basado en la infraestructura de búsqueda de archivos proporcionada por Gemini. El sistema permite la incorporación automática de documentos musicales y metadatos asociados, así como su posterior recuperación mediante consultas en lenguaje natural.
 
-\section{Preparación e identificación de documentos}
-El proceso comienza con la exploración recursiva del conjunto local de datos que contiene todas las partituras. Se admiten diversos formatos de archivo, incluyendo texto plano (.txt), Markdown (.md), JSON (.json), CSV (.csv), XML (.xml), MEI (.mei) y archivos de partituras comprimidas de MuseScore (.mscz). Cada extensión se asocia explícitamente con un tipo MIME apropiado para facilitar su correcta interpretación por parte del sistema de indexación.
+% \section{Preparación e identificación de documentos}
+% El proceso comienza con la exploración recursiva del conjunto local de datos que contiene todas las partituras. Se admiten diversos formatos de archivo, incluyendo texto plano (.txt), Markdown (.md), JSON (.json), CSV (.csv), XML (.xml), MEI (.mei) y archivos de partituras comprimidas de MuseScore (.mscz). Cada extensión se asocia explícitamente con un tipo MIME apropiado para facilitar su correcta interpretación por parte del sistema de indexación.
 
-Con el fin de garantizar la compatibilidad con los servicios remotos y evitar problemas derivados del uso de caracteres especiales, todos los nombres de archivo son normalizados mediante una transformación Unicode a ASCII. Posteriormente se eliminan caracteres potencialmente conflictivos, conservando únicamente letras, números y un conjunto reducido de símbolos seguros.
+% Con el fin de garantizar la compatibilidad con los servicios remotos y evitar problemas derivados del uso de caracteres especiales, todos los nombres de archivo son normalizados mediante una transformación Unicode a ASCII. Posteriormente se eliminan caracteres potencialmente conflictivos, conservando únicamente letras, números y un conjunto reducido de símbolos seguros.
 
-\section{Creación y gestión del almacén de búsqueda de archivos}
-La infraestructura utiliza un almacén de búsqueda (File Search Store) como repositorio centralizado de documentos indexados. Antes de iniciar la carga de nuevos archivos, el sistema verifica la existencia previa del almacén y, en caso necesario, crea una nueva instancia.
+% \section{Creación y gestión del almacén de búsqueda de archivos}
+% La infraestructura utiliza un almacén de búsqueda (File Search Store) como repositorio centralizado de documentos indexados. Antes de iniciar la carga de nuevos archivos, el sistema verifica la existencia previa del almacén y, en caso necesario, crea una nueva instancia.
 
-Para evitar la indexación redundante de documentos ya procesados, se recupera el listado de archivos previamente almacenados. Los nombres normalizados de dichos documentos se emplean como mecanismo de comparación para identificar duplicados y excluirlos de posteriores cargas.
+% Para evitar la indexación redundante de documentos ya procesados, se recupera el listado de archivos previamente almacenados. Los nombres normalizados de dichos documentos se emplean como mecanismo de comparación para identificar duplicados y excluirlos de posteriores cargas.
 
-\section{Procesamiento de archivos musicales MuseScore}
-Los archivos MuseScore comprimidos (.mscz) requieren un tratamiento específico, ya que son contenedores ZIP que almacenan internamente la representación estructurada de la partitura en formato XML (.mscx). Durante la fase de preparación, estos archivos son descomprimidos temporalmente y se extrae el documento XML principal. De esta forma, el contenido musical estructurado puede ser interpretado directamente por el sistema de indexación, mejorando significativamente la capacidad de recuperación semántica frente al almacenamiento de archivos binarios comprimidos.
+% \section{Procesamiento de archivos musicales MuseScore}
+% Los archivos MuseScore comprimidos (.mscz) requieren un tratamiento específico, ya que son contenedores ZIP que almacenan internamente la representación estructurada de la partitura en formato XML (.mscx). Durante la fase de preparación, estos archivos son descomprimidos temporalmente y se extrae el documento XML principal. De esta forma, el contenido musical estructurado puede ser interpretado directamente por el sistema de indexación, mejorando significativamente la capacidad de recuperación semántica frente al almacenamiento de archivos binarios comprimidos.
 
-Los documentos extraídos son renombrados con extensión XML antes de ser enviados al servicio de indexación, manteniendo así la coherencia entre el formato real del contenido y la información de metadatos asociada.
+% Los documentos extraídos son renombrados con extensión XML antes de ser enviados al servicio de indexación, manteniendo así la coherencia entre el formato real del contenido y la información de metadatos asociada.
 
-\section{Estrategia de carga e indexación}
-La incorporación de documentos al sistema de almacenamiento se realiza procesándolos por lotes. Esta estrategia reduce la carga sobre la API, facilita la monitorización del progreso y minimiza la probabilidad de alcanzar límites de uso del servicio.
+% \section{Estrategia de carga e indexación}
+% La incorporación de documentos al sistema de almacenamiento se realiza procesándolos por lotes. Esta estrategia reduce la carga sobre la API, facilita la monitorización del progreso y minimiza la probabilidad de alcanzar límites de uso del servicio.
 
-Para cada documento, el sistema genera una copia temporal con nombre normalizado y envía tanto el archivo como sus metadatos asociados al almacén de búsqueda. Cada operación de carga produce un identificador de proceso asíncrono que es monitorizado periódicamente hasta que la indexación finaliza correctamente.
+% Para cada documento, el sistema genera una copia temporal con nombre normalizado y envía tanto el archivo como sus metadatos asociados al almacén de búsqueda. Cada operación de carga produce un identificador de proceso asíncrono que es monitorizado periódicamente hasta que la indexación finaliza correctamente.
 
-Tras completar cada lote, el sistema introduce una pausa controlada antes de iniciar el siguiente conjunto de documentos. Este mecanismo actúa como medida preventiva frente a restricciones de frecuencia de acceso y contribuye a mejorar la estabilidad del proceso de ingestión.
+% Tras completar cada lote, el sistema introduce una pausa controlada antes de iniciar el siguiente conjunto de documentos. Este mecanismo actúa como medida preventiva frente a restricciones de frecuencia de acceso y contribuye a mejorar la estabilidad del proceso de ingestión.
 
-\section{Recuperación de información mediante búsqueda semántica}
-Una vez completada la indexación, el sistema habilita una interfaz de consulta interactiva con el modelo Gemini. Las preguntas formuladas por el usuario se envían al modelo junto con una herramienta de búsqueda conectada al almacén de partituras previamente construido.
+% \section{Recuperación de información mediante búsqueda semántica}
+% Una vez completada la indexación, el sistema habilita una interfaz de consulta interactiva con el modelo Gemini. Las preguntas formuladas por el usuario se envían al modelo junto con una herramienta de búsqueda conectada al almacén de partituras previamente construido.
 
-Durante la generación de respuestas, el modelo recupera automáticamente los documentos más relevantes para la consulta planteada y los utiliza como contexto adicional. Este enfoque combina técnicas de recuperación de información con RAG, permitiendo responder preguntas complejas sobre el corpus musical sin necesidad de incorporar explícitamente todo el contenido documental en cada solicitud.
+% Durante la generación de respuestas, el modelo recupera automáticamente los documentos más relevantes para la consulta planteada y los utiliza como contexto adicional. Este enfoque combina técnicas de recuperación de información con RAG, permitiendo responder preguntas complejas sobre el corpus musical sin necesidad de incorporar explícitamente todo el contenido documental en cada solicitud.
+
+% ------------------
 
 % \section{Resultados observados en el sistema de indexación y recuperación}
 % (TODO: completar (NO PONER AQUÍ))
@@ -45,3 +47,117 @@ Durante la generación de respuestas, el modelo recupera automáticamente los do
 
 % Numerosos fenómenos musicales dependen de relaciones que abarcan múltiples compases o secciones. Ligaduras que atraviesan límites de compás, síncopas prolongadas, estructuras periódicas o patrones rítmicos distribuidos a lo largo de varias medidas pueden quedar fragmentados durante el proceso de segmentación. Como resultado, los elementos necesarios para identificar dichos fenómenos pueden no aparecer simultáneamente en el contexto recuperado por el modelo.
 
+Con el objetivo de establecer una base comparativa sólida para la evaluación de la arquitectura propuesta en este trabajo, se han implementado distintos sistemas de recuperación de información basados en el paradigma de \textit{Retrieval-Augmented Generation} (RAG). Estos sistemas actúan como enfoques de referencia (\textit{baselines}) frente a la solución desarrollada posteriormente, permitiendo analizar de forma empírica las diferencias en términos de precisión, control estructural y comportamiento ante consultas musicológicas complejas.
+
+El paradigma RAG combina modelos de lenguaje generativos con mecanismos de recuperación de información desde fuentes externas, con el objetivo de ampliar el conocimiento disponible del modelo sin necesidad de reentrenamiento. En este trabajo, este enfoque se ha materializado en dos implementaciones diferenciadas: por un lado, un sistema basado en la API de \textit{Gemini} utilizando su motor nativo de \textit{File Search}; y por otro, una implementación local simplificada de RAG basada en la indexación básica de documentos y recuperación por similitud semántica.
+
+Ambos sistemas han sido diseñados con el propósito de simular alternativas razonables a la arquitectura MCP desarrollada en este proyecto, permitiendo evaluar sus limitaciones en un contexto de análisis musicológico estructurado. En particular, se analiza su capacidad para gestionar consultas que requieren razonamiento sobre datos simbólicos complejos, integración de múltiples variables musicológicas y precisión en la recuperación de información altamente estructurada.
+
+A lo largo de este capítulo se describen las dos implementaciones realizadas, su funcionamiento interno, y las limitaciones observadas en comparación con un enfoque basado en acceso estructurado determinista a través de bases de datos relacionales.
+
+\section{Arquitectura general de los sistemas de recuperación}
+Los sistemas de recuperación de información implementados en este capítulo se basan en el paradigma general de \textit{Retrieval-Augmented Generation} (RAG), en el que un modelo de lenguaje genera respuestas apoyándose en información externa recuperada dinámicamente desde un corpus de documentos. Este enfoque permite ampliar el conocimiento disponible del modelo más allá de sus parámetros internos, incorporando evidencia procedente de fuentes específicas en el momento de la consulta.
+
+A nivel conceptual, todos los sistemas implementados comparten una arquitectura común compuesta por tres etapas principales: la indexación del corpus, la recuperación de información relevante y la generación de la respuesta final mediante un modelo de lenguaje. En la fase de indexación, los documentos o fragmentos del corpus musical son transformados a una representación adecuada para su posterior consulta, ya sea mediante embeddings semánticos o mediante índices proporcionados por herramientas externas. En la fase de recuperación, se seleccionan los fragmentos más relevantes en función de la similitud con la consulta del usuario o mediante mecanismos de búsqueda asistida por el sistema. Finalmente, en la fase de generación, el modelo de lenguaje utiliza la información recuperada como contexto adicional para producir una respuesta en lenguaje natural.
+
+Desde una perspectiva funcional, estos sistemas presentan una característica común: la dependencia del modelo de lenguaje para interpretar y sintetizar la información recuperada. Esto implica que, aunque el proceso de recuperación pueda estar basado en mecanismos deterministas o semánticos, la generación final de la respuesta sigue siendo probabilística, lo que puede dar lugar a variaciones en la precisión, consistencia y fidelidad respecto a los datos originales.
+
+En los siguientes apartados se describen dos implementaciones concretas de este paradigma. La primera corresponde a una solución basada en \textit{Gemini File Search}, que aprovecha infraestructura de indexación y recuperación proporcionada por un modelo comercial en la nube. La segunda corresponde a una implementación local simplificada de RAG, diseñada con el objetivo de establecer un punto de comparación controlado frente a la arquitectura híbrida basada en MCP presentada posteriormente.
+
+\section{Implementación de RAG con Gemini File Search}
+Con el objetivo de disponer de un sistema de referencia basado en tecnologías comerciales de recuperación aumentada por generación (\textit{Retrieval-Augmented Generation, RAG}), se desarrolló una implementación utilizando el servicio \textit{File Search} proporcionado por la API de Gemini. Esta aproximación permite indexar colecciones documentales completas dentro de la infraestructura de Google y delegar tanto la recuperación semántica de documentos relevantes como la generación final de respuestas en el propio ecosistema de Gemini.
+
+La finalidad de esta implementación no fue construir una herramienta musicológica especializada, sino establecer un escenario de comparación frente a la arquitectura local propuesta posteriormente. De este modo, fue posible evaluar hasta qué punto un sistema RAG genérico, respaldado por modelos de lenguaje de gran escala y amplias ventanas de contexto, resulta capaz de responder consultas relacionadas con análisis musical, metadatos simbólicos y recuperación de información musicológica compleja.
+
+Para ello se empleó el modelo \textit{Gemini 2.5 Flash}, combinado con un almacén de búsqueda documental (\textit{File Search Store}) encargado de indexar automáticamente los documentos del corpus musical.
+
+\subsection{Creación e indexación del corpus en Gemini File Search}
+La primera fase del sistema consistió en la creación de un repositorio documental dentro de la infraestructura de \textit{File Search}. Este repositorio actúa como una base de conocimiento indexada sobre la que posteriormente se realizan las búsquedas semánticas.
+
+El procedimiento implementado inspecciona recursivamente los directorios que contienen el corpus musical y selecciona todos los archivos compatibles con el sistema de indexación. Entre los formatos admitidos se incluyen documentos XML, MusicXML, MEI, archivos de texto plano, JSON, CSV y documentos procedentes de MuseScore.
+
+Durante esta fase se aplicaron diversas transformaciones destinadas a mejorar la compatibilidad de los archivos con la infraestructura de Google. En particular, los nombres de fichero fueron normalizados eliminando caracteres especiales, acentos y símbolos potencialmente problemáticos. Esta normalización garantiza identificadores consistentes durante el proceso de carga y evita errores asociados a diferencias de codificación entre sistemas operativos.
+
+Una vez identificados los documentos válidos, los archivos fueron cargados al almacén documental mediante lotes controlados. El sistema incorpora mecanismos para evitar la carga duplicada de documentos ya indexados y realiza comprobaciones periódicas del estado de cada operación hasta confirmar que el proceso de indexación ha finalizado correctamente.
+
+\subsection{Preprocesamiento y adaptación de los formatos musicales}
+Uno de los principales desafíos encontrados durante la implementación estuvo relacionado con la heterogeneidad de los formatos musicales presentes en el corpus.
+
+Mientras que formatos como MEI o MusicXML son esencialmente documentos XML legibles como texto estructurado, los archivos MSCZ utilizados por MuseScore corresponden a contenedores comprimidos que agrupan múltiples recursos internos. Entre ellos se incluyen la partitura principal, configuraciones de visualización, parámetros de audio y otros elementos auxiliares.
+
+Las primeras pruebas mostraron que la indexación directa de archivos MSCZ producía resultados poco satisfactorios. En lugar de recuperar información musical relevante, el sistema tendía a analizar únicamente la estructura externa del archivo comprimido y sus recursos auxiliares, ignorando el contenido musical propiamente dicho.
+
+Para resolver este problema se implementó una fase de preprocesamiento específica para documentos MSCZ. El procedimiento consiste en descomprimir el archivo, localizar la partitura principal en formato MSCX y extraerla como documento XML independiente antes de enviarla al sistema de indexación. De este modo, Gemini recibe directamente la representación simbólica de la obra y no el contenedor binario que la almacena.
+
+Esta adaptación permitió mejorar significativamente la accesibilidad del contenido musical durante las fases posteriores de recuperación de información.
+
+\subsection{Proceso de consulta y recuperación de información}
+Una vez completada la indexación del corpus, las consultas se realizan mediante el mecanismo nativo de \textit{File Search} proporcionado por Gemini.
+
+Cuando la investigadora formula una pregunta en lenguaje natural, el sistema envía la consulta al modelo junto con la herramienta de recuperación asociada al almacén documental previamente construido. A partir de esta petición, Gemini ejecuta internamente un proceso de búsqueda semántica para identificar los documentos más relevantes dentro del corpus indexado.
+
+Los fragmentos recuperados son incorporados automáticamente al contexto del modelo y utilizados durante la generación de la respuesta final. Desde la perspectiva del usuario, este procedimiento es completamente transparente, ya que la recuperación documental y la síntesis de la respuesta se realizan dentro de una única llamada a la API.
+
+Esta arquitectura presenta la ventaja de simplificar considerablemente la implementación de sistemas RAG, puesto que la construcción de índices vectoriales, la generación de embeddings y la recuperación semántica son gestionadas íntegramente por la infraestructura de Google.
+
+\subsection{Limitaciones observadas}
+Aunque la integración mediante \textit{File Search} facilita enormemente la construcción de sistemas de recuperación documental, las pruebas realizadas durante este trabajo evidenciaron diversas limitaciones cuando las consultas requerían razonamiento musicológico especializado.
+
+La principal restricción deriva de la naturaleza semántica del mecanismo de recuperación. El sistema puede localizar eficazmente información que aparece explícitamente representada en los documentos indexados, como títulos, autores, letras o determinados metadatos. Sin embargo, presenta mayores dificultades cuando la respuesta depende de información derivada que requiere análisis musical previo.
+
+Consultas relacionadas con la detección de síncopas, hemiolias, perfiles melódicos, anacrusas o patrones rítmicos complejos requieren realizar cálculos y procesos analíticos sobre la estructura musical antes de poder responder. Dado que estas características no suelen encontrarse explícitamente codificadas en los documentos originales, el modelo debe inferirlas a partir de representaciones simbólicas extensas y complejas, aumentando significativamente el riesgo de respuestas incorrectas o alucinaciones factuales.
+
+Asimismo, se observó que la recuperación basada exclusivamente en similitud semántica dificulta la ejecución de consultas comparativas, estadísticas o agregadas sobre grandes conjuntos de obras musicales, tareas que resultan más naturales en sistemas apoyados en bases de datos estructuradas y consultas deterministas.
+
+Estas limitaciones motivaron el desarrollo de la arquitectura alternativa presentada en el capítulo siguiente, basada en la extracción previa de conocimiento musicológico y su almacenamiento en una base de datos relacional accesible mediante MCP y consultas \textit{Text-to-SQL}.
+
+\section{Implementación de un sistema RAG básico con modelo local}
+Con el fin de disponer de un segundo sistema de referencia independiente de infraestructuras comerciales, se desarrolló una implementación local simplificada basada en el paradigma clásico de \textit{Retrieval-Augmented Generation} (RAG). Esta solución tiene como objetivo servir como línea base (\textit{baseline}) para evaluar las capacidades y limitaciones de los enfoques de recuperación semántica tradicionales cuando se aplican al análisis de corpus musicales simbólicos.
+
+A diferencia de la implementación basada en \textit{Gemini File Search}, donde los procesos de indexación, recuperación y generación se encuentran integrados dentro de una infraestructura externa, en este caso todos los componentes son ejecutados localmente. El sistema combina una base de datos vectorial para la recuperación semántica, un modelo de embeddings para representar los documentos musicales en un espacio vectorial y un modelo de lenguaje local encargado de generar la respuesta final a partir de los fragmentos recuperados.
+
+\subsection{Proceso de indexación del corpus}
+La primera fase del sistema consiste en la construcción de un índice vectorial a partir de los documentos musicales disponibles en el corpus. Para ello se realiza una exploración recursiva de los directorios de trabajo con el objetivo de localizar archivos compatibles, incluyendo documentos MusicXML, XML, MEI, archivos de texto y otros formatos musicales presentes en la colección.
+
+Una vez localizado cada documento, su contenido textual es cargado en memoria y transformado mediante el modelo de embeddings multilingüe \textit{paraphrase-multilingual-MiniLM-L12-v2}. Este modelo convierte el contenido de cada archivo en un vector numérico de alta dimensionalidad capaz de representar semánticamente la información textual contenida en la partitura.
+
+Los vectores generados son almacenados en una base de datos vectorial persistente basada en \textit{ChromaDB}. Además del embedding correspondiente, el sistema conserva una copia parcial del documento original junto con metadatos que identifican el archivo de procedencia. De este modo se construye un índice semántico local que posteriormente podrá ser consultado mediante búsquedas por similitud vectorial.
+
+\subsection{Proceso de recuperación de información}
+Durante la fase de consulta, la pregunta formulada por la usuaria es procesada mediante el mismo modelo de embeddings utilizado durante la indexación. Esto permite representar la consulta dentro del mismo espacio vectorial que los documentos almacenados.
+
+A continuación, el sistema realiza una búsqueda de similitud en \textit{ChromaDB} y recupera los documentos más cercanos a la consulta según la distancia vectorial calculada. En la implementación desarrollada se recuperan los cinco documentos más similares, los cuales constituyen el contexto utilizado para responder la pregunta.
+
+Los fragmentos recuperados son concatenados y enviados como contexto adicional a un modelo local \textit{Llama 3.1 (8B)} ejecutado mediante Ollama. El modelo recibe tanto la pregunta original como los documentos recuperados y genera una respuesta en lenguaje natural utilizando exclusivamente la información proporcionada por dicho contexto.
+
+\subsection{Limitaciones observadas}
+Las pruebas realizadas pusieron de manifiesto diversas limitaciones inherentes a este enfoque cuando se aplica al análisis musicológico especializado.
+
+En primer lugar, el sistema depende completamente de la similitud semántica entre la consulta y los documentos indexados. Como consecuencia, resulta eficaz para localizar información explícitamente presente en los archivos, pero presenta dificultades cuando la respuesta requiere cálculos, inferencias estructurales o análisis musicales complejos que no aparecen descritos textualmente.
+
+Asimismo, la representación vectorial se construye directamente sobre los documentos originales del corpus. Esto implica que fenómenos musicales como síncopas, hemiolias, perfiles melódicos, tesituras, relaciones interválicas o patrones rítmicos complejos deben inferirse indirectamente a partir de la codificación simbólica de las partituras, una tarea especialmente difícil para modelos de lenguaje generalistas.
+
+Otra limitación importante reside en el tamaño del contexto disponible. Aunque la recuperación vectorial permite seleccionar únicamente los documentos más relevantes, las partituras musicales suelen contener una gran cantidad de información estructurada, lo que restringe la cantidad de obras que pueden ser analizadas simultáneamente dentro de una misma consulta.
+
+Además, debe considerarse la limitación derivada del propio tamaño del modelo de lenguaje utilizado. El prototipo se implementó sobre \textit{Llama 3.1 8B}, un modelo relativamente pequeño en comparación con los sistemas comerciales contemporáneos que operan con decenas o cientos de miles de millones de parámetros. Aunque esta elección permite ejecutar la solución íntegramente en hardware local y reduce significativamente los requisitos computacionales, también restringe su capacidad para interpretar correctamente estructuras simbólicas complejas, mantener grandes cantidades de información contextual y realizar razonamientos musicales especializados. Como consecuencia, incluso cuando el mecanismo de recuperación vectorial local identifica documentos potencialmente relevantes, el modelo puede presentar dificultades para sintetizar correctamente la información recuperada o para responder consultas que exijan un análisis profundo de los contenidos musicales.
+
+Finalmente, el sistema carece de mecanismos deterministas para realizar operaciones agregadas, comparaciones complejas o análisis estadísticos sobre el conjunto completo del corpus. Este tipo de consultas requieren recorrer y procesar explícitamente todos los documentos relevantes, una tarea para la que las bases de datos relacionales resultan significativamente más adecuadas.
+
+Estas limitaciones motivaron el diseño de la arquitectura híbrida presentada en los capítulos posteriores, basada en la extracción previa de variables musicológicas, su estructuración en una base de datos relacional y su explotación mediante una interfaz conversacional sustentada en MCP y consultas \textit{Text-to-SQL}.
+
+\section{Comparación conceptual con la arquitectura MCP propuesta}
+Los experimentos realizados con las dos aproximaciones RAG descritas anteriormente permitieron evaluar el comportamiento de modelos de lenguaje ante corpus musicales simbólicos extensos. Sin embargo, las limitaciones observadas evidencian una diferencia fundamental entre los sistemas basados en recuperación documental y la arquitectura propuesta en este trabajo.
+
+En un sistema RAG tradicional, el modelo de lenguaje opera directamente sobre fragmentos recuperados de los documentos originales. El conocimiento permanece distribuido entre miles de archivos y el modelo debe interpretar dicha información durante cada consulta para intentar construir una respuesta. En consecuencia, la precisión final depende simultáneamente de la calidad de la recuperación, de la capacidad de razonamiento del modelo y de la cantidad de contexto disponible en cada interacción.
+
+La arquitectura desarrollada en esta investigación adopta una estrategia radicalmente diferente. En lugar de delegar el análisis musicológico al modelo de lenguaje en tiempo de consulta, el conocimiento especializado se extrae previamente durante una fase de procesamiento offline. Las partituras son analizadas mediante herramientas musicales deterministas y los resultados se transforman en variables estructuradas almacenadas en una base de datos relacional. De esta forma, cuando el usuario formula una pregunta, el modelo no necesita interpretar directamente los archivos MusicXML, MEI o MSCZ, sino únicamente acceder a información previamente calculada y validada.
+
+Esta diferencia modifica profundamente el papel desempeñado por el modelo de lenguaje. Mientras que en los sistemas RAG el modelo actúa simultáneamente como motor de búsqueda, analista y generador de respuestas, en la arquitectura propuesta el modelo queda reducido a una función mucho más controlada: traducir preguntas formuladas en lenguaje natural a consultas estructuradas sobre una base de datos. La responsabilidad del análisis musical deja de recaer sobre el modelo y pasa a estar sustentada por algoritmos especializados desarrollados específicamente para el dominio musicológico.
+
+Desde el punto de vista de la precisión, esta aproximación ofrece una ventaja significativa. Consultas como la identificación de síncopas, hemiolias, anacrusas, perfiles melódicos o relaciones interválicas dejan de depender de inferencias probabilísticas realizadas por el modelo sobre documentos recuperados. En su lugar, la respuesta se obtiene a partir de variables previamente calculadas mediante procedimientos deterministas y almacenadas como conocimiento explícito dentro de la base de datos.
+
+La arquitectura propuesta también resuelve las limitaciones asociadas al tamaño del contexto. Mientras que los sistemas RAG deben seleccionar únicamente un subconjunto de documentos relevantes para cada consulta, una base de datos relacional permite operar simultáneamente sobre la totalidad del corpus mediante consultas agregadas, filtros complejos y operaciones estadísticas. Esto posibilita responder preguntas que implican comparar cientos o miles de obras sin necesidad de introducir todas las partituras en la ventana de contexto del modelo.
+
+Asimismo, el uso de una infraestructura local basada en SQLite y MCP elimina la dependencia de servicios externos para la recuperación de información. El sistema puede ejecutarse íntegramente en el entorno de trabajo de la investigadora, garantizando la privacidad de los datos, reduciendo los costes operativos y facilitando la reproducibilidad de los experimentos.
+
+Por todo ello, la propuesta desarrollada en este trabajo no debe entenderse como una variante de los sistemas RAG convencionales, sino como una arquitectura híbrida orientada al conocimiento estructurado. Mientras que los enfoques RAG intentan recuperar documentos para que el modelo genere respuestas, la arquitectura MCP persigue extraer previamente el conocimiento relevante, almacenarlo de forma explícita y utilizar el modelo únicamente como interfaz conversacional para acceder a él. Esta diferencia conceptual constituye el fundamento sobre el que se construye el sistema presentado en los capítulos siguientes.

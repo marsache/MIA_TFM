@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  19 JUN 2026 02:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.28)  19 JUN 2026 02:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -950,7 +950,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 \evensidemarginOriginal=\skip96
 \oddsidemarginOriginal=\skip97
 \longTitulo=\skip98
-<Imagenes/Bitmap/escudoUCMcolor.png, id=670, 600.3228pt x 678.3744pt>
+<Imagenes/Bitmap/escudoUCMcolor.png, id=678, 600.3228pt x 678.3744pt>
 File: Imagenes/Bitmap/escudoUCMcolor.png Graphic file (type png)
 <use Imagenes/Bitmap/escudoUCMcolor.png>
 Package pdftex.def Info: Imagenes/Bitmap/escudoUCMcolor.png  used on input line 189.
@@ -1014,15 +1014,9 @@ LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Info: Redefining \. on input line 3.
 LaTeX Info: Redefining \% on input line 3.
-
-Underfull \vbox (badness 2452) has occurred while \output is active []
-
  [13] [14] [15]
-LaTeX Info: Redefining \. on input line 115.
-LaTeX Info: Redefining \% on input line 115.
-
-Underfull \vbox (badness 1430) has occurred while \output is active []
-
+LaTeX Info: Redefining \. on input line 117.
+LaTeX Info: Redefining \% on input line 117.
  [16])
 \tf@toc=\write7
 \openout7 = `TFMTeXiS.toc'.
@@ -1298,7 +1292,7 @@ Underfull \vbox (badness 2012) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 313.
 LaTeX Info: Redefining \% on input line 313.
  [52]
-<Scores/tempo.cropped.pdf, id=1585, 127.47626pt x 49.18375pt>
+<Scores/tempo.cropped.pdf, id=1596, 127.47626pt x 49.18375pt>
 File: Scores/tempo.cropped.pdf Graphic file (type pdf)
 <use Scores/tempo.cropped.pdf>
 Package pdftex.def Info: Scores/tempo.cropped.pdf  used on input line 321.
@@ -1306,12 +1300,12 @@ Package pdftex.def Info: Scores/tempo.cropped.pdf  used on input line 321.
 LaTeX Info: Redefining \. on input line 350.
 LaTeX Info: Redefining \% on input line 350.
  [53 <./Scores/tempo.cropped.pdf>]
-<Scores/compas.cropped.pdf, id=1606, 163.61125pt x 38.1425pt>
+<Scores/compas.cropped.pdf, id=1617, 163.61125pt x 38.1425pt>
 File: Scores/compas.cropped.pdf Graphic file (type pdf)
 <use Scores/compas.cropped.pdf>
 Package pdftex.def Info: Scores/compas.cropped.pdf  used on input line 353.
 (pdftex.def)             Requested size: 244.10559pt x 56.9055pt.
-<Scores/tonalidad.cropped.pdf, id=1609, 247.92625pt x 52.195pt>
+<Scores/tonalidad.cropped.pdf, id=1620, 247.92625pt x 52.195pt>
 File: Scores/tonalidad.cropped.pdf Graphic file (type pdf)
 <use Scores/tonalidad.cropped.pdf>
 Package pdftex.def Info: Scores/tonalidad.cropped.pdf  used on input line 385.
@@ -1322,7 +1316,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 389.
 LaTeX Info: Redefining \% on input line 389.
  [54 <./Scores/compas.cropped.pdf>]
-<Scores/titleauthor.cropped.pdf, id=1620, 285.065pt x 81.30376pt>
+<Scores/titleauthor.cropped.pdf, id=1631, 285.065pt x 81.30376pt>
 File: Scores/titleauthor.cropped.pdf Graphic file (type pdf)
 <use Scores/titleauthor.cropped.pdf>
 Package pdftex.def Info: Scores/titleauthor.cropped.pdf  used on input line 419.
@@ -1346,7 +1340,7 @@ LaTeX Info: Redefining \% on input line 455.
 LaTeX Info: Redefining \. on input line 482.
 LaTeX Info: Redefining \% on input line 482.
  [57]
-<Scores/hemioliav.cropped.pdf, id=1664, 138.5175pt x 48.18pt>
+<Scores/hemioliav.cropped.pdf, id=1675, 138.5175pt x 48.18pt>
 File: Scores/hemioliav.cropped.pdf Graphic file (type pdf)
 <use Scores/hemioliav.cropped.pdf>
 Package pdftex.def Info: Scores/hemioliav.cropped.pdf  used on input line 487.
@@ -1357,7 +1351,7 @@ Underfull \vbox (badness 7415) has occurred while \output is active []
 LaTeX Info: Redefining \. on input line 519.
 LaTeX Info: Redefining \% on input line 519.
  [58 <./Scores/hemioliav.cropped.pdf>]
-<Scores/hemioliah.cropped.pdf, id=1677, 181.67876pt x 38.1425pt>
+<Scores/hemioliah.cropped.pdf, id=1688, 181.67876pt x 38.1425pt>
 File: Scores/hemioliah.cropped.pdf Graphic file (type pdf)
 <use Scores/hemioliah.cropped.pdf>
 Package pdftex.def Info: Scores/hemioliah.cropped.pdf  used on input line 527.
@@ -1365,7 +1359,7 @@ Package pdftex.def Info: Scores/hemioliah.cropped.pdf  used on input line 527.
 LaTeX Info: Redefining \. on input line 541.
 LaTeX Info: Redefining \% on input line 541.
  [59 <./Scores/hemioliah.cropped.pdf>]
-<Scores/sincopa.cropped.pdf, id=1690, 137.51375pt x 38.1425pt>
+<Scores/sincopa.cropped.pdf, id=1701, 137.51375pt x 38.1425pt>
 File: Scores/sincopa.cropped.pdf Graphic file (type pdf)
 <use Scores/sincopa.cropped.pdf>
 Package pdftex.def Info: Scores/sincopa.cropped.pdf  used on input line 563.
@@ -1373,7 +1367,7 @@ Package pdftex.def Info: Scores/sincopa.cropped.pdf  used on input line 563.
 LaTeX Info: Redefining \. on input line 577.
 LaTeX Info: Redefining \% on input line 577.
  [60 <./Scores/sincopa.cropped.pdf>]
-<Scores/letra.cropped.pdf, id=1701, 512.91624pt x 101.37875pt>
+<Scores/letra.cropped.pdf, id=1712, 512.91624pt x 101.37875pt>
 File: Scores/letra.cropped.pdf Graphic file (type pdf)
 <use Scores/letra.cropped.pdf>
 Package pdftex.def Info: Scores/letra.cropped.pdf  used on input line 599.
@@ -1399,7 +1393,7 @@ LaTeX Info: Redefining \% on input line 669.
 LaTeX Info: Redefining \. on input line 698.
 LaTeX Info: Redefining \% on input line 698.
  [64]
-<Scores/tresillo.cropped.pdf, id=1733, 244.915pt x 41.15375pt>
+<Scores/tresillo.cropped.pdf, id=1744, 244.915pt x 41.15375pt>
 File: Scores/tresillo.cropped.pdf Graphic file (type pdf)
 <use Scores/tresillo.cropped.pdf>
 Package pdftex.def Info: Scores/tresillo.cropped.pdf  used on input line 727.
@@ -1455,7 +1449,7 @@ LaTeX Info: Redefining \% on input line 943.
 LaTeX Info: Redefining \. on input line 973.
 LaTeX Info: Redefining \% on input line 973.
  [73]
-<Scores/alteracion.cropped.pdf, id=1788, 215.80624pt x 38.1425pt>
+<Scores/alteracion.cropped.pdf, id=1799, 215.80624pt x 38.1425pt>
 File: Scores/alteracion.cropped.pdf Graphic file (type pdf)
 <use Scores/alteracion.cropped.pdf>
 Package pdftex.def Info: Scores/alteracion.cropped.pdf  used on input line 983.
@@ -1485,7 +1479,7 @@ Overfull \hbox (0.88806pt too wide) in paragraph at lines 1070--1075
  [][] 
  []
 
-<Scores/plica.cropped.pdf, id=1816, 174.6525pt x 38.1425pt>
+<Scores/plica.cropped.pdf, id=1827, 174.6525pt x 38.1425pt>
 File: Scores/plica.cropped.pdf Graphic file (type pdf)
 <use Scores/plica.cropped.pdf>
 Package pdftex.def Info: Scores/plica.cropped.pdf  used on input line 1085.
@@ -1523,7 +1517,7 @@ Underfull \hbox (badness 2951) in paragraph at lines 1194--1195
 LaTeX Info: Redefining \. on input line 1232.
 LaTeX Info: Redefining \% on input line 1232.
 [82]
-<Imagenes/Bitmap/UITool.png, id=1844, 714.2685pt x 491.436pt>
+<Imagenes/Bitmap/UITool.png, id=1855, 714.2685pt x 491.436pt>
 File: Imagenes/Bitmap/UITool.png Graphic file (type png)
 <use Imagenes/Bitmap/UITool.png>
 Package pdftex.def Info: Imagenes/Bitmap/UITool.png  used on input line 1238.
@@ -2242,20 +2236,20 @@ L3 programming layer <2026-03-20>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TFMTeXiS.out' has not changed.
-(rerunfilecheck)             Checksum: 9519291B2B5EDFCCD58D77D57329E0DB;57772.
+(rerunfilecheck)             Checksum: ADB4048288254BF7BC58AEAD3B574B20;58490.
  ) 
 Here is how much of TeX's memory you used:
- 32403 strings out of 467691
- 623859 string characters out of 5414987
- 1119426 words of memory out of 5000000
- 60038 multiletter control sequences out of 15000+600000
+ 32407 strings out of 467691
+ 623906 string characters out of 5414987
+ 1119428 words of memory out of 5000000
+ 60040 multiletter control sequences out of 15000+600000
  649211 words of font info for 77 fonts, out of 8000000 for 9000
  1379 hyphenation exceptions out of 8191
  121i,12n,127p,2104b,1265s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on TFMTeXiS.pdf (203 pages, 1777654 bytes).
+ <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0600.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0800.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1095.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\maria\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/maria/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
+Output written on TFMTeXiS.pdf (203 pages, 1781456 bytes).
 PDF statistics:
- 3217 PDF objects out of 3580 (max. 8388607)
- 499 named destinations out of 1000 (max. 500000)
- 1406 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3229 PDF objects out of 3580 (max. 8388607)
+ 501 named destinations out of 1000 (max. 500000)
+ 1422 words of extra memory for PDF output out of 10000 (max. 10000000)
 
